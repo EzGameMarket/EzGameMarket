@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<sim-project version="12.11" multi-file="no" uid="simp87fc663f6fd04abc96a88ae378867495">
+<sim-project version="12.40" multi-file="no" uid="simp87fc663f6fd04abc96a88ae378867495">
   <meta>
     <name>ERD_GameMarket</name>
     <authors>Krisztián Werdnik</authors>
@@ -15,7 +15,7 @@
     <entity-ids>
       <counter>
         <item-type type-id="group" type="Group" />
-        <value>655</value>
+        <value>672</value>
       </counter>
       <counter>
         <item-type type-id="erd-entity" type="Entity" />
@@ -35,7 +35,7 @@
     <fields>
       <counter>
         <type>SoftwareIdeasModeler.Core.DiagramItems.Erd.ErdEntityAttribute</type>
-        <value>122</value>
+        <value>124</value>
       </counter>
     </fields>
   </counters>
@@ -81,6 +81,16 @@
         <phone-number />
         <description />
         <color>#00000000</color>
+        <working-schedule uid="ws-352bee2a70da4e259781f236ed945688" hours="8" monday="8" tuesday="8" wednesday="8" thursday="8" friday="8" saturday="0" sunday="0" />
+      </person>
+      <person id="">
+        <first-name>Krisztián</first-name>
+        <last-name>Werdnik</last-name>
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
       </person>
     </persons>
     <teams />
@@ -112,7 +122,7 @@
       </meta>
       <abstract-items />
       <sub-models />
-      <diagram type="entity-relationship" id="p6cb4c180f1bc48b6968a940f7df9c2ad_979511214" name="IdentityService" order-index="1" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="0,-414" zoom="0.9">
+      <diagram type="entity-relationship" id="p6cb4c180f1bc48b6968a940f7df9c2ad_979511214" name="IdentityService" order-index="1" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-data="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="329,146" zoom="0.9">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -159,6 +169,7 @@
               <attribute uid="aaf0c931857fa4227b76733dad924ee4b453" cid="ELEM024" name="LastName" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" />
               <attribute uid="a1de36856ec2c4ac7b0f5497d63a71597476" cid="ELEM027" name="VATNumber" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="true" description="" default-value="" auto-increment="false" />
               <attribute uid="afe88006562c949ad8bb8bd751e54ea19406" cid="ELEM028" name="CompanyName" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="true" description="" default-value="" auto-increment="false" />
+              <attribute uid="ad230ed7c86f54fe497a87180fbcbba87564" cid="ELEM122" name="PhoneNumber" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" />
             </attributes>
             <indexes />
           </item>
@@ -199,24 +210,25 @@
             <attributes>
               <attribute uid="a8e06cd472732462ab25985b0c0d3937b399" cid="ELEM087" name="ID" type="Integer" type-id="Uml.Integer" type-size="" foreign-key="false" primary-key="true" nullable="false" description="" default-value="" auto-increment="true" />
               <attribute uid="a0504e93d5a8c49a48b24e7f031e4a3a0303" cid="ELEM088" name="Code" type="String" type-id="Uml.String" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" />
-              <attribute uid="a9c2c60ff6aa34c85a7fb96645a135ada906" cid="ELEM089" name="ToBuyer" type="Real" type-id="Uml.Real" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" />
+              <attribute uid="a9c2c60ff6aa34c85a7fb96645a135ada906" cid="ELEM089" name="Discount" type="Real" type-id="Uml.Real" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" />
               <attribute uid="afd2f1d455c994d49a5776a06a35cb82d169" cid="ELEM090" name="ToOwner" type="Real" type-id="Uml.Real" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" />
               <attribute uid="adfb6399b72dc4db48cb249c1dbab9081572" cid="ELEM091" name="Disabled" type="Boolean" type-id="Uml.Boolean" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" />
               <attribute uid="ad812d158eb49463b978e570be7d263fb821" cid="ELEM092" name="DisabledDate" type="DateTime" type-id="Uml.DateTime" type-size="" foreign-key="false" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" />
+              <attribute uid="a895b5e8d2a6042c1a6f236ee0c76b19d620" cid="ELEM123" name="UserID" type="String" type-id="Uml.String" type-size="" foreign-key="true" primary-key="false" nullable="false" description="" default-value="" auto-increment="false" />
             </attributes>
             <indexes />
           </item>
         </abstract-items>
         <layer id="4ba55938fe76494e97d60b0270016d1d" name="Default" visible="true" enabled="true" locked="false">
           <item id="7226e361994542e8af485f4a748314f7" iid="7f7b096b8c3449fcb570cc2a6f74471f" creation-date="03/01/2020 18:28:36" order-index="1" type="entity">
-            <layout ax="1021" ay="168" awidth="609" aheight="462" x="1021" y="168" width="609" height="462" rotation-center="-234.5,-151" />
+            <layout ax="1021" ay="178" awidth="609" aheight="462" x="1021" y="178" width="609" height="462" rotation-center="-234.5,-151" />
             <erd-entity show-nullability="true" />
           </item>
           <item id="8a7d2aa5c9614cbeac79a69093d9b2df" iid="fc4ffae2f9ca4c8092ed61e252da95a7" creation-date="03/01/2020 18:31:16" order-index="3" type="relation">
-            <layout start-role-position="25,15" end-role-position="25,-15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="738" y1="399" x2="1021" y2="399" start-border-pos="0.375" end-border-pos="0.875" start-local-pos="231" end-local-pos="231" name-position="0,20">
+            <layout start-role-position="25,15" end-role-position="25,-15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="738" y1="399" x2="1021" y2="409" start-border-pos="0.375" end-border-pos="0.875" start-local-pos="231" end-local-pos="231" name-position="0,20">
               <points>
                 <point x="738" y="399" />
-                <point x="1021" y="399" />
+                <point x="1021" y="409" />
               </points>
             </layout>
             <relation from="0c834d1dfa264b469b640475dfb0e032" from-iid="1b6240308ad9447b902ed2ced7164e3d" to="7226e361994542e8af485f4a748314f7" to-iid="7f7b096b8c3449fcb570cc2a6f74471f" />
@@ -252,7 +264,7 @@
             <erd-entity show-nullability="true" />
           </item>
           <item id="ef3111fa8dab4a92831191b1a4130343" iid="5fd2ca97b6ba49ebbbe5d7dc4a534fe7" creation-date="03/04/2020 18:38:36" order-index="8" type="entity">
-            <layout ax="459.25" ay="723" awidth="278.75" aheight="160" x="459.25" y="723" width="278.75" height="160" rotation-center="-111.625,0" />
+            <layout ax="459.25" ay="723" awidth="278.75" aheight="193" x="459.25" y="723" width="278.75" height="193" rotation-center="-111.625,-16.5" />
             <erd-entity show-nullability="true" />
           </item>
           <item id="1f5465402e9a4f98a58e19dcca7b9761" iid="45210e53027049859a6ee19ab45011a1" creation-date="03/04/2020 18:38:36" order-index="9" type="relation">
@@ -266,7 +278,7 @@
           </item>
         </layer>
       </diagram>
-      <diagram type="entity-relationship" id="pa941bc6773f143908b78bee9e9cacae2_137241006" name="CartService" order-index="2" overview-order-index="0" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="-100,-100">
+      <diagram type="entity-relationship" id="pa941bc6773f143908b78bee9e9cacae2_137241006" name="CartService" order-index="2" overview-order-index="0" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-data="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="-100,-100">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -334,7 +346,7 @@
           </item>
         </layer>
       </diagram>
-      <diagram type="entity-relationship" id="pa11d7b0aac81402a8f40c148923b9006_852805049" name="CatalogService" order-index="3" overview-order-index="1" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="0,-94">
+      <diagram type="entity-relationship" id="pa11d7b0aac81402a8f40c148923b9006_852805049" name="CatalogService" order-index="3" overview-order-index="1" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-data="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="0,-94">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -425,7 +437,7 @@
           </item>
         </layer>
       </diagram>
-      <diagram type="entity-relationship" id="p142b520bc9564a58ad09716a26867eba_549987976" name="OrderService" order-index="4" overview-order-index="2" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="-100,-100">
+      <diagram type="entity-relationship" id="p142b520bc9564a58ad09716a26867eba_549987976" name="OrderService" order-index="4" overview-order-index="2" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-data="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="-100,-100">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -463,7 +475,7 @@
           </item>
         </layer>
       </diagram>
-      <diagram type="entity-relationship" id="pb1a25c9912014cef93433047bfca5d9f_944672424" name="SupportService" order-index="5" overview-order-index="3" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="0,-175">
+      <diagram type="entity-relationship" id="pb1a25c9912014cef93433047bfca5d9f_944672424" name="SupportService" order-index="5" overview-order-index="3" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-data="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="0,-175">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -528,7 +540,7 @@
           </item>
         </layer>
       </diagram>
-      <diagram type="entity-relationship" id="pe35cbb37d3f74ecaafe6ac764744466f_390468847" name="  MarketingService" order-index="6" overview-order-index="4" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="-100,-100">
+      <diagram type="entity-relationship" id="pe35cbb37d3f74ecaafe6ac764744466f_390468847" name="  MarketingService" order-index="6" overview-order-index="4" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-data="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="-100,-100">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -564,7 +576,7 @@
           </item>
         </layer>
       </diagram>
-      <diagram type="entity-relationship" id="p730791670abf4f18b922373c1c196d6b_682164417" name="WalletService" order-index="7" overview-order-index="5" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="-19,-87">
+      <diagram type="entity-relationship" id="p730791670abf4f18b922373c1c196d6b_682164417" name="WalletService" order-index="7" overview-order-index="5" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-data="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="-19,-87">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -630,7 +642,7 @@
           </item>
         </layer>
       </diagram>
-      <diagram type="entity-relationship" id="p13059aed350240b088c4ecd979749449_164573801" name="SupplierPicker" order-index="8" overview-order-index="6" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="-100,-100">
+      <diagram type="entity-relationship" id="p13059aed350240b088c4ecd979749449_164573801" name="SupplierPicker" order-index="8" overview-order-index="6" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-rules="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-visibility-sign="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-data="true" show-description="false" show-field-description="false" auto-routed-paths="false" default-line-style="default" view-location="-100,-100">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
