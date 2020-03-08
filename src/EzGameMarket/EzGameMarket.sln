@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.Tests", "Id
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.API", "IdentityService.API\IdentityService.API.csproj", "{92821884-7A2D-4D60-8A0F-65B801D55AED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.API", "CatalogService.API\CatalogService.API.csproj", "{49AEA0CD-AF5C-4D26-A171-57CDCBCEC7AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.API", "CatalogService.API\CatalogService.API.csproj", "{49AEA0CD-AF5C-4D26-A171-57CDCBCEC7AD}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A7FFDBA4-7D90-44A0-AF6E-F3E30EF6C463}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4CBBB327-443C-4599-8762-11210377E6C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{03AFE0D1-FA77-4A19-BF77-E3754458DD17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.Tests", "..\CatalogService.Tests\CatalogService.Tests.csproj", "{51725F31-72EB-4E5A-9FED-86CB34778A51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{A7FFDBA4-7D90-44A0-AF6E-F3E30EF6C463}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7FFDBA4-7D90-44A0-AF6E-F3E30EF6C463}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7FFDBA4-7D90-44A0-AF6E-F3E30EF6C463}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51725F31-72EB-4E5A-9FED-86CB34778A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51725F31-72EB-4E5A-9FED-86CB34778A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51725F31-72EB-4E5A-9FED-86CB34778A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51725F31-72EB-4E5A-9FED-86CB34778A51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{FB93E612-A09C-4E88-9DBC-BB84029660CC} = {EE226F64-780E-45DD-99B4-85281869FDA5}
 		{4CBBB327-443C-4599-8762-11210377E6C3} = {036AB0DB-97B3-4E33-97D4-33471615FBC6}
 		{03AFE0D1-FA77-4A19-BF77-E3754458DD17} = {FB93E612-A09C-4E88-9DBC-BB84029660CC}
+		{51725F31-72EB-4E5A-9FED-86CB34778A51} = {03AFE0D1-FA77-4A19-BF77-E3754458DD17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16E930B6-CA49-4BBE-BD42-6D032E69A5C5}
