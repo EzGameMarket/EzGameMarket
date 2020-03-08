@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using IdentityService.API.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace IdentityService.API.Areas.Identity.Pages.Account
 {
@@ -21,14 +23,17 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IIdentityService _identityService;
 
         public LoginModel(SignInManager<AppUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<AppUser> userManager)
+            UserManager<AppUser> userManager,
+            IIdentityService identityService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _identityService = identityService;
         }
 
         [BindProperty]
@@ -84,6 +89,12 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    var user = await _userManager.FindByNameAsync(Input.Email);
+
+                    var token = await _identityService.CreateToken(user);
+
+                    HttpContext.Response.Cookies.Append("access_token", token, new CookieOptions() { HttpOnly = true,Secure = true });
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
