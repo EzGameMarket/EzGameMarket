@@ -40,8 +40,20 @@ namespace IdentityService.API
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddTransient<IIdentityService,IdentityProvider>();
+            services.AddTransient<IIdentityService, IdentityProvider>();
+            services.AddTransient<ILoginService, LoginProvider>();
+            services.AddTransient<IRegisterService, RegisterProvider>();
 
+            AddJWT(services);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
+        }
+
+        private void AddJWT(IServiceCollection services)
+        {
             var key = Encoding.UTF8.GetBytes(Configuration.GetValue<string>("Secret"));
 
             services.AddAuthentication(options =>
@@ -49,21 +61,16 @@ namespace IdentityService.API
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(key),
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        AuthenticationType = "Identity.Application"
-                    };
-                });
-
-            services.AddSwaggerGen(c =>
+            .AddJwtBearer(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    AuthenticationType = "Identity.Application"
+                };
             });
         }
 

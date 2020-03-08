@@ -14,6 +14,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using IdentityService.API.Models.IdentityViewModels;
+using IdentityService.API.Services;
+using IdentityService.API.Models.IdentityModels;
+using Microsoft.AspNetCore.Http;
 
 namespace IdentityService.API.Areas.Identity.Pages.Account
 {
@@ -24,48 +28,31 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
         private readonly UserManager<AppUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IRegisterService _registerService;
+        private readonly IIdentityService _identityService;
 
         public RegisterModel(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IRegisterService registerService,
+            IIdentityService identityService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _registerService = registerService;
+            _identityService = identityService;
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public RegisterServiceModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
-
-            [Required]
-            [Display(Name = "Your user name")]
-            public string UserName { get; set; }
-
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Password")]
-            public string Password { get; set; }
-
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
-        }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -86,42 +73,33 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                if (await ValidateUser())
+                var regResult = await _registerService.RegisterAsync(Input);
+
+                await _registerService.SendVerification(new RegisterVerificationModel() { Model = Input, Request = Request, Url = Url, User = regResult.NewUser });
+
+                if (regResult.Result.Succeeded)
                 {
-                    _logger.LogInformation($"There is a user registered with the {Input.UserName} username");
-                    return BadRequest($"There is a user registered with the {Input.UserName} username");
-                }
-
-                var user = new AppUser { UserName = Input.UserName, Email = Input.Email };
-                var result = await _userManager.CreateAsync(user, Input.Password);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        await _signInManager.SignInAsync(regResult.NewUser, isPersistent: false);
+
+                        var token = await _identityService.CreateToken(regResult.NewUser);
+
+                        HttpContext.Response.Cookies.Append("access_token", token, new CookieOptions() { HttpOnly = true, Secure = true });
+
                         return LocalRedirect(returnUrl);
                     }
                 }
-                foreach (var error in result.Errors)
+                else
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    foreach (var error in regResult.Result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
                 }
             }
 

@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using IdentityService.API.Services;
 using Microsoft.AspNetCore.Http;
+using IdentityService.API.Models.IdentityViewModels;
+using IdentityService.API.Exceptions;
 
 namespace IdentityService.API.Areas.Identity.Pages.Account
 {
@@ -24,20 +26,23 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly IIdentityService _identityService;
+        private readonly ILoginService _loginService;
 
         public LoginModel(SignInManager<AppUser> signInManager, 
             ILogger<LoginModel> logger,
             UserManager<AppUser> userManager,
-            IIdentityService identityService)
+            IIdentityService identityService,
+            ILoginService loginService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _identityService = identityService;
+            _loginService = loginService;
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public LoginServiceModel Input { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
@@ -45,20 +50,6 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
 
         [TempData]
         public string ErrorMessage { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-
-            [Required]
-            [DataType(DataType.Password)]
-            public string Password { get; set; }
-
-            [Display(Name = "Remember me?")]
-            public bool RememberMe { get; set; }
-        }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -83,30 +74,23 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                try
                 {
-                    _logger.LogInformation("User logged in.");
-                    var user = await _userManager.FindByNameAsync(Input.Email);
+                    var loginResult = await _loginService.LoginAsync(Input);
 
-                    var token = await _identityService.CreateToken(user);
-
-                    HttpContext.Response.Cookies.Append("access_token", token, new CookieOptions() { HttpOnly = true,Secure = true });
+                    HttpContext.Response.Cookies.Append("access_token", loginResult.Token, new CookieOptions() { HttpOnly = true, Secure = true });
 
                     return LocalRedirect(returnUrl);
                 }
-                if (result.RequiresTwoFactor)
+                catch (AccountRequire2FAException)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
-                if (result.IsLockedOut)
+                catch (AccountLockedOutException)
                 {
-                    _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
-                else
+                catch (InvalidLoginDataException)
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();

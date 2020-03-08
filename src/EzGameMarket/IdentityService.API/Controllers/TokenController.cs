@@ -46,7 +46,7 @@ namespace IdentityService.API.Controllers
 
                     var token = await _identityService.CreateToken(user);
 
-                    HttpContext.Response.Cookies.Append("access_token",token, new CookieOptions() { HttpOnly = true});
+                    HttpContext.Response.Cookies.Append("access_token",token, new CookieOptions() { HttpOnly = true, Secure = true});
 
                     return token;
                 }
