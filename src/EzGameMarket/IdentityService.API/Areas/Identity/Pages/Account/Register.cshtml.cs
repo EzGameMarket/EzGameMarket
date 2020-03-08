@@ -18,6 +18,7 @@ using IdentityService.API.Models.IdentityViewModels;
 using IdentityService.API.Services;
 using IdentityService.API.Models.IdentityModels;
 using Microsoft.AspNetCore.Http;
+using IdentityService.API.Exceptions;
 
 namespace IdentityService.API.Areas.Identity.Pages.Account
 {
@@ -73,33 +74,44 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var regResult = await _registerService.RegisterAsync(Input);
-
-                await _registerService.SendVerification(new RegisterVerificationModel() { Model = Input, Request = Request, Url = Url, User = regResult.NewUser });
-
-                if (regResult.Result.Succeeded)
+                try
                 {
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    var regResult = await _registerService.RegisterAsync(Input);
+
+                    await _registerService.SendVerification(new RegisterVerificationModel() { Model = Input, Request = Request, Url = Url, User = regResult.NewUser });
+
+                    if (regResult.Result.Succeeded)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
+                        if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                        {
+                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(regResult.NewUser, isPersistent: false);
+
+                            var token = await _identityService.CreateToken(regResult.NewUser);
+
+                            HttpContext.Response.Cookies.Append("access_token", token, new CookieOptions() { HttpOnly = true, Secure = true });
+
+                            return LocalRedirect(returnUrl);
+                        }
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(regResult.NewUser, isPersistent: false);
-
-                        var token = await _identityService.CreateToken(regResult.NewUser);
-
-                        HttpContext.Response.Cookies.Append("access_token", token, new CookieOptions() { HttpOnly = true, Secure = true });
-
-                        return LocalRedirect(returnUrl);
+                        foreach (var error in regResult.Result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
                     }
                 }
-                else
+                catch (UsernameAlreadyRegisteredException ex)
                 {
-                    foreach (var error in regResult.Result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
+                    ModelState.AddModelError("UserName", ex.Message);
+                }
+                catch (EmailAlreadyRegisteredException ex)
+                {
+                    ModelState.AddModelError("UserName", ex.Message);
                 }
             }
 

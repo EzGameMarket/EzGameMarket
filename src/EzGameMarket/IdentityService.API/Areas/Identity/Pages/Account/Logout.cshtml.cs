@@ -31,6 +31,9 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
+
+            HttpContext.Response.Cookies.Delete("access_token");
+
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);

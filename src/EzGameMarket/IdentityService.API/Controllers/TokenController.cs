@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using IdentityService.API.Exceptions;
 using IdentityService.API.Models;
 using IdentityService.API.Models.IdentityViewModels;
 using IdentityService.API.Services;
@@ -21,46 +22,50 @@ namespace IdentityService.API.Controllers
         private readonly ILogger<TokenController> _logger;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly ILoginService _loginService;
 
-        public TokenController(IIdentityService identityService, ILogger<TokenController> logger, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public TokenController(IIdentityService identityService,
+            ILogger<TokenController> logger,
+            UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager,
+            ILoginService loginService)
         {
             _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
+            _loginService = loginService;
         }
         
         [HttpPost("generate")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<string> Generate([FromBody] TokenLoginModel loginModel)
+        public async Task<string> Generate([FromBody] LoginServiceModel loginModel)
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(loginModel.UserName, loginModel.Password,true,false);
+                var loginRes = await _loginService.LoginAsync(loginModel);
 
-                if (result.Succeeded)
+                try
                 {
-                    _logger.LogInformation($"{loginModel.UserName} successfully generated a token");
-                    var user = await _userManager.FindByNameAsync(loginModel.UserName);
+                    var loginResult = await _loginService.LoginAsync(loginModel);
 
-                    var token = await _identityService.CreateToken(user);
+                    HttpContext.Response.Cookies.Append("access_token", loginResult.Token, new CookieOptions() { HttpOnly = true, Secure = true });
 
-                    HttpContext.Response.Cookies.Append("access_token",token, new CookieOptions() { HttpOnly = true, Secure = true});
-
-                    return token;
+                    return loginRes.Token;
                 }
-                if (result.RequiresTwoFactor)
+                catch (AccountRequire2FAException)
                 {
                     return "2FA authentication required before generating the token";
                 }
-                if (result.IsLockedOut)
+                catch (AccountLockedOutException)
                 {
                     return "Your account is locked out";
                 }
-                if (result.IsNotAllowed)
+                catch (InvalidLoginDataException)
                 {
-                    return "Access Denied";
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return "Invalid Login Data";
                 }
             }
 
@@ -70,25 +75,23 @@ namespace IdentityService.API.Controllers
         [HttpPost("generate2fa")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<string> Generate2FA([FromBody] TokenLoginModel loginModel)
+        public async Task<string> Generate2FA([FromBody] Login2FAServiceModel loginModel)
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(loginModel.UserName, loginModel.Password, true, false);
-
-                if (result.Succeeded)
+                try
                 {
-                    _logger.LogInformation($"{loginModel.UserName} successfully generated a token");
-                    var user = await _userManager.FindByNameAsync(loginModel.UserName);
-                    return await _identityService.CreateToken(user);
+                    var loginRes = await _loginService.LoginWith2FAAsync(loginModel, true);
+
+                    return loginRes.Token;
                 }
-                if (result.IsLockedOut)
+                catch (AccountLockedOutException)
                 {
                     return "Your account is locked out";
                 }
-                if (result.IsNotAllowed)
+                catch (InvalidAuthenticatorCodeException)
                 {
-                    return "Access Denied";
+                    return "Invalid Authenticator Code";
                 }
             }
 

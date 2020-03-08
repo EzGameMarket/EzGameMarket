@@ -26,19 +26,45 @@ namespace IdentityService.API.Services
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IEmailSender _emailSender;
 
-        private async Task<bool> ValidateUser(RegisterServiceModel model)
+        public RegisterProvider(IIdentityService identityService,
+            ILogger<RegisterProvider> logger,
+            UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager,
+            IEmailSender emailSender)
         {
-            var userWithUserName = await _userManager.FindByNameAsync(model.UserName);
+            IdentityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
+            _emailSender = emailSender ?? throw new ArgumentNullException(nameof(emailSender));
+        }
+
+        private async Task<bool> ValidateUserName(RegisterServiceModel model)
+        {
+            var userWithUserName = await _userManager.FindByNameAsync(model.Email);
 
             return userWithUserName != default;
         }
 
+        private async Task<bool> ValidateEmail(RegisterServiceModel model)
+        {
+            var userWithEmail = await _userManager.FindByEmailAsync(model.Email);
+
+            return userWithEmail != default;
+        }
+
         public async Task<RegisterResult> RegisterAsync(RegisterServiceModel model)
         {
-            if (await ValidateUser(model))
+            if (await ValidateUserName(model))
             {
                 _logger.LogInformation($"There is a user registered with the {model.UserName} username");
-                throw new UsernameAlreadyRegisteredException() { UserName = model.UserName } ;
+                throw new UsernameAlreadyRegisteredException($"There is a user registered with the {model.UserName} username") { UserName = model.UserName } ;
+            }
+
+            if (await ValidateEmail(model))
+            {
+                _logger.LogInformation($"There is a user registered with the {model.Email} email");
+                throw new EmailAlreadyRegisteredException($"There is a user registered with the {model.Email} email") { Email = model.Email };
             }
 
             var user = new AppUser { UserName = model.UserName, Email = model.Email };

@@ -31,11 +31,14 @@ namespace IdentityService.API.Services
         {
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
+
             if (result.Succeeded)
             {
                 _logger.LogInformation("User logged in.");
-                var user = await _userManager.FindByNameAsync(model.Email);
 
                 var token = await IdentityService.CreateToken(user);
 
