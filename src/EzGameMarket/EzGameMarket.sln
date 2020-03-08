@@ -37,27 +37,35 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartService.API", "CartServ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{760AE863-922B-432E-B852-E1A64601E84B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.Tests", "CatalogService.Tests\CatalogService.Tests.csproj", "{D992F505-9864-4B9E-95E4-332DFF9ACA1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Tests", "CatalogService.Tests\CatalogService.Tests.csproj", "{D992F505-9864-4B9E-95E4-332DFF9ACA1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartService.Tests", "CartService.Tests\CartService.Tests.csproj", "{F844211C-D6F5-49A2-AE34-E36A6E595B9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartService.Tests", "CartService.Tests\CartService.Tests.csproj", "{F844211C-D6F5-49A2-AE34-E36A6E595B9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService.API", "PaymentService.API\PaymentService.API.csproj", "{F605F2B2-83B3-4FDA-8DC3-CAF24230A0BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService.API", "PaymentService.API\PaymentService.API.csproj", "{F605F2B2-83B3-4FDA-8DC3-CAF24230A0BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.API", "OrderService.API\OrderService.API.csproj", "{E6B30ED1-E4A1-4493-B758-4269DB788687}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.API", "OrderService.API\OrderService.API.csproj", "{E6B30ED1-E4A1-4493-B758-4269DB788687}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5605C2B8-2CDE-4AE8-BEF2-6F080A3DA0D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketingService.Tests", "MarketingService.Tests\MarketingService.Tests.csproj", "{435ECB28-0C3F-4566-A48E-67AE01D1E338}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingService.Tests", "MarketingService.Tests\MarketingService.Tests.csproj", "{435ECB28-0C3F-4566-A48E-67AE01D1E338}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AB475DF8-6109-44CB-B2B0-EBD600CE6875}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{077592CF-9364-4EFA-953C-4D7836E4DFFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Tests", "OrderService.Tests\OrderService.Tests.csproj", "{CBBBABF2-5F4A-441C-962D-A542E5F942CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Tests", "OrderService.Tests\OrderService.Tests.csproj", "{CBBBABF2-5F4A-441C-962D-A542E5F942CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService.Tests", "PaymentService.Tests\PaymentService.Tests.csproj", "{C8358758-DC85-4FF6-825D-7303AE2CBCB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService.Tests", "PaymentService.Tests\PaymentService.Tests.csproj", "{C8358758-DC85-4FF6-825D-7303AE2CBCB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketingService.API", "MarketingService.API\MarketingService.API.csproj", "{CE80E50B-7EF3-4BEC-8A6B-576B3C377B61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingService.API", "MarketingService.API\MarketingService.API.csproj", "{CE80E50B-7EF3-4BEC-8A6B-576B3C377B61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Core", "EventBuses\EventBus.Core\EventBus.Core.csproj", "{85F0B6CC-1453-410E-AAF7-FE559FE3B501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.RabbitMQ", "EventBuses\EventBus.RabbitMQ\EventBus.RabbitMQ.csproj", "{C829C38F-5AD1-4C4B-A1D2-926D36FC205A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.AzureServiceBus", "EventBuses\EventBus.AzureServiceBus\EventBus.AzureServiceBus.csproj", "{9CB34245-54E4-4802-BDF8-65EEDD44FE73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Shared", "EventBuses\EventBus.Shared\EventBus.Shared.csproj", "{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +125,22 @@ Global
 		{CE80E50B-7EF3-4BEC-8A6B-576B3C377B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE80E50B-7EF3-4BEC-8A6B-576B3C377B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE80E50B-7EF3-4BEC-8A6B-576B3C377B61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85F0B6CC-1453-410E-AAF7-FE559FE3B501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85F0B6CC-1453-410E-AAF7-FE559FE3B501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85F0B6CC-1453-410E-AAF7-FE559FE3B501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85F0B6CC-1453-410E-AAF7-FE559FE3B501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C829C38F-5AD1-4C4B-A1D2-926D36FC205A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C829C38F-5AD1-4C4B-A1D2-926D36FC205A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C829C38F-5AD1-4C4B-A1D2-926D36FC205A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C829C38F-5AD1-4C4B-A1D2-926D36FC205A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB34245-54E4-4802-BDF8-65EEDD44FE73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB34245-54E4-4802-BDF8-65EEDD44FE73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB34245-54E4-4802-BDF8-65EEDD44FE73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB34245-54E4-4802-BDF8-65EEDD44FE73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +170,10 @@ Global
 		{CBBBABF2-5F4A-441C-962D-A542E5F942CC} = {AB475DF8-6109-44CB-B2B0-EBD600CE6875}
 		{C8358758-DC85-4FF6-825D-7303AE2CBCB8} = {077592CF-9364-4EFA-953C-4D7836E4DFFD}
 		{CE80E50B-7EF3-4BEC-8A6B-576B3C377B61} = {29E147EE-5783-4B16-AF1C-3E4A78BBF274}
+		{85F0B6CC-1453-410E-AAF7-FE559FE3B501} = {7E7D4861-9210-42D5-95C4-0D8B03C74716}
+		{C829C38F-5AD1-4C4B-A1D2-926D36FC205A} = {7E7D4861-9210-42D5-95C4-0D8B03C74716}
+		{9CB34245-54E4-4802-BDF8-65EEDD44FE73} = {7E7D4861-9210-42D5-95C4-0D8B03C74716}
+		{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB} = {7E7D4861-9210-42D5-95C4-0D8B03C74716}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16E930B6-CA49-4BBE-BD42-6D032E69A5C5}
