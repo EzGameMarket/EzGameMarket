@@ -37,6 +37,16 @@ namespace CatalogService.API
 
             services.AddControllers();
 
+            AddJWT(services);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
+        }
+
+        private void AddJWT(IServiceCollection services)
+        {
             var key = Encoding.UTF8.GetBytes(Configuration.GetValue<string>("Secret"));
 
             services.AddAuthentication(options =>
@@ -54,11 +64,6 @@ namespace CatalogService.API
                     ValidateAudience = false,
                     AuthenticationType = "Identity.Application"
                 };
-            });
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
         }
 
