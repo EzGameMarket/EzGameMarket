@@ -20,3 +20,10 @@ services:
       context: .
       dockerfile: CartService.API/Dockerfile
 
+
+  paymentservice.api:
+    image: ${DOCKER_REGISTRY-}paymentserviceapi
+    build:
+      context: .
+      dockerfile: PaymentService.API/Dockerfile
+
