@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CatalogService.API.Data;
 using CatalogService.API.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CatalogService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PlatformsController : ControllerBase
     {
         private readonly ProductDbContext _context;
