@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  identityservice.api:
+    image: ${DOCKER_REGISTRY-}identityserviceapi
+    build:
+      context: .
+      dockerfile: IdentityService.API/Dockerfile
+
+  catalogservice.api:
+    image: ${DOCKER_REGISTRY-}catalogserviceapi
+    build:
+      context: .
+      dockerfile: CatalogService.API/Dockerfile
+
