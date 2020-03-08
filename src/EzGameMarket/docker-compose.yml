@@ -34,3 +34,10 @@ services:
       context: .
       dockerfile: OrderService.API/Dockerfile
 
+
+  marketingservice.api:
+    image: ${DOCKER_REGISTRY-}marketingserviceapi
+    build:
+      context: .
+      dockerfile: MarketingService.API/Dockerfile
+
