@@ -59,13 +59,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService.Tests", "Pay
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingService.API", "MarketingService.API\MarketingService.API.csproj", "{CE80E50B-7EF3-4BEC-8A6B-576B3C377B61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Core", "EventBuses\EventBus.Core\EventBus.Core.csproj", "{85F0B6CC-1453-410E-AAF7-FE559FE3B501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.Core", "EventBuses\EventBus.Core\EventBus.Core.csproj", "{85F0B6CC-1453-410E-AAF7-FE559FE3B501}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.RabbitMQ", "EventBuses\EventBus.RabbitMQ\EventBus.RabbitMQ.csproj", "{C829C38F-5AD1-4C4B-A1D2-926D36FC205A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.RabbitMQ", "EventBuses\EventBus.RabbitMQ\EventBus.RabbitMQ.csproj", "{C829C38F-5AD1-4C4B-A1D2-926D36FC205A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.AzureServiceBus", "EventBuses\EventBus.AzureServiceBus\EventBus.AzureServiceBus.csproj", "{9CB34245-54E4-4802-BDF8-65EEDD44FE73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.AzureServiceBus", "EventBuses\EventBus.AzureServiceBus\EventBus.AzureServiceBus.csproj", "{9CB34245-54E4-4802-BDF8-65EEDD44FE73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Shared", "EventBuses\EventBus.Shared\EventBus.Shared.csproj", "{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.Shared", "EventBuses\EventBus.Shared\EventBus.Shared.csproj", "{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{994FD530-2DEC-47C1-8E30-2C5510E0E849}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{9BB09F93-389A-499A-9757-B594551FF0E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureVaultAccess", "AzureVaultAccess", "{6A24922D-615E-4C3A-B480-4B2133080C5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaultAccess.Shared", "AzureVaultAccess\VaultAccess.Shared\VaultAccess.Shared.csproj", "{5C5DDE58-3F48-489A-A651-3735DA1F19A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaultAccess.Azure", "AzureVaultAccess\VaultAccess.Azure\VaultAccess.Azure.csproj", "{87DBE819-2671-49AE-99DF-0DB0C5BA91F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +151,14 @@ Global
 		{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C5DDE58-3F48-489A-A651-3735DA1F19A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C5DDE58-3F48-489A-A651-3735DA1F19A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C5DDE58-3F48-489A-A651-3735DA1F19A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C5DDE58-3F48-489A-A651-3735DA1F19A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87DBE819-2671-49AE-99DF-0DB0C5BA91F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DBE819-2671-49AE-99DF-0DB0C5BA91F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87DBE819-2671-49AE-99DF-0DB0C5BA91F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87DBE819-2671-49AE-99DF-0DB0C5BA91F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,6 +192,10 @@ Global
 		{C829C38F-5AD1-4C4B-A1D2-926D36FC205A} = {7E7D4861-9210-42D5-95C4-0D8B03C74716}
 		{9CB34245-54E4-4802-BDF8-65EEDD44FE73} = {7E7D4861-9210-42D5-95C4-0D8B03C74716}
 		{A9EFFBB8-75BF-42BE-84F1-B1EAEFBBFBDB} = {7E7D4861-9210-42D5-95C4-0D8B03C74716}
+		{994FD530-2DEC-47C1-8E30-2C5510E0E849} = {3D261450-FAB0-408B-A627-216A1FC9221F}
+		{9BB09F93-389A-499A-9757-B594551FF0E4} = {3D261450-FAB0-408B-A627-216A1FC9221F}
+		{5C5DDE58-3F48-489A-A651-3735DA1F19A1} = {6A24922D-615E-4C3A-B480-4B2133080C5F}
+		{87DBE819-2671-49AE-99DF-0DB0C5BA91F4} = {6A24922D-615E-4C3A-B480-4B2133080C5F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16E930B6-CA49-4BBE-BD42-6D032E69A5C5}

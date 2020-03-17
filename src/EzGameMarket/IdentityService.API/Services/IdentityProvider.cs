@@ -55,11 +55,6 @@ namespace IdentityService.API.Services
             var output = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name,user.UserName),
-                new Claim(ClaimTypes.AuthenticationMethod,"Identity.Application"),
-                new Claim(ClaimTypes.Authentication,"Identity.Application"),
-                new Claim(ClaimTypes.AuthorizationDecision,"Identity.Application"),
-                new Claim(ClaimTypes.AuthenticationInstant,"Identity.Application"),
-                new Claim(JwtRegisteredClaimNames.Typ,"Identity.Application"),
                 new Claim(ClaimTypes.NameIdentifier,user.Id),
                 new Claim(ClaimTypes.Email,user.Email),
                 new Claim(JwtRegisteredClaimNames.Nbf,new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
