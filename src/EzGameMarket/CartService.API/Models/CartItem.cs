@@ -1,4 +1,5 @@
 ﻿using CartService.API.Exceptions;
+using System.ComponentModel.DataAnnotations;
 
 namespace CartService.API.Models
 {
@@ -6,7 +7,9 @@ namespace CartService.API.Models
     {
         private int _quantity;
 
+        [Required]
         public int ProductID { get; set; }
+        [Required]
         public int Quantity
         {
             get => _quantity;
