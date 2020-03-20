@@ -22,40 +22,34 @@ namespace CartService.API.Models
 
         }
 
-        public void AddItem(int itemID)
+        public void AddItem(CartItemModifyModel model)
         {
-            if (itemID > -1)
-            {
-                var currStock = Items.FirstOrDefault(i=> i.ProductID == itemID);
+            var currStock = Items.FirstOrDefault(i=> i.ProductID == model.ProductId);
 
-                if (currStock != default)
-                {
-                    currStock.AddQuantity(1);
-                }
-                else
-                {
-                    var newStock = new CartItem(itemID);
-                    Items.Add(newStock);
-                }
+            if (currStock != default)
+            {
+                currStock.Quantity = model.Quantity;
+            }
+            else
+            {
+                var newStock = new CartItem();
+                Items.Add(newStock);
             }
         }
 
-        public void RemoveItem(int itemID)
+        public void RemoveItem(CartItemModifyModel model)
         {
-            if (itemID != default)
-            {
-                var currStock = Items.FirstOrDefault(i => i.ProductID == itemID);
+            var currStock = Items.FirstOrDefault(i => i.ProductID == model.ProductId);
 
-                if (currStock != default)
+            if (currStock != default)
+            {
+                if (currStock.Quantity > 1)
                 {
-                    if (currStock.Quantity > 1)
-                    {
-                        currStock.AddQuantity(-1);
-                    }
-                    else
-                    {
-                        Items.Remove(currStock);
-                    }
+                    currStock.Quantity = model.Quantity;
+                }
+                else
+                {
+                    Items.Remove(currStock);
                 }
             }
         }

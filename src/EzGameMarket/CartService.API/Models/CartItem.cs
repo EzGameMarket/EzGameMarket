@@ -12,7 +12,6 @@ namespace CartService.API.Models
         public CartItem(int id)
         {
             ProductID = id;
-            AddQuantity(1);
         }
 
         private int _quantity;
@@ -21,16 +20,18 @@ namespace CartService.API.Models
         [Required]
         public int ProductID { get; set; }
         [Required]
-        public int Quantity => _quantity;
-
-        public void AddQuantity(int value)
+        public int Quantity
         {
-            if (_quantity + value > MaximumQuantity)
+            get => _quantity;
+            set
             {
-                throw new TooManyItemsException() { ProductID = ProductID };
-            }
+                if (value > MaximumQuantity)
+                {
+                    throw new TooManyItemsException() { ProductID = ProductID };
+                }
 
-            _quantity += value;
+                _quantity = value;
+            }
         }
     }
 }

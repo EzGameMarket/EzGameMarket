@@ -59,15 +59,20 @@ namespace CartService.API.Controllers
             }
         }
 
-        public async Task<IActionResult> AddItem(int productID)
+        public async Task<IActionResult> AddItem(CartItemModifyModel model)
         {
+            if (ModelState.IsValid == false)
+            {
+                return BadRequest();
+            }
+
             var id = _identityService.GetUserID(User);
 
             if (id != default)
             {
                 var cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
 
-                cart.AddItem(productID);
+                cart.AddItem(model);
 
                 return Ok();
             }
@@ -77,15 +82,20 @@ namespace CartService.API.Controllers
             }
         }
 
-        public async Task<IActionResult> RemoveItem(int productID)
+        public async Task<IActionResult> RemoveItem(CartItemModifyModel model)
         {
+            if (ModelState.IsValid == false)
+            {
+                return BadRequest();
+            }
+
             var id = _identityService.GetUserID(User);
 
             if (id != default)
             {
                 var cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
 
-                
+                cart.RemoveItem(model);
 
                 return Ok();
             }
