@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using CatalogService.API.Services;
 
 namespace CatalogService.API
 {
@@ -43,6 +44,8 @@ namespace CatalogService.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
+
+            services.AddSingleton<ICatalogService,Services.CatalogService>();
         }
 
         private void AddJWT(IServiceCollection services)
