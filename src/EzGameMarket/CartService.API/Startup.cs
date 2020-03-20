@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using CartService.API.Data;
+using CartService.API.Services;
 
 namespace CartService.API
 {
@@ -43,6 +44,8 @@ namespace CartService.API
             services.AddDbContext<CartDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSingleton<IIdentityService, IdentityService>();
         }
 
         private void AddJWT(IServiceCollection services)

@@ -5,6 +5,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using CartService.API.Data;
 using CartService.API.Models;
+using CartService.API.Models.ViewModels;
+using CartService.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,34 +16,39 @@ namespace CartService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CartController : ControllerBase
     {
         private CartDbContext _dbContext;
+        private IIdentityService _identityService;
 
-        public CartController(CartDbContext db)
+        public CartController(CartDbContext db,
+                              IIdentityService identityService)
         {
             _dbContext = db;
+            _identityService = identityService;
         }
 
         public async Task<ActionResult<Cart>> GetCart()
         {
-            if (User.Identity.IsAuthenticated == false)
-            {
-                return Unauthorized();
-            }
+            var id = _identityService.GetUserID(User);
 
-            var idClaim = User.Claims.FirstOrDefault(c=> c.Type == ClaimTypes.NameIdentifier);
-
-            if (idClaim != default)
+            if (id != default)
             {
-                var id = idClaim.Value;
                 var cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
 
                 if (cart == default)
                 { 
-                    await CreateCart();
+                    var res = await CreateCart();
 
-                    cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
+                    if (res is OkResult)
+                    {
+                        cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
 
                 return cart;
@@ -51,19 +59,48 @@ namespace CartService.API.Controllers
             }
         }
 
+        public async Task<IActionResult> AddItem(int productID)
+        {
+            var id = _identityService.GetUserID(User);
+
+            if (id != default)
+            {
+                var cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
+
+                cart.AddItem(productID);
+
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        public async Task<IActionResult> RemoveItem(int productID)
+        {
+            var id = _identityService.GetUserID(User);
+
+            if (id != default)
+            {
+                var cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
+
+                
+
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         public async Task<IActionResult> CreateCart()
         {
-            if (User.Identity.IsAuthenticated == false)
+            var id = _identityService.GetUserID(User);
+
+            if (id != default)
             {
-                return Unauthorized();
-            }
-
-            var idClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
-
-            if (idClaim != default)
-            {
-                var id = idClaim.Value;
-
                 var cart = new Cart() { OwnerID = id };
 
                 await _dbContext.Cart.AddAsync(cart);
@@ -77,21 +114,20 @@ namespace CartService.API.Controllers
             }
         }
 
-        public async Task<IActionResult> Checkout()
+        public async Task<IActionResult> Checkout(CheckoutModel model)
         {
-            if (User.Identity.IsAuthenticated == false)
+            if (model == default || ModelState.IsValid == false)
             {
-                return Unauthorized();
+                return BadRequest();
             }
 
-            var idClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            var id = _identityService.GetUserID(User);
 
-            if (idClaim != default)
+            if (id != default)
             {
-                var id = idClaim.Value;
                 var cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
 
-                cart.Checkout();
+                cart.Checkout(model);
 
                 return Ok();
             }

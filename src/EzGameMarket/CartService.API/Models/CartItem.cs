@@ -5,24 +5,32 @@ namespace CartService.API.Models
 {
     public class CartItem
     {
-        private int _quantity;
+        public const int MaximumQuantity = 5;
 
-        [Required]
+        public CartItem() { }
+
+        public CartItem(int id)
+        {
+            ProductID = id;
+            AddQuantity(1);
+        }
+
+        private int _quantity;
         [Key]
+        public int ID { get; set; }
+        [Required]
         public int ProductID { get; set; }
         [Required]
-        public int Quantity
-        {
-            get => _quantity;
-            set
-            {
-                if (_quantity + value > 5)
-                {
-                    throw new TooManyItemsException() { ProductID = ProductID };
-                }
+        public int Quantity => _quantity;
 
-                _quantity += value;
+        public void AddQuantity(int value)
+        {
+            if (_quantity + value > MaximumQuantity)
+            {
+                throw new TooManyItemsException() { ProductID = ProductID };
             }
+
+            _quantity += value;
         }
     }
 }
