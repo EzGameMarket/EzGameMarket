@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VaultAccess.Shared
+namespace VaultAccess.Shared.Infrastucture
 {
     public interface IByteConverter<T> where T : class
     {

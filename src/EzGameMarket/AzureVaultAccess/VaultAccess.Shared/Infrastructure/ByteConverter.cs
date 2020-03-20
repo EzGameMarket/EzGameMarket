@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-namespace VaultAccess.Shared
+namespace VaultAccess.Shared.Infrastucture
 {
     public class ByteConverter<T> : IByteConverter<T> where T : class
     {
