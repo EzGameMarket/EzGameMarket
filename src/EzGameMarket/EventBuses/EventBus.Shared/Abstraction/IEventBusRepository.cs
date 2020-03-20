@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EventBus.Shared
+namespace EventBus.Shared.Abstraction
 {
     public interface IEventBusRepository
     {
         bool Publish<T>(T message);
 
-        T Subscribe<T>();
+        void Subscribe<TEvent,TH>();
+
+        void UnSubscribe<TEvent>();
     }
 }
