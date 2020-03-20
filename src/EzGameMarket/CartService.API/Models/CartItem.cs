@@ -8,6 +8,7 @@ namespace CartService.API.Models
         private int _quantity;
 
         [Required]
+        [Key]
         public int ProductID { get; set; }
         [Required]
         public int Quantity

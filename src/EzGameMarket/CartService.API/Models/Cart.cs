@@ -9,6 +9,7 @@ namespace CartService.API.Models
     public class Cart
     {
         [Required]
+        [Key]
         public int CartID { get; set; }
         [Required]
         public string OwnerID { get; set; }
