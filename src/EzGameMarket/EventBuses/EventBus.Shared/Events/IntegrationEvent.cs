@@ -9,18 +9,18 @@ namespace EventBus.Shared.Events
     {
         public IntegrationEvent()
         {
-            ID = Guid.NewGuid();
+            Id = Guid.NewGuid();
             CreationDate = DateTime.Now;
         }
 
         [JsonConstructor]
         public IntegrationEvent(Guid id, DateTime creationDate)
         {
-            ID = id;
+            Id = id;
             CreationDate = creationDate;
         }
 
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         public DateTime CreationDate { get; set; }
     }
