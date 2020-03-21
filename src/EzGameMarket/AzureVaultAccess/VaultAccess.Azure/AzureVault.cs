@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using VaultAccess.Shared;
+using VaultAccess.Shared.Abstractions;
+using VaultAccess.Shared.Settings;
 
 namespace VaultAccess.Azure
 {
