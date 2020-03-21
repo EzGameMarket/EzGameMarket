@@ -1,0 +1,9 @@
+{
+  "AzureServiceBusEnabled": false,
+  "AzureStorageEnabled": false,
+  "SubscriptionClientName": "Catalog",
+  "ApplicationInsights": {
+    "InstrumentationKey": ""
+  },
+  "EventBusRetryCount": 5
+}
