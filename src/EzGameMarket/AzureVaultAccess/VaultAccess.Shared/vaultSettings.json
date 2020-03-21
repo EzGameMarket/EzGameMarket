@@ -1,3 +1,8 @@
 {
-
+  "UseVault": false,
+  "Vault": {
+    "Name": "eshop",
+    "ClientId": "your-clien-id",
+    "ClientSecret": "your-client-secret"
+  }
 }
