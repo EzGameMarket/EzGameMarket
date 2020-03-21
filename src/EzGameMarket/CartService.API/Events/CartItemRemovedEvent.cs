@@ -1,4 +1,6 @@
 ﻿using CartService.API.Models;
+using CartService.API.Models.ViewModels;
+using EventBus.Shared.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace CartService.API.Events
 {
-    public class CartItemRemovedEvent
+    public class CartItemRemovedIntegrationEvent : IntegrationEvent
     {
-        public CartItemRemovedEvent(Cart cart, CartItem removedItem)
+        public CartItemRemovedIntegrationEvent(Cart cart, CartItemModifyModel removedItem)
         {
             Cart = cart;
             RemovedItem = removedItem;
         }
 
         public Cart Cart { get; set; }
-        public CartItem RemovedItem { get; set; }
+        public CartItemModifyModel RemovedItem { get; set; }
     }
 }

@@ -17,11 +17,6 @@ namespace CartService.API.Models
 
         public List<CartItem> Items { get; set; }
 
-        public void Checkout(CheckoutModel model)
-        {
-
-        }
-
         public void AddItem(CartItemModifyModel model)
         {
             var currStock = Items.FirstOrDefault(i=> i.ProductID == model.ProductId);

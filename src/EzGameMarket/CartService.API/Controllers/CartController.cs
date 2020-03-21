@@ -7,6 +7,7 @@ using CartService.API.Data;
 using CartService.API.Models;
 using CartService.API.Models.ViewModels;
 using CartService.API.Services;
+using EventBus.Shared.Abstraction;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,12 +22,18 @@ namespace CartService.API.Controllers
     {
         private CartDbContext _dbContext;
         private IIdentityService _identityService;
+        private IEventBusRepository _eventBus;
+        private ICartRepository _cartRepository;
 
         public CartController(CartDbContext db,
-                              IIdentityService identityService)
+                              IIdentityService identityService,
+                              IEventBusRepository eventBus,
+                              ICartRepository cartRepo)
         {
             _dbContext = db;
             _identityService = identityService;
+            _eventBus = eventBus;
+            _cartRepository = cartRepo;
         }
 
         public async Task<ActionResult<Cart>> GetCart()
@@ -35,21 +42,7 @@ namespace CartService.API.Controllers
 
             if (id != default)
             {
-                var cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
-
-                if (cart == default)
-                { 
-                    var res = await CreateCart();
-
-                    if (res is OkResult)
-                    {
-                        cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
-                    }
-                    else
-                    {
-                        return NotFound();
-                    }
-                }
+                var cart = await _cartRepository.GetCartByCustomerIDAsync(id);
 
                 return cart;
             }
@@ -70,9 +63,7 @@ namespace CartService.API.Controllers
 
             if (id != default)
             {
-                var cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
-
-                cart.AddItem(model);
+                await _cartRepository.AddItemToCartAsync(id,model);
 
                 return Ok();
             }
@@ -93,9 +84,7 @@ namespace CartService.API.Controllers
 
             if (id != default)
             {
-                var cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
-
-                cart.RemoveItem(model);
+                await _cartRepository.RemoveItemFromCartAsync(id, model);
 
                 return Ok();
             }
@@ -111,10 +100,7 @@ namespace CartService.API.Controllers
 
             if (id != default)
             {
-                var cart = new Cart() { OwnerID = id };
-
-                await _dbContext.Cart.AddAsync(cart);
-                await _dbContext.SaveChangesAsync();
+                await _cartRepository.CreateCartAsync(id);
 
                 return Ok();
             }
@@ -135,9 +121,7 @@ namespace CartService.API.Controllers
 
             if (id != default)
             {
-                var cart = await _dbContext.Cart.FirstOrDefaultAsync(c => c.OwnerID == id);
 
-                cart.Checkout(model);
 
                 return Ok();
             }

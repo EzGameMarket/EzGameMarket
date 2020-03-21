@@ -24,5 +24,9 @@
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EventBuses\EventBus.Shared\EventBus.Shared.csproj" />
+  </ItemGroup>
+
 
 </Project>
