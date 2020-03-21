@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventBus.Shared.Events;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,10 +7,20 @@ namespace EventBus.Shared.Abstraction
 {
     public interface IEventBusRepository
     {
-        bool Publish<T>(T message);
+        void Publish(IntegrationEvent @event);
 
-        void Subscribe<TEvent,TH>();
+        void Subscribe<T, TH>()
+            where T : IntegrationEvent
+            where TH : IIntegrationEventHandler<T>;
 
-        void UnSubscribe<TEvent>();
+        void SubscribeDynamic<TH>(string eventName)
+            where TH : IDynamicIntegrationEventHandler;
+
+        void UnsubscribeDynamic<TH>(string eventName)
+            where TH : IDynamicIntegrationEventHandler;
+
+        void Unsubscribe<T, TH>()
+            where TH : IIntegrationEventHandler<T>
+            where T : IntegrationEvent;
     }
 }
