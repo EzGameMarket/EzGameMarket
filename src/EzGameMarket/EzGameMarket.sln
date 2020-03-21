@@ -75,11 +75,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VaultAccess.Shared", "Azure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VaultAccess.Azure", "AzureVaultAccess\VaultAccess.Azure\VaultAccess.Azure.csproj", "{87DBE819-2671-49AE-99DF-0DB0C5BA91F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationEventLogEF", "EventBuses\IntegrationEventLogEF\IntegrationEventLogEF.csproj", "{76A3CF63-3240-4F72-882B-62DC8C3D9B8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationEventLogEF", "EventBuses\IntegrationEventLogEF\IntegrationEventLogEF.csproj", "{76A3CF63-3240-4F72-882B-62DC8C3D9B8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Tests.RabbitMQ", "EventBuses\Tests\EventBus.Tests.RabbitMQ\EventBus.Tests.RabbitMQ.csproj", "{D305EFC0-E746-4746-A854-4FEF1730CC44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.Tests.RabbitMQ", "EventBuses\Tests\EventBus.Tests.RabbitMQ\EventBus.Tests.RabbitMQ.csproj", "{D305EFC0-E746-4746-A854-4FEF1730CC44}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A21B867B-C1AC-4BB7-8921-F7AB7BE72DA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBuses.Tests.AzureServiceBus", "EventBuses\Tests\EventBuses.Tests.AzureServiceBus\EventBuses.Tests.AzureServiceBus.csproj", "{863F1E9E-26E6-4EB9-A9E8-38FA6378A949}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,6 +169,10 @@ Global
 		{D305EFC0-E746-4746-A854-4FEF1730CC44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D305EFC0-E746-4746-A854-4FEF1730CC44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D305EFC0-E746-4746-A854-4FEF1730CC44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{863F1E9E-26E6-4EB9-A9E8-38FA6378A949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{863F1E9E-26E6-4EB9-A9E8-38FA6378A949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{863F1E9E-26E6-4EB9-A9E8-38FA6378A949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{863F1E9E-26E6-4EB9-A9E8-38FA6378A949}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -206,6 +212,7 @@ Global
 		{76A3CF63-3240-4F72-882B-62DC8C3D9B8B} = {7E7D4861-9210-42D5-95C4-0D8B03C74716}
 		{D305EFC0-E746-4746-A854-4FEF1730CC44} = {A21B867B-C1AC-4BB7-8921-F7AB7BE72DA9}
 		{A21B867B-C1AC-4BB7-8921-F7AB7BE72DA9} = {7E7D4861-9210-42D5-95C4-0D8B03C74716}
+		{863F1E9E-26E6-4EB9-A9E8-38FA6378A949} = {A21B867B-C1AC-4BB7-8921-F7AB7BE72DA9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16E930B6-CA49-4BBE-BD42-6D032E69A5C5}
