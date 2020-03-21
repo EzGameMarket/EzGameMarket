@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OrderService.API.Data;
 
 namespace OrderService.API.Controllers
 {
@@ -13,6 +14,18 @@ namespace OrderService.API.Controllers
     [Authorize]
     public class OrderController : ControllerBase
     {
-        
+        OrderDbContext _dbContext;
+
+        public OrderController(OrderDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public async Task<ActionResult> CancelOrder(string orderID)
+        {
+            var order =
+
+            return Accepted();
+        }
     }
 }
