@@ -23,7 +23,7 @@ namespace OrderService.API.Controllers
 
         public async Task<ActionResult> CancelOrder(string orderID)
         {
-            var order =
+            
 
             return Accepted();
         }
