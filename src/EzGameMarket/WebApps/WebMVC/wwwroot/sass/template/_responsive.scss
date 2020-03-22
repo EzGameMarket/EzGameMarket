@@ -1,0 +1,42 @@
+@media only screen and (min-width: 1230px){
+	.layout-boxed{
+		width: 1230px;
+		margin: 60px auto 0;
+	}
+}
+@media only screen and (min-width: 769px){
+    .header-mobile,
+    .footer-mobile-bar{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 992px){
+	.product-info{
+		.product-meta{
+			padding-top: 20px;
+		}
+	}
+	
+}
+@media only screen and (max-width: 769px){
+    .header-desktop{
+        display: none;
+    }
+}
+@media only screen and (max-width: 767px){
+	.blog{
+		.blog-list{
+			article{
+				display: block;
+			}
+		}
+	}
+
+	.sidebar{
+       padding-top: 60px;
+	}
+}
+
+
+

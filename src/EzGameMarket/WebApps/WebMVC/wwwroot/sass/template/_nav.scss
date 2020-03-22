@@ -1,0 +1,105 @@
+/*-----------------------------
+    Main Menu reponsive
+ -------------------------------*/
+@media only screen and (max-width:991px){
+   .site-header-mobile{
+       #navbar {
+            background: #fff;
+            display: block !important;
+            width: 280px;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            border-right: 1px solid $border-color;
+            position: fixed;
+            right: -300px;
+            top: 0;
+            z-index: 9999;
+            @include transition(all 0.5s);
+            @include box-shadow(0 0 10px 0 rgba(0,0,0,0.2));
+            overflow-y: auto;
+        }
+        .nav-open {
+            right: 0 !important;
+        }
+        .small-nav{
+
+            overflow: auto;
+            height: auto;
+        }
+        .caret:before{
+            color: #000;
+        }
+        .navbar-header button {
+            background-color: $theme-color;
+            @include size(40px,40px);
+            @include border-radius(3px);
+            border: 0;
+            padding: 5px 10px;
+            outline: 0;
+            position: absolute;
+            right: 15px;
+            top: 32px;
+            z-index: 20;
+
+            span {
+                background-color: #fff;
+                display: block;
+                height: 2px;
+                margin-bottom: 5px;
+            }
+        }
+        .close-navbar {
+             @include flexbox();
+            align-items: center;
+            justify-content: center;
+            background-color: $theme-color;
+            @include size(25px,25px);
+            color: #fff;
+            border: 0;
+            outline: none;
+            position: absolute;
+            top: 0px;
+            z-index: 20;
+            text-align: center;
+        }
+        .navbar-nav > li {
+            float: none;
+            width: 100%;
+            border-bottom: solid 1px $border-color;
+             > a{
+                position: relative;
+                display: flex;
+                font-weight: 500;
+                width: 100%;
+                padding: 12px 20px 12px 30px;
+            }
+            ul{
+                padding-left: 60px;
+                padding-bottom: 20px;
+                font-size: 13px;
+                li a{
+                    display: block;
+                    padding: 8px;
+                }
+            }
+        }
+    }
+
+    .search_mobile{
+        position: absolute;
+        top: 32px;
+        right: 80px;
+        i{
+            position: relative;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: $theme-color;
+            color: #fff;
+            border-radius: 3px;
+        }
+    }
+}
+
