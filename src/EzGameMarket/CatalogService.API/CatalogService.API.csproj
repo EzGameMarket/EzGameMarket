@@ -28,5 +28,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IntegrationEvents\EventsHandler\" />
+  </ItemGroup>
+
 
 </Project>
