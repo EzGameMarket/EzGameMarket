@@ -1,0 +1,67 @@
+﻿@page
+@model WebMVC.Views.Account.IndexModel
+@{
+
+}
+
+<!-- =====================================
+    ==== Start account -->
+<div class="page-account">
+    <!-- container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                <div class="account-wrapper">
+                    <ul class="account-tab-list nav">
+                        <li><a href="#login" role="tab" data-toggle="tab">login</a></li>
+                        <li><a href="#register" role="tab" data-toggle="tab">register</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="login" class="tab-pane fade show active">
+                            <div class="account-form-container login-form">
+                                <div class="account-form">
+                                    <form action="#" method="post">
+                                        <input type="text" name="user-name" class="form-control" placeholder="Username">
+                                        <input type="password" name="user-password" class="form-control" placeholder="Password">
+                                        <div class="button-box">
+                                            <div class="login-toggle-btn d-flex justify-content-between">
+                                                <div class="remember d-flex">
+                                                    <input type="checkbox">
+                                                    <label>Remember me</label>
+                                                </div>
+                                                <div class="forgot">
+                                                    <a href="#">Forgot Password?</a>
+
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-default btn-normal"><span>Login</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="register" class="tab-pane fade">
+                            <div class="account-form-container register-form">
+                                <div class="account-form">
+                                    <form action="#" method="post">
+                                        <input type="text" required="" name="first-name" class="form-control" placeholder="First Name">
+                                        <input type="text" required="" name="last-name" class="form-control" placeholder="Last Name">
+                                        <input name="user-email" required="" type="email" class="form-control" placeholder="Email">
+                                        <input type="password" required="" class="form-control" placeholder="Password">
+                                        <div class="button-box">
+                                            <button type="submit" class="btn btn-default btn-normal"><span>Register</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+<!-- =====================================
+    ==== End account -->
