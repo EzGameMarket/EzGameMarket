@@ -1,0 +1,182 @@
+﻿<div class="header-menu  header-desktop">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 d-flex align-items-center justify-content-center">
+                <a class="logo" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-10 header-menu-main">
+                <div class="site-header d-flex justify-content-between align-items-center">
+                    <div class="site-header__search">
+                        <form method="get" class="searchform" action="#">
+                            <div class="wiget-search input-group">
+                                <input name="s" maxlength="40" class="form-control input-search" type="text" size="20" placeholder="Search entire store here...">
+                                <span class="input-group-addon input-large btn-search">
+                                    <span class="fa fa-search"></span>
+                                    <input type="submit" class="fa" value="">
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- cart -->
+                    <div class="site-header__icon  d-flex justify-content-between align-items-center">
+                        <div class="features_icon">
+                            <div class="features_icon__images">
+                                <img src="~/images/icon_1.png" alt="">
+                            </div>
+                            <div class="features_icon__description">
+                                <h4>CUSTOMER SUPPORT</h4>
+                                <div>
+                                    1800-888-99-5555
+                                </div>
+                            </div>
+                        </div>
+                        <div class="features_icon">
+                            <div class="features_icon__images">
+                                <img src="~/images/icon_2.png" alt="">
+                            </div>
+                            <div class="features_icon__description">
+                                <h4>CONTACT US</h4>
+                                <div>
+                                    info@example.com
+                                </div>
+                            </div>
+                        </div>
+                        <div class="site-header__cart item-dropdown">
+                            <div class="features_icon">
+                                <div class="features_icon__images">
+                                    <img src="~/images/icon_3.png" alt="">
+                                </div>
+                                <div class="features_icon__description">
+                                    <h4>MY CART <span class="cartcount">3(ITEMS)</span></h4>
+                                    <div>
+                                        <span class="cartcost">$129.58</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget_shopping_cart_content  content-dropdown">
+                                <div class="cart_list ">
+                                    <div class="media widget-product">
+                                        <div class="media-left">
+                                            <a href="product_single.html" class="image pull-left">
+                                                <img src="https://via.placeholder.com/80x100" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="cart-main-content media-body">
+                                            <h3 class="name">
+                                                <a href="product_single.html">
+                                                    Sport Standard edition
+                                                </a>
+                                            </h3>
+                                            <p class="cart-item">
+                                                <span class="quantity">2 × <span class="price-amount amount"><span class="price-currencySymbol">$</span>100.00</span></span>
+                                            </p>
+                                            <a href="#" class="remove" title="Remove this item">×</a>
+                                        </div>
+                                    </div>
+                                    <div class="media widget-product">
+                                        <div class="media-left">
+                                            <a href="product_single.html" class="image pull-left">
+                                                <img src="https://via.placeholder.com/80x100" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="cart-main-content media-body">
+                                            <h3 class="name">
+                                                <a href="product_single.html">
+                                                    Casual Premium edition
+                                                </a>
+                                            </h3>
+                                            <p class="cart-item">
+                                                <span class="quantity">1× <span class="price-amount amount"><span class="price-currencySymbol">$</span>50.00</span></span>
+                                            </p>
+                                            <a href="#" class="remove" title="Remove this item">×</a>
+                                        </div>
+                                    </div>
+                                    <div class="media widget-product">
+                                        <div class="media-left">
+                                            <a href="product_single.html" class="image pull-left">
+                                                <img src="https://via.placeholder.com/80x100" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="cart-main-content media-body">
+                                            <h3 class="name">
+                                                <a href="product_single.html">
+                                                    Gold Limited edition
+                                                </a>
+                                            </h3>
+                                            <p class="cart-item">
+                                                <span class="quantity">2 × <span class="price-amount amount"><span class="price-currencySymbol">$</span>100.00</span></span>
+                                            </p>
+                                            <a href="#" class="remove" title="Remove this item">×</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="total">
+                                    <strong>Subtotal:</strong>
+                                    <span class="price-amount amount">
+                                        <span class="price-currencySymbol">$</span>450.00
+                                    </span>
+                                </p>
+                                <p class="buttons clearfix">
+                                    <a href="cart.html" class="btn view-cart btn-default btn-normal pull-right">View Cart</a>
+                                    <a href="checkout.html" class="btn check-out btn-primary btn-normal pull-left">Checkout</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- menu -->
+                <div class="header-main">
+                    <div class="row">
+                        <div class="header-left col-md-10">
+                            <nav id="nav" class="navbar">
+                                <!--  Main navigation  -->
+                                <ul class="main-nav nav navbar-nav navbar-right">
+                                    <li class="dropdown active">
+                                        <a href="product_grid.html">Product</a>
+                                        <b class="caret"></b>
+                                    </li>
+                                    <li class="dropdown">
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="blog.html">Blog</a>
+                                        <b class="caret"></b>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="blog.html">Blog Grid</a></li>
+                                            <li><a href="blog_standard.html">Blog Standard</a></li>
+                                            <li><a href="blog_list.html">Blog List</a></li>
+                                            <li><a href="blog_list2.html">Blog List style2</a></li>
+                                            <li><a href="blog_single.html">Single Blog</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="product_list_sidebar_left.html">
+                                            <span class="label_menu hot">Hot</span>
+                                            Sale
+                                        </a>
+                                    </li>
+                                    <li><a href="contact.html"> contact</a></li>
+                                </ul>
+                                <!-- /Main navigation -->
+                            </nav>
+                        </div>
+                        <div class="header-right col-md-2">
+                            <ul class="social">
+                                <li>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-google"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

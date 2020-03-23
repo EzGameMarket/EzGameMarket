@@ -1,0 +1,53 @@
+﻿
+    <div class="header-mobile">
+        <div id="header" class="site-header-mobile">
+            <nav class="navigation navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="open-btn">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt=""></a>
+                    </div>
+                    <!-- search -->
+                    <div class="search_mobile">
+                        <div class="ps-search-btn">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                        <div class="ps-search">
+                            <div class="ps-search__content">
+                                <a class="ps-search__close" href="#"><span></span></a>
+                                <h3 class="search_title">Enter your keyword</h3>
+                                <form method="get" class="searchform" action="#">
+                                    <div class="wiget-search input-group">
+                                        <input name="s" maxlength="40" class="form-control input-search" type="text" size="20" placeholder="Searching...">
+
+                                        <span class="input-group-addon input-large btn-search">
+                                            <span class="fa fa-search"></span>
+                                            <input type="submit" class="fa" value="">
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end search -->
+                    <div id="navbar" class="navbar-collapse collapse navbar-right navigation-mobile">
+                        <button class="close-navbar"><i class="fa fa-close"></i></button>
+                        <ul class="nav navbar-nav small-nav">
+                            <li class="menu-item">
+                                <a href="product_grid.html">Product<b class="caret"></b></a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="faq.html">Pages<b class="caret"></b></a>
+                            </li>
+                            <li class="menu-item"><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div><!-- end of nav-collapse -->
+                </div><!-- end of container -->
+            </nav>
+        </div>
+    </div>
