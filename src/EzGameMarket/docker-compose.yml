@@ -1,6 +1,12 @@
 version: '3.4'
 
 services:
+  webmvc:
+    image: ${DOCKER_REGISTRY-}webmvc
+    build:
+      context: .
+      dockerfile: WebApps/WebMVC/Dockerfile
+
   identityservice.api:
     image: ${DOCKER_REGISTRY-}identityserviceapi
     build:

@@ -5,6 +5,7 @@
     <UserSecretsId>38a01c14-4a2b-4c00-9ce1-82e0970df39e</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Pages\" />
+    <Folder Include="Views\Order\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />

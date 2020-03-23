@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <div class="header_container" style="background:url(~/images/bg_header.jpg) repeat">
+        <div class="header_container" style="background:url('@Url.Content("~/images/bg_header.jpg")') repeat">
             
             
 
@@ -325,6 +325,27 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+
+            <!-- =====================================
+    ==== Start breadcrumb -->
+            <div class="breadcrumb section-bg" style="background-image:url('@Url.Content("~/images/bg_breadcrumb.jpg")')">
+                <!-- container -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <h1>Account</h1>
+                            <ol class="item-breadcrumb">
+                                <li><a href="index.html">Home</a></li>
+                                <li>@ViewData["Title"]</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /container -->
+            </div>
+            <!-- =====================================
+        ==== End breadcrumb -->
+
             @RenderBody()
         </main>
     </div>

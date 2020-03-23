@@ -83,17 +83,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A21B867B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBuses.Tests.AzureServiceBus", "EventBuses\Tests\EventBuses.Tests.AzureServiceBus\EventBuses.Tests.AzureServiceBus.csproj", "{863F1E9E-26E6-4EB9-A9E8-38FA6378A949}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Domain", "Services\Orders\OrderService.Domain\OrderService.Domain.csproj", "{9FE31612-47B8-43FC-857B-1B9D7FA282F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Domain", "Services\Orders\OrderService.Domain\OrderService.Domain.csproj", "{9FE31612-47B8-43FC-857B-1B9D7FA282F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.BackgroundTasks", "Services\Orders\OrderService.BackgroundTasks\OrderService.BackgroundTasks.csproj", "{1CF4E8A7-A0B5-4342-99A4-9BB52FA92E29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.BackgroundTasks", "Services\Orders\OrderService.BackgroundTasks\OrderService.BackgroundTasks.csproj", "{1CF4E8A7-A0B5-4342-99A4-9BB52FA92E29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Infrastructare", "Services\Orders\OrderService.Infrastructare\OrderService.Infrastructare.csproj", "{62A0B762-0422-4E38-8A86-56ABB45362A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Infrastructare", "Services\Orders\OrderService.Infrastructare\OrderService.Infrastructare.csproj", "{62A0B762-0422-4E38-8A86-56ABB45362A2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{03EA1928-B44D-4E37-8E8A-9FC42A3B4ACF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMVC", "WebApps\WebMVC\WebMVC.csproj", "{11709C08-A4E7-4D22-85BC-E8557E0E2059}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMVC", "WebApps\WebMVC\WebMVC.csproj", "{11709C08-A4E7-4D22-85BC-E8557E0E2059}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBlazor", "WebApps\WebBlazor\WebBlazor.csproj", "{B6A7AB30-C25F-450C-B963-158A9DC898D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebBlazor", "WebApps\WebBlazor\WebBlazor.csproj", "{B6A7AB30-C25F-450C-B963-158A9DC898D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

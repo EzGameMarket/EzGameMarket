@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Specialized;
 using WebMVC.Models;
+using System.Globalization;
 
 namespace WebMVC
 {
@@ -26,6 +27,9 @@ namespace WebMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,13 +37,21 @@ namespace WebMVC
         {
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseStatusCodePagesWithRedirects("/Error/{0}");
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    // Cache static files for 30 days
+                    ctx.Context.Response.Headers.Add("Cache-Control", "public,max-age=2592000");
+                    ctx.Context.Response.Headers.Add("Expires", DateTime.UtcNow.AddDays(30).ToString("R", CultureInfo.InvariantCulture));
+                }
+            });
 
             app.UseRouting();
 

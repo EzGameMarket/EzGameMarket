@@ -6,7 +6,7 @@
     <ProjectGuid>a7ffdba4-7d90-44a0-af6e-f3e30ef6c463</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>identityservice.api</DockerServiceName>
+    <DockerServiceName>webmvc</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
