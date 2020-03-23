@@ -59,8 +59,6 @@ namespace IdentityService.API.Services
                 new Claim(ClaimTypes.Email,user.Email),
                 new Claim(JwtRegisteredClaimNames.Nbf,new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
                 new Claim(JwtRegisteredClaimNames.Exp,new DateTimeOffset(DateTime.Now).AddDays(1).ToUnixTimeSeconds().ToString()),
-                
-                
             };
 
             if (_context.Roles != default && _context.UserRoles != default)

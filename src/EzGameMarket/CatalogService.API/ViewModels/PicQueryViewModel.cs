@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CatalogService.API.ViewModels
 {
@@ -10,6 +6,7 @@ namespace CatalogService.API.ViewModels
     {
         [Required]
         public string ItemID { get; set; }
+
         [Required]
         public string Size { get; set; }
     }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EventBus.AzureServiceBus
 {
@@ -12,7 +10,7 @@ namespace EventBus.AzureServiceBus
         private readonly ServiceBusConnectionStringBuilder _serviceBusConnectionStringBuilder;
         private ITopicClient _topicClient;
 
-        bool _disposed;
+        private bool _disposed;
 
         public DefaultServiceBusPersisterConnection(ServiceBusConnectionStringBuilder serviceBusConnectionStringBuilder,
             ILogger<DefaultServiceBusPersisterConnection> logger)

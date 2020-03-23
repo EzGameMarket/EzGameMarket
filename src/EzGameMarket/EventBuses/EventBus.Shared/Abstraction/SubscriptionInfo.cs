@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EventBus.Core.Abstraction
 {
@@ -19,6 +17,7 @@ namespace EventBus.Core.Abstraction
         {
             return new SubscriptionInfo(true, handlerType);
         }
+
         public static SubscriptionInfo Typed(Type handlerType)
         {
             return new SubscriptionInfo(false, handlerType);

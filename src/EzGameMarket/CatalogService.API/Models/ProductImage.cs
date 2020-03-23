@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Security.Policy;
 
 namespace CatalogService.API.Models
 {
@@ -8,9 +7,12 @@ namespace CatalogService.API.Models
         [Required]
         [Key]
         public int ID { get; set; }
+
         [Required]
         public string ProductID { get; set; }
+
         public Product Product { get; set; }
+
         [Required]
         public string Url { get; set; }
 

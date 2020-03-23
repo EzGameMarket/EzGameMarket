@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using IdentityService.API.Exceptions;
+﻿using IdentityService.API.Exceptions;
 using IdentityService.API.Models;
 using IdentityService.API.Models.IdentityViewModels;
 using IdentityService.API.Services;
@@ -11,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace IdentityService.API.Controllers
 {
@@ -36,7 +34,7 @@ namespace IdentityService.API.Controllers
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
             _loginService = loginService;
         }
-        
+
         [HttpPost("generate")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

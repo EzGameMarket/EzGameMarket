@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
+﻿using IdentityService.API.Exceptions;
+using IdentityService.API.Models;
+using IdentityService.API.Models.IdentityModels;
+using IdentityService.API.Models.IdentityViewModels;
+using IdentityService.API.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using IdentityService.API.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using IdentityService.API.Models.IdentityViewModels;
-using IdentityService.API.Services;
-using IdentityService.API.Models.IdentityModels;
-using Microsoft.AspNetCore.Http;
-using IdentityService.API.Exceptions;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IdentityService.API.Areas.Identity.Pages.Account
 {

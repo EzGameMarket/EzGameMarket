@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using IdentityService.API.Exceptions;
 using IdentityService.API.Models;
+using IdentityService.API.Models.IdentityViewModels;
+using IdentityService.API.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using IdentityService.API.Services;
-using Microsoft.AspNetCore.Http;
-using IdentityService.API.Models.IdentityViewModels;
-using IdentityService.API.Exceptions;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IdentityService.API.Areas.Identity.Pages.Account
 {
@@ -28,7 +24,7 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
         private readonly IIdentityService _identityService;
         private readonly ILoginService _loginService;
 
-        public LoginModel(SignInManager<AppUser> signInManager, 
+        public LoginModel(SignInManager<AppUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<AppUser> userManager,
             IIdentityService identityService,

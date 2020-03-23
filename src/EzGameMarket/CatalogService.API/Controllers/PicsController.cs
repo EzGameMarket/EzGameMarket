@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CatalogService.API.Data;
+﻿using CatalogService.API.Data;
 using CatalogService.API.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace CatalogService.API.Controllers
 {
@@ -14,8 +10,8 @@ namespace CatalogService.API.Controllers
     [ApiController]
     public class PicsController : ControllerBase
     {
-        ProductDbContext _context;
-        ILogger<PicsController> _logger;
+        private ProductDbContext _context;
+        private ILogger<PicsController> _logger;
 
         public PicsController(ProductDbContext context, ILogger<PicsController> logger)
         {

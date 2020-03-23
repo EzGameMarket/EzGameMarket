@@ -11,108 +11,102 @@
 
 */
 
-
-$(document).ready(function() {
-
+$(document).ready(function () {
     "use strict";
-
 
     /*-----------------------------
           Slider-home
       -------------------------------*/
-      // Init slick slider + animation
-      $('.slider_slick').slick({
+    // Init slick slider + animation
+    $('.slider_slick').slick({
         autoplay: true,
         speed: 800,
         lazyLoad: 'progressive',
         arrows: true,
         dots: true,
-      }).slickAnimation();
+    }).slickAnimation();
 
-      // Toggle mobile navigation
-      function toggleMenuMobile() {
-          var navbar = $(".navigation-mobile");
-          var openBtn = $(".navbar-header .open-btn");
-          var closeBtn = $(".navigation-mobile .close-navbar");
+    // Toggle mobile navigation
+    function toggleMenuMobile() {
+        var navbar = $(".navigation-mobile");
+        var openBtn = $(".navbar-header .open-btn");
+        var closeBtn = $(".navigation-mobile .close-navbar");
 
-          openBtn.on("click", function() {
-              if (!navbar.hasClass("nav-open")) {
-                  navbar.addClass("nav-open");
-              }
-              return false;
-          })
+        openBtn.on("click", function () {
+            if (!navbar.hasClass("nav-open")) {
+                navbar.addClass("nav-open");
+            }
+            return false;
+        })
 
-          closeBtn.on("click", function() {
-              if (navbar.hasClass("nav-open")) {
-                  navbar.removeClass("nav-open");
-              }
-              return false;
-          })
-      }
+        closeBtn.on("click", function () {
+            if (navbar.hasClass("nav-open")) {
+                navbar.removeClass("nav-open");
+            }
+            return false;
+        })
+    }
 
-      toggleMenuMobile();
+    toggleMenuMobile();
 
+    // Function for small menu
+    function smallNavchild() {
+        var mainNav = $(".navigation-mobile");
+        var smallNav = $(".navigation-mobile > .small-nav");
+        var subMenu = smallNav.find(".sub-menu");
+        var menuItemWidthSubMenu = smallNav.find("> li:has(ul) > a ");
 
-        // Function for small menu
-      function smallNavchild() {
-          var mainNav = $(".navigation-mobile");
-          var smallNav = $(".navigation-mobile > .small-nav");
-          var subMenu = smallNav.find(".sub-menu");
-          var menuItemWidthSubMenu = smallNav.find("> li:has(ul) > a ");
+        subMenu.hide();
+        menuItemWidthSubMenu.on("click", function (e) {
+            var $this = $(this);
+            $this.siblings().slideToggle();
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        })
+    }
+    smallNavchild();
 
-         subMenu.hide();
-          menuItemWidthSubMenu.on("click", function(e) {
-              var $this = $(this);
-              $this.siblings().slideToggle();
-               e.preventDefault();
-              e.stopImmediatePropagation();
-          })
-      }
-      smallNavchild();
+    // Function for accordionShop
+    function accordionShop() {
+        var ShopNav = $(".widget-woof-content > section");
+        var ShopMenu = ShopNav.find(".widget-woof-content .widget-content");
+        var menuItemShop = ShopNav.find(" .widget_collapse ");
 
+        ShopMenu.hide();
+        menuItemShop.on("click", function (e) {
+            var $this = $(this);
+            $this.siblings().slideToggle();
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        })
+    }
+    accordionShop();
 
-        // Function for accordionShop
-      function accordionShop() {
-          var ShopNav = $(".widget-woof-content > section");
-          var ShopMenu = ShopNav.find(".widget-woof-content .widget-content");
-          var menuItemShop = ShopNav.find(" .widget_collapse ");
-
-          ShopMenu.hide();
-          menuItemShop.on("click", function(e) {
-              var $this = $(this);
-              $this.siblings().slideToggle();
-               e.preventDefault();
-              e.stopImmediatePropagation();
-          })
-      }
-      accordionShop();
-
-    
-      /*-----------------------------
-          Back-to-top
-      -------------------------------*/
-      $(window).on('scroll', function (e) {
-          e.preventDefault();
+    /*-----------------------------
+        Back-to-top
+    -------------------------------*/
+    $(window).on('scroll', function (e) {
+        e.preventDefault();
         if ($(this).scrollTop() > 100) $('#back-to-top').fadeIn();
-         else $('#back-to-top').fadeOut();
-        });
-        $('#back-to-top').on('click', function(e) {
-          e.preventDefault();
-          $('body,html').animate({scrollTop: 0}, 'slow');
-      });
+        else $('#back-to-top').fadeOut();
+    });
+    $('#back-to-top').on('click', function (e) {
+        e.preventDefault();
+        $('body,html').animate({ scrollTop: 0 }, 'slow');
+    });
 
-      /*-----------------------------
-          Counter
-      -------------------------------*/
-      $('.counter').counterUp({
-          delay: 10,
-          time: 1000
-      });
+    /*-----------------------------
+        Counter
+    -------------------------------*/
+    $('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
 
-      /*-----------------------------
-              popup-video
-      -------------------------------*/
-      $('.popup-video > a').each(function() {
+    /*-----------------------------
+            popup-video
+    -------------------------------*/
+    $('.popup-video > a').each(function () {
         $(this).magnificPopup({
             disableOn: 700,
             type: 'iframe',
@@ -121,31 +115,30 @@ $(document).ready(function() {
             preloader: false,
             fixedContentPos: false
         });
-      }); 
+    });
 
-      /*-----------------------------
-          Search
-      -------------------------------*/
-      
+    /*-----------------------------
+        Search
+    -------------------------------*/
 
-      function search() {
+    function search() {
         var searchOpen = $('.ps-search-btn'),
             searchClose = $('.ps-search__close'),
             searchbox = $('.ps-search');
-        searchOpen.on('click', function(e) {
+        searchOpen.on('click', function (e) {
             e.preventDefault();
             searchbox.addClass('open');
         });
-        searchClose.on('click', function(e) {
+        searchClose.on('click', function (e) {
             e.preventDefault();
             searchbox.removeClass('open');
         });
-      }
+    }
 
-      /*-----------------------------
-          FilterSlider
-      -------------------------------*/
-      function filterSlider() {
+    /*-----------------------------
+        FilterSlider
+    -------------------------------*/
+    function filterSlider() {
         var el = $('.ps-slider');
         var min = el.siblings().find('.ps-slider__min');
         var max = el.siblings().find('.ps-slider__max');
@@ -160,7 +153,7 @@ $(document).ready(function() {
                 step: step,
                 range: true,
                 values: [defaultMinValue, defaultMaxValue],
-                slide: function(event, ui) {
+                slide: function (event, ui) {
                     var values = ui.values;
                     min.text('$' + values[0]);
                     max.text('$' + values[1]);
@@ -175,18 +168,16 @@ $(document).ready(function() {
             // return false;
         }
     }
-    $(function() {
-       search();
-       filterSlider();
-    });  
+    $(function () {
+        search();
+        filterSlider();
+    });
 
-  /*-------------------------------------------------------
-          slick slider
-      -------------------------------*/
-    $(".owl-carousel").each( function(){
-
-      var slidesToShow    =     $(this).data('items'); 
-
+    /*-------------------------------------------------------
+            slick slider
+        -------------------------------*/
+    $(".owl-carousel").each(function () {
+        var slidesToShow = $(this).data('items');
 
         if ($(this).data('large')) {
             var desktop = $(this).data('large');
@@ -214,92 +205,86 @@ $(document).ready(function() {
             var verysmall = 2;
         }
 
+        var _config = [];
 
-      var _config = [];
+        _config.dots = $(this).data('pagination');
+        _config.arrows = $(this).data('nav');
+        _config.infinite = true;
+        _config.speed = 500;
+        _config.autoplay = $(this).data('autoplay');
+        _config.cssEase = 'linear';
+        _config.slidesToShow = slidesToShow;
+        _config.slidesToScroll = 1;
+        _config.mobileFirst = true;
+        _config.vertical = false;
 
-      _config.dots             = $(this).data( 'pagination' );
-      _config.arrows           = $(this).data( 'nav' );
-      _config.infinite         = true;
-      _config.speed            = 500;
-      _config.autoplay         = $(this).data('autoplay');
-      _config.cssEase          = 'linear';
-      _config.slidesToShow     = slidesToShow;
-      _config.slidesToScroll   = 1;
-      _config.mobileFirst      = true;
-      _config.vertical         = false;
-
-
-      _config.responsive       = [
-         {
-            breakpoint: 1500,
-            settings: { 
-              slidesToShow: slidesToShow,
-              slidesToScroll: slidesToShow,
-            }
-          },
-          {
-            breakpoint: 1280,
-            settings: { 
-              slidesToShow: desktop,
-              slidesToScroll: desktop,
-            }
-          },
-          {
-            breakpoint: 980,
-            settings: {
-              slidesToShow: medium,
-              slidesToScroll: medium,
-            }
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              slidesToShow:smallmedium,
-              slidesToScroll: smallmedium,
-              infinite: false,
-            }
-          },                
-          {
-            breakpoint: 479,
-            settings: {
-              slidesToShow:extrasmall,
-              slidesToScroll: extrasmall,
-              infinite: false,
-              unslick: true,
+        _config.responsive = [
+            {
+                breakpoint: 1500,
+                settings: {
+                    slidesToShow: slidesToShow,
+                    slidesToScroll: slidesToShow,
+                }
             },
-          },                
-          {
-            breakpoint: 0,
-            settings: {
-              slidesToShow:verysmall,
-              slidesToScroll: verysmall,
-              infinite: false,
+            {
+                breakpoint: 1280,
+                settings: {
+                    slidesToShow: desktop,
+                    slidesToScroll: desktop,
+                }
             },
-          }
-      ];  
+            {
+                breakpoint: 980,
+                settings: {
+                    slidesToShow: medium,
+                    slidesToScroll: medium,
+                }
+            },
+            {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: smallmedium,
+                    slidesToScroll: smallmedium,
+                    infinite: false,
+                }
+            },
+            {
+                breakpoint: 479,
+                settings: {
+                    slidesToShow: extrasmall,
+                    slidesToScroll: extrasmall,
+                    infinite: false,
+                    unslick: true,
+                },
+            },
+            {
+                breakpoint: 0,
+                settings: {
+                    slidesToShow: verysmall,
+                    slidesToScroll: verysmall,
+                    infinite: false,
+                },
+            }
+        ];
 
-      $(this).slick( _config );
+        $(this).slick(_config);
     });
 
-  /*-------------------------------------------------------
-          slick slider single product
-      -------------------------------*/
+    /*-------------------------------------------------------
+            slick slider single product
+        -------------------------------*/
     $('.slider-for').slick({
-     slidesToShow: 1,
-     slidesToScroll: 1,
-     arrows: false,
-     fade: true,
-     asNavFor: '.slider-nav'
-   });
-   $('.slider-nav').slick({
-     slidesToShow: 5,
-     slidesToScroll: 1,
-     asNavFor: '.slider-for',
-     dots: false,
-     focusOnSelect: true
-   });
-
-
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav'
+    });
+    $('.slider-nav').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.slider-for',
+        dots: false,
+        focusOnSelect: true
+    });
 });
-
-

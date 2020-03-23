@@ -1,7 +1,4 @@
 ﻿using EventBus.Shared.Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EventBus.Shared.Abstraction
 {

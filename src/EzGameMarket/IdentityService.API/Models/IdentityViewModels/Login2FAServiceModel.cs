@@ -1,9 +1,4 @@
-﻿using IdentityService.API.Areas.Identity.Pages.Account;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace IdentityService.API.Models.IdentityViewModels
 {

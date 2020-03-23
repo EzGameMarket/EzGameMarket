@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using CartService.API.Data;
+﻿using CartService.API.Data;
 using CartService.API.Models;
 using CartService.API.Models.ViewModels;
 using CartService.API.Services;
 using EventBus.Shared.Abstraction;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace CartService.API.Controllers
 {
@@ -63,7 +57,7 @@ namespace CartService.API.Controllers
 
             if (id != default)
             {
-                await _cartRepository.AddItemToCartAsync(id,model);
+                await _cartRepository.AddItemToCartAsync(id, model);
 
                 return Ok();
             }
@@ -121,8 +115,6 @@ namespace CartService.API.Controllers
 
             if (id != default)
             {
-
-
                 return Ok();
             }
             else

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using IdentityService.API.Exceptions;
+﻿using IdentityService.API.Exceptions;
 using IdentityService.API.Models;
 using IdentityService.API.Models.IdentityModels;
 using IdentityService.API.Models.IdentityViewModels;
@@ -14,6 +9,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace IdentityService.API.Controllers
 {
@@ -58,6 +56,7 @@ namespace IdentityService.API.Controllers
 
             return Ok();
         }
+
         [HttpPost("login")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -91,6 +90,7 @@ namespace IdentityService.API.Controllers
 
             return BadRequest("Invalid Model");
         }
+
         [HttpPost("login2FA")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -116,6 +116,7 @@ namespace IdentityService.API.Controllers
 
             return BadRequest("Invalid Model");
         }
+
         [HttpPost("register")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

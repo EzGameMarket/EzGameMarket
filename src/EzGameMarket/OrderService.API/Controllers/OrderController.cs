@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrderService.API.Data;
+using System.Threading.Tasks;
 
 namespace OrderService.API.Controllers
 {
@@ -14,7 +10,7 @@ namespace OrderService.API.Controllers
     [Authorize]
     public class OrderController : ControllerBase
     {
-        OrderDbContext _dbContext;
+        private OrderDbContext _dbContext;
 
         public OrderController(OrderDbContext dbContext)
         {
@@ -23,8 +19,6 @@ namespace OrderService.API.Controllers
 
         public async Task<ActionResult> CancelOrder(string orderID)
         {
-            
-
             return Accepted();
         }
     }

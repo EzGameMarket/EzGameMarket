@@ -4,9 +4,6 @@ using CartService.API.Models;
 using CartService.API.Models.ViewModels;
 using EventBus.Shared.Abstraction;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CartService.API.Services
@@ -41,7 +38,7 @@ namespace CartService.API.Services
 
             cart.AddItem(item);
 
-            _eventBus.Publish(new CartItemAddedIntegrationEvent(cart,item));
+            _eventBus.Publish(new CartItemAddedIntegrationEvent(cart, item));
         }
 
         public async Task RemoveItemFromCartAsync(string id, CartItemModifyModel item)
@@ -67,7 +64,7 @@ namespace CartService.API.Services
         {
             var cart = await GetCartByCustomerIDAsync(id);
 
-            _eventBus.Publish(new CartCheckoutIntegrationEvent(cart,model));
+            _eventBus.Publish(new CartCheckoutIntegrationEvent(cart, model));
         }
     }
 }

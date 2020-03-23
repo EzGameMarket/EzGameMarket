@@ -4,7 +4,6 @@ using EventBus.Shared.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EventBus.Core
 {
@@ -22,6 +21,7 @@ namespace EventBus.Core
         }
 
         public bool IsEmpty => !_handlers.Keys.Any();
+
         public void Clear() => _handlers.Clear();
 
         public void AddDynamicSubscription<TH>(string eventName)
@@ -67,14 +67,12 @@ namespace EventBus.Core
             }
         }
 
-
         public void RemoveDynamicSubscription<TH>(string eventName)
             where TH : IDynamicIntegrationEventHandler
         {
             var handlerToRemove = FindDynamicSubscriptionToRemove<TH>(eventName);
             DoRemoveHandler(eventName, handlerToRemove);
         }
-
 
         public void RemoveSubscription<T, TH>()
             where TH : IIntegrationEventHandler<T>
@@ -84,7 +82,6 @@ namespace EventBus.Core
             var eventName = GetEventKey<T>();
             DoRemoveHandler(eventName, handlerToRemove);
         }
-
 
         private void DoRemoveHandler(string eventName, SubscriptionInfo subsToRemove)
         {
@@ -101,7 +98,6 @@ namespace EventBus.Core
                     }
                     RaiseOnEventRemoved(eventName);
                 }
-
             }
         }
 
@@ -110,6 +106,7 @@ namespace EventBus.Core
             var key = GetEventKey<T>();
             return GetHandlersForEvent(key);
         }
+
         public IEnumerable<SubscriptionInfo> GetHandlersForEvent(string eventName) => _handlers[eventName];
 
         private void RaiseOnEventRemoved(string eventName)
@@ -118,13 +115,11 @@ namespace EventBus.Core
             handler?.Invoke(this, eventName);
         }
 
-
         private SubscriptionInfo FindDynamicSubscriptionToRemove<TH>(string eventName)
             where TH : IDynamicIntegrationEventHandler
         {
             return DoFindSubscriptionToRemove(eventName, typeof(TH));
         }
-
 
         private SubscriptionInfo FindSubscriptionToRemove<T, TH>()
              where T : IntegrationEvent
@@ -142,7 +137,6 @@ namespace EventBus.Core
             }
 
             return _handlers[eventName].SingleOrDefault(s => s.HandlerType == handlerType);
-
         }
 
         public bool HasSubscriptionsForEvent<T>() where T : IntegrationEvent
@@ -150,6 +144,7 @@ namespace EventBus.Core
             var key = GetEventKey<T>();
             return HasSubscriptionsForEvent(key);
         }
+
         public bool HasSubscriptionsForEvent(string eventName) => _handlers.ContainsKey(eventName);
 
         public Type GetEventTypeByName(string eventName) => _eventTypes.SingleOrDefault(t => t.Name == eventName);

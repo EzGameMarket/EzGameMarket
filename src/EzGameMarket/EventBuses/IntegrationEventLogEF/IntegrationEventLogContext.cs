@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace IntegrationEventLogEF
 {
@@ -19,7 +16,7 @@ namespace IntegrationEventLogEF
             builder.Entity<IntegrationEventLog>(ConfigureIntegrationEventLogEntry);
         }
 
-        void ConfigureIntegrationEventLogEntry(EntityTypeBuilder<IntegrationEventLog> builder)
+        private void ConfigureIntegrationEventLogEntry(EntityTypeBuilder<IntegrationEventLog> builder)
         {
             builder.ToTable("IntegrationEventLog");
 
@@ -42,7 +39,6 @@ namespace IntegrationEventLogEF
 
             builder.Property(e => e.EventTypeName)
                 .IsRequired();
-
         }
     }
 }

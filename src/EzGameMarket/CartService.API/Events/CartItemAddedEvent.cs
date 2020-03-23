@@ -1,10 +1,6 @@
 ﻿using CartService.API.Models;
 using CartService.API.Models.ViewModels;
 using EventBus.Shared.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CartService.API.Events
 {

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using WebMVC.Models;
 
 namespace WebMVC.Controllers
@@ -22,12 +18,14 @@ namespace WebMVC.Controllers
                 case 401:
                     uri = "UnAuthorized";
                     break;
+
                 case 403:
                     uri = "ForBidden";
                     break;
+
                 case 404:
                     uri = "NotFound";
-                    break; 
+                    break;
             }
 
             return View(uri, model);

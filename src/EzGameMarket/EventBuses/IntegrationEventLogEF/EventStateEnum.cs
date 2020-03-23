@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IntegrationEventLogEF
+﻿namespace IntegrationEventLogEF
 {
     public enum EventStateEnum
     {

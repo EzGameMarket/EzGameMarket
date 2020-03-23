@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EventBus.Shared.Settings
+﻿namespace EventBus.Shared.Settings
 {
     public class EventBusSettings
     {
@@ -17,7 +13,6 @@ namespace EventBus.Shared.Settings
         {
             if (Settings == default)
             {
-                
             }
 
             return Settings;

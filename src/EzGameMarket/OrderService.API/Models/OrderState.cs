@@ -7,5 +7,5 @@
         Paid,
         Rejected,
         Delivered
-    } 
+    }
 }

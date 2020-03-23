@@ -2,16 +2,12 @@
 using IdentityService.API.Models;
 using IdentityService.API.Models.IdentityModels;
 using IdentityService.API.Models.IdentityViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -58,7 +54,7 @@ namespace IdentityService.API.Services
             if (await ValidateUserName(model))
             {
                 _logger.LogInformation($"There is a user registered with the {model.UserName} username");
-                throw new UsernameAlreadyRegisteredException($"There is a user registered with the {model.UserName} username") { UserName = model.UserName } ;
+                throw new UsernameAlreadyRegisteredException($"There is a user registered with the {model.UserName} username") { UserName = model.UserName };
             }
 
             if (await ValidateEmail(model))
@@ -89,7 +85,7 @@ namespace IdentityService.API.Services
                 await _emailSender.SendEmailAsync(model.User.Email, "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                return true; 
+                return true;
             }
             else
             {

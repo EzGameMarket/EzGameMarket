@@ -24,7 +24,7 @@ namespace CatalogService.API.Services
 
         public Task<List<Product>> GetProductForGenreAsync(Genre type)
         {
-            return _dbContext.Products.Where(p=> p.Genres.Contains(type)).ToListAsync();
+            return _dbContext.Products.Where(p => p.Genres.Contains(type)).ToListAsync();
         }
 
         public Task<List<Product>> GetProductsForPlatformAsync(Platform platform)

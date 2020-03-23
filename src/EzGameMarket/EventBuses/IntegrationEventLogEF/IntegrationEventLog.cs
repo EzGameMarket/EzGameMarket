@@ -1,16 +1,17 @@
 ﻿using EventBus.Shared.Events;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
 
 namespace IntegrationEventLogEF
 {
     public class IntegrationEventLog
     {
-        private IntegrationEventLog() { }
+        private IntegrationEventLog()
+        {
+        }
+
         public IntegrationEventLog(IntegrationEvent @event, Guid transactionId)
         {
             EventId = @event.Id;
@@ -21,12 +22,16 @@ namespace IntegrationEventLogEF
             TimesSent = 0;
             TransactionId = transactionId.ToString();
         }
+
         public Guid EventId { get; private set; }
         public string EventTypeName { get; private set; }
+
         [NotMapped]
         public string EventTypeShortName => EventTypeName.Split('.')?.Last();
+
         [NotMapped]
         public IntegrationEvent IntegrationEvent { get; private set; }
+
         public EventStateEnum State { get; set; }
         public int TimesSent { get; set; }
         public DateTime CreationTime { get; private set; }

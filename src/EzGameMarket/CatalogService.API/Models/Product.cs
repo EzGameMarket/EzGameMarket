@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CatalogService.API.Models
 {
@@ -11,16 +9,22 @@ namespace CatalogService.API.Models
         [Required]
         [Key]
         public string ID { get; set; }
+
         [Required]
         public string GameID { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Required]
         public string Description { get; set; }
+
         [Required]
         public double Price { get; set; }
+
         [Required]
         public double DiscountedPrice { get; set; }
+
         [Required]
         public DateTime RelaseDate { get; set; }
 

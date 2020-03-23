@@ -1,9 +1,7 @@
 ﻿using CartService.API.Models.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CartService.API.Models
 {
@@ -12,6 +10,7 @@ namespace CartService.API.Models
         [Required]
         [Key]
         public int CartID { get; set; }
+
         [Required]
         public string OwnerID { get; set; }
 
@@ -19,7 +18,7 @@ namespace CartService.API.Models
 
         public void AddItem(CartItemModifyModel model)
         {
-            var currStock = Items.FirstOrDefault(i=> i.ProductID == model.ProductId);
+            var currStock = Items.FirstOrDefault(i => i.ProductID == model.ProductId);
 
             if (currStock != default)
             {
