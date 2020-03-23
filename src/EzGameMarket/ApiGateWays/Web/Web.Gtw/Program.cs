@@ -18,6 +18,16 @@ namespace Web.Gtw
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(cb =>
+                {
+                    var sources = cb.Sources;
+                    sources.Insert(3, new Microsoft.Extensions.Configuration.Json.JsonConfigurationSource()
+                    {
+                        Optional = true,
+                        Path = "configuration.json",
+                        ReloadOnChange = false
+                    });
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

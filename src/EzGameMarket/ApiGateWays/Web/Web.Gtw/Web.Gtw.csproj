@@ -5,11 +5,17 @@
     <UserSecretsId>be604640-7b05-4406-bb96-3461602b86df</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
     <PackageReference Include="Ocelot" Version="14.1.0" />
+    <PackageReference Include="Ocelot.Cache.CacheManager" Version="14.1.0" />
+    <PackageReference Include="Ocelot.Provider.Eureka" Version="14.1.0" />
+    <PackageReference Include="Ocelot.Provider.Polly" Version="14.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.2.1" />
   </ItemGroup>
 
 

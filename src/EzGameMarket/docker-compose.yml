@@ -47,3 +47,10 @@ services:
       context: .
       dockerfile: MarketingService.API/Dockerfile
 
+
+  web.gtw:
+    image: ${DOCKER_REGISTRY-}webgtw
+    build:
+      context: .
+      dockerfile: ApiGateWays/Web/Web.Gtw/Dockerfile
+

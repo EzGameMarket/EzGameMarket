@@ -1,3 +1,21 @@
 {
+  "ReRoutes": [],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:30000"
+  },
 
+  "FileCacheOptions": {
+    "TtlSeconds": 15
+  },
+  "QoSOptions": {
+    "ExceptionsAllowedBeforeBreaking": 3,
+    "DurationOfBreak": 1000,
+    "TimeoutValue": 5000
+  },
+  "ServiceDiscoveryProvider": {
+    "Type": "Eureka"
+  },
+  "LoadBalancerOptions": {
+    "Type": "LeastConnection"
+  }
 }
