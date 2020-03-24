@@ -1,0 +1,6 @@
+{
+  "Identity": "https://localhost:36792",
+  "Catalog": "https://localhost:36794",
+  "Cart": "https://localhost:36796",
+  "Order": "https://localhost:36798"
+}

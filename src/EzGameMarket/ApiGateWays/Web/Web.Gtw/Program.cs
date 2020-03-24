@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Web.Gtw.Models.Settings;
 
 namespace Web.Gtw
 {
@@ -13,6 +16,8 @@ namespace Web.Gtw
     {
         public static void Main(string[] args)
         {
+            var json = System.IO.File.ReadAllText("services.json");
+            ServiceUrls.Services = JsonConvert.DeserializeObject<ServiceUrls>(json);
             CreateHostBuilder(args).Build().Run();
         }
 
