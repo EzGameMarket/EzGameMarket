@@ -4,10 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Az Ez Game Market Web shop a világ legjobb webshopja. Az itt vásárolható játékok garantáltan magyarországon a lehető legolcsóbbak.
+          Mi nem a pénzért csináljuk, hanem hogy miden gamer VÉGRE JÁTSZHASSON és ne kelljen a crackekre várni, tudjuk, mi is csináltuk... Hanem végre nyugodtan játszhasson.">
     <meta name="robots" content="noindex, follow" />
 
-    <title>@ViewData["Title"] - WebShop</title>
+    <title>@ViewData["Title"] - Ez Game Market</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon.ico">
@@ -36,25 +37,13 @@
         <div class="topbar">
             <div class="container top-bar">
                 <div class="top-bar__left">
-                    WELCOME TO <a href="#">Punibor</a>
+                    Üdvözőllek a <a asp-area="" asp-controller="Home" asp-action="Index">Ez Game Market-on!</a> Ez Game Ez life!
                 </div>
                 <div class="top-bar__right">
-                    <div class="header-currency item-dropdown">
-                        CURRENCY
-                        <a href="#" class="top-bar__item">
-                            USD
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="content-dropdown">
-                            <li><a href="#"><span class="symbol">€</span>EUR</a></li>
-                            <li class="active"><a href="#"><span class="symbol">$</span>USD</a></li>
-                            <li><a href="#"><span class="symbol">£</span>GBP</a></li>
-                        </ul>
-                    </div>
                     <div class="header-account">
-                        <a href="account.html">LOGIN</a>
+                        <a asp-area="" asp-controller="Account" asp-action="Login">Bejelentkezés</a>
                         OR
-                        <a href="account.html">REGISTER</a>
+                        <a asp-area="" asp-controller="Account" asp-action="Register">Regisztráció</a>
                     </div>
                 </div>
             </div>
@@ -73,12 +62,12 @@
         <div class="footer-mobile-bar">
             <ul class="columns-2">
                 <li class="my-account">
-                    <a class="my-accrount-footer" href="account.html">
+                    <a class="my-accrount-footer" asp-area="" asp-controller="Account" asp-action="Index">
                         <i class="fa fa-user-o" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li class="cart">
-                    <a class="footer-cart-contents" href="cart.html" title="View your shopping cart">
+                    <a class="footer-cart-contents" href="cart.html" title="A kosár megtekintése">
                         <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                         <span class="count">1</span>
                     </a>
@@ -90,15 +79,15 @@
         <main role="main" class="pb-3">
 
             <!-- =====================================
-    ==== Start breadcrumb -->
+            ==== Start breadcrumb -->
             <div class="breadcrumb section-bg" style="background-image:url('@Url.Content("~/images/bg_breadcrumb.jpg")')">
                 <!-- container -->
                 <div class="container">
                     <div class="row">
                         <div class="col col-md-12">
-                            <h1>Account</h1>
+                            <h1>Felhasználó</h1>
                             <ol class="item-breadcrumb">
-                                <li><a href="index.html">Home</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="Index">Kezdőlap</a></li>
                                 <li>@ViewData["Title"]</li>
                             </ol>
                         </div>
@@ -107,20 +96,54 @@
                 <!-- /container -->
             </div>
             <!-- =====================================
-        ==== End breadcrumb -->
+            ==== End breadcrumb -->
 
-            @RenderBody()
+            <div class="main-content">
+                @RenderBody()
+            </div>
         </main>
     </div>
 
     <!-- =====================================
        ==== Start footer -->
-        @await Html.PartialAsync("_Footer");
+    @await Html.PartialAsync("_Footer");
     <!-- =====================================
         ==== End footer -->
+
     <!-- back-to-top-->
     <div id="back-to-top"></div>
     <!-- back-to-top -->
+
+    <!-- =====================================
+       ====Start all js here -->
+    <!-- jquery js-->
+    <script src="~/js/jquery.min.js"></script>
+
+    <!-- bootstrap js-->
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <!-- slick js-->
+    <script src="~/js/slick.min.js"></script>
+
+    <!-- slick animation js-->
+    <script src="~/js/slick-animation.min.js"></script>
+
+    <!-- spritespin js-->
+    <script src="~/js/jquery-ui.min.js"></script>
+
+    <!-- waypoints js-->
+    <script src="~/js/jquery.waypoints.js"></script>
+
+    <!-- counterup js-->
+    <script src="~/js/jquery.counterup.min.js"></script>
+
+    <!-- Magnific js-->
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+
+    <!-- custom js-->
+    <script src="~/js/custom.js"></script>
+    <!-- =====================================
+        ==== End all js herej -->
 
     @RenderSection("Scripts", required: false)
 </body>
