@@ -1,0 +1,141 @@
+﻿@page
+@model WebMVC.Views.Cart.CartModel
+@{
+}
+
+<!-- =====================================
+    ==== Start cart -->
+<div class="page-cart">
+    <!-- container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <form class="cart-form table_responsive" action="#" method="post">
+                    <table class="shop_table table cart cart-form__contents">
+                        <thead>
+                            <tr>
+                                <th class="product-thumbnail">Product</th>
+                                <th class="product-name">Name</th>
+                                <th class="product-price">Price</th>
+                                <th class="product-quantity">Quantity</th>
+                                <th class="product-subtotal">Total</th>
+                                <th class="product-remove">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart-form__cart-item cart_item">
+                                <td class="product-thumbnail">
+                                    <a href="product_single.html">
+                                        <img src="~/images/product/product_2.jpg" alt="">
+                                    </a>
+                                </td>
+                                <td class="product-name" data-title="Product">
+                                    <a href="product_single.html">Sport Standard edition</a>
+                                </td>
+                                <td class="product-price" data-title="Price">
+                                    <span class="price-amount amount"><span class="price-currencySymbol">$</span>500</span>
+                                </td>
+                                <td class="product-quantity" data-title="Quantity">
+                                    <div class="quantity">
+                                        <input type="number" class="input-text qty text" step="1" min="0" value="1" title="Qty" size="4">
+                                    </div>
+                                </td>
+                                <td class="product-subtotal" data-title="Total">
+                                    <span class="price-amount amount"><span class="price-currencySymbol">$</span>100</span>
+                                </td>
+
+                                <td class="product-remove">
+                                    <a href="" class="remove" aria-label="Remove this item" data-product_id="9114" data-product_sku=""><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>
+                            <tr class="cart-form__cart-item cart_item">
+                                <td class="product-thumbnail">
+                                    <a href="product_single.html">
+                                        <img src="~/images/product/product_1.jpg" alt="">
+                                    </a>
+                                </td>
+                                <td class="product-name" data-title="Product">
+                                    <a href="product_single.html">Casual Premium edition</a>
+                                </td>
+                                <td class="product-price" data-title="Price">
+                                    <span class="price-amount amount"><span class="price-currencySymbol">$</span>500</span>
+                                </td>
+                                <td class="product-quantity" data-title="Quantity">
+                                    <div class="quantity">
+                                        <input type="number" class="input-text qty text" step="1" min="0" value="1" title="Qty" size="4">
+                                    </div>
+                                </td>
+                                <td class="product-subtotal" data-title="Total">
+                                    <span class="price-amount amount"><span class="price-currencySymbol">$</span>250</span>
+                                </td>
+
+                                <td class="product-remove">
+                                    <a href="" class="remove" aria-label="Remove this item" data-product_id="9114" data-product_sku=""><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>
+                            <tr class="cart-form__cart-item cart_item">
+                                <td class="product-thumbnail">
+                                    <a href="product_single.html">
+                                        <img src="~/images/product/product_3.jpg" alt="">
+                                    </a>
+                                </td>
+                                <td class="product-name" data-title="Product">
+                                    <a href="product_single.html">Gold Limited edition</a>
+                                </td>
+                                <td class="product-price" data-title="Price">
+                                    <span class="price-amount amount"><span class="price-currencySymbol">$</span>200</span>
+                                </td>
+                                <td class="product-quantity" data-title="Quantity">
+                                    <div class="quantity">
+                                        <input type="number" class="input-text qty text" step="1" min="0" value="1" title="Qty" size="4">
+                                    </div>
+                                </td>
+                                <td class="product-subtotal" data-title="Total">
+                                    <span class="price-amount amount"><span class="price-currencySymbol">$</span>500</span>
+                                </td>
+
+                                <td class="product-remove">
+                                    <a href="" class="remove" aria-label="Remove this item" data-product_id="9114" data-product_sku=""><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="actions">
+                                    <div class="clearfix">
+                                        <div class="coupon pull-left">
+                                            <input type="text" name="coupon_code" class="input-text " id="coupon_code" value="" placeholder="Coupon code">
+                                            <input type="submit" class="btn btn-default" name="apply_coupon" value="Apply Coupon">
+                                        </div>
+                                        <div class="pull-right">
+                                            <input type="submit" class="btn btn-primary" name="update_cart" value="Update Cart">
+                                            <input type="hidden" id="_wpnonce" name="_wpnonce" value="#"><input type="hidden" name="_wp_http_referer" value="#">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="grand-totall">
+                    <div class="title-wrap">
+                        <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                    </div>
+                    <h5>Total products: <span>$260.00</span></h5>
+                    <div class="total-shipping">
+                        <h5>Total shipping</h5>
+                        <ul>
+                            <li><input type="checkbox"> Standard: <span>$20.00</span></li>
+                            <li><input type="checkbox"> Express: <span>$30.00</span></li>
+                        </ul>
+                    </div>
+                    <h4 class="grand-totall-title">Total:  <span>$260.00</span></h4>
+                    <a href="checkout.html" class="btn btn-primary checkout-button">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+<!-- =====================================
+    ==== End cart -->
