@@ -1,0 +1,83 @@
+
+// standard colors
+$white		    : #fff !default;
+$black			: #000 !default;
+$nocolor		: transparent !default;
+$light-gray		: #ccc !default; 
+
+//## Font for body text, headings
+
+$font-family-second: "Anton", sans-serif !default;
+$font-family-slider:  $font-family-second !default;
+
+// color for default theme
+$bg-color       :  #000 !default
+$theme-color    :  #1dc681 !default; /* main color which will be used for all main block styles... */
+$theme-color-second  	: #9a9da2 !default;
+
+
+$text-color				: #292c31 !default;
+
+$border-color		 : #e1e1e1 !default;
+$border-color-second : #f1f1f1 !default;
+
+
+$color-link        : #555 !default;
+$color-link-hover   : $theme-color !default;   
+
+$nav-color: 		 $white !default;
+
+$text-transform:    capitalize !default;
+
+// button color
+$primary-color:  $white  !default;
+$primary-bg:   $theme-color    !default;
+$primary-border:  $theme-color  !default;
+
+$default-color:  $white  !default;
+$default-bg:     #1e2024 !default;
+$default-border: #1e2024 !default;
+
+
+// cart
+$cart-color:  $white !default;
+$cart-text:   $black !default;
+
+// topbar
+
+$topbar-bg:          #292c31 !default;
+$topbar-link:  		 $white !default;
+
+// header
+$header-color:		 $theme-color-second !default;
+$header-border:      #212326 !default;
+
+// dropdown-menu
+$dropdown-menu-bg:   #030607 !default;
+$dropdown-menu-color:  $theme-color-second !default;
+$dropdown-menu-border:  #121517 !default;
+
+// search
+$header-bg-search:		 $topbar-bg !default;
+
+
+// newsletter
+$newsletter-bg:   $white !default;
+$newsletter-color: #1e2024 !default;
+
+
+// footer
+$bg-footer       :        #030607 !default;
+$color-footer       :     $theme-color-second !default;
+$color-footer-title :     $white !default;
+$color-footer-link :       $white !default;
+$color-footer-link-nav:     $theme-color-second !default;
+
+
+
+// copyright
+$copyright-color:   #121517 !default;
+
+
+//price
+$color-price-old:  $theme-color-second !default;

@@ -6,31 +6,162 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebSPA</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Az Ez Game Market Web shop a világ legjobb webshopja. Az itt vásárolható játékok garantáltan magyarországon a lehető legolcsóbbak.
+          Mi nem a pénzért csináljuk, hanem hogy miden gamer VÉGRE JÁTSZHASSON és ne kelljen a crackekre várni, tudjuk, mi is csináltuk... Hanem végre nyugodtan játszhasson.">
+    <meta name="robots" content="noindex, follow" />
     <base href="~/" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <link href="css/site.css" rel="stylesheet" />
+    <title>@ViewData["Title"] - Ez Game Market</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon.ico">
+
+    <!-- font-awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.css">
+
+    <!-- animate CSS -->
+    <link rel="stylesheet" type="text/css" href="~/css/animate.css">
+
+    <!-- slick CSS -->
+    <link rel="stylesheet" type="text/css" href="~/css/slick.css">
+
+    <!--magnific-popup CSS -->
+    <link rel="stylesheet" type="text/css" href="~/css/magnific-popup.css">
+
+    <!-- main CSS -->
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+
+    <!-- google font CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 </head>
 <body>
-    <app>
-        <component type="typeof(App)" render-mode="ServerPrerendered" />
-    </app>
+    <header class="header drank">
+        <div class="topbar">
+            <div class="container top-bar">
+                <div class="top-bar__left">
+                    Üdvözőllek a <a asp-area="" asp-controller="Home" asp-action="Index">Ez Game Market-on!</a> Ez Game Ez life!
+                </div>
+                <div class="top-bar__right">
+                    <div class="header-account">
+                        <a asp-area="" asp-controller="Account" asp-action="Login">Bejelentkezés</a>
+                        OR
+                        <a asp-area="" asp-controller="Account" asp-action="Register">Regisztráció</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div id="blazor-error-ui">
-        <environment include="Staging,Production">
-            An error has occurred. This application may no longer respond until reloaded.
-        </environment>
-        <environment include="Development">
-            An unhandled exception has occurred. See browser dev tools for details.
-        </environment>
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+        <app>
+            <component type="typeof(App)" render-mode="ServerPrerendered" />
+        </app>
+
+        <div id="blazor-error-ui">
+            <environment include="Staging,Production">
+                An error has occurred. This application may no longer respond until reloaded.
+            </environment>
+            <environment include="Development">
+                An unhandled exception has occurred. See browser dev tools for details.
+            </environment>
+            <a href="" class="reload">Reload</a>
+            <a class="dismiss">🗙</a>
+        </div>
+
+        <div class="header_container" style="background:url('@Url.Content("~/images/bg_header.jpg")') repeat">
+
+            <!-- header-desktop -->
+            @await Html.PartialAsync("_DesktopMenu");
+            <!-- /header-desktop -->
+            <!-- header-mobile -->
+            @await Html.PartialAsync("_MobileMenu");
+            <!-- /header-mobile -->
+        </div>
+
+        <div class="footer-mobile-bar">
+            <ul class="columns-2">
+                <li class="my-account">
+                    <a class="my-accrount-footer" asp-area="" asp-controller="Account" asp-action="Index">
+                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="cart">
+                    <a class="footer-cart-contents" href="cart.html" title="A kosár megtekintése">
+                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        <span class="count">1</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+
+            <!-- =====================================
+            ==== Start breadcrumb -->
+            <div class="breadcrumb section-bg" style="background-image:url('@Url.Content("~/images/bg_breadcrumb.jpg")')">
+                <!-- container -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <h1>Felhasználó</h1>
+                            <ol class="item-breadcrumb">
+                                <li><a asp-area="" asp-controller="Home" asp-action="Index">Kezdőlap</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /container -->
+            </div>
+            <!-- =====================================
+            ==== End breadcrumb -->
+
+            <div class="main-content">
+            </div>
+        </main>
     </div>
 
+    <!-- =====================================
+       ==== Start footer -->
+    <!-- =====================================
+        ==== End footer -->
+    <!-- back-to-top-->
+    <div id="back-to-top"></div>
+    <!-- back-to-top -->
+
     <script src="_framework/blazor.server.js"></script>
+    <!-- =====================================
+    ====Start all js here -->
+    <!-- jquery js-->
+    <script src="~/js/jquery.min.js"></script>
+
+    <!-- bootstrap js-->
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <!-- slick js-->
+    <script src="~/js/slick.min.js"></script>
+
+    <!-- slick animation js-->
+    <script src="~/js/slick-animation.min.js"></script>
+
+    <!-- spritespin js-->
+    <script src="~/js/jquery-ui.min.js"></script>
+
+    <!-- waypoints js-->
+    <script src="~/js/jquery.waypoints.js"></script>
+
+    <!-- counterup js-->
+    <script src="~/js/jquery.counterup.min.js"></script>
+
+    <!-- Magnific js-->
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+
+    <!-- custom js-->
+    <script src="~/js/custom.js"></script>
+    <!-- =====================================
+        ==== End all js herej -->
 </body>
 </html>
