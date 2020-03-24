@@ -22,7 +22,7 @@ namespace WebMVC.Controllers
             return View();
         }
 
-        public IActionResult Faq()
+        public IActionResult FAQ()
         {
             return View();
         }
@@ -36,5 +36,25 @@ namespace WebMVC.Controllers
         {
             return View();
         }
+        public IActionResult TermsOfUse()
+        {
+            return View();
+        }
+
+        public IActionResult ShipPolicy()
+        {
+            return View("ShippingPolicy");
+        }
+
+        public IActionResult ReturnsPolicy()
+        {
+            return View();
+        }
+
+        public IActionResult CookieUse()
+        {
+            return View();
+        }
+
     }
 }
