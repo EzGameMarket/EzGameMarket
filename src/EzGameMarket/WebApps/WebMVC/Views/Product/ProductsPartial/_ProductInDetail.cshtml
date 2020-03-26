@@ -1,0 +1,138 @@
+﻿@model DetailProduct
+
+@{ 
+var product = Model.Product;
+}
+
+<div class="product-header">
+    <div class="product-header__left">
+        <h1 class="product-title">
+            @product.Name
+        </h1>
+    </div>
+    <div class="product-header__right">
+                        
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+        <div class="main_image_product">
+            <div class="slider slider-for">
+                @foreach (var item in product.ImageUrls)
+                {
+                    <div><img src="@item" alt=""></div>
+                }
+            </div>
+            <div class="slider slider-nav">
+                @foreach (var item in product.ImageUrls)
+                {
+                    <div><img src="@item" alt=""></div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <div class="product-caption clearfix">
+            <p>@product.ShortDescription</p>
+
+            @await Html.PartialAsync("ProductsPartial/_ProductPrice", product);
+
+            <div class="product-rating" data-rating="">
+                <span class="star-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </span>
+                <span class="customer_reviews">@product.Reviews.Count() vásárlói vélemény</span>
+            </div>
+            <!-- end rating -->
+            <div class="excerpt">
+                <ul>
+                    <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>Készleten</li>
+                    <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>Azonnal elérhető</li>
+                    <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>Megbízható forrásból</li>
+                </ul>
+            </div>
+            @*<div class="info_variant">
+                <span>Checkbox :</span>
+                <ul class="list-checked">
+                    <li class="current"><a href="javascript:void(0)">4 fl. oz.</a></li>
+                    <li><a href="javascript:void(0)">17 fl. oz.</a></li>
+                </ul>
+            </div>*@
+
+            <div class="form_cart">
+                <div class="form_cart__number">
+                    <span>Quantity :</span>
+                    <form action="#" class="add-to-cart" method="post" enctype="multipart/form-data">
+                        <input class="cart-qty-box" type="number" name="qtybutton" min="0" value="0">
+                        <input type="hidden" name="id" value="@product.ID">
+                    </form>
+                </div>
+            </div>
+
+            <div class="product-footer">
+                <a href="cart.html" class="btn btn-primary add_to_cart_button"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Kosárba</a>
+                <div class="product-actions">
+                    <a href="#" data-id="" class="btn wishlist product-quick-whistlist" title="Hozzáadás a kivánság listámhoz">
+                        <i class="fa fa-heart-o"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="product_meta">
+                <div class="posted_in">
+                    <span>Category:</span>
+                    @foreach (var item in product.Categorys)
+                    {
+                        <a href="#" rel="tag">@item </a>
+                    }
+                </div>
+                <div class="tagged_as">
+                    <span>Tags:</span>
+                    @foreach (var item in product.Categorys)
+                    {
+                        <a href="#" rel="tag">@item </a>
+                    }
+                </div>
+            </div>
+            <div class="product_social-sharing">
+                <div class="social-icons share-row">
+                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                        @{ 
+                            var thisUrl = Context.Request.Host + Context.Request.Path;
+                        }
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=@thisUrl" class="a2a_button_facebook"></a>
+                        <a href="https://twitter.com/home?status=@thisUrl" class="a2a_button_twitter"></a>
+                    </div>
+                </div>
+                <script async src="https://static.addtoany.com/menu/page.js"></script>
+            </div>
+        </div><!-- /.product-meta -->
+    </div>
+</div>
+<!-- product-tab-description -->
+<div class="product-description-tabs">
+    <ul class="nav">
+        <li class="active"><a data-toggle="tab" href="#tab_description">Description</a></li>
+        <li><a data-toggle="tab" href="#tab_activatekeyhelp">Product Details</a></li>
+        <li><a data-toggle="tab" href="#tab_sysreq">Rendszerigény</a></li>
+        <li><a data-toggle="tab" href="#tab_reviews">Customer Reviews (2)</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="tab_description" class="tab-pane fade show active">
+            @Html.Raw(product.Description)
+        </div>
+        <div id="tab_activatekeyhelp" class="tab-pane fade">
+            @Html.Raw(product.HelpActivateKey)
+        </div>
+        <div id="tab_sysreq" class="tab-pane fade">
+            @await Html.PartialAsync("ProductsPartial/Partial/_SystemRequirements", product.SystemRequirement)
+        </div>
+        <div id="tab_reviews" class="tab-pane fade">
+            @await Html.PartialAsync("ReviewsPartial/_CostumerReviews", product)
+        </div>
+    </div>
+</div>
+<!--/product-tab-description -->

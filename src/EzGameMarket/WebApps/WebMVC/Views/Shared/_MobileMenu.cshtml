@@ -1,11 +1,11 @@
-﻿
+﻿    
 <div class="header-mobile">
     <div id="header" class="site-header-mobile">
         <nav class="navigation navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="open-btn">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only">Navigáció váltogatás</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -20,7 +20,7 @@
                     <div class="ps-search">
                         <div class="ps-search__content">
                             <a class="ps-search__close" href="#"><span></span></a>
-                            <h3 class="search_title">Enter your keyword</h3>
+                            <h3 class="search_title">Mond el mit szeretnél</h3>
                             <form method="get" class="searchform" action="#">
                                 <div class="wiget-search input-group">
                                     <input name="s" maxlength="40" class="form-control input-search" type="text" size="20" placeholder="Keresés...">
@@ -38,13 +38,12 @@
                 <div id="navbar" class="navbar-collapse collapse navbar-right navigation-mobile">
                     <button class="close-navbar"><i class="fa fa-close"></i></button>
                     <ul class="nav navbar-nav small-nav">
-                        <li class="menu-item">
-                            <a href="product_grid.html">Product<b class="caret"></b></a>
+                        <li class="active">
+                            <a asp-area="" asp-controller="Product" asp-action="Index">Termékek</a>
                         </li>
-                        <li class="menu-item">
-                            <a href="faq.html">Pages<b class="caret"></b></a>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Contact">Kapcsolat</a>
                         </li>
-                        <li class="menu-item"><a href="contact.html">Contact</a></li>
                     </ul>
                 </div><!-- end of nav-collapse -->
             </div><!-- end of container -->

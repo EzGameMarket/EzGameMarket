@@ -1,0 +1,42 @@
+﻿@model IContainsRecomendedProducts
+
+<div class="sidebar">
+    <div class="may_also">
+        <h3 class="may_also__title">Ezeket is pergetned?</h3>
+    </div>
+    <ul class="product-list-siderbar">
+
+        @foreach (var item in Model.RecomendedProducts)
+        {
+            <li>
+                <div class="inner">
+                    <a class="product-thumbnail" asp-controller="Product" asp-action="Product" asp-route-id="@item.ID">
+                        <img src="@item.ImageUrl" alt="@item.Name képe">
+                    </a>
+                    <div class="product-content">
+                        <h3 class="product-title">
+                            <a asp-controller="Product" asp-action="Product" asp-route-id="@item.ID">@item.Name</a>
+                        </h3>
+                        <div class="star-rating">
+                            @*<span class="product-rating" data-rating="">
+                                <span class="star-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </span>
+                            </span>*@
+                            <div>
+                                @await Html.PartialAsync("ProductsPartial/_ProductPrice", item)
+                            </div>
+                            <a class="add_to_cart_button"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+
+
+    </ul>
+</div>

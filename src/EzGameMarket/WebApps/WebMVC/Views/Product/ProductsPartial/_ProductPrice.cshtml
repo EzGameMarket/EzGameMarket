@@ -1,0 +1,19 @@
+﻿@model IProduct
+
+<div class="product-price">
+    @if (Model.DiscountedPrice <= 0)
+    {
+        <ins>
+            <span class="amout">@Model.Price ,- Ft</span>
+        </ins>
+    }
+    else
+    {
+        <ins>
+            <span class="amout">@Model.DiscountedPrice ,- Ft</span>
+        </ins>
+        <del>
+            <span class="amout">@Model.Price ,- Ft</span>
+        </del>
+    }
+</div>

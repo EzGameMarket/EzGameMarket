@@ -1,0 +1,27 @@
+﻿@model CartItemModel
+
+<tr class="cart-form__cart-item cart_item">
+    <td class="product-thumbnail">
+        <a asp-controller="Product" asp-action="Product" asp-route-id="@Model.ProductID">
+            <img src="@Url.Content(Model.ImageUrl)" alt="@Model.ProductName képe">
+        </a>
+    </td>
+    <td class="product-name" data-title="Product">
+        <a asp-controller="Product" asp-action="Product" asp-route-id="@Model.ProductID">@Model.ProductName</a>
+    </td>
+    <td class="product-price" data-title="Price">
+        <span class="price-amount amount">@Model.Price<span class="price-currencySymbol"> ,-Ft</span></span>
+    </td>
+    <td class="product-quantity" data-title="Quantity">
+        <div class="quantity">
+            <input type="number" class="input-text qty text" step="1" min="1" value="@Model.Quantity" title="Qty" size="4">
+        </div>
+    </td>
+    <td class="product-subtotal" data-title="Total">
+        <span class="price-amount amount">@(Model.Quantity * Model.Price)<span class="price-currencySymbol"> ,-Ft</span></span>
+    </td>
+
+    <td class="product-remove">
+        <button class="remove" asp-route-productid="@Model.ProductID"><i class="fa fa-trash-o"></i></button>
+    </td>
+</tr>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Az Ez Game Market Web shop a világ legjobb webshopja. Az itt vásárolható játékok garantáltan magyarországon a lehető legolcsóbbak.
-          Mi nem a pénzért csináljuk, hanem hogy miden gamer VÉGRE JÁTSZHASSON és ne kelljen a crackekre várni, tudjuk, mi is csináltuk... Hanem végre nyugodtan játszhasson.">
+         Miden gamer VÉGRE JÁTSZHASSON és ne kelljen a crackekre várni, tudjuk, mi is csináltuk... Hanem végre nyugodtan játszhasson.">
     <meta name="robots" content="noindex, follow" />
 
     <title>@ViewData["Title"] - Ez Game Market</title>
@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li class="cart">
-                    <a class="footer-cart-contents" href="cart.html" title="A kosár megtekintése">
+                    <a class="footer-cart-contents" asp-controller="Cart" asp-action="Index" title="A kosár megtekintése">
                         <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                         <span class="count">1</span>
                     </a>
@@ -109,11 +109,9 @@
     @await Html.PartialAsync("_Footer");
     <!-- =====================================
         ==== End footer -->
-
     <!-- back-to-top-->
     <div id="back-to-top"></div>
     <!-- back-to-top -->
-
     <!-- =====================================
        ====Start all js here -->
     <!-- jquery js-->

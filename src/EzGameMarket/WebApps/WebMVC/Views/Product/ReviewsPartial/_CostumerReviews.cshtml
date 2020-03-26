@@ -1,0 +1,14 @@
+﻿@model Product
+
+
+<div id="tab_reviews" class="tab-pane fade">
+    <div class="rattings-wrapper">
+        
+        @foreach (var item in Model.Reviews)
+        {
+            @await Html.PartialAsync("ReviewsPartial/_Review", item);
+        }
+
+    </div>
+    @await Html.PartialAsync("ReviewsPartial/_AddReview", Model);
+</div>

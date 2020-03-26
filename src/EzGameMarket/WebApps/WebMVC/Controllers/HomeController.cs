@@ -27,7 +27,7 @@ namespace WebMVC.Controllers
             return View();
         }
 
-        public IActionResult Context()
+        public IActionResult Contact()
         {
             return View();
         }
@@ -41,9 +41,9 @@ namespace WebMVC.Controllers
             return View();
         }
 
-        public IActionResult ShipPolicy()
+        public IActionResult ShippingPolicy()
         {
-            return View("ShippingPolicy");
+            return View();
         }
 
         public IActionResult ReturnsPolicy()

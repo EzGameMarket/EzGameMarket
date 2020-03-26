@@ -1,0 +1,26 @@
+﻿@model PaginationInfo
+
+<!-- pagination -->
+<nav class="pagination clearfix">
+    <ul class="page-numbers">
+
+        <li><a class="prev page-numbers @Model.Previous" href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+
+
+        @for (int i = 1; i <= Model.MaxPageNumber; i++)
+        {
+            if (i != Model.ActualPage)
+            {
+                <li><a class="page-numbers" href="#">@i</a></li>
+            }
+            else
+            {
+                <li><span class="page-numbers current">@i</span></li>
+            }
+        }
+
+        <li><a class="next page-numbers @Model.Next" asp-controller="Product" asp-action=""><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+    </ul>
+
+</nav>
+<!-- /pagination -->

@@ -1,0 +1,57 @@
+﻿@model Cart
+@{    
+    ViewData["Title"] = "Kosaram";
+}
+
+<div class="page-cart">
+    <!-- container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <form class="cart-form table_responsive" action="#" method="post">
+                    <table class="shop_table table cart cart-form__contents">
+                        <thead>
+                            <tr>
+                                <th class="product-thumbnail">Termék</th>
+                                <th class="product-name">Megnevezés</th>
+                                <th class="product-price">Ár</th>
+                                <th class="product-quantity">Darabszám</th>
+                                <th class="product-subtotal">Össszesítve</th>
+                                <th class="product-remove">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @await Html.PartialAsync("_CartItems", Model.CartItems);
+
+                            <tr>
+                                <td colspan="6" class="actions">
+                                    <div class="clearfix">
+                                        <div class="coupon pull-left">
+                                            <input type="text" name="coupon_code" class="input-text " id="coupon_code" value="" placeholder="Kupon kód">
+                                            <input type="submit" class="btn btn-default" name="apply_coupon" value="Kód beváltása">
+                                        </div>
+                                        <div class="pull-right">
+                                            <input type="submit" class="btn btn-primary" name="update_cart" value="Kosaram frrisítése">
+                                            <input type="hidden" id="_wpnonce" name="_wpnonce" value="#"><input type="hidden" name="_wp_http_referer" value="#">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="grand-totall">
+                    <div class="title-wrap">
+                        <h4 class="cart-bottom-title section-bg-gary-cart">Kosaram</h4>
+                    </div>
+                    <h4 class="grand-totall-title">Végösszeg:  <span>@Model.Total() ,-Ft</span></h4>
+                    <a asp-area="" asp-controller="Cart" asp-action="Checkout" class="btn btn-primary checkout-button">Megrendelem</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+</div>

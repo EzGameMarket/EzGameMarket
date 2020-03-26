@@ -1,0 +1,95 @@
+﻿
+@model ProductsPageGridModel
+@{
+    ViewData["Title"] = "Termékek";
+}
+
+<!-- =====================================
+    ====Start archive-product -->
+<div class="archive-product">
+    <!-- Container -->
+    <div class="container">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-9 col-md-8">
+                <!-- product-shorting -->
+                <div class="product-shorting d-flex align-items-center justify-content-between">
+                    <div class="toolbar-sorter">
+                        <span>Sort by :</span>
+                        <select name="orderby" class="orderby">
+                            <option value="menu_order" selected="selected">Dropdown box</option>
+                            <option value="popularity">popularity</option>
+                            <option value="rating">average rating</option>
+                            <option value="date">newness</option>
+                            <option value="price">low to high</option>
+                            <option value="price-desc">high to low</option>
+                        </select>
+                    </div>
+
+                    <div class="toolbar-sorter">
+                        <span>Show :</span>
+                        <select name="orderby" class="orderby">
+                            <option value="" selected="selected">20</option>
+                            <option value="">4</option>
+                            <option value="">8</option>
+                            <option value="">12</option>
+                            <option value="">16</option>
+                        </select>
+                    </div>
+
+                    <div class="grid-list-view">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#grid-view" role="tab" data-toggle="tab">
+                                    <i class="fa fa-th"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#list-view" role="tab" data-toggle="tab">
+                                    <i class="fa fa-list-ul"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--/product-shorting -->
+                <!-- tab-content -->
+                <div class="tab-content">
+
+                    @{
+                        var numberOfProductsInRow = 3;
+                        var index = 0;
+                        var numberOfProducts = Model.Products.Count;
+                        var productsLeft = numberOfProducts;
+
+                        while (index < numberOfProducts)
+                        {
+                            var max = Math.Min(numberOfProductsInRow, productsLeft);
+
+                            <div class="row row-products">
+                                @for (int i = 0; i < max; i++)
+                                {
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        @await Html.PartialAsync("ProductsPartial/_ProductItem", Model.Products[i])
+                                    </div>
+
+                                    productsLeft--;
+                                }
+                            </div>
+
+                            index += max;
+                        }
+                    }
+                </div>
+                <!-- /tab-content -->
+
+                @await Html.PartialAsync("Pagination/_Pagination", Model.Pagination);
+
+            </div>
+            <div class="col-lg-3 col-md-4">
+                @await Html.PartialAsync("SideBarsPartial/_SideBar.cshtml",Model.SideBar);
+            </div>
+        </div>
+    </div>
+</div>
+<!-- =====================================
+    ====End archive-product -->

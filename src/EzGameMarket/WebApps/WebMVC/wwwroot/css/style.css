@@ -14356,7 +14356,7 @@ ul.columns li .product-block:hover .product-actions {
     }
 }
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 770px) {
     .header-mobile,
     .footer-mobile-bar {
         display: none;

@@ -1,0 +1,35 @@
+﻿@model ProductItem
+
+<div class="product-block">
+    <div class="product-image ">
+        <div class="product-thumbnail">
+            <a asp-controller="Product" asp-action="Product" asp-route-id="@Model.ID" title="">
+                <img class="product-featured-image" src="@Model.ImageUrl" alt="@Model.Name képe">
+            </a>
+        </div>
+        @*<div class="product-actions">
+            <a href="#" data-id="" class="btn wishlist product-quick-whistlist" title="Add to whistlist">
+                <i class="fa fa-heart-o"></i>
+            </a>
+            <a href="" data-id="" class="btn product-quick-view btn-quickview" title="Quickview">
+                <i class="fa fa-eye"></i>
+            </a>
+            <a href="" data-id="" class="btn product-quick-compare btn-compare" title="Compare">
+                <i class="fa fa-retweet"></i>
+            </a>
+        </div>*@
+    </div>
+    <div class="product-caption">
+        <span class="posted_in"><a href="#" rel="tag">@Model.Category</a></span>
+        <h4 class="product-title">
+            <a asp-controller="Product" asp-action="Product" asp-route-id="@Model.ID" title="">@Model.Name</a>
+        </h4>
+        <div class="product-form-cart">
+
+            @await Html.PartialAsync("ProductsPartial/_ProductPrice", Model);
+
+            @*kosárhoz adás JSsel megoldása*@
+            <a class="add_to_cart_button"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</div>
