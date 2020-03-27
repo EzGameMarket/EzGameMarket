@@ -40,11 +40,23 @@
                     Üdvözőllek a <a asp-area="" asp-controller="Home" asp-action="Index">Ez Game Market-on!</a> Ez Game Ez life!
                 </div>
                 <div class="top-bar__right">
-                    <div class="header-account">
-                        <a asp-area="" asp-controller="Account" asp-action="Login">Bejelentkezés</a>
-                        OR
-                        <a asp-area="" asp-controller="Account" asp-action="Register">Regisztráció</a>
-                    </div>
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <div class="header-account">
+                            <a asp-area="" asp-controller="Account" asp-action="Login">Bejelentkezés</a>
+                            OR
+                            <a asp-area="" asp-controller="Account" asp-action="Register">Regisztráció</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="header-account">
+                            @{ var userName = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value; } 
+
+                            <span>@userName</span>
+                            <a asp-controller="Account" asp-action="Index">Felhasználóm</a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
