@@ -16,35 +16,22 @@ namespace CartService.API.Models
 
         public List<CartItem> Items { get; set; }
 
-        public void AddItem(CartItemModifyModel model)
+        public void Update(CartItemModifyModel model)
         {
             var currStock = Items.FirstOrDefault(i => i.ProductID == model.ProductId);
 
             if (currStock != default)
             {
+
                 currStock.Quantity = model.Quantity;
             }
             else
             {
-                var newStock = new CartItem();
+                var newStock = new CartItem
+                {
+                    Quantity = model.Quantity
+                };
                 Items.Add(newStock);
-            }
-        }
-
-        public void RemoveItem(CartItemModifyModel model)
-        {
-            var currStock = Items.FirstOrDefault(i => i.ProductID == model.ProductId);
-
-            if (currStock != default)
-            {
-                if (currStock.Quantity > 1)
-                {
-                    currStock.Quantity = model.Quantity;
-                }
-                else
-                {
-                    Items.Remove(currStock);
-                }
             }
         }
     }
