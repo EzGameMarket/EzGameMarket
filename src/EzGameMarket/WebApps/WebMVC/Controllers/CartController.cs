@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebMVC.Models;
 using WebMVC.Models.Carts;
+using WebMVC.Services;
 using WebMVC.Services.Repositorys.Abstractions;
 
 namespace WebMVC.Controllers
@@ -12,21 +14,36 @@ namespace WebMVC.Controllers
     {
         ILogger<CartController> _logger;
         ICartRepository _cartRepository;
+        IIdentityService _identityService;
 
         public CartController(ILogger<CartController> logger,
-                              ICartRepository cartRepository)
+                              ICartRepository cartRepository,
+                              IIdentityService identityService)
         {
             _logger = logger;
             _cartRepository = cartRepository;
+            _identityService = identityService;
         }
 
+        [Route("/")]
         public async Task<IActionResult> Index()
         {
-            var model = await _cartRepository.GetCartAsync();
+            var userID = _identityService.GetUserID();
+            var model = await _cartRepository.GetCartAsync(userID);
             return View(model);
         }
 
-        public IActionResult Checkout()
+        [Route("/{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Index([FromRoute] string id)
+        {
+            var model = await _cartRepository.GetCartAsync(id);
+            return View(model);
+        }
+
+        [HttpGet]
+        [Route("/checkout")]
+        public async Task<IActionResult> Checkout()
         {
             var model = new CheckoutModel()
             {
@@ -49,11 +66,28 @@ namespace WebMVC.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [Route("/checkout")]
+        public async Task<IActionResult> StartCheckout([FromBody] CheckoutModel model)
+        {
+            try
+            {
+                await _cartRepository.Checkout(model);
+
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         //a kosár tartalmát lehet vele frissíteni
         //ha a mennyiség kisebb mint 0 akkor elvesz belőle
         //ha a mennyiség nagyobb mint 0 akkor hozzáadd a kosárhoz
         [HttpPost]
-        public IActionResult Update(UpdateCartItemModel model)
+        [Route("/update")]
+        public async Task<IActionResult> Update([FromBody] UpdateCartItemModel model)
         {
             var prod = model.ProductID;
             var quantity = model.Quantity;
@@ -69,6 +103,8 @@ namespace WebMVC.Controllers
             }
 
             //APiGateWay meghívása
+            var userID = _identityService.GetUserID();
+            await _cartRepository.Update(userID,model);
 
             return RedirectToAction("Index","Product");
         }
