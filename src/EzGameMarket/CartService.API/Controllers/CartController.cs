@@ -30,6 +30,7 @@ namespace CartService.API.Controllers
             _cartRepository = cartRepo;
         }
 
+        [Route("/")]
         public async Task<ActionResult<Cart>> GetCart()
         {
             var id = _identityService.GetUserID(User);
@@ -46,7 +47,9 @@ namespace CartService.API.Controllers
             }
         }
 
-        public async Task<IActionResult> AddItem(CartItemModifyModel model)
+        [HttpPost]
+        [Route("/update")]
+        public async Task<IActionResult> Update(CartItemModifyModel model)
         {
             if (ModelState.IsValid == false)
             {
@@ -57,7 +60,7 @@ namespace CartService.API.Controllers
 
             if (id != default)
             {
-                await _cartRepository.AddItemToCartAsync(id, model);
+                await _cartRepository.UpdateCartAsync(id, model);
 
                 return Ok();
             }
@@ -67,43 +70,8 @@ namespace CartService.API.Controllers
             }
         }
 
-        public async Task<IActionResult> RemoveItem(CartItemModifyModel model)
-        {
-            if (ModelState.IsValid == false)
-            {
-                return BadRequest();
-            }
-
-            var id = _identityService.GetUserID(User);
-
-            if (id != default)
-            {
-                await _cartRepository.RemoveItemFromCartAsync(id, model);
-
-                return Ok();
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
-
-        public async Task<IActionResult> CreateCart()
-        {
-            var id = _identityService.GetUserID(User);
-
-            if (id != default)
-            {
-                await _cartRepository.CreateCartAsync(id);
-
-                return Ok();
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
-
+        [HttpPost]
+        [Route("/checkout")]
         public async Task<IActionResult> Checkout(CheckoutModel model)
         {
             if (model == default || ModelState.IsValid == false)
@@ -115,6 +83,15 @@ namespace CartService.API.Controllers
 
             if (id != default)
             {
+                try
+                {
+                    await _cartRepository.Checkout(id, model);
+                }
+                catch (System.Exception ex)
+                {
+                    return BadRequest(ex);
+                }
+
                 return Ok();
             }
             else

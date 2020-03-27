@@ -32,22 +32,13 @@ namespace CartService.API.Services
             return cart;
         }
 
-        public async Task AddItemToCartAsync(string id, CartItemModifyModel item)
+        public async Task UpdateCartAsync(string id, CartItemModifyModel item)
         {
             var cart = await GetCartByCustomerIDAsync(id);
 
-            cart.AddItem(item);
+            cart.Update(item);
 
             _eventBus.Publish(new CartItemAddedIntegrationEvent(cart, item));
-        }
-
-        public async Task RemoveItemFromCartAsync(string id, CartItemModifyModel item)
-        {
-            var cart = await GetCartByCustomerIDAsync(id);
-
-            cart.RemoveItem(item);
-
-            _eventBus.Publish(new CartItemRemovedIntegrationEvent(cart, item));
         }
 
         public async Task<Cart> CreateCartAsync(string id)

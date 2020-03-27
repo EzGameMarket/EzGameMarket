@@ -8,9 +8,7 @@ namespace CartService.API.Services
     {
         Task<Cart> GetCartByCustomerIDAsync(string id);
 
-        Task AddItemToCartAsync(string id, CartItemModifyModel item);
-
-        Task RemoveItemFromCartAsync(string id, CartItemModifyModel item);
+        Task UpdateCartAsync(string id, CartItemModifyModel item);
 
         Task<Cart> CreateCartAsync(string id);
 
