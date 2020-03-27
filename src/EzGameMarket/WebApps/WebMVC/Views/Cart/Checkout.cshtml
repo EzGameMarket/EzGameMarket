@@ -7,63 +7,63 @@
         <!-- container -->
         <div class="container">
             <!-- Row -->
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <form action="#">
+
+            <form asp-controller="Cart" asp-action="StartCheckout" method="post">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
                         <h3>Számlázási adatok</h3>
                         <div class="row">
-                            @await Html.PartialAsync("_CreateAddress",Model.CostumerAddress.FirstOrDefault());
+                            @await Html.PartialAsync("_CreateAddress", Model.CostumerAddress.FirstOrDefault());
                         </div>
-                    </form>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="coupon-form-two mb-30">
-                        <h3>Kupónkód</h3>
-                        <p>Kupónkódot ide írd be ha van:</p>
-                        <form action="#">
-                            <input placeholder="Coupon code" type="text">
-                            <input value="Apply" type="submit" class="btn-primary">
-                        </form>
                     </div>
-                    <div class="order-wrapper">
-                        <h3>Rendelésed</h3>
-                        <div class="order-table table-responsive mb-30">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="product-thumbnail">Termék</th>
-                                        <th class="product-name">Megnevezés</th>
-                                        <th class="product-price">Ár</th>
-                                        <th class="product-quantity">Darabszám</th>
-                                        <th class="product-subtotal">Össszesítve</th>
-                                        <th class="product-remove">&nbsp;</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @await Html.PartialAsync("_CartItems", Model.BuyerCart.CartItems)
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Kosár értéke</th>
-                                        <td>@Model.BuyerCart.Total() ,-Ft</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Rendelés teljes összege</th>
-                                        <td><strong>@Model.BuyerCart.Total() ,-Ft</strong></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="coupon-form-two mb-30">
+                            <h3>Kuponkód</h3>
+                            <p>Kuponkódot ide írd be ha van:</p>
+                            <input placeholder="Kuponkód" type="text">
                         </div>
+                        <div class="order-wrapper">
+                            <h3>Rendelésed</h3>
+                            <div class="order-table table-responsive mb-30">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product-thumbnail">Termék</th>
+                                            <th class="product-name">Megnevezés</th>
+                                            <th class="product-price">Ár</th>
+                                            <th class="product-quantity">Darabszám</th>
+                                            <th class="product-subtotal">Össszesítve</th>
+                                            <th class="product-remove">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @await Html.PartialAsync("_CartItems", Model.BuyerCart.CartItems)
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Kosár értéke</th>
+                                            <td>@Model.BuyerCart.Total() ,-Ft</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Rendelés teljes összege</th>
+                                            <td><strong>@Model.BuyerCart.Total() ,-Ft</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
 
-                        @await Html.PartialAsync("_PaymentMethods", Model);
+                            @await Html.PartialAsync("_PaymentMethods", Model);
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="order-button">
-                <a class="btn-primary">Fizetés</a>
-            </div>
+                <div class="order-button">
+                    <input type="submit" value="Megrendelés" />
+                </div>
+            </form>
+
+
 
             <!-- Row -->
         </div>
