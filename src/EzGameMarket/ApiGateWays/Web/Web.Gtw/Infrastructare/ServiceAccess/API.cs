@@ -19,7 +19,7 @@ namespace Web.Gtw.Infrastructare.ServiceAccess
         }
         public static class Catalog
         {
-
+            public static string GetItems(string baseUrl) => $"{GetBase(baseUrl)}/catalog";
         }
 
         private static string GetBase(string baseUrl) => $"{baseUrl}/api/{apiVersion}";

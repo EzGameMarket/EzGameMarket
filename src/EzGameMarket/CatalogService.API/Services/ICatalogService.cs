@@ -15,5 +15,9 @@ namespace CatalogService.API.Services
         Task<List<Product>> GetProductsForPlatformAsync(Platform platform);
 
         Task<Product> GetProductAsync(string id);
+
+        Task<List<Product>> GetItemsAsync(int skip, int take);
+
+        Task<long> GetAllItemsCount();
     }
 }

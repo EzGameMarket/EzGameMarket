@@ -17,6 +17,16 @@ namespace CatalogService.API.Services
             _dbContext = dbContext;
         }
 
+        public Task<long> GetAllItemsCount()
+        {
+            return _dbContext.Products.LongCountAsync();
+        }
+
+        public Task<List<Product>> GetItemsAsync(int skip, int take)
+        {
+            return _dbContext.Products.Skip(skip).Take(take).ToListAsync();
+        }
+
         public Task<Product> GetProductAsync(string id)
         {
             return _dbContext.Products.FirstOrDefaultAsync(p => p.GameID == id);

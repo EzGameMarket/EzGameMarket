@@ -7,6 +7,7 @@ using WebMVC.Models;
 using WebMVC.Models.Carts;
 using WebMVC.Services;
 using WebMVC.Services.Repositorys.Abstractions;
+using WebMVC.Services.Services.Abstractions;
 
 namespace WebMVC.Controllers
 {
@@ -25,15 +26,15 @@ namespace WebMVC.Controllers
             _identityService = identityService;
         }
 
-        [Route("/")]
+        [Route("/cart/")]
         public async Task<IActionResult> Index()
         {
-            var userID = _identityService.GetUserID();
+            var userID = _identityService.GetUserID(User);
             var model = await _cartRepository.GetCartAsync(userID);
             return View(model);
         }
 
-        [Route("/{id}")]
+        [Route("/cart/{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index([FromRoute] string id)
         {
@@ -42,7 +43,7 @@ namespace WebMVC.Controllers
         }
 
         [HttpGet]
-        [Route("/checkout")]
+        [Route("/cart/checkout")]
         public async Task<IActionResult> Checkout()
         {
             var model = new CheckoutModel()
@@ -67,7 +68,7 @@ namespace WebMVC.Controllers
         }
 
         [HttpPost]
-        [Route("/checkout")]
+        [Route("/cart/checkout")]
         public async Task<IActionResult> StartCheckout([FromBody] CheckoutModel model)
         {
             try
@@ -86,7 +87,7 @@ namespace WebMVC.Controllers
         //ha a mennyiség kisebb mint 0 akkor elvesz belőle
         //ha a mennyiség nagyobb mint 0 akkor hozzáadd a kosárhoz
         [HttpPost]
-        [Route("/update")]
+        [Route("/cart/update")]
         public async Task<IActionResult> Update([FromBody] UpdateCartItemModel model)
         {
             var prod = model.ProductID;
@@ -103,7 +104,7 @@ namespace WebMVC.Controllers
             }
 
             //APiGateWay meghívása
-            var userID = _identityService.GetUserID();
+            var userID = _identityService.GetUserID(User);
             await _cartRepository.Update(userID,model);
 
             return RedirectToAction("Index","Product");

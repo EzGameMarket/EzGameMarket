@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Aggregator\" />
+    <Folder Include="Services\Implementation\" />
   </ItemGroup>
 
 
