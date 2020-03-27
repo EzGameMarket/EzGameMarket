@@ -1,10 +1,17 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Globalization;
+using System.Text;
+using WebMVC.Services.Repositorys.Abstractions;
+using WebMVC.Services.Repositorys.Implementation;
+using WebMVC.Services.Services.Abstractions;
+using WebMVC.Services.Services.Implementation;
 
 namespace WebMVC
 {
@@ -24,6 +31,32 @@ namespace WebMVC
             services.AddRazorPages();
 
             services.AddDistributedMemoryCache();
+            AddJWT(services);
+
+            services.AddSingleton<ICartRepository, CartRepository>();
+            services.AddSingleton<IIdentityService, IdentityService>();
+        }
+
+        private void AddJWT(IServiceCollection services)
+        {
+            var key = Encoding.UTF8.GetBytes(Configuration.GetValue<string>("Secret"));
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    AuthenticationType = "Identity.Application"
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +82,22 @@ namespace WebMVC
 
             app.UseRouting();
 
+            app.Use(async (context, next) =>
+            {
+                var authenticationCookieName = "access_token";
+                var cookie = context.Request.Cookies[authenticationCookieName];
+                if (cookie != null)
+                {
+                    if (context.Request.Headers.ContainsKey("Authorization") == false)
+                    {
+                        context.Request.Headers.Add("Authorization", "Bearer " + cookie);
+                    }
+                }
+
+                await next();
+            });
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
