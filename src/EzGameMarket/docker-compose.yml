@@ -54,3 +54,10 @@ services:
       context: .
       dockerfile: ApiGateWays/Web/Web.Gtw/Dockerfile
 
+
+  apigtw.loadbalancer:
+    image: ${DOCKER_REGISTRY-}apigtwloadbalancer
+    build:
+      context: .
+      dockerfile: ApiGateWays/LoadBalancer/ApiGtw.LoadBalancer/Dockerfile
+
