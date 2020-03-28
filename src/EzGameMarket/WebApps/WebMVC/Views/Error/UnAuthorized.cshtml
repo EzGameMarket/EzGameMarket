@@ -1,12 +1,35 @@
 ﻿@{
-    ViewData["Title"] = "bejelentkezés szükséges";
+    ViewData["Title"] = "Felhasználó szükséges";
 }
 
 <!-- =====================================
 ====Start page-redirect to account  -->
-<div class="container">
-    <div>
+<div class="page-404">
+    <!-- container -->
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <div class="content-404 text-center">
+                    <h1 class="title_404">Hoppá!</h1>
+                    <div class="error-description pt-40 pb-40">
+                        Ehhez a tartalomhoz bizony egy felhasználóra lesz szükséged
+                    </div>
+                    <div class="row m-2">
+                        <div class="col">
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-default back-home m-1">Bejelentkezés </a>
+                        </div>
+                        <div class="col">
+                            <a asp-controller="Account" asp-action="Register" class="btn btn-default back-home m-1"> Regisztráció</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 text-center"">
+                <img src="https://via.placeholder.com/545x660/" alt="">
+            </div>
+        </div>
     </div>
+    <!-- /container -->
 </div>
 <!-- =====================================
 ==== End page- redirect to account -->

@@ -1,0 +1,36 @@
+﻿
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Nem kezelt hiba";
+}
+
+    <div class="page-404">
+        <!-- container -->
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="content-404">
+                        <h1 class="title_404">Húúhhhaa!</h1>
+                        <div class="error-description pt-40 pb-40">
+                            Erre nem számítottunk....
+                        </div>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-default back-home">Kezdőlap</a>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <img src="https://via.placeholder.com/545x660/" alt="">
+                </div>
+            </div>
+
+            @if (Model.ShowRequestId)
+            {
+                <div class="row m-3">
+                    <div class="col text-center">
+                        RequestID: @Model.RequestId
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- /container -->
+    </div>
+

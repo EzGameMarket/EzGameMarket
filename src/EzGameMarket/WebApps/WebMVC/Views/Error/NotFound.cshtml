@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "NotFound";
+    ViewData["Title"] = "Nem található tartalom";
 }
 
 <!-- =====================================
@@ -10,11 +10,11 @@
         <div class="row align-items-center">
             <div class="col-lg-5">
                 <div class="content-404">
-                    <h1 class="title_404">Whoops!</h1>
+                    <h1 class="title_404">Hoppá!</h1>
                     <div class="error-description pt-40 pb-40">
-                        We couldn’t find the page you are looking for
+                        Elvesztél a weblapon? Ne aggódj kattints ide és pergesd tovább termékeinket.
                     </div>
-                    <a href="index.html" class="btn btn-default back-home">Go back</a>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-default back-home">Kezdőlap</a>
                 </div>
             </div>
             <div class="col-lg-7">
