@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web.Gtw.Infrastructare.ServiceAccess.Abstractions;
 
-namespace Web.Gtw.Models.Settings
+namespace Web.Gtw.Infrastructare.ServiceAccess
 {
-    public class ServiceUrls
+    public class ServiceUrls : IServiceUrls
     {
-        public static ServiceUrls Services { get; set; }
-
         public string Identity { get; set; }
         public string Cart { get; set; }
         public string Catalog { get; set; }

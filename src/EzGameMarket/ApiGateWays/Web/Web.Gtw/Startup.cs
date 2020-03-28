@@ -18,6 +18,14 @@ using Ocelot.DependencyInjection;
 using Ocelot.Provider.Polly;
 using Ocelot.Cache.CacheManager;
 using Ocelot.Provider.Eureka;
+using Web.Gtw.Infrastructare.ServiceAccess.Abstractions;
+using Web.Gtw.Infrastructare.ServiceAccess;
+using Newtonsoft.Json;
+using Shared.Extensions.HttpClientHandler;
+using Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions;
+using Web.Gtw.Infrastructare.Extensions.Repositories.Implementation;
+using Web.Gtw.Infrastructare.Extensions.Services.Abstractions;
+using Web.Gtw.Infrastructare.Extensions.Services.Implementation;
 
 namespace Web.Gtw
 {
@@ -45,6 +53,14 @@ namespace Web.Gtw
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
+
+            var urls = JsonConvert.DeserializeObject<ServiceUrls>(System.IO.File.ReadAllText("services.json"));
+            services.AddSingleton<IServiceUrls>(urls);
+
+            services.AddSingleton<IHttpHandlerUtil, HttpHandlerUtil>();
+            services.AddSingleton<ICartRepository,CartRepository>();
+            services.AddSingleton<ICatalogRepository,CatalogRepository>();
+            services.AddSingleton<IIdentityService,IdentityService>();
         }
 
         private void AddJWT(IServiceCollection services)

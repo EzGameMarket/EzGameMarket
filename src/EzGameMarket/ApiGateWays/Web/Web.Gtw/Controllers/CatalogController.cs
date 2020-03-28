@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Extensions.Pagination;
+using Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions;
 using Web.Gtw.Models;
 using Web.Gtw.Models.ViewModels.Catalog;
-using Web.Gtw.Services.Abstractions;
 
 namespace Web.Gtw.Controllers
 {
@@ -26,7 +27,7 @@ namespace Web.Gtw.Controllers
         [HttpGet]
         public async Task<ActionResult<PaginationViewModel<CatalogItem>>> GetItems([FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 30)
         {
-            var items = _catalogRepository.GetItems(pageIndex, pageSize);
+            var items = await _catalogRepository.GetItems(pageIndex, pageSize);
 
             return Ok(items);
         }

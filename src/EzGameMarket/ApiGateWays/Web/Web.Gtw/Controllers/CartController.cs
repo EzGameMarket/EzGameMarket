@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions;
 using Web.Gtw.Models.ViewModels;
 using Web.Gtw.Models.ViewModels.Cart;
-using Web.Gtw.Services.Abstractions;
+
 
 namespace Web.Gtw.Controllers
 {
@@ -25,8 +26,6 @@ namespace Web.Gtw.Controllers
                 return BadRequest();
             }
 
-            
-
             return Ok(_cartRepository.Update(model));
         }
 
@@ -37,8 +36,6 @@ namespace Web.Gtw.Controllers
                 return BadRequest();
             }
 
-            
-
             return Ok(_cartRepository.GetCart(userID));
         }
 
@@ -48,8 +45,6 @@ namespace Web.Gtw.Controllers
             {
                 return BadRequest();
             }
-
-
 
             return Ok(_cartRepository.Checkout(model));
         }

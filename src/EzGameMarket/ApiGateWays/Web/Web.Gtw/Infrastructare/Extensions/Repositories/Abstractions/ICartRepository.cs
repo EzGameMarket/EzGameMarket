@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Web.Gtw.Models.ViewModels;
 using Web.Gtw.Models.ViewModels.Cart;
 
-namespace Web.Gtw.Services.Abstractions
+namespace Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions
 {
     public interface ICartRepository
     {
