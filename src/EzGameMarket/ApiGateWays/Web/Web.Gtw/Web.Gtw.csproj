@@ -21,8 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Aggregator\" />
-    <Folder Include="Services\Implementation\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Shared.Extensions.Pagination\Shared.Extensions.Pagination.csproj" />
+    <ProjectReference Include="..\..\..\Extensions\HttpClientHandler\Shared.Extensions.HttpClientHandler.csproj" />
   </ItemGroup>
 
 

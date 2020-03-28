@@ -32,5 +32,9 @@
     <Folder Include="IntegrationEvents\EventsHandler\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared.Extensions.Pagination\Shared.Extensions.Pagination.csproj" />
+  </ItemGroup>
+
 
 </Project>
