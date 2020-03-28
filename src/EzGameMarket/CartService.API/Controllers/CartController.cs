@@ -46,6 +46,20 @@ namespace CartService.API.Controllers
                 return BadRequest();
             }
         }
+        [Route("/{userID}/")]
+        public async Task<ActionResult<Cart>> GetCart(string userID)
+        {
+            if (userID != default)
+            {
+                var cart = await _cartRepository.GetCartByCustomerIDAsync(userID);
+
+                return cart;
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
 
         [HttpPost]
         [Route("/update")]
