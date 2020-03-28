@@ -20,10 +20,10 @@ namespace CatalogService.API.Models
         public string Description { get; set; }
 
         [Required]
-        public double Price { get; set; }
+        public int Price { get; set; }
 
         [Required]
-        public double DiscountedPrice { get; set; }
+        public int DiscountedPrice { get; set; }
 
         [Required]
         public DateTime RelaseDate { get; set; }
