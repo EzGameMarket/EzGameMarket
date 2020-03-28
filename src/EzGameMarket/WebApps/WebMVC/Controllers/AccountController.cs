@@ -6,17 +6,17 @@ namespace WebMVC.Controllers
     {
         public IActionResult Index()
         {
-            return Redirect("https://localhost:32794/identity/account/login");
+            return View();
         }
 
         public IActionResult Login()
         {
-            return View();
+            return Redirect("https://localhost:32794/identity/account/login");
         }
 
         public IActionResult Register()
         {
-            return View();
+            return Redirect("https://localhost:32794/identity/account/register");
         }
     }
 }

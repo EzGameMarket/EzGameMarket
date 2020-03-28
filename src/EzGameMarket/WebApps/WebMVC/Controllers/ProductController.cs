@@ -38,29 +38,6 @@ namespace WebMVC.Controllers
             return View(model);
         }
 
-        private SideBar CreateSideBar() 
-        {
-            _sideBar = new SideBar()
-            {
-                CategoryTitle = "Kategóriák",
-                CategoryData = new List<ISideBarCategoryContent>()
-                {
-                    new SideBarCategoryContent() { Title = "FPS", Data = "1" },
-                    new SideBarCategoryContent() { Title = "Akctió", Data = "2" },
-                    new SideBarCategoryContent() { Title = "TPS",Data = "3" },
-                },
-                RefineByTitle = "Szűrés",
-                RefineByData = new List<ISideBarRefineByContent>()
-                {
-
-                },
-                MinPrice = 0,
-                MaxPrice = 20000
-            };
-
-            return _sideBar;
-        } 
-
         [HttpGet]
         [Route("/product/{id}")]
         public IActionResult Product(string id)
@@ -113,6 +90,29 @@ namespace WebMVC.Controllers
                 }
             };
             return View(product);
+        }
+
+        private SideBar CreateSideBar()
+        {
+            _sideBar = new SideBar()
+            {
+                CategoryTitle = "Kategóriák",
+                CategoryData = new List<ISideBarCategoryContent>()
+                {
+                    new SideBarCategoryContent() { Title = "FPS", Data = "1" },
+                    new SideBarCategoryContent() { Title = "Akctió", Data = "2" },
+                    new SideBarCategoryContent() { Title = "TPS",Data = "3" },
+                },
+                RefineByTitle = "Szűrés",
+                RefineByData = new List<ISideBarRefineByContent>()
+                {
+
+                },
+                MinPrice = 0,
+                MaxPrice = 20000
+            };
+
+            return _sideBar;
         }
     }
 }

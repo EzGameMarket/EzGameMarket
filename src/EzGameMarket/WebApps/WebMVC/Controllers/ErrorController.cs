@@ -9,9 +9,9 @@ namespace WebMVC.Controllers
         [Route("Error/{statusCode}")]
         public IActionResult HttpStatusCodeHandler(int statusCode)
         {
-            var model = new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+            var model = new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, HttpStatusCode = statusCode.ToString() };
 
-            var uri = "~/Home/Index";
+            var uri = "Index";
 
             switch (statusCode)
             {
