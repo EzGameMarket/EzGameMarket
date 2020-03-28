@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Shared.Extensions.HttpClientHandler;
 using System;
 using System.Globalization;
 using System.Text;
@@ -33,8 +34,10 @@ namespace WebMVC
             services.AddDistributedMemoryCache();
             AddJWT(services);
 
-            services.AddSingleton<ICartRepository, CartRepository>();
-            services.AddSingleton<IIdentityService, IdentityService>();
+            services.AddHttpClient<IHttpHandlerUtil, HttpHandlerUtil>();
+            services.AddTransient<ICartRepository, CartRepository>();
+            services.AddTransient<ICatalogRepository, CatalogRepository>();
+            services.AddTransient<IIdentityService, IdentityService>();
         }
 
         private void AddJWT(IServiceCollection services)
