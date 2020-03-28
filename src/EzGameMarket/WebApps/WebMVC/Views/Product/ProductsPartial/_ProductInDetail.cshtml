@@ -1,7 +1,8 @@
 ﻿@model DetailProduct
 
 @{ 
-var product = Model.Product;
+    var product = Model.Product;
+    ViewData["Title"] = Model.Product.Name;
 }
 
 <div class="product-header">
@@ -35,7 +36,7 @@ var product = Model.Product;
         <div class="product-caption clearfix">
             <p>@product.ShortDescription</p>
 
-            @await Html.PartialAsync("ProductsPartial/_ProductPrice", product);
+            @await Html.PartialAsync("ProductsPartial/_ProductPrice", product)
 
             <div class="product-rating" data-rating="">
                 <span class="star-rating">
@@ -115,10 +116,15 @@ var product = Model.Product;
 <!-- product-tab-description -->
 <div class="product-description-tabs">
     <ul class="nav">
-        <li class="active"><a data-toggle="tab" href="#tab_description">Description</a></li>
-        <li><a data-toggle="tab" href="#tab_activatekeyhelp">Product Details</a></li>
-        <li><a data-toggle="tab" href="#tab_sysreq">Rendszerigény</a></li>
-        <li><a data-toggle="tab" href="#tab_reviews">Customer Reviews (2)</a></li>
+        <li class="active"><a data-toggle="tab" href="#tab_description">Leírás</a></li>
+        <li><a data-toggle="tab" href="#tab_activatekeyhelp">Hogyan kell aktíválni?</a></li>
+        <li><a data-toggle="tab" href="#tab_sysreq">Ami ajánlott a pergetéshez</a></li>
+        @if (Model.Product.Reviews != default && Model.Product.Reviews.Any())
+        {
+            <li><a data-toggle="tab" href="#tab_reviews">Értékelések (@Model.Product.Reviews.Count())</a></li>
+        }
+        <li><a data-toggle="tab" href="#tab_cloudgamingSupport">Cloud gaming támogatás</a></li>
+
     </ul>
     <div class="tab-content">
         <div id="tab_description" class="tab-pane fade show active">
@@ -130,9 +136,18 @@ var product = Model.Product;
         <div id="tab_sysreq" class="tab-pane fade">
             @await Html.PartialAsync("ProductsPartial/Partial/_SystemRequirements", product.SystemRequirement)
         </div>
-        <div id="tab_reviews" class="tab-pane fade">
-            @await Html.PartialAsync("ReviewsPartial/_CostumerReviews", product)
-        </div>
+        @if (Model.Product.Reviews != default && Model.Product.Reviews.Any())
+        {
+            <div id="tab_reviews" class="tab-pane fade">
+                @await Html.PartialAsync("ReviewsPartial/_CostumerReviews", product)
+            </div>
+        }
+        @if (Model.Product.Reviews != default && Model.Product.Reviews.Any())
+        {
+            <div id="tab_cloudgamingSupport" class="tab-pane fade">
+                @await Html.PartialAsync("ProductsPartial/Partial/_CloudGamingSupport", product)
+            </div>
+        }
     </div>
 </div>
 <!--/product-tab-description -->
