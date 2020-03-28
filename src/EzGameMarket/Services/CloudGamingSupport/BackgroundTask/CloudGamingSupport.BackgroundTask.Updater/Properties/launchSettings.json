@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "CloudGamingSupport.BackgroundTask.Updater": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
