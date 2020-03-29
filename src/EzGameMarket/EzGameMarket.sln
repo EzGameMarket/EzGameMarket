@@ -129,17 +129,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundTask", "Backgroun
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Extensions.Pagination", "Extensions\Shared.Extensions.Pagination\Shared.Extensions.Pagination.csproj", "{3AC8ECF3-5623-4B88-8D39-2196AADE8B30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudGamingSupport.API", "Services\CloudGamingSupport\CloudGamingSupport.API\CloudGamingSupport.API.csproj", "{CA1B69A3-DEF8-48FF-A583-64BCE449456F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudGamingSupport.API", "Services\CloudGamingSupport\CloudGamingSupport.API\CloudGamingSupport.API.csproj", "{CA1B69A3-DEF8-48FF-A583-64BCE449456F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudGamingSupport.BackgroundTask.Updater", "Services\CloudGamingSupport\BackgroundTask\CloudGamingSupport.BackgroundTask.Updater\CloudGamingSupport.BackgroundTask.Updater.csproj", "{782DE775-7EEE-43D7-AAAC-A52A1471B38F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudGamingSupport.BackgroundTask.Updater", "Services\CloudGamingSupport\BackgroundTask\CloudGamingSupport.BackgroundTask.Updater\CloudGamingSupport.BackgroundTask.Updater.csproj", "{782DE775-7EEE-43D7-AAAC-A52A1471B38F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudGamingSupport.BackgroundTask.Tests", "Services\CloudGamingSupport\Tests\CloudGamingSupport.BackgroundTask.Tests\CloudGamingSupport.BackgroundTask.Tests.csproj", "{A2B4DC82-7185-4D32-B7F9-967BE02009CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudGamingSupport.BackgroundTask.Tests", "Services\CloudGamingSupport\Tests\CloudGamingSupport.BackgroundTask.Tests\CloudGamingSupport.BackgroundTask.Tests.csproj", "{A2B4DC82-7185-4D32-B7F9-967BE02009CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{824AADBB-0590-45B8-A52E-ABB3B1D1BCD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductDesc.API", "Services\ProductDesc\ProductDesc.API\ProductDesc.API.csproj", "{B8B321BA-5B9A-4F2E-BAD1-AC0EC6480714}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductDesc.API", "Services\ProductDesc\ProductDesc.API\ProductDesc.API.csproj", "{B8B321BA-5B9A-4F2E-BAD1-AC0EC6480714}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductDesc.Tests", "Services\ProductDesc\Tests\ProductDesc.Tests\ProductDesc.Tests.csproj", "{1CB3F8FF-BDBA-4CA4-AC0B-051B5EF5B64C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductDesc.Tests", "Services\ProductDesc\Tests\ProductDesc.Tests\ProductDesc.Tests.csproj", "{1CB3F8FF-BDBA-4CA4-AC0B-051B5EF5B64C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9ECE97AB-6E17-4CD3-A0F1-B3FFFE177490}"
 EndProject
@@ -147,27 +147,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DB89189C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1ACF3B74-7F9B-4A52-A197-1D247614C67C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommendations.API", "Services\Recommendations\Recommendations.API\Recommendations.API.csproj", "{CDF9A4DC-A1C4-4189-9F80-DCC563987A8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recommendations.API", "Services\Recommendations\Recommendations.API\Recommendations.API.csproj", "{CDF9A4DC-A1C4-4189-9F80-DCC563987A8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemRequirement.Tests", "Services\SystemRequirement\Tests\SystemRequirement.Tests\SystemRequirement.Tests.csproj", "{2C7FB923-DF67-4E06-BAA9-6222E4C076FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemRequirement.Tests", "Services\SystemRequirement\Tests\SystemRequirement.Tests\SystemRequirement.Tests.csproj", "{2C7FB923-DF67-4E06-BAA9-6222E4C076FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemRequirement.API", "Services\SystemRequirement\SystemRequirement.API\SystemRequirement.API.csproj", "{F7FCCE2C-2ED1-4FE6-B58C-F52AD9954B73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemRequirement.API", "Services\SystemRequirement\SystemRequirement.API\SystemRequirement.API.csproj", "{F7FCCE2C-2ED1-4FE6-B58C-F52AD9954B73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommendations.Tests", "Services\Recommendations\Tests\Recommendations.Tests\Recommendations.Tests.csproj", "{02A208C5-9DC6-4F75-A7DB-C59537AADA9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recommendations.Tests", "Services\Recommendations\Tests\Recommendations.Tests\Recommendations.Tests.csproj", "{02A208C5-9DC6-4F75-A7DB-C59537AADA9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reviews.Tests", "Services\Review\Tests\Reviews.Tests\Reviews.Tests.csproj", "{CFD2ECC1-E015-412C-BE1E-7D3CA4BB9750}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reviews.Tests", "Services\Review\Tests\Reviews.Tests\Reviews.Tests.csproj", "{CFD2ECC1-E015-412C-BE1E-7D3CA4BB9750}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudGamingSupport.API.Tests", "Services\CloudGamingSupport\Tests\CloudGamingSupport.API.Tests\CloudGamingSupport.API.Tests.csproj", "{DA409951-545C-41D3-AD72-1FEA3FB2A51A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudGamingSupport.API.Tests", "Services\CloudGamingSupport\Tests\CloudGamingSupport.API.Tests\CloudGamingSupport.API.Tests.csproj", "{DA409951-545C-41D3-AD72-1FEA3FB2A51A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Review.API", "Services\Review\Review.API\Review.API.csproj", "{697DAFCC-5A0C-465F-9874-61305194A990}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Review.API", "Services\Review\Review.API\Review.API.csproj", "{697DAFCC-5A0C-465F-9874-61305194A990}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Categories", "Categories", "{74258424-1851-47D8-B007-C1B0FB22B855}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C9E6AFB-E4EB-46D7-9F30-C158A6D90710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Categories.Tests", "Services\Categories\Tests\Categories.Tests\Categories.Tests.csproj", "{34E145EF-DB02-4C9D-96DD-3F8CF3F527CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Categories.Tests", "Services\Categories\Tests\Categories.Tests\Categories.Tests.csproj", "{34E145EF-DB02-4C9D-96DD-3F8CF3F527CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Categories.API", "Services\Categories\Categories.API\Categories.API.csproj", "{D395F473-7E84-4200-A429-B410476A0738}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Categories.API", "Services\Categories\Categories.API\Categories.API.csproj", "{D395F473-7E84-4200-A429-B410476A0738}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{323B2B51-C0F6-44F5-9CD0-DE84182CBEC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Gtw.Tests", "ApiGateWays\Web\Tests\Web.Gtw.Tests\Web.Gtw.Tests.csproj", "{A01AB16A-1BFA-4A76-9DC5-2A661ADFC632}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -359,6 +363,10 @@ Global
 		{D395F473-7E84-4200-A429-B410476A0738}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D395F473-7E84-4200-A429-B410476A0738}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D395F473-7E84-4200-A429-B410476A0738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A01AB16A-1BFA-4A76-9DC5-2A661ADFC632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A01AB16A-1BFA-4A76-9DC5-2A661ADFC632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A01AB16A-1BFA-4A76-9DC5-2A661ADFC632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A01AB16A-1BFA-4A76-9DC5-2A661ADFC632}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -440,6 +448,8 @@ Global
 		{7C9E6AFB-E4EB-46D7-9F30-C158A6D90710} = {74258424-1851-47D8-B007-C1B0FB22B855}
 		{34E145EF-DB02-4C9D-96DD-3F8CF3F527CC} = {7C9E6AFB-E4EB-46D7-9F30-C158A6D90710}
 		{D395F473-7E84-4200-A429-B410476A0738} = {74258424-1851-47D8-B007-C1B0FB22B855}
+		{323B2B51-C0F6-44F5-9CD0-DE84182CBEC9} = {9BB09F93-389A-499A-9757-B594551FF0E4}
+		{A01AB16A-1BFA-4A76-9DC5-2A661ADFC632} = {323B2B51-C0F6-44F5-9CD0-DE84182CBEC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16E930B6-CA49-4BBE-BD42-6D032E69A5C5}
