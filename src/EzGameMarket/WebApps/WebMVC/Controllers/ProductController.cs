@@ -2,12 +2,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using WebMVC.Models.Pagination;
-using WebMVC.Models.Products;
-using WebMVC.Models.Products.Abstraction;
+using WebMVC.ViewModels.Pagination;
+using WebMVC.ViewModels.Products;
+using WebMVC.ViewModels.Products.Abstraction;
+using WebMVC.ViewModels.Products.ProductSideBar.Abstraction;
+using WebMVC.ViewModels.Products.ProductSideBar.Filterize;
+using WebMVC.ViewModels.Products.ProductSideBar.Filterize.Abstraction;
+using WebMVC.ViewModels.ProductSideBar;
+using WebMVC.ViewModels.Reviews;
+using WebMVC.ViewModels.SysRequirement;
 
 namespace WebMVC.Controllers
 {
+    [Route("/product")]
     public class ProductController : Controller
     {
         private SideBar _sideBar;
@@ -39,7 +46,7 @@ namespace WebMVC.Controllers
         }
 
         [HttpGet]
-        [Route("/product/{id}")]
+        [Route("{id}")]
         public IActionResult Product(string id)
         {
             var product = new DetailProduct()

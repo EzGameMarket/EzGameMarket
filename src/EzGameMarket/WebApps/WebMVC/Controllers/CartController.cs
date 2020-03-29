@@ -3,14 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebMVC.Models;
-using WebMVC.Models.Carts;
+using WebMVC.ViewModels;
+using WebMVC.ViewModels.Carts;
 using WebMVC.Services;
 using WebMVC.Services.Repositorys.Abstractions;
 using WebMVC.Services.Services.Abstractions;
 
 namespace WebMVC.Controllers
 {
+    [Route("/cart")]
     public class CartController : Controller
     {
         ILogger<CartController> _logger;
@@ -26,7 +27,7 @@ namespace WebMVC.Controllers
             _identityService = identityService;
         }
 
-        [Route("/cart/")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             var userID = _identityService.GetUserID(User);
@@ -34,7 +35,7 @@ namespace WebMVC.Controllers
             return View(model);
         }
 
-        [Route("/cart/{id}")]
+        [Route("{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index([FromRoute] string id)
         {
@@ -43,7 +44,7 @@ namespace WebMVC.Controllers
         }
 
         [HttpGet]
-        [Route("/cart/checkout")]
+        [Route("checkout")]
         public async Task<IActionResult> Checkout()
         {
             var model = new CheckoutModel()
@@ -68,7 +69,7 @@ namespace WebMVC.Controllers
         }
 
         [HttpPost]
-        [Route("/cart/checkout")]
+        [Route("checkout")]
         public async Task<IActionResult> StartCheckout([FromBody] CheckoutModel model)
         {
             try
@@ -87,7 +88,7 @@ namespace WebMVC.Controllers
         //ha a mennyiség kisebb mint 0 akkor elvesz belőle
         //ha a mennyiség nagyobb mint 0 akkor hozzáadd a kosárhoz
         [HttpPost]
-        [Route("/cart/update")]
+        [Route("update")]
         public async Task<IActionResult> Update([FromBody] UpdateCartItemModel model)
         {
             var prod = model.ProductID;
