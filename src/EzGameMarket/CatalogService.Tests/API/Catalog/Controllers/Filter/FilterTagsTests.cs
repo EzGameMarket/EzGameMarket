@@ -10,12 +10,12 @@ using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace CatalogService.Tests.API.Catalog.Controllers.Catalog
+namespace CatalogService.Tests.API.Catalog.Controllers.Filter
 {
-    public class FilterCatalogTests
+    public class FilterTagsTests
     {
         [Fact]
-        public async void Get_ItemsFromIDs_ShouldReturnSuccessAnd2Items()
+        public async void Get_ItemsFromTags_ShouldReturnSuccessAnd2Items()
         {
             var dbContext = new FakeCatalogDbContext();
             var filterService = new FilterService(dbContext.DBContext);
@@ -23,10 +23,12 @@ namespace CatalogService.Tests.API.Catalog.Controllers.Catalog
             var pageIndex = 0;
             var pageSize = 30;
 
-            var categories = new List<string>()
+            var tags = new List<string>()
             {
                 "FPS",
-                "Akció"
+                "AKCIÓ",
+                "PTW",
+                "CSGO"
             };
 
             var expectedItemsCount = 1;
@@ -34,7 +36,7 @@ namespace CatalogService.Tests.API.Catalog.Controllers.Catalog
             var expectedPageIndex = 0;
 
             var controller = new FilterController(filterService);
-            var actionResult = await controller.GetFilteredItems(pageIndex,pageSize,categories);
+            var actionResult = await controller.GetFilteredItems(pageIndex, pageSize, tags);
 
             //Assert
             Assert.IsType<ActionResult<PaginationViewModel<CatalogItem>>>(actionResult);
@@ -47,7 +49,7 @@ namespace CatalogService.Tests.API.Catalog.Controllers.Catalog
         }
 
         [Fact]
-        public async void Get_ItemsFromIDs_ShouldReturnSuccessAnd0Items()
+        public async void Get_ItemsFromTags_ShouldReturnSuccessAnd0Items()
         {
             var dbContext = new FakeCatalogDbContext();
             var filterService = new FilterService(dbContext.DBContext);
@@ -55,9 +57,9 @@ namespace CatalogService.Tests.API.Catalog.Controllers.Catalog
             var pageIndex = 0;
             var pageSize = 30;
 
-            var categories = new List<string>()
+            var tags = new List<string>()
             {
-                "TPS"
+                "AKA",
             };
 
             var expectedItemsCount = 0;
@@ -65,8 +67,8 @@ namespace CatalogService.Tests.API.Catalog.Controllers.Catalog
             var expectedPageIndex = 0;
 
             var controller = new FilterController(filterService);
-            var actionResult = await controller.GetFilteredItems(pageIndex, pageSize, categories);
-
+            var actionResult = await controller.GetFilteredItems(pageIndex, pageSize, tags);
+            
             //Assert
             Assert.IsType<ActionResult<PaginationViewModel<CatalogItem>>>(actionResult);
             Assert.NotNull(actionResult.Value);
@@ -75,23 +77,6 @@ namespace CatalogService.Tests.API.Catalog.Controllers.Catalog
             Assert.Equal(expectedItemsCount, products.Data.Count());
             Assert.Equal(expectedPageSize, products.ItemsPerPage);
             Assert.Equal(expectedPageIndex, products.ActualPage);
-        }
-
-        [Fact]
-        public async void Get_ItemsFromIDs_ShouldReturnBadRequestAnd0Items()
-        {
-            var dbContext = new FakeCatalogDbContext();
-            var filterService = new FilterService(dbContext.DBContext);
-
-            var pageIndex = 0;
-            var pageSize = 30;
-
-            var controller = new FilterController(filterService);
-            var actionResult = await controller.GetFilteredItems(pageIndex, pageSize);
-
-            //Assert
-            Assert.IsType<BadRequestResult>(actionResult.Result);
-            Assert.Null(actionResult.Value);
         }
     }
 }
