@@ -19,34 +19,38 @@ namespace Web.Gtw.Controllers
     {
         private ICartRepository _cartRepository;
 
-        public ActionResult Update(CartItemUpdateModel model)
+        public async Task<ActionResult> Update(CartItemUpdateModel model)
         {
             if (ModelState.IsValid == false)
             {
                 return BadRequest();
             }
 
-            return Ok(_cartRepository.Update(model));
+            await _cartRepository.Update(model);
+
+            return Ok();
         }
 
-        public ActionResult GetCart(string userID)
+        public async Task<ActionResult<CartViewModel>> GetCart(string userID)
         {
             if (ModelState.IsValid == false)
             {
                 return BadRequest();
             }
 
-            return Ok(_cartRepository.GetCart(userID));
+            return await _cartRepository.GetCart(userID);
         }
 
-        public ActionResult Checkout(CheckoutViewModel model)
+        public async Task<ActionResult> Checkout(CheckoutViewModel model)
         {
             if (ModelState.IsValid == false)
             {
                 return BadRequest();
             }
 
-            return Ok(_cartRepository.Checkout(model));
+            await _cartRepository.Checkout(model);
+
+            return Ok();
         }
     }
 }

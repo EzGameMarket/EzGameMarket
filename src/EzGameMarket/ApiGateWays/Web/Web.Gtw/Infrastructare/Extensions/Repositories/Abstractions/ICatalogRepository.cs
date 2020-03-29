@@ -11,5 +11,8 @@ namespace Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions
     public interface ICatalogRepository
     {
         Task<PaginationViewModel<CatalogItem>> GetItems(int skip, int take);
+        Task<PaginationViewModel<CatalogItem>> Filter(int skip, int take, IEnumerable<string> brands, IEnumerable<string> categories, IEnumerable<string> tags);
+        Task<IEnumerable<CatalogItem>> GetRecomended(string userID);
+        Task<Product> GetDetail(string productID);
     }
 }

@@ -38,7 +38,7 @@ namespace CartService.API
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddSingleton<IIdentityService, IdentityService>();
+            services.AddTransient<IIdentityService, IdentityService>();
         }
 
         private void AddJWT(IServiceCollection services)

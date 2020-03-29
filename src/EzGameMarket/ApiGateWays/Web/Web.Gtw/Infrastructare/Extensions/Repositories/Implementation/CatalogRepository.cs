@@ -23,7 +23,20 @@ namespace Web.Gtw.Infrastructare.Extensions.Repositories.Implementation
             _client = client;
             _urls = urls;
         }
-        public async Task<PaginationViewModel<CatalogItem>> GetItems(int skip, int take)
+
+        public Task<PaginationViewModel<CatalogItem>> Filter(int skip, int take, IEnumerable<string> brands, IEnumerable<string> categories, IEnumerable<string> tags)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Product> GetDetail(string productID)
+        {
+            var url = API.Catalog.GetProductDetail(_urls.Catalog) + productID;
+
+            return default;
+        }
+
+        public Task<PaginationViewModel<CatalogItem>> GetItems(int skip, int take)
         {
             var url = API.Catalog.GetItems(_urls.Catalog);
             var parameters = new Dictionary<string, string>()
@@ -34,7 +47,12 @@ namespace Web.Gtw.Infrastructare.Extensions.Repositories.Implementation
 
             url = QueryHelpers.AddQueryString(url, parameters);
 
-            return await _client.GetDataWithGetAsync<PaginationViewModel<CatalogItem>>(url);
+            return _client.GetDataWithGetAsync<PaginationViewModel<CatalogItem>>(url);
+        }
+
+        public Task<IEnumerable<CatalogItem>> GetRecomended(string userID)
+        {
+            throw new NotImplementedException();
         }
     }
 }

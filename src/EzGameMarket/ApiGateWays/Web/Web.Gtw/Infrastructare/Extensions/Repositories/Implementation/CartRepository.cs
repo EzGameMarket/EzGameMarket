@@ -21,25 +21,10 @@ namespace Web.Gtw.Infrastructare.Extensions.Repositories.Implementation
             _urls = urls;
         }
 
-        public async Task Checkout(CheckoutViewModel model)
-        {
-            var url = API.Cart.ChechoutCart(_urls.Cart);
+        public Task Checkout(CheckoutViewModel model) => _client.SendDataWithPostAsync(model, API.Cart.ChechoutCart(_urls.Cart));
 
-            await _client.SendDataWithPostAsync(model,url);
-        }
+        public Task<CartViewModel> GetCart(string userID) => _client.GetDataWithGetAsync<CartViewModel>(API.Cart.GetCart(_urls.Cart) + $"{userID}/");
 
-        public async Task<CartViewModel> GetCart(string userID)
-        {
-            var url = API.Cart.GetCart(_urls.Cart)+$"{userID}/";
-
-            return await _client.GetDataWithGetAsync<CartViewModel>(url);
-        }
-
-        public async Task Update(CartItemUpdateModel model)
-        {
-            var url = API.Cart.UpdateCart(_urls.Cart);
-
-            await _client.SendDataWithPostAsync(model, url);
-        }
+        public Task Update(CartItemUpdateModel model) => _client.SendDataWithPostAsync(model, API.Cart.UpdateCart(_urls.Cart));
     }
 }

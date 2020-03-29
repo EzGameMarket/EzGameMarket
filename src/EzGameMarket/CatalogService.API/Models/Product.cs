@@ -31,6 +31,7 @@ namespace CatalogService.API.Models
         public List<Language> Languages { get; set; }
         public List<Platform> Platforms { get; set; }
         public List<Genre> Genres { get; set; }
+        public List<Tag> Tags { get; set; }
         public List<Region> Regions { get; set; }
         public List<ProductImage> Images { get; set; }
     }

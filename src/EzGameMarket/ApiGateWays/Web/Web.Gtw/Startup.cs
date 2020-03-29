@@ -57,10 +57,10 @@ namespace Web.Gtw
             var urls = JsonConvert.DeserializeObject<ServiceUrls>(System.IO.File.ReadAllText("services.json"));
             services.AddSingleton<IServiceUrls>(urls);
 
-            services.AddSingleton<IHttpHandlerUtil, HttpHandlerUtil>();
+            services.AddHttpClient<IHttpHandlerUtil, HttpHandlerUtil>();
             services.AddSingleton<ICartRepository,CartRepository>();
             services.AddSingleton<ICatalogRepository,CatalogRepository>();
-            services.AddSingleton<IIdentityService,IdentityService>();
+            services.AddTransient<IIdentityService,IdentityService>();
         }
 
         private void AddJWT(IServiceCollection services)

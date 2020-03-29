@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Web.Gtw.Models.Settings;
+using Web.Gtw.Infrastructare.ServiceAccess;
 
 namespace Web.Gtw
 {
@@ -16,8 +16,6 @@ namespace Web.Gtw
     {
         public static void Main(string[] args)
         {
-            var json = System.IO.File.ReadAllText("services.json");
-            ServiceUrls.Services = JsonConvert.DeserializeObject<ServiceUrls>(json);
             CreateHostBuilder(args).Build().Run();
         }
 

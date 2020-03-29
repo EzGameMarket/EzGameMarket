@@ -1,5 +1,7 @@
 using CatalogService.API.Data;
 using CatalogService.API.Services;
+using CatalogService.API.Services.Service.Abstractions;
+using CatalogService.API.Services.Service.Implementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +39,7 @@ namespace CatalogService.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
 
-            services.AddSingleton<ICatalogService, Services.CatalogService>();
+            services.AddTransient<ICatalogService, Services.Service.Implementations.CatalogServiceProvider>();
         }
 
         private void AddJWT(IServiceCollection services)

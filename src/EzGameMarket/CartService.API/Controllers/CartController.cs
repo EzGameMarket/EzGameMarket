@@ -30,7 +30,7 @@ namespace CartService.API.Controllers
             _cartRepository = cartRepo;
         }
 
-        [Route("/")]
+        [Route("")]
         public async Task<ActionResult<Cart>> GetCart()
         {
             var id = _identityService.GetUserID(User);
@@ -46,7 +46,7 @@ namespace CartService.API.Controllers
                 return BadRequest();
             }
         }
-        [Route("/{userID}/")]
+        [Route("{userID}/")]
         public async Task<ActionResult<Cart>> GetCart(string userID)
         {
             if (userID != default)
@@ -62,7 +62,7 @@ namespace CartService.API.Controllers
         }
 
         [HttpPost]
-        [Route("/update")]
+        [Route("update")]
         public async Task<IActionResult> Update(CartItemModifyModel model)
         {
             if (ModelState.IsValid == false)
@@ -85,7 +85,7 @@ namespace CartService.API.Controllers
         }
 
         [HttpPost]
-        [Route("/checkout")]
+        [Route("checkout")]
         public async Task<IActionResult> Checkout(CheckoutModel model)
         {
             if (model == default || ModelState.IsValid == false)

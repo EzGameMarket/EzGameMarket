@@ -30,10 +30,13 @@
 
   <ItemGroup>
     <Folder Include="IntegrationEvents\EventsHandler\" />
+    <Folder Include="Services\Repositories\Abstractions\" />
+    <Folder Include="Services\Repositories\Implementations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared.Extensions.Pagination\Shared.Extensions.Pagination.csproj" />
+    <ProjectReference Include="..\Extensions\Shared.Extensions.Pagination\Shared.Extensions.Pagination.csproj" />
+    <ProjectReference Include="..\Services\Catalog\Search\CatalogService.SearchEngine\CatalogService.SearchEngine.csproj" />
   </ItemGroup>
 
 
