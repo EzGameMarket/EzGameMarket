@@ -21,14 +21,19 @@ namespace SystemRequirement.API.Models
         public SysReqType Type { get; set; }
 
         [Required]
+        public int CPUID { get; set; }
         public CPUNeeds CPU { get; set; }
         [Required]
+        public int RAMID { get; set; }
         public RAMNeeds RAM { get; set; }
         [Required]
+        public int GPUID { get; set; }
         public GPUNeeds GPU { get; set; }
         [Required]
+        public int StorageID { get; set; }
         public StorageNeeds Storage { get; set; }
         [Required]
+        public int NetworkID { get; set; }
         public NetworkNeeds Network { get; set; }
     }
 }

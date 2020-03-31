@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace Review.API.Exceptions
@@ -12,6 +13,14 @@ namespace Review.API.Exceptions
         }
 
         public ReviewAlreadyExistsException(string message) : base(message)
+        {
+        }
+
+        public ReviewAlreadyExistsException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected ReviewAlreadyExistsException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
 

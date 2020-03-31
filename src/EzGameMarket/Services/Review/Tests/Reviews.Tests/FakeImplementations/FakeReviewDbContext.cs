@@ -49,7 +49,7 @@ namespace Reviews.Tests.FakeImplementations
             };
 
             DbOptions = new DbContextOptionsBuilder<ReviewDbContext>()
-                .UseInMemoryDatabase(databaseName: $"in-memory-cataloog-test").EnableSensitiveDataLogging()
+                .UseInMemoryDatabase(databaseName: $"in-memory-review-test").EnableSensitiveDataLogging()
                 .Options;
 
             try
