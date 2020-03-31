@@ -18,6 +18,8 @@ namespace CatalogService.API.Models
 
         [Required]
         public string Description { get; set; }
+        [Required]
+        public string ShortDescription { get; set; }
 
         [Required]
         public int Price { get; set; }
