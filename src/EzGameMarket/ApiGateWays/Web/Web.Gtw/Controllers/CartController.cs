@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions;
+using Web.Gtw.Services.Repositories.Abstractions;
 using Web.Gtw.Models.ViewModels;
 using Web.Gtw.Models.ViewModels.Cart;
 
@@ -19,19 +19,23 @@ namespace Web.Gtw.Controllers
     {
         private ICartRepository _cartRepository;
 
-        public async Task<ActionResult> Update(CartItemUpdateModel model)
+        [HttpPost]
+        [Route("update")]
+        public async Task<ActionResult> Update([FromBody]string userID, [FromBody]CartItemUpdateModel model)
         {
             if (ModelState.IsValid == false)
             {
                 return BadRequest();
             }
 
-            await _cartRepository.Update(model);
+            await _cartRepository.Update(userID,model);
 
             return Ok();
         }
 
-        public async Task<ActionResult<CartViewModel>> GetCart(string userID)
+        [HttpGet]
+        [Route("{userID}")]
+        public async Task<ActionResult<CartViewModel>> GetCart([FromRoute]string userID)
         {
             if (ModelState.IsValid == false)
             {
@@ -41,14 +45,17 @@ namespace Web.Gtw.Controllers
             return await _cartRepository.GetCart(userID);
         }
 
-        public async Task<ActionResult> Checkout(CheckoutViewModel model)
+
+        [HttpPost]
+        [Route("checkout")]
+        public async Task<ActionResult> Checkout([FromBody] string userID,[FromBody] CheckoutViewModel model)
         {
             if (ModelState.IsValid == false)
             {
                 return BadRequest();
             }
 
-            await _cartRepository.Checkout(model);
+            await _cartRepository.Checkout(userID, model);
 
             return Ok();
         }

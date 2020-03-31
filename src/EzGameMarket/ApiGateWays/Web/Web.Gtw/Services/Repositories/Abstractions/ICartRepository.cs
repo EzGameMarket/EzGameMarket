@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Web.Gtw.Models.ViewModels;
 using Web.Gtw.Models.ViewModels.Cart;
 
-namespace Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions
+namespace Web.Gtw.Services.Repositories.Abstractions
 {
     public interface ICartRepository
     {
-        Task Update(CartItemUpdateModel model);
+        Task Update(string userID,CartItemUpdateModel model);
 
-        Task Checkout(CheckoutViewModel model);
+        Task Checkout(string userID, CheckoutViewModel model);
 
         Task<CartViewModel> GetCart(string userID);
     }

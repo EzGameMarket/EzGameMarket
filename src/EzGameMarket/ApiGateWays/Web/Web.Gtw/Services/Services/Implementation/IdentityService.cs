@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Web.Gtw.Infrastructare.Extensions.Services.Abstractions;
+using Web.Gtw.Services.Services.Abstractions;
 
-namespace Web.Gtw.Infrastructare.Extensions.Services.Implementation
+namespace Web.Gtw.Services.Services.Implementation
 {
     public class IdentityService : IIdentityService
     {

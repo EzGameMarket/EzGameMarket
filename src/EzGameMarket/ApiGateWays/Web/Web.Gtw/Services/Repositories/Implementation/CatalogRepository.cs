@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions;
+using Web.Gtw.Services.Repositories.Abstractions;
 using Web.Gtw.Infrastructare.ServiceAccess;
 using Web.Gtw.Models;
 using Web.Gtw.Models.ViewModels.Catalog;
 
 
-namespace Web.Gtw.Infrastructare.Extensions.Repositories.Implementation
+namespace Web.Gtw.Services.Repositories.Implementation
 {
     public class CatalogRepository : ICatalogRepository
     {

@@ -22,10 +22,10 @@ using Web.Gtw.Infrastructare.ServiceAccess.Abstractions;
 using Web.Gtw.Infrastructare.ServiceAccess;
 using Newtonsoft.Json;
 using Shared.Extensions.HttpClientHandler;
-using Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions;
-using Web.Gtw.Infrastructare.Extensions.Repositories.Implementation;
-using Web.Gtw.Infrastructare.Extensions.Services.Abstractions;
-using Web.Gtw.Infrastructare.Extensions.Services.Implementation;
+using Web.Gtw.Services.Repositories.Abstractions;
+using Web.Gtw.Services.Repositories.Implementation;
+using Web.Gtw.Services.Services.Abstractions;
+using Web.Gtw.Services.Services.Implementation;
 
 namespace Web.Gtw
 {

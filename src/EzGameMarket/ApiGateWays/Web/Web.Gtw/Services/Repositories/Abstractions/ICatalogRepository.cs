@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Web.Gtw.Models;
 using Web.Gtw.Models.ViewModels.Catalog;
 
-namespace Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions
+namespace Web.Gtw.Services.Repositories.Abstractions
 {
     public interface ICatalogRepository
     {

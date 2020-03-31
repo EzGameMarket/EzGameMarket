@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Extensions.Pagination;
-using Web.Gtw.Infrastructare.Extensions.Repositories.Abstractions;
+using Web.Gtw.Services.Repositories.Abstractions;
 using Web.Gtw.Models;
 using Web.Gtw.Models.ViewModels.Catalog;
 

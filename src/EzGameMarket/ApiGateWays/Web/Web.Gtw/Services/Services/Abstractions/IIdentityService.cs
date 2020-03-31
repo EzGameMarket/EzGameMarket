@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Web.Gtw.Infrastructare.Extensions.Services.Abstractions
+namespace Web.Gtw.Services.Services.Abstractions
 {
     public interface IIdentityService
     {
