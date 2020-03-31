@@ -14,17 +14,14 @@ namespace CartService.API.Controllers
     [Authorize]
     public class CartController : ControllerBase
     {
-        private CartDbContext _dbContext;
         private IIdentityService _identityService;
         private IEventBusRepository _eventBus;
         private ICartRepository _cartRepository;
 
-        public CartController(CartDbContext db,
-                              IIdentityService identityService,
+        public CartController(IIdentityService identityService,
                               IEventBusRepository eventBus,
                               ICartRepository cartRepo)
         {
-            _dbContext = db;
             _identityService = identityService;
             _eventBus = eventBus;
             _cartRepository = cartRepo;

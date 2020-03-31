@@ -35,8 +35,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Extensions\Shared.Extensions.Pagination\Shared.Extensions.Pagination.csproj" />
     <ProjectReference Include="..\Services\Catalog\Search\CatalogService.SearchEngine\CatalogService.SearchEngine.csproj" />
+    <ProjectReference Include="..\Shared\Extensions\Pagination\Pagination.csproj" />
   </ItemGroup>
 
 
