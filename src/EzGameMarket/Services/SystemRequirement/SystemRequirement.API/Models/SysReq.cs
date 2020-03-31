@@ -5,25 +5,30 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Review.API.Models
+namespace SystemRequirement.API.Models
 {
-    public class UserReview
+    public class SysReq
     {
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int? ID { get; set; }
-        [Required]
-        public string UserID { get; set; }
-        [Required]
-        public string Name { get; set; }
-        [Required]
-        public int Rate { get; set; }
+
         [Required]
         public string ProductID { get; set; }
+
         [Required]
-        public string ProductName { get; set; }
+        public SysReqType Type { get; set; }
+
         [Required]
-        public string ReviewText { get; set; }
+        public CPUNeeds CPU { get; set; }
+        [Required]
+        public RAMNeeds RAM { get; set; }
+        [Required]
+        public GPUNeeds GPU { get; set; }
+        [Required]
+        public StorageNeeds Storage { get; set; }
+        [Required]
+        public NetworkNeeds Network { get; set; }
     }
 }

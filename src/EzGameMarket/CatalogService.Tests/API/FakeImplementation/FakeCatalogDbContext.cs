@@ -280,7 +280,7 @@ namespace CatalogService.Tests.API.FakeImplementation
             }
             catch (Exception)
             {
-
+                DBContext.ChangeTracker.AcceptAllChanges();
             }
         }
 
