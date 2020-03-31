@@ -58,78 +58,26 @@ namespace WebMVC.Services.Repositorys.Implementation
             return PerformQueryItems(parameters);
         }
 
-        public Task<PaginationViewModel<ProductItem>> GetItemsFromBrands(int skip, int take, IEnumerable<string> brands)
+        public Task<PaginationViewModel<ProductItem>> GetItemsFromTagsAndCategories(int skip, int take, IEnumerable<string> tags, IEnumerable<string> categories)
         {
             var parameters = new Dictionary<string, string>()
             {
                 { "skip", $"{skip}" },
                 { "take", $"{take}" },
-                { $"{nameof(brands)}", $"{GetQueryStringFrom(brands)}" }
-            };
-
-            return PerformFilter(parameters);
-        }
-
-        public Task<PaginationViewModel<ProductItem>> GetItemsFromBrandsAndCategorys(int skip, int take, IEnumerable<string> brands, IEnumerable<string> categorys)
-        {
-            var parameters = new Dictionary<string, string>()
-            {
-                { "skip", $"{skip}" },
-                { "take", $"{take}" },
-                { $"{nameof(brands)}", $"{GetQueryStringFrom(brands)}" },
-                { $"{nameof(categorys)}", $"{GetQueryStringFrom(categorys)}" }
-            };
-
-            return PerformFilter(parameters);
-        }
-
-        public Task<PaginationViewModel<ProductItem>> GetItemsFromBrandsAndCategorysAndTags(int skip, int take, IEnumerable<string> brands, IEnumerable<string> categorys, IEnumerable<string> tags)
-        {
-            var parameters = new Dictionary<string, string>()
-            {
-                { "skip", $"{skip}" },
-                { "take", $"{take}" },
-                { $"{nameof(brands)}", $"{GetQueryStringFrom(brands)}" },
-                { $"{nameof(categorys)}", $"{GetQueryStringFrom(categorys)}" },
                 { $"{nameof(tags)}", $"{GetQueryStringFrom(tags)}" },
+                { $"{nameof(categories)}", $"{GetQueryStringFrom(categories)}" }
             };
 
             return PerformFilter(parameters);
         }
 
-        public Task<PaginationViewModel<ProductItem>> GetItemsFromBrandsAndTags(int skip, int take, IEnumerable<string> brands, IEnumerable<string> tags)
+        public Task<PaginationViewModel<ProductItem>> GetItemsFromCategories(int skip, int take, IEnumerable<string> categories)
         {
             var parameters = new Dictionary<string, string>()
             {
                 { "skip", $"{skip}" },
                 { "take", $"{take}" },
-                { $"{nameof(brands)}", $"{GetQueryStringFrom(brands)}" },
-                { $"{nameof(tags)}", $"{GetQueryStringFrom(tags)}" },
-            };
-
-            return PerformFilter(parameters);
-        }
-
-        public Task<PaginationViewModel<ProductItem>> GetItemsFromCategorys(int skip, int take, IEnumerable<string> categorys)
-        {
-            var parameters = new Dictionary<string, string>()
-            {
-                { "skip", $"{skip}" },
-                { "take", $"{take}" },
-                { $"{nameof(categorys)}", $"{GetQueryStringFrom(categorys)}" }
-            };
-
-            return PerformFilter(parameters);
-        }
-
-        public Task<PaginationViewModel<ProductItem>> GetItemsFromCategorysAndTags(int skip, int take, IEnumerable<string> categorys, IEnumerable<string> tags)
-        {
-            var parameters = new Dictionary<string, string>()
-            {
-                { "skip", $"{skip}" },
-                { "take", $"{take}" },
-                { $"{nameof(categorys)}", $"{GetQueryStringFrom(categorys)}" },
-                { $"{nameof(tags)}", $"{GetQueryStringFrom(tags)}" }
+                { $"{nameof(categories)}", $"{GetQueryStringFrom(categories)}" }
             };
 
             return PerformFilter(parameters);
@@ -145,6 +93,26 @@ namespace WebMVC.Services.Repositorys.Implementation
             };
 
             return PerformFilter(parameters);
+        }
+
+        public Task<PaginationViewModel<ProductItem>> FilterItems(int skip, int take, IEnumerable<string> tags = null, IEnumerable<string> categories = null)
+        {
+            if (tags != default && categories == default)
+            {
+                return GetItemsFromTags(skip, take, tags);
+            }
+            else if (tags == default && categories != default)
+            {
+                return GetItemsFromCategories(skip, take, categories);
+            }
+            else if(tags != default && categories != default)
+            {
+                return GetItemsFromTagsAndCategories(skip, take, tags, categories);
+            }
+            else
+            {
+                throw new ApplicationException("A tags és categories paraméterek is null volt");
+            }
         }
 
         public Task<ProductItem> GetProduct(string productID)

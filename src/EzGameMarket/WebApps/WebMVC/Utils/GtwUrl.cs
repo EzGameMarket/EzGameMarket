@@ -27,7 +27,9 @@ namespace WebMVC.Utils
         }
         public static class Cart
         {
-
+            public static string GetCart(string baseUrl) => BuildBaseUrlWithVersion(baseUrl) + "cart/";
+            public static string UpdateCart(string baseUrl) => BuildBaseUrlWithVersion(baseUrl) + "cart/update";
+            public static string CheckoutCart(string baseUrl) => BuildBaseUrlWithVersion(baseUrl) + "cart/checkout";
         }
 
         private static string BuildBaseUrlWithVersion(string baseUrl) => baseUrl +"/api"+ _version;

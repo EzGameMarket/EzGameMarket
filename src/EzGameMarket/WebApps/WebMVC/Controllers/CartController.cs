@@ -31,6 +31,12 @@ namespace WebMVC.Controllers
         public async Task<IActionResult> Index()
         {
             var userID = _identityService.GetUserID(User);
+
+            if (userID == default)
+            {
+                return RedirectToAction("Index","Account");
+            }
+
             var model = await _cartRepository.GetCartAsync(userID);
             return View(model);
         }
@@ -74,7 +80,8 @@ namespace WebMVC.Controllers
         {
             try
             {
-                await _cartRepository.Checkout(model);
+                var userID = _identityService.GetUserID(User);
+                await _cartRepository.Checkout(userID,model);
 
                 return Ok();
             }

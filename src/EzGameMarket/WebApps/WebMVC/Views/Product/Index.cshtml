@@ -55,7 +55,8 @@
                 <!-- tab-content -->
                 <div class="tab-content">
 
-                    @{
+                    @if (Model.Products != default && Model.Pagination != default)
+                    {
                         var numberOfProductsInRow = 3;
                         var index = 0;
                         var numberOfProducts = Model.Products.Count;
@@ -78,16 +79,31 @@
 
                             index += max;
                         }
+
+                        @await Html.PartialAsync("Pagination/_Pagination", Model.Pagination)
+                    }
+                    else
+                    {
+                        <div class="text-center" style="height:50vh;margin-top: 25vh;">
+                            <div class="w-100" style="margin:auto">
+                                <h3>Sajnos a keresett feltételnek egy termékünk sem felelt meg</h3>
+                                <a href="/products">
+                                    <span>
+                                        De na aggódj kattints ide, és keress a többi termékünk közül, legalább egyet találni fogsz amit pergetni akarsz
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
                     }
                 </div>
                 <!-- /tab-content -->
 
-                @await Html.PartialAsync("Pagination/_Pagination", Model.Pagination);
+            </div>
 
-            </div>
             <div class="col-lg-3 col-md-4">
-                @await Html.PartialAsync("SideBarsPartial/_SideBar.cshtml",Model.SideBar);
+                @await Html.PartialAsync("SideBarsPartial/_SideBar.cshtml", Model.SideBar)
             </div>
+
         </div>
     </div>
 </div>

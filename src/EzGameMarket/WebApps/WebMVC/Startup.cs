@@ -9,6 +9,7 @@ using Shared.Extensions.HttpClientHandler;
 using System;
 using System.Globalization;
 using System.Text;
+using WebMVC.Extensions.Settings;
 using WebMVC.Services.Repositorys.Abstractions;
 using WebMVC.Services.Repositorys.Implementation;
 using WebMVC.Services.Services.Abstractions;
@@ -38,6 +39,8 @@ namespace WebMVC
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<ICatalogRepository, CatalogRepository>();
             services.AddTransient<IIdentityService, IdentityService>();
+            services.AddSingleton<ILoadBalancerUrls, LoadBalancerUrls>();
+            services.AddHttpClient<IHttpHandlerUtil,HttpHandlerUtil>();
         }
 
         private void AddJWT(IServiceCollection services)

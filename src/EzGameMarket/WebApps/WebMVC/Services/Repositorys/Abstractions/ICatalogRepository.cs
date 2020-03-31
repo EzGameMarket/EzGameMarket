@@ -11,13 +11,11 @@ namespace WebMVC.Services.Repositorys.Abstractions
     public interface ICatalogRepository
     {
         Task<PaginationViewModel<ProductItem>> GetItems(int skip, int take);
-        Task<PaginationViewModel<ProductItem>> GetItemsFromBrands(int skip, int take, IEnumerable<string> brands);
-        Task<PaginationViewModel<ProductItem>> GetItemsFromCategorys(int skip, int take, IEnumerable<string> categorys);
+        Task<PaginationViewModel<ProductItem>> GetItemsFromCategories(int skip, int take, IEnumerable<string> categories);
         Task<PaginationViewModel<ProductItem>> GetItemsFromTags(int skip, int take, IEnumerable<string> tags);
-        Task<PaginationViewModel<ProductItem>> GetItemsFromBrandsAndCategorys(int skip, int take, IEnumerable<string> brands, IEnumerable<string> categorys);
-        Task<PaginationViewModel<ProductItem>> GetItemsFromCategorysAndTags(int skip, int take,IEnumerable<string> categorys, IEnumerable<string> tags);
-        Task<PaginationViewModel<ProductItem>> GetItemsFromBrandsAndTags(int skip, int take, IEnumerable<string> brands, IEnumerable<string> tags);
-        Task<PaginationViewModel<ProductItem>> GetItemsFromBrandsAndCategorysAndTags(int skip, int take, IEnumerable<string> brands, IEnumerable<string> categorys, IEnumerable<string> tags);
+        Task<PaginationViewModel<ProductItem>> GetItemsFromTagsAndCategories(int skip, int take, IEnumerable<string> tags, IEnumerable<string> categories);
+
+        Task<PaginationViewModel<ProductItem>> FilterItems(int skip, int take, IEnumerable<string> tags = default, IEnumerable<string> categories = default);
 
         Task<ProductItem> GetProduct(string productID);
 

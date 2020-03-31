@@ -30,11 +30,14 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\sass\partials\_layout.scss" />
+    <None Include="wwwroot\sass\partials\_mixins.scss" />
+    <None Include="wwwroot\sass\partials\_variables.scss" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Extensions\HttpClientHandler\Shared.Extensions.HttpClientHandler.csproj" />
-    <ProjectReference Include="..\..\Extensions\Shared.Extensions.Pagination\Shared.Extensions.Pagination.csproj" />
+    <ProjectReference Include="..\..\Shared\Extensions\HttpClientHandler\HttpClientHandler.csproj" />
+    <ProjectReference Include="..\..\Shared\Extensions\Pagination\Pagination.csproj" />
   </ItemGroup>
 
 

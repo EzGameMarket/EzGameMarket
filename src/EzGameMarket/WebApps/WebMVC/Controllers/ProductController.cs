@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shared.Extensions.Pagination;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using WebMVC.Services.Repositorys.Abstractions;
 using WebMVC.ViewModels.Pagination;
 using WebMVC.ViewModels.Products;
 using WebMVC.ViewModels.Products.Abstraction;
@@ -17,13 +21,21 @@ namespace WebMVC.Controllers
     [Route("/product")]
     public class ProductController : Controller
     {
+        private readonly ICatalogRepository _catalogRepository;
         private SideBar _sideBar;
+
+        public ProductController(ICatalogRepository catalogRepository)
+        {
+            _catalogRepository = catalogRepository;
+        }
 
         [HttpGet]
         [Route("/products")]
-        public IActionResult Index(int pageIndex = 0, int pageSize = 20, string brands = null, string category = null, int shortType = 0)
+        public async Task<IActionResult> Index(int pageIndex = 0, int pageSize = 30, IEnumerable<string> tags = null, IEnumerable<string> categories = null, int shortType = 0)
         {
-            var shorting = (ShortType)shortType;
+            var skip = pageIndex * pageSize;
+            var take = pageSize;
+
             var model = new ProductsPageGridModel()
             {
                 Products = new List<ProductItem>()
@@ -42,12 +54,43 @@ namespace WebMVC.Controllers
                     TotalItemsCount = 4
                 }
             };
+
+            //var paginatedData = default(PaginationViewModel<ProductItem>);
+
+            //if (tags == default && categories == default)
+            //{
+            //    paginatedData = await _catalogRepository.GetItems(skip,take);
+            //}
+            //else
+            //{
+            //    paginatedData = await _catalogRepository.FilterItems(skip,take,tags,categories);
+            //}
+
+            //if (paginatedData != default)
+            //{
+            //    var maxPageSize = (int)Math.Ceiling(paginatedData.TotalItemsCount / (double)pageSize);
+
+            //    model = new ProductsPageGridModel()
+            //    {
+            //        Products = paginatedData.Data.ToList(),
+            //        Pagination = new PaginationInfo()
+            //        {
+            //            ActualPage = pageIndex,
+            //            ItemsPerPage = pageSize,
+            //            MaxPageNumber = maxPageSize,
+            //            TotalItemsCount = paginatedData.TotalItemsCount,
+            //            Next = pageIndex < maxPageSize ? "" : " inactive",
+            //            Previous = pageIndex > 0 ? "" : " inactive"
+            //        }
+            //    }; 
+            //}
+
             return View(model);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult Product(string id)
+        public async Task<IActionResult> Product(string id)
         {
             var product = new DetailProduct()
             {

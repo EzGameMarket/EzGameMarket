@@ -10,6 +10,6 @@ namespace WebMVC.Services.Repositorys.Abstractions
     {
         Task<Cart> GetCartAsync(string userID);
         Task Update(string userID,UpdateCartItemModel model);
-        Task Checkout(CheckoutModel model);
+        Task Checkout(string userID,CheckoutModel model);
     }
 }

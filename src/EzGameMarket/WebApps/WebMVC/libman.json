@@ -96,11 +96,6 @@
         "scss/_utilities.scss",
         "scss/_variables.scss"
       ]
-    },
-    {
-      "provider": "cdnjs",
-      "library": "simplecartjs@3.0.5",
-      "destination": "wwwroot/js/simplecartjs/"
     }
   ]
 }
