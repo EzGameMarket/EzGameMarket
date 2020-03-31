@@ -7,7 +7,7 @@ namespace CatalogService.API.ViewModels.Products
 {
     public class CatalogItem
     {
-        public CatalogItem(string imageUrl, string iD, string name, int price, int discountedPrice, string category)
+        public CatalogItem(string imageUrl, string iD, string name, int price, int discountedPrice, string category, string description, string shortDescription)
         {
             ImageUrl = imageUrl;
             ID = iD;
@@ -15,6 +15,8 @@ namespace CatalogService.API.ViewModels.Products
             Price = price;
             DiscountedPrice = discountedPrice;
             Category = category;
+            Description = description;
+            ShortDescription = shortDescription;
         }
 
         public string ImageUrl { get; set; }
@@ -23,5 +25,7 @@ namespace CatalogService.API.ViewModels.Products
         public int Price { get; set; }
         public int DiscountedPrice { get; set; }
         public string Category { get; set; }
+        public string Description { get; set; }
+        public string ShortDescription { get; set; }
     }
 }

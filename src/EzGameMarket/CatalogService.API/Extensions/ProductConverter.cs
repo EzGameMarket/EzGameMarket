@@ -42,7 +42,9 @@ namespace CatalogService.API.Extensions
             p.Name,
             p.Price,
             p.DiscountedPrice,
-            GetGenreForCatalogItem(p));
+            GetGenreForCatalogItem(p),
+            p.Description,
+            p.ShortDescription);
 
     }
 }
