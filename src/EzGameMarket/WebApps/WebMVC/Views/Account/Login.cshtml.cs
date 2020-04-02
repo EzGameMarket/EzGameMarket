@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Shared.Extensions.HttpClientHandler;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -27,10 +28,12 @@ namespace WebMVC.Views.Account
         }
 
         private readonly ILogger<LoginModel> _logger;
+        private readonly IHttpHandlerUtil _httpHandler;
 
-        public LoginModel(ILogger<LoginModel> logger)
+        public LoginModel(ILogger<LoginModel> logger, IHttpHandlerUtil httpHandler)
         {
             _logger = logger;
+            _httpHandler = httpHandler;
         }
 
         [BindProperty]

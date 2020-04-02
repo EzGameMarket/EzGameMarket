@@ -18,5 +18,15 @@ namespace WebMVC.Controllers
         {
             return Redirect("https://localhost:32794/identity/account/register");
         }
+
+        public IActionResult SubmitLogin()
+        {
+            return RedirectToAction("Index","Home");
+        }
+
+        public IActionResult SubmitRegister()
+        {
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

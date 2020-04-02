@@ -9,16 +9,16 @@ using Web.Gtw.Services.Repositories.Abstractions;
 using Web.Gtw.Infrastructare.ServiceAccess;
 using Web.Gtw.Models;
 using Web.Gtw.Models.ViewModels.Catalog;
-
+using Web.Gtw.Infrastructare.ServiceAccess.Abstractions;
 
 namespace Web.Gtw.Services.Repositories.Implementation
 {
     public class CatalogRepository : ICatalogRepository
     {
         private IHttpHandlerUtil _client;
-        private ServiceUrls _urls;
+        private IServiceUrls _urls;
 
-        public CatalogRepository(IHttpHandlerUtil client, ServiceUrls urls)
+        public CatalogRepository(IHttpHandlerUtil client, IServiceUrls urls)
         {
             _client = client;
             _urls = urls;

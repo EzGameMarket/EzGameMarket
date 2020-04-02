@@ -7,15 +7,16 @@ using Web.Gtw.Infrastructare.ServiceAccess;
 using System.Net.Http;
 using Shared.Extensions.HttpClientHandler;
 using Web.Gtw.Services.Repositories.Abstractions;
+using Web.Gtw.Infrastructare.ServiceAccess.Abstractions;
 
 namespace Web.Gtw.Services.Repositories.Implementation
 {
     public class CartRepository : ICartRepository
     {
         private IHttpHandlerUtil _client;
-        private ServiceUrls _urls;
+        private IServiceUrls _urls;
 
-        public CartRepository(IHttpHandlerUtil client, ServiceUrls urls)
+        public CartRepository(IHttpHandlerUtil client, IServiceUrls urls)
         {
             _client = client;
             _urls = urls;

@@ -26,6 +26,7 @@ using Web.Gtw.Services.Repositories.Abstractions;
 using Web.Gtw.Services.Repositories.Implementation;
 using Web.Gtw.Services.Services.Abstractions;
 using Web.Gtw.Services.Services.Implementation;
+using Microsoft.Extensions.Http;
 
 namespace Web.Gtw
 {
@@ -55,12 +56,21 @@ namespace Web.Gtw
             });
 
             var urls = JsonConvert.DeserializeObject<ServiceUrls>(System.IO.File.ReadAllText("services.json"));
-            services.AddSingleton<IServiceUrls>(urls);
 
-            services.AddHttpClient<IHttpHandlerUtil, HttpHandlerUtil>();
-            services.AddSingleton<ICartRepository,CartRepository>();
-            services.AddSingleton<ICatalogRepository,CatalogRepository>();
-            services.AddTransient<IIdentityService,IdentityService>();
+            services.AddSingleton<IServiceUrls, ServiceUrls>(s=> {
+                return new ServiceUrls() 
+                {
+                    Cart = urls.Cart,
+                    Catalog = urls.Catalog,
+                    Identity = urls.Identity,
+                    Order = urls.Order
+                };
+            });
+
+            services.AddHttpClient<IHttpHandlerUtil,HttpHandlerUtil>().SetHandlerLifetime(TimeSpan.FromMinutes(5));
+            services.AddScoped<ICartRepository,CartRepository>();
+            services.AddScoped<ICatalogRepository,CatalogRepository>();
+            services.AddScoped<IIdentityService,IdentityService>();
         }
 
         private void AddJWT(IServiceCollection services)
@@ -95,13 +105,6 @@ namespace Web.Gtw
 
             app.UseHttpsRedirection();
 
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
-
             app.UseRouting();
 
             app.Use(async (context, next) =>
@@ -118,6 +121,14 @@ namespace Web.Gtw
 
                 await next();
             });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
 
             app.UseAuthentication();
             app.UseAuthorization();

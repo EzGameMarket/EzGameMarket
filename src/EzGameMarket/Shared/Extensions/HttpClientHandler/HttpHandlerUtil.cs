@@ -69,15 +69,22 @@ namespace Shared.Extensions.HttpClientHandler
 
         public async Task<TEntity> GetDataWithGetAsync<TEntity>(string url)
         {
-            var response = await _client.GetAsync(url);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var text = await response.Content.ReadAsStringAsync();
+                var response = await _client.GetAsync(url);
 
-                return JsonConvert.DeserializeObject<TEntity>(text);
+                if (response.IsSuccessStatusCode)
+                {
+                    var text = await response.Content.ReadAsStringAsync();
+
+                    return JsonConvert.DeserializeObject<TEntity>(text);
+                }
+                else
+                {
+                    return default;
+                }
             }
-            else
+            catch (Exception)
             {
                 return default;
             }

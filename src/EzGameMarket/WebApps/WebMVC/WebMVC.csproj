@@ -21,7 +21,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="ViewModels\Account\" />
     <Folder Include="ViewModels\Orders\" />
     <Folder Include="Views\Order\" />
     <Folder Include="wwwroot\css\" />

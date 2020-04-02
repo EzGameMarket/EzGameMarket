@@ -19,9 +19,14 @@ namespace Web.Gtw.Controllers
     {
         private ICartRepository _cartRepository;
 
+        public CartController(ICartRepository cartRepository)
+        {
+            _cartRepository = cartRepository;
+        }
+
         [HttpPost]
-        [Route("update")]
-        public async Task<ActionResult> Update([FromBody]string userID, [FromBody]CartItemUpdateModel model)
+        [Route("update/{userID}")]
+        public async Task<ActionResult> Update([FromRoute]string userID, [FromBody]CartItemUpdateModel model)
         {
             if (ModelState.IsValid == false)
             {
@@ -47,8 +52,8 @@ namespace Web.Gtw.Controllers
 
 
         [HttpPost]
-        [Route("checkout")]
-        public async Task<ActionResult> Checkout([FromBody] string userID,[FromBody] CheckoutViewModel model)
+        [Route("checkout/{userID}")]
+        public async Task<ActionResult> Checkout([FromRoute] string userID,[FromBody] CheckoutViewModel model)
         {
             if (ModelState.IsValid == false)
             {

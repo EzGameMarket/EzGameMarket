@@ -6,20 +6,40 @@
 <div id="login" class="tab-pane fade show active">
     <div class="account-form-container login-form">
         <div class="account-form">
-            <form action="#" method="post">
-                <input type="text" name="user-name" class="form-control" placeholder="Felhasználónév">
-                <input type="password" name="user-password" class="form-control" placeholder="Jelszó">
+            <form asp-action="SubmitLogin" asp-controller="Account" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.EMail"></label>
+                    <input asp-for="Input.EMail" class="form-control" />
+                    <span asp-validation-for="Input.EMail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
                 <div class="button-box">
                     <div class="login-toggle-btn d-flex justify-content-between">
                         <div class="remember d-flex">
-                            <input type="checkbox">
-                            <label>Emlékezz rám</label>
-                        </div>
-                        <div class="forgot">
-                            <a href="#">Elfelejtett a jelszavad?</a>
+                            <label asp-for="Input.RememberMe">
+                                <input asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default btn-normal"><span>Bejelentkezés</span></button>
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default btn-normal">Bejelentkezés</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a id="forgot-password" class="forgot" asp-page="./ForgotPassword">Elfelejtetted a jelszavad?</a>
+                    </p>
+                    <p>
+                        <a asp-action="Register" asp-controller="Account" asp-route-returnUrl="@Model.ReturnUrl">Nincs még felhasználód? Regisztrájl egyet itt</a>
+                    </p>
                 </div>
             </form>
         </div>
