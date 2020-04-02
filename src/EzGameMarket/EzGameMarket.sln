@@ -125,8 +125,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundTask", "Backgroun
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudGamingSupport.API", "Services\CloudGamingSupport\CloudGamingSupport.API\CloudGamingSupport.API.csproj", "{CA1B69A3-DEF8-48FF-A583-64BCE449456F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudGamingSupport.BackgroundTask.Updater", "Services\CloudGamingSupport\BackgroundTask\CloudGamingSupport.BackgroundTask.Updater\CloudGamingSupport.BackgroundTask.Updater.csproj", "{782DE775-7EEE-43D7-AAAC-A52A1471B38F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudGamingSupport.BackgroundTask.Tests", "Services\CloudGamingSupport\Tests\CloudGamingSupport.BackgroundTask.Tests\CloudGamingSupport.BackgroundTask.Tests.csproj", "{A2B4DC82-7185-4D32-B7F9-967BE02009CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9ECE97AB-6E17-4CD3-A0F1-B3FFFE177490}"
@@ -171,7 +169,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitOfWork", "Shared\Extens
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundTasks", "BackgroundTasks", "{3B4EBA3E-4D0A-45FC-87BD-A54A64C60E9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingService.BackgroundTasks.EMail.Senders", "Services\Marketing\BackgroundTasks\MarketingService.BackgroundTasks.EMail.Senders\MarketingService.BackgroundTasks.EMail.Senders.csproj", "{C9A15AFD-76EE-4E0F-B873-4EAD85C994A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudGamingSupport.BackgroundTask.Updater", "Services\CloudGamingSupport\BackgroundTask\CloudGamingSupport.BackgroundTask.Updater\CloudGamingSupport.BackgroundTask.Updater.csproj", "{43826290-9248-4FE5-B86D-31D71456EE36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketingService.BackgroundTasks.EMail.Senders", "Services\Marketing\BackgroundTasks\MarketingService.BackgroundTasks.EMail.Senders\MarketingService.BackgroundTasks.EMail.Senders.csproj", "{887A2C4B-B5E8-483B-A607-A904BCB32987}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -303,10 +303,6 @@ Global
 		{CA1B69A3-DEF8-48FF-A583-64BCE449456F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA1B69A3-DEF8-48FF-A583-64BCE449456F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA1B69A3-DEF8-48FF-A583-64BCE449456F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{782DE775-7EEE-43D7-AAAC-A52A1471B38F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{782DE775-7EEE-43D7-AAAC-A52A1471B38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{782DE775-7EEE-43D7-AAAC-A52A1471B38F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{782DE775-7EEE-43D7-AAAC-A52A1471B38F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A2B4DC82-7185-4D32-B7F9-967BE02009CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2B4DC82-7185-4D32-B7F9-967BE02009CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2B4DC82-7185-4D32-B7F9-967BE02009CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -363,10 +359,14 @@ Global
 		{EBFCC9E7-1FD2-49F8-A080-CA8500B2408F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBFCC9E7-1FD2-49F8-A080-CA8500B2408F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBFCC9E7-1FD2-49F8-A080-CA8500B2408F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9A15AFD-76EE-4E0F-B873-4EAD85C994A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9A15AFD-76EE-4E0F-B873-4EAD85C994A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9A15AFD-76EE-4E0F-B873-4EAD85C994A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9A15AFD-76EE-4E0F-B873-4EAD85C994A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43826290-9248-4FE5-B86D-31D71456EE36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43826290-9248-4FE5-B86D-31D71456EE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43826290-9248-4FE5-B86D-31D71456EE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43826290-9248-4FE5-B86D-31D71456EE36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{887A2C4B-B5E8-483B-A607-A904BCB32987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{887A2C4B-B5E8-483B-A607-A904BCB32987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{887A2C4B-B5E8-483B-A607-A904BCB32987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{887A2C4B-B5E8-483B-A607-A904BCB32987}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -427,7 +427,6 @@ Global
 		{72BFEA77-6028-4AF3-BEC4-926E857A972A} = {E7044259-3A6F-4763-9B3D-F6BC19C3845F}
 		{E9F3E713-695E-4FC5-AAD9-4AF9503258CD} = {E7044259-3A6F-4763-9B3D-F6BC19C3845F}
 		{CA1B69A3-DEF8-48FF-A583-64BCE449456F} = {E7044259-3A6F-4763-9B3D-F6BC19C3845F}
-		{782DE775-7EEE-43D7-AAAC-A52A1471B38F} = {E9F3E713-695E-4FC5-AAD9-4AF9503258CD}
 		{A2B4DC82-7185-4D32-B7F9-967BE02009CC} = {72BFEA77-6028-4AF3-BEC4-926E857A972A}
 		{9ECE97AB-6E17-4CD3-A0F1-B3FFFE177490} = {66EEAB2E-F9CA-480B-964C-C5D1BC88CB07}
 		{DB89189C-A599-4211-BEF0-178F10505F83} = {5D9B52D4-E568-41DA-8248-3F753D9C6630}
@@ -449,7 +448,8 @@ Global
 		{BD50D143-5184-4FC1-8428-5F588EB710C3} = {C8E6E931-E90C-4CE5-AA76-5552D5748431}
 		{EBFCC9E7-1FD2-49F8-A080-CA8500B2408F} = {C8E6E931-E90C-4CE5-AA76-5552D5748431}
 		{3B4EBA3E-4D0A-45FC-87BD-A54A64C60E9A} = {29E147EE-5783-4B16-AF1C-3E4A78BBF274}
-		{C9A15AFD-76EE-4E0F-B873-4EAD85C994A0} = {3B4EBA3E-4D0A-45FC-87BD-A54A64C60E9A}
+		{43826290-9248-4FE5-B86D-31D71456EE36} = {E9F3E713-695E-4FC5-AAD9-4AF9503258CD}
+		{887A2C4B-B5E8-483B-A607-A904BCB32987} = {3B4EBA3E-4D0A-45FC-87BD-A54A64C60E9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16E930B6-CA49-4BBE-BD42-6D032E69A5C5}

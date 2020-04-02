@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>dotnet-CloudGamingSupport.BackgroundTask.Updater-06FA543D-F3E5-4BAF-96FA-69156F29E1BE</UserSecretsId>
+    <UserSecretsId>dotnet-CloudGamingSupport.BackgroundTask.Updater-1457EF31-8E1F-4F82-A654-A2DD6D0E68C5</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
   </ItemGroup>
 </Project>
