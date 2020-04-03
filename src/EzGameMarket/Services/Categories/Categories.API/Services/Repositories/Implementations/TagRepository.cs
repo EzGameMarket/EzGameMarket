@@ -32,6 +32,8 @@ namespace Categories.API.Services.Repositories.Implementations
                 }
             }
 
+            newTag.ID = default;
+
             await _dbContext.Tags.AddAsync(newTag);
 
             await _dbContext.SaveChangesAsync();
@@ -44,6 +46,11 @@ namespace Categories.API.Services.Repositories.Implementations
             if (tag == default)
             {
                 throw new TagNotFoundException() { TagID = model.TagID };
+            }
+
+            if (tag.Products == default)
+            {
+                tag.Products = new List<TagsAndProductsLink>();
             }
 
             tag.Products.Add(new TagsAndProductsLink() { ProductID = model.ProductID });
@@ -65,9 +72,9 @@ namespace Categories.API.Services.Repositories.Implementations
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task<Tag> GetTag(int tagID) => _dbContext.Tags.FirstOrDefaultAsync(t=> t.ID == tagID);
+        public Task<Tag> GetTag(int tagID) => _dbContext.Tags.Include(t=> t.Products).FirstOrDefaultAsync(t=> t.ID == tagID);
 
-        public Task<List<Tag>> GetTagsForProduct(string productID) => _dbContext.Tags.Where(t=> t.Products.Any(p=> p.ProductID == productID)).ToListAsync();
+        public Task<List<Tag>> GetTagsForProduct(string productID) => _dbContext.Tags.Include(t => t.Products).Where(t=> t.Products.Any(p=> p.ProductID == productID)).ToListAsync();
 
         public async Task<List<string>> GetProductsForTagID(int tagID)
         {

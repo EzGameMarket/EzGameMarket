@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200331201536_AddForeignKeysToNeeds.cs" />
-    <Compile Remove="Migrations\20200331201536_AddForeignKeysToNeeds.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200331201536_AddForeignKeysToNeeds.cs" />
+    <Compile Remove="Data\Migrations\20200331201536_AddForeignKeysToNeeds.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

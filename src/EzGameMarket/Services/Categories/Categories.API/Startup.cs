@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Categories.API.Data;
+using Categories.API.Services.Repositories.Abstractions;
+using Categories.API.Services.Repositories.Implementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +43,9 @@ namespace Categories.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
+
+            services.AddScoped<ICategoryRepository,CategoryRepository>();
+            services.AddScoped<ITagRepository,TagRepository>();
         }
 
         private void AddJWT(IServiceCollection services)
@@ -77,14 +82,15 @@ namespace Categories.API
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+
+            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

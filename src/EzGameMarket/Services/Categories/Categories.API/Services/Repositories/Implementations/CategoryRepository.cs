@@ -32,6 +32,9 @@ namespace Categories.API.Services.Repositories.Implementations
                 }
             }
 
+            newCategory.ID = default;
+            newCategory.Products = new List<CategoriesAndProductsLink>();
+
             await _dbContext.Categories.AddAsync(newCategory);
 
             await _dbContext.SaveChangesAsync();
@@ -46,14 +49,19 @@ namespace Categories.API.Services.Repositories.Implementations
                 throw new CategoryNotFoundInDataBaseException() { CategoryID = model.CategoryID };
             }
 
+            if (category.Products == default)
+            {
+                category.Products = new List<CategoriesAndProductsLink>();
+            }
+
             category.Products.Add(new CategoriesAndProductsLink() { ProductID = model.ProductID });
 
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task<List<Category>> GetCategoriesForProduct(string productID) => _dbContext.Categories.Where(c => c.Products.Any(p => p.ProductID == productID)).ToListAsync();
+        public Task<List<Category>> GetCategoriesForProduct(string productID) => _dbContext.Categories.Include(c=> c.Products).Where(c => c.Products.Any(p => p.ProductID == productID)).ToListAsync();
 
-        public Task<Category> GetCategory(int categoryID) => _dbContext.Categories.FirstOrDefaultAsync(c=> c.ID == categoryID);
+        public Task<Category> GetCategory(int categoryID) => _dbContext.Categories.Include(c => c.Products).FirstOrDefaultAsync(c=> c.ID == categoryID);
 
         public async Task<List<string>> GetProductsForCategoryID(int categoryID)
         {
