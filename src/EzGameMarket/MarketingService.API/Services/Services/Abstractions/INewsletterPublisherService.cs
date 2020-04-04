@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketingService.API.Services.Services.Abstractions
 {
-    public interface INewsletterService
+    public interface INewsletterPublisherService
     {
         /// <summary>
         /// A leveleket ki

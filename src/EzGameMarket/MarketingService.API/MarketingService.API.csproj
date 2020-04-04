@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Exceptions\Domain\" />
-    <Folder Include="Services\Services\Implementations\" />
   </ItemGroup>
 
   <ItemGroup>

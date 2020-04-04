@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <Folder Include="API\Controllers\CampaignManager\" />
-    <Folder Include="API\Controllers\NewsletterSubscribeManager\" />
+    <Folder Include="API\Controllers\NewsletterPublisherTests\" />
   </ItemGroup>
 
   <ItemGroup>

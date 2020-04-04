@@ -18,7 +18,7 @@ namespace MarketingService.API.Models
         [Required]
         public DateTime SubscribedDate { get; set; }
         [Required]
-        public DateTime UnSubscribedDate { get; set; }
+        public DateTime? UnSubscribedDate { get; set; }
         public bool Active { get; set; }
     }
 }

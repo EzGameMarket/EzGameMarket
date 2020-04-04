@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MarketingService.API.Models;
 using MarketingService.API.Services.Repositories.Abstractions;
 using MarketingService.API.Services.Services.Abstractions;
 using MarketingService.API.ViewModels.Subscribe;
@@ -28,14 +29,53 @@ namespace MarketingService.API.Controllers
         [Route("subscribe")]
         public async Task<ActionResult> Subscribe([FromBody] SubscribeViewModel model)
         {
-            return default;
+            if (string.IsNullOrEmpty(model.EMail) || ModelState.IsValid == false)
+            {
+                return BadRequest();
+            }
+
+            var member = await _subscriberRepository.GetByEmail(model.EMail);
+
+            if (member == default)
+            {
+                var newMember = new SubscribedMember()
+                {
+                    ID = default,
+                    Active = true,
+                    EMail = model.EMail,
+                    SubscribedDate = DateTime.Now,
+                    UnSubscribedDate = default
+                };
+
+                await _subscriberRepository.Add(newMember);
+
+                return Ok();
+            }
+
+            await _subscribeManagerService.Subscribe(member);
+
+            return Accepted();
         }
 
         [HttpGet]
         [Route("unsubscribe")]
         public async Task<ActionResult> UnSubscribe([FromBody] SubscribeViewModel model)
         {
-            return default;
+            if (string.IsNullOrEmpty(model.EMail) || ModelState.IsValid == false)
+            {
+                return BadRequest();
+            }
+
+            var member = await _subscriberRepository.GetByEmail(model.EMail);
+
+            if (member == default)
+            {
+                return NotFound();
+            }
+
+            await _subscribeManagerService.UnSubscribe(member);
+
+            return Accepted();
         }
     }
 }
