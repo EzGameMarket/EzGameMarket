@@ -24,9 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Services\Abstractions\" />
     <Folder Include="Services\Services\Implementations\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -14,6 +14,7 @@ namespace MarketingService.API.Data
         }
 
         public DbSet<Campaign> Campaigns { get; set; }
-        public DbSet<Newsletter> Newsletters { get; set; }
+        public DbSet<NewsletterMessage> Newsletters { get; set; }
+        public DbSet<SubscribedMember> Members { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using MarketingService.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MarketingService.API.Migrations
 {
     [DbContext(typeof(MarketingDbContext))]
-    partial class MarketingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200403211740_AddSubscibedMember")]
+    partial class AddSubscibedMember
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

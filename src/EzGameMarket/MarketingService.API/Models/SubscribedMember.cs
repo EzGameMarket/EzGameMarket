@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace MarketingService.API.Models
 {
-    public class Newsletter
+    public class SubscribedMember
     {
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int? ID { get; set; }
-
         [Required]
-        public int Title { get; set; }
-
+        public string EMail { get; set; }
         [Required]
-        public string Description { get; set; }
+        public DateTime SubscribedDate { get; set; }
+        [Required]
+        public DateTime UnSubscribedDate { get; set; }
+        public bool Active { get; set; }
     }
 }

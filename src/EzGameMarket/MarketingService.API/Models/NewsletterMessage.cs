@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MarketingService.API.Models
 {
-    public class Campaign
+    public class NewsletterMessage
     {
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,19 +16,14 @@ namespace MarketingService.API.Models
 
         [Required]
         public string Title { get; set; }
-        
-        public string ShortDescription { get; set; }
-        [Required]
-        public string Description { get; set; }
-        [Required]
-        [Url]
-        public string CampaignImage { get; set; }
 
         [Required]
-        public DateTime Start { get; set; }
-        [Required]
-        public DateTime End { get; set; }
+        public string Message { get; set; }
 
-        public string CouponCode { get; set; }
+        [Required]
+        public DateTime Created { get; set; }
+
+        [Required]
+        public DateTime? Sended { get; set; }
     }
 }
