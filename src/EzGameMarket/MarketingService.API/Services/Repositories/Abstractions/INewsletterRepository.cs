@@ -9,6 +9,7 @@ namespace MarketingService.API.Services.Repositories.Abstractions
     public interface INewsletterRepository
     {
         Task<NewsletterMessage> Get(int id);
+        Task<NewsletterMessage> GetByTitle(string title);
 
         Task Modify(int id, NewsletterMessage message);
 

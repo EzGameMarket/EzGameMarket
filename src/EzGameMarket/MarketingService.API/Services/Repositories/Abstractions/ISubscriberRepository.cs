@@ -9,11 +9,14 @@ namespace MarketingService.API.Services.Repositories.Abstractions
     public interface ISubscriberRepository
     {
         Task<SubscribedMember> Get(int id);
-
-        Task<List<SubscribedMember>> GetMemebersSubsribedBeetwenFromDateToDate(DateTime start, DateTime end);
+        Task<SubscribedMember> GetByEmail(string email);
 
         Task Add(SubscribedMember model);
 
         Task Modify(int id, SubscribedMember model);
+
+        Task<List<SubscribedMember>> GetBeetwen(DateTime start, DateTime end = default, bool active = true);
+
+        Task<List<SubscribedMember>> GetActiveMembers();
     }
 }

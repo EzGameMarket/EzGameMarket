@@ -1,23 +1,23 @@
-﻿using MarketingService.Tests.FakeImplementations;
+﻿using MarketingService.API.Controllers;
 using MarketingService.API.Data;
+using MarketingService.API.Models;
+using MarketingService.API.Services.Repositories.Implementations;
+using MarketingService.Tests.FakeImplementations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
-using MarketingService.API.Services.Repositories.Implementations;
-using MarketingService.API.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using MarketingService.API.Models;
-using System.Linq;
 
 namespace MarketingService.Tests.API.Controllers.Subscribers
 {
-    public class GetActionTests
+    public class ModifyActionTests
     {
         private DbContextOptions<MarketingDbContext> dbOptions;
 
-        public GetActionTests()
+        public ModifyActionTests()
         {
             dbOptions = new DbContextOptionsBuilder<MarketingDbContext>()
                 .UseInMemoryDatabase(databaseName: $"db-marketing-test-{System.Reflection.MethodBase.GetCurrentMethod().Name}")
@@ -40,64 +40,96 @@ namespace MarketingService.Tests.API.Controllers.Subscribers
             }
         }
 
+        private SubscribedMember CreateModel() => new SubscribedMember()
+        {
+            Active = true,
+            EMail = "werdnikkrisz.test@gmail.com",
+            SubscribedDate = DateTime.Now,
+            UnSubscribedDate = default
+        };
+
         [Fact]
-        public async void Get_ShouldReturnSuccessAndOneSubscriberWithID1()
+        public async void Modify_ShouldReturnSuccessAndOneSubscriberWithID1()
         {
             //Act
             var dbContext = new MarketingDbContext(dbOptions);
             var repo = new SubscriberRepository(dbContext);
 
             var id = 1;
+            var model = CreateModel();
+            model.ID = id;
 
             //Arange
             var controller = new SubscribersController(repo);
-            var actionResult = await controller.GetByID(id);
+            var actionResult = await controller.Modify(id, model);
             var item = await repo.Get(id);
 
             //Assert
             Assert.NotNull(item);
             Assert.NotNull(actionResult);
-            Assert.IsType<ActionResult<SubscribedMember>>(actionResult);
-            var value = Assert.IsAssignableFrom<SubscribedMember>(actionResult.Value);
-
-            Assert.NotNull(value);
-            Assert.Equal(item.EMail, value.EMail);
+            Assert.IsType<OkResult>(actionResult);
+            Assert.Equal(item.EMail, model.EMail);
         }
         [Fact]
-        public async void Get_ShouldReturnBadRequestForIDMinus1()
+        public async void Modify_ShouldReturnBadRequestForIDMinus1()
         {
             //Act
             var dbContext = new MarketingDbContext(dbOptions);
             var repo = new SubscriberRepository(dbContext);
 
             var id = -1;
+            var model = CreateModel();
+            model.ID = id;
 
             //Arange
             var controller = new SubscribersController(repo);
-            var actionResult = await controller.GetByID(id);
+            var actionResult = await controller.Modify(id,model);
 
             //Assert
             Assert.NotNull(actionResult);
-            Assert.IsType<BadRequestResult>(actionResult.Result);
+            Assert.IsType<BadRequestResult>(actionResult);
+        }
+
+        [Fact]
+        public async void Modify_ShouldReturnBadRequestForInvalidEmail()
+        {
+            //Act
+            var dbContext = new MarketingDbContext(dbOptions);
+            var repo = new SubscriberRepository(dbContext);
+
+            var id = -1;
+            var model = CreateModel();
+            model.EMail = default;
+
+            //Arange
+            var controller = new SubscribersController(repo);
+            controller.ModelState.AddModelError("EMail","Az email nem lehet null");
+            var actionResult = await controller.Modify(id, model);
+
+            //Assert
+            Assert.NotNull(actionResult);
+            Assert.IsType<BadRequestResult>(actionResult);
         }
         [Fact]
-        public async void Get_ShouldReturnNotFoundForID6()
+        public async void Modify_ShouldReturnNotFoundForID6()
         {
             //Act
             var dbContext = new MarketingDbContext(dbOptions);
             var repo = new SubscriberRepository(dbContext);
 
             var id = 6;
+            var model = CreateModel();
+            model.ID = id;
 
             //Arange
             var controller = new SubscribersController(repo);
-            var actionResult = await controller.GetByID(id);
+            var actionResult = await controller.Modify(id, model);
             var item = await repo.Get(id);
 
             //Assert
             Assert.Null(item);
             Assert.NotNull(actionResult);
-            Assert.IsType<NotFoundResult>(actionResult.Result);
+            Assert.IsType<NotFoundResult>(actionResult);
         }
     }
 }

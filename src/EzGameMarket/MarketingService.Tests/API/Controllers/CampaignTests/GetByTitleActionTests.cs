@@ -1,23 +1,23 @@
-﻿using MarketingService.Tests.FakeImplementations;
+﻿using MarketingService.API.Controllers;
 using MarketingService.API.Data;
+using MarketingService.API.Models;
+using MarketingService.API.Services.Repositories.Implementations;
+using MarketingService.Tests.FakeImplementations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
-using MarketingService.API.Services.Repositories.Implementations;
-using MarketingService.API.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using MarketingService.API.Models;
-using System.Linq;
 
-namespace MarketingService.Tests.API.Controllers.Subscribers
+namespace MarketingService.Tests.API.Controllers.CampaignTests
 {
-    public class GetActionTests
+    public class GetByTitleActionTests
     {
         private DbContextOptions<MarketingDbContext> dbOptions;
 
-        public GetActionTests()
+        public GetByTitleActionTests()
         {
             dbOptions = new DbContextOptionsBuilder<MarketingDbContext>()
                 .UseInMemoryDatabase(databaseName: $"db-marketing-test-{System.Reflection.MethodBase.GetCurrentMethod().Name}")
@@ -30,7 +30,7 @@ namespace MarketingService.Tests.API.Controllers.Subscribers
 
                 if (dbContext.Members.Any() == false)
                 {
-                    dbContext.AddRange(FakeData.GetMembers());
+                    dbContext.AddRange(FakeData.GetCampaigns());
                     dbContext.SaveChanges();
                 }
             }
@@ -41,58 +41,58 @@ namespace MarketingService.Tests.API.Controllers.Subscribers
         }
 
         [Fact]
-        public async void Get_ShouldReturnSuccessAndOneSubscriberWithID1()
+        public async void GetByTitle_ShouldReturnSuccessAndOneCampaignWithID1()
         {
             //Act
             var dbContext = new MarketingDbContext(dbOptions);
-            var repo = new SubscriberRepository(dbContext);
+            var repo = new CampaignRepository(dbContext);
 
-            var id = 1;
+            var title = "BLCKFRDY itt van";
 
             //Arange
-            var controller = new SubscribersController(repo);
-            var actionResult = await controller.GetByID(id);
-            var item = await repo.Get(id);
+            var controller = new CampaignController(repo);
+            var actionResult = await controller.GetByTitle(title);
+            var item = await repo.GetByCampaignTitle(title);
 
             //Assert
             Assert.NotNull(item);
             Assert.NotNull(actionResult);
-            Assert.IsType<ActionResult<SubscribedMember>>(actionResult);
-            var value = Assert.IsAssignableFrom<SubscribedMember>(actionResult.Value);
+            Assert.IsType<ActionResult<Campaign>>(actionResult);
+            var value = Assert.IsAssignableFrom<Campaign>(actionResult.Value);
 
             Assert.NotNull(value);
-            Assert.Equal(item.EMail, value.EMail);
+            Assert.Equal(item.Title, value.Title);
         }
         [Fact]
-        public async void Get_ShouldReturnBadRequestForIDMinus1()
+        public async void GetByTitle_ShouldReturnBadRequestForIDMinus1()
         {
             //Act
             var dbContext = new MarketingDbContext(dbOptions);
-            var repo = new SubscriberRepository(dbContext);
+            var repo = new CampaignRepository(dbContext);
 
-            var id = -1;
+            var title = string.Empty;
 
             //Arange
-            var controller = new SubscribersController(repo);
-            var actionResult = await controller.GetByID(id);
+            var controller = new CampaignController(repo);
+            var actionResult = await controller.GetByTitle(title);
 
             //Assert
             Assert.NotNull(actionResult);
             Assert.IsType<BadRequestResult>(actionResult.Result);
         }
         [Fact]
-        public async void Get_ShouldReturnNotFoundForID6()
+        public async void GetByTitle_ShouldReturnNotFoundForID6()
         {
             //Act
             var dbContext = new MarketingDbContext(dbOptions);
-            var repo = new SubscriberRepository(dbContext);
+            var repo = new CampaignRepository(dbContext);
 
-            var id = 6;
+            var title = "Hello World!";
 
             //Arange
-            var controller = new SubscribersController(repo);
-            var actionResult = await controller.GetByID(id);
-            var item = await repo.Get(id);
+            var controller = new CampaignController(repo);
+            var actionResult = await controller.GetByTitle(title);
+            var item = await repo.GetByCampaignTitle(title);
 
             //Assert
             Assert.Null(item);

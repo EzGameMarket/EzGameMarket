@@ -11,7 +11,7 @@ namespace MarketingService.Tests.FakeImplementations
         {
             new SubscribedMember()
             {
-                ID = default,
+                ID = 1,
                 Active = true,
                 EMail = "werdnikkrisz@gmail.com",
                 SubscribedDate = DateTime.Now,
@@ -19,7 +19,7 @@ namespace MarketingService.Tests.FakeImplementations
             },
             new SubscribedMember()
             {
-                ID = default,
+                ID = 2,
                 Active = true,
                 EMail = "test@gmail.com",
                 SubscribedDate = DateTime.Now,
@@ -27,7 +27,7 @@ namespace MarketingService.Tests.FakeImplementations
             },
             new SubscribedMember()
             {
-                ID = default,
+                ID = 3,
                 Active = true,
                 EMail = "darky.krisz@gmail.com",
                 SubscribedDate = DateTime.Now.AddDays(5),
@@ -35,7 +35,7 @@ namespace MarketingService.Tests.FakeImplementations
             },
             new SubscribedMember()
             {
-                ID = default,
+                ID = 4,
                 Active = false,
                 EMail = "werdnik.krisztian@gmail.com",
                 SubscribedDate = DateTime.Now.AddDays(-10),
@@ -49,13 +49,13 @@ namespace MarketingService.Tests.FakeImplementations
             {
                 Created = DateTime.Now.AddDays(-10),
                 Sended = DateTime.Now.AddDays(10),
-                ID = default,
+                ID = 1,
                 Message = "Megérkezett hozzánk a Half Life 3",
                 Title = "Ezt nem fogod elhinni!"
             },
             new NewsletterMessage()
             {
-                ID = default,
+                ID = 2,
                 Title = "Szülinap!",
                 Message = "Most lettünk egy évesek, váltsd be az 5%-os kuponkódunkat: BRTHDY1",
                 Created = DateTime.Now.AddDays(30),
@@ -63,7 +63,7 @@ namespace MarketingService.Tests.FakeImplementations
             },
             new NewsletterMessage()
             {
-                ID = default,
+                ID = 3,
                 Title = "Nyár!",
                 Message = "Elkezdődik a nyár váltsd be a SMMR kuponkódot",
                 Created = DateTime.Now.AddDays(60),
@@ -75,18 +75,18 @@ namespace MarketingService.Tests.FakeImplementations
         {
             new Campaign()
             {
-                ID = default,
+                ID = 1,
                 CampaignImage = "blckfrdy.png",
                 CouponCode = "BLCKFRDY",
                 Description = "Megérkezett a black friday",
-                End = DateTime.Now.AddDays(30),
+                End = DateTime.Now.AddDays(-30),
                 Start = DateTime.Now,
                 ShortDescription = "BLACK FRIDAY!",
                 Title = "BLCKFRDY itt van"
             },
             new Campaign()
             {
-                ID = default,
+                ID = 2,
                 CampaignImage = "birthday.png",
                 CouponCode = "BRTHDY1",
                 Description = "Most léttünk 1 évesek",

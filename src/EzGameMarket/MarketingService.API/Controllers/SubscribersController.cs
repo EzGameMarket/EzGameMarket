@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MarketingService.API.Models;
+using MarketingService.API.Exceptions.Model.Subscribe;
 using MarketingService.API.Services.Repositories.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,23 +23,65 @@ namespace MarketingService.API.Controllers
 
         [HttpGet]
         [Route("add")]
-        public async Task<ActionResult> Add()
+        public async Task<ActionResult> Add(SubscribedMember model)
         {
-            return default;
+            if (string.IsNullOrEmpty(model.EMail) || ModelState.IsValid == false)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                await _subscriberRepository.Add(model);
+
+                return Ok();
+            }
+            catch (SubscribeAlreadyInDbException)
+            {
+                return Conflict();
+            }
         }
 
         [HttpGet]
         [Route("modify/{id}")]
-        public async Task<ActionResult> Modify([FromRoute] int id)
+        public async Task<ActionResult> Modify([FromRoute] int id, SubscribedMember model)
         {
-            return default;
+            if (id <= 0 || ModelState.IsValid == false)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                await _subscriberRepository.Modify(id, model);
+
+                return Ok();
+            }
+            catch (SubscriberMemberNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet]
         [Route("email/{email}")]
-        public async Task<ActionResult> GetByEmail([FromRoute] string email)
+        public async Task<ActionResult<SubscribedMember>> GetByEmail([FromRoute] string email)
         {
-            return default;
+            if (string.IsNullOrEmpty(email))
+            {
+                return BadRequest();
+            }
+
+            var member = await _subscriberRepository.GetByEmail(email);
+
+            if (member != default)
+            {
+                return member;
+            }
+            else
+            {
+                return NotFound();
+            }
         }
         [HttpGet]
         [Route("{id}")]
@@ -63,14 +106,23 @@ namespace MarketingService.API.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult> GetBeetwen([FromQuery] DateTime start, [FromQuery] DateTime end = default, [FromQuery] bool active = true)
+        public async Task<ActionResult<List<SubscribedMember>>> GetBeetwen([FromQuery] DateTime start, [FromQuery] DateTime end = default, [FromQuery] bool active = true)
         {
-            //if (end == default)
-            //{
-            //    end = DateTime.Now;
-            //}
+            if (end == default)
+            {
+                end = DateTime.Now;
+            }
 
-            return default;
+            var members = await _subscriberRepository.GetBeetwen(start,end,active);
+
+            if (members != default && members.Count > 0)
+            {
+                return members;
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         /// <summary>
@@ -79,9 +131,18 @@ namespace MarketingService.API.Controllers
         /// <returns>List of active newsletter subscribers</returns>
         [HttpGet]
         [Route("actives")]
-        public async Task<ActionResult> GetActiveSubscribers()
+        public async Task<ActionResult<List<SubscribedMember>>> GetActiveSubscribers()
         {
-            return default;
+            var members = await _subscriberRepository.GetActiveMembers();
+
+            if (members != default && members.Count > 0)
+            {
+                return members;
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
