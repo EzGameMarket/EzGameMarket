@@ -3,6 +3,7 @@ using MarketingService.API.Data;
 using MarketingService.API.Exceptions.Domain.Campaign;
 using MarketingService.API.Exceptions.Model.Campaign;
 using MarketingService.API.IntegrationEvents.Events;
+using MarketingService.API.IntegrationEvents.Events.Campaigns;
 using MarketingService.API.Models;
 using MarketingService.API.Services.Repositories.Abstractions;
 using MarketingService.API.Services.Services.Abstractions;

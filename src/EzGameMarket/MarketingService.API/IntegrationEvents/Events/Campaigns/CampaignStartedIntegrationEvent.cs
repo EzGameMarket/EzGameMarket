@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MarketingService.API.IntegrationEvents.Events
+namespace MarketingService.API.IntegrationEvents.Events.Campaigns
 {
-    public class CampaignPublishedIntegrationEvent : CampaignIntegrationEvent
+    public class CampaignStartedIntegrationEvent : CampaignIntegrationEvent
     {
-        public CampaignPublishedIntegrationEvent(Campaign campaign) : base(campaign)
+        public CampaignStartedIntegrationEvent(Campaign campaign) : base(campaign)
         {
         }
 
-        public CampaignPublishedIntegrationEvent(string title,
+        public CampaignStartedIntegrationEvent(string title,
             string message,
             string couponCode,
             DateTime publishedDate,

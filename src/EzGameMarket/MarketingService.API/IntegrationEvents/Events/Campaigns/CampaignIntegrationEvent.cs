@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MarketingService.API.IntegrationEvents.Events
+namespace MarketingService.API.IntegrationEvents.Events.Campaigns
 {
     public class CampaignIntegrationEvent : IntegrationEvent
     {

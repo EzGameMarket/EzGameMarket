@@ -25,5 +25,22 @@ namespace MarketingService.API.Models
 
         [Required]
         public DateTime? Sended { get; set; }
+
+        public void SetSended(DateTime time = default)
+        {
+            if (time != default)
+            {
+                Sended = time;
+            }
+            else
+            {
+                Sended = DateTime.Now;
+            }
+        }
+
+        public void RollbackSend()
+        {
+            Sended = default;
+        }
     }
 }

@@ -7,6 +7,7 @@ using MarketingService.API.Exceptions.Model.Subscribe;
 using MarketingService.API.Services.Repositories.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MarketingService.API.Extensions;
 
 namespace MarketingService.API.Controllers
 {
@@ -25,7 +26,7 @@ namespace MarketingService.API.Controllers
         [Route("add")]
         public async Task<ActionResult> Add(SubscribedMember model)
         {
-            if (string.IsNullOrEmpty(model.EMail) || ModelState.IsValid == false)
+            if (string.IsNullOrEmpty(model.EMail) || ModelState.IsValid == false || model.EMail.IsValidEmail() == false)
             {
                 return BadRequest();
             }

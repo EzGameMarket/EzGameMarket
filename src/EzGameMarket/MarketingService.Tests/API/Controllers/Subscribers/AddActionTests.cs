@@ -89,6 +89,25 @@ namespace MarketingService.Tests.API.Controllers.Subscribers
         }
 
         [Fact]
+        public async void Add_ShouldReturnBadRequestForInvalidEmailWithoutModelValidation()
+        {
+            //Act
+            var dbContext = new MarketingDbContext(dbOptions);
+            var repo = new SubscriberRepository(dbContext);
+
+            var model = CreateModel();
+            model.EMail = "hello bello";
+
+            //Arange
+            var controller = new SubscribersController(repo);
+            var actionResult = await controller.Add(model);
+
+            //Assert
+            Assert.NotNull(actionResult);
+            Assert.IsType<BadRequestResult>(actionResult);
+        }
+
+        [Fact]
         public async void Add_ShouldReturnBadRequestForInvalidEmail()
         {
             //Act

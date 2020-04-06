@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="API\Controllers\NewsletterPublisherTests\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EventBuses\EventBus.MockedTest\EventBus.MockedTest.csproj" />
     <ProjectReference Include="..\MarketingService.API\MarketingService.API.csproj" />
   </ItemGroup>

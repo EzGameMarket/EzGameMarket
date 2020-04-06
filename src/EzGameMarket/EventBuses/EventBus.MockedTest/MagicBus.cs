@@ -45,11 +45,9 @@ namespace EventBus.MockedTest
             // GC.SuppressFinalize(this);
         }
 
-        public async void Publish(IntegrationEvent @event)
+        public void Publish(IntegrationEvent @event)
         {
             Console.WriteLine($"{@event.Id} Event publishing...");
-
-            await Task.Delay(100);
 
             Console.WriteLine($"{@event.Id} Event published");
         }
