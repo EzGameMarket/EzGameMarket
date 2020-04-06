@@ -28,7 +28,7 @@ namespace MarketingService.Tests.API.Controllers.Newsletter
             try
             {
 
-                if (dbContext.Members.Any() == false)
+                if (dbContext.Newsletters.Any() == false)
                 {
                     dbContext.AddRange(FakeData.GetNewsletters());
                     dbContext.SaveChanges();

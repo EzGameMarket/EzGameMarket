@@ -49,7 +49,7 @@ namespace MarketingService.Tests.API.Controllers.NewsletterSubscribeManager
             var repo = new SubscriberRepository(dbContext);
             var service = new SubscribeManagerService(dbContext);
 
-            var email = "werdnikkrisz@gmail.com";
+            var email = "unSubtestExisting@gmail.com";
             var model = new SubscribeViewModel() { EMail = email };
 
             //Arrange

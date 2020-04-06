@@ -27,8 +27,7 @@ namespace MarketingService.Tests.API.Controllers.CampaignTests
 
             try
             {
-
-                if (dbContext.Members.Any() == false)
+                if (dbContext.Campaigns.Any() == false)
                 {
                     dbContext.AddRange(FakeData.GetCampaigns());
                     dbContext.SaveChanges();
@@ -43,7 +42,7 @@ namespace MarketingService.Tests.API.Controllers.CampaignTests
         private Campaign CreateModel() => new Campaign()
         {
             ID = 1,
-            CampaignImage = "blckfrdy.png",
+            CampaignImageUrl = "blckfrdy.png",
             CouponCode = "BLCKFRDY",
             Description = "hello bello",
             End = DateTime.Now.AddDays(-30),

@@ -28,7 +28,7 @@ namespace MarketingService.Tests.API.Controllers.CampaignTests
             try
             {
 
-                if (dbContext.Members.Any() == false)
+                if (dbContext.Campaigns.Any() == false)
                 {
                     dbContext.AddRange(FakeData.GetCampaigns());
                     dbContext.SaveChanges();
@@ -48,7 +48,7 @@ namespace MarketingService.Tests.API.Controllers.CampaignTests
             var repo = new CampaignRepository(dbContext);
 
             var date = DateTime.Now.AddDays(-1);
-            var expectedItemSize = 1;
+            var expectedItemSize = 7;
 
             //Arange
             var controller = new CampaignController(repo);

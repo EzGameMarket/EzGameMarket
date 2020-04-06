@@ -111,13 +111,13 @@ namespace MarketingService.Tests.API.Controllers.Subscribers
             Assert.IsType<BadRequestResult>(actionResult);
         }
         [Fact]
-        public async void Modify_ShouldReturnNotFoundForID6()
+        public async void Modify_ShouldReturnNotFoundForID100()
         {
             //Act
             var dbContext = new MarketingDbContext(dbOptions);
             var repo = new SubscriberRepository(dbContext);
 
-            var id = 6;
+            var id = 100;
             var model = CreateModel();
             model.ID = id;
 

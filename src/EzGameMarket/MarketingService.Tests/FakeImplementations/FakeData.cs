@@ -40,6 +40,22 @@ namespace MarketingService.Tests.FakeImplementations
                 EMail = "werdnik.krisztian@gmail.com",
                 SubscribedDate = DateTime.Now.AddDays(-10),
                 UnSubscribedDate = DateTime.Now.AddDays(-1)
+            },
+            new SubscribedMember()
+            {
+                ID = 5,
+                Active = false,
+                EMail = "testExisting@gmail.com",
+                SubscribedDate = DateTime.Now.AddDays(-10),
+                UnSubscribedDate = DateTime.Now.AddDays(-1)
+            },
+            new SubscribedMember()
+            {
+                ID = 6,
+                Active = false,
+                EMail = "unSubtestExisting@gmail.com",
+                SubscribedDate = DateTime.Now.AddDays(-10),
+                UnSubscribedDate = DateTime.Now.AddDays(-1)
             }
         };
 
@@ -76,24 +92,231 @@ namespace MarketingService.Tests.FakeImplementations
             new Campaign()
             {
                 ID = 1,
-                CampaignImage = "blckfrdy.png",
+                CampaignImageUrl = "blckfrdy.png",
                 CouponCode = "BLCKFRDY",
                 Description = "Megérkezett a black friday",
                 End = DateTime.Now.AddDays(-30),
                 Start = DateTime.Now,
                 ShortDescription = "BLACK FRIDAY!",
-                Title = "BLCKFRDY itt van"
+                Title = "BLCKFRDY itt van",
+                Published = false,
+                PublishedDate = default,
+                Started = false,
+                StartedDate = default,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = default,
+                Canceled = false
+            },
+            new Campaign()
+            {
+                ID = 21,
+                CampaignImageUrl = "blckfrdy.png",
+                CouponCode = "BLCKFRDY",
+                Description = "Megérkezett a black friday",
+                End = DateTime.Now.AddDays(-30),
+                Start = DateTime.Now,
+                ShortDescription = "BLACK FRIDAY!",
+                Title = "BLCKFRDY itt van2",
+                Published = false,
+                PublishedDate = default,
+                Started = false,
+                StartedDate = default,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = default,
+                Canceled = false
+            },
+            new Campaign()
+            {
+                ID = 31,
+                CampaignImageUrl = "blckfrdy.png",
+                CouponCode = "BLCKFRDY",
+                Description = "Megérkezett a black friday",
+                End = DateTime.Now.AddDays(-30),
+                Start = DateTime.Now,
+                ShortDescription = "BLACK FRIDAY!",
+                Title = "BLCKFRDY itt van3",
+                Published = true,
+                PublishedDate = DateTime.Now,
+                Started = false,
+                StartedDate = default,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = default,
+                Canceled = false
+            },
+            new Campaign()
+            {
+                ID = 71,
+                CampaignImageUrl = "blckfrdy.png",
+                CouponCode = "BLCKFRDY",
+                Description = "Megérkezett a black friday",
+                End = DateTime.Now.AddDays(-30),
+                Start = DateTime.Now,
+                ShortDescription = "BLACK FRIDAY!",
+                Title = "BLCKFRDY itt van4",
+                Published = false,
+                PublishedDate = default,
+                Started = false,
+                StartedDate = default,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = default,
+                Canceled = false
+            },
+
+            new Campaign()
+            {
+                ID = 20,
+                CampaignImageUrl = "blckfrdy.png",
+                CouponCode = "BLCKFRDY",
+                Description = "Megérkezett a black friday",
+                End = DateTime.Now.AddDays(-30),
+                Start = DateTime.Now,
+                ShortDescription = "BLACK FRIDAY!",
+                Title = "BLCKFRDY itt van",
+                Published = false,
+                PublishedDate = default,
+                Started = false,
+                StartedDate = default,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = default,
+                Canceled = false
             },
             new Campaign()
             {
                 ID = 2,
-                CampaignImage = "birthday.png",
+                CampaignImageUrl = "birthday.png",
                 CouponCode = "BRTHDY1",
                 Description = "Most léttünk 1 évesek",
                 End = DateTime.Now.AddDays(31),
                 Start = DateTime.Now.AddDays(30),
                 ShortDescription = "SZÜLINAP!",
-                Title = "1 évesek lettünk"
+                Title = "1 évesek lettünk",
+                Published = true,
+                PublishedDate = DateTime.Now,
+                Started = true,
+                StartedDate = DateTime.Now,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = default,
+                Canceled = false
+            },
+            new Campaign()
+            {
+                ID = 42,
+                CampaignImageUrl = "birthday.png",
+                CouponCode = "BRTHDY1",
+                Description = "Most léttünk 1 évesek",
+                End = DateTime.Now.AddDays(31),
+                Start = DateTime.Now.AddDays(30),
+                ShortDescription = "SZÜLINAP!",
+                Title = "1 évesek lettünk",
+                Published = false,
+                PublishedDate = default,
+                Started = false,
+                StartedDate = default,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = default,
+                Canceled = false
+            },
+            new Campaign()
+            {
+                ID = 3,
+                CampaignImageUrl = "hello.png",
+                CouponCode = "Hello",
+                Description = "Elindultunk",
+                End = DateTime.Now.AddDays(1),
+                Start = DateTime.Now.AddDays(5),
+                ShortDescription = "HLL!",
+                Title = "Most indultunk",
+                Published = true,
+                PublishedDate = DateTime.Now,
+                Started = false,
+                StartedDate = default,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = default,
+                Canceled = false
+            },
+            new Campaign()
+            {
+                ID = 23,
+                CampaignImageUrl = "hello.png",
+                CouponCode = "Hello2",
+                Description = "Elindultunk",
+                End = DateTime.Now.AddDays(1),
+                Start = DateTime.Now.AddDays(5),
+                ShortDescription = "HLL!",
+                Title = "Most indultunk2",
+                Published = true,
+                PublishedDate = DateTime.Now,
+                Started = false,
+                StartedDate = default,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = default,
+                Canceled = false
+            },
+                        new Campaign()
+            {
+                ID = 53,
+                CampaignImageUrl = "hello.png",
+                CouponCode = "Hello2",
+                Description = "Elindultunk",
+                End = DateTime.Now.AddDays(1),
+                Start = DateTime.Now.AddDays(5),
+                ShortDescription = "HLL!",
+                Title = "Most indultunk2",
+                Published = true,
+                PublishedDate = DateTime.Now,
+                Started = true,
+                StartedDate = DateTime.Now,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = default,
+                Canceled = false
+            },
+            new Campaign()
+            {
+                ID = 4,
+                CampaignImageUrl = "test.png",
+                CouponCode = "HEE",
+                Description = "Test",
+                End = DateTime.Now.AddDays(5),
+                Start = DateTime.Now.AddDays(20),
+                ShortDescription = "TEST!",
+                Title = "Ez egy test.",
+                Published = true,
+                PublishedDate = DateTime.Now,
+                Started = true,
+                StartedDate = DateTime.Now,
+                Deleted = false,
+                DeletedTime = default,
+                CanceledDate = DateTime.Now.AddDays(10),
+                Canceled = true
+            },
+            new Campaign()
+            {
+                ID = 5,
+                CampaignImageUrl = "test.png",
+                CouponCode = "HEE",
+                Description = "Test",
+                End = DateTime.Now.AddDays(5),
+                Start = DateTime.Now.AddDays(20),
+                ShortDescription = "TEST!",
+                Title = "Ez egy test.",
+                Published = true,
+                PublishedDate = DateTime.Now,
+                Started = false,
+                StartedDate = default,
+                Deleted = true,
+                DeletedTime = DateTime.Now,
+                CanceledDate = default,
+                Canceled = false
             }
         };
     }

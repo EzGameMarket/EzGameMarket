@@ -28,7 +28,7 @@ namespace MarketingService.Tests.API.Controllers.CampaignTests
             try
             {
 
-                if (dbContext.Members.Any() == false)
+                if (dbContext.Campaigns.Any() == false)
                 {
                     dbContext.AddRange(FakeData.GetCampaigns());
                     dbContext.SaveChanges();
@@ -43,7 +43,7 @@ namespace MarketingService.Tests.API.Controllers.CampaignTests
         private Campaign CreateModel() => new Campaign()
         {
             ID = default,
-            CampaignImage = "test.png",
+            CampaignImageUrl = "test.png",
             CouponCode = "TST",
             Description = "Ez egy test tehát: Hello World!",
             End = DateTime.Now,
@@ -60,7 +60,7 @@ namespace MarketingService.Tests.API.Controllers.CampaignTests
             var repo = new CampaignRepository(dbContext);
 
             var model = CreateModel();
-            var id = await dbContext.Campaigns.CountAsync() + 1;
+            var id = await dbContext.Campaigns.MaxAsync(c=> c.ID.GetValueOrDefault(-1)) + 1;
 
             //Arange
             var controller = new CampaignController(repo);
