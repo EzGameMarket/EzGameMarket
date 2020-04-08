@@ -28,11 +28,16 @@ namespace Web.Gtw.Infrastructare.ServiceAccess
             {
                 public static string GetFilteredItems(string baseUrl) => $"{GetBase(baseUrl)}/filter";
             }
+        }
 
-            public static class Search
-            {
+        public static class CatalogImages
+        {
+            public static string GetImagesForItem(string baseUrl) => $"{GetBase(baseUrl)}/catalog/images/";
+        }
 
-            }
+        public static class Search
+        {
+
         }
 
         private static string GetBase(string baseUrl) => $"{baseUrl}/api{apiVersion}";

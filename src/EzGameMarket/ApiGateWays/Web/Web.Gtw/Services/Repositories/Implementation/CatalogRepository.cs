@@ -29,9 +29,27 @@ namespace Web.Gtw.Services.Repositories.Implementation
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetDetail(string productID)
+        public async Task<Product> GetDetail(string productID)
         {
-            var url = API.Catalog.GetProductDetail(_urls.Catalog) + productID;
+            var catalogUrl = API.Catalog.GetProductDetail(_urls.Catalog) + productID;
+            var catalogImagesUrl = API.CatalogImages.GetImagesForItem(_urls.Catalog) + productID;
+            var categoriesUrl = "";
+            var filtersUrl = "";
+
+            var catalogTask = _client.GetDataWithGetAsync<Product>(catalogUrl);
+            var imagesTask = _client.GetDataWithGetAsync<Product>(catalogImagesUrl);
+            var filtersTask = _client.GetDataWithGetAsync<Product>(filtersUrl);
+            var categoriesTask = _client.GetDataWithGetAsync<Product>(categoriesUrl);
+
+            var accesses = new Task[]
+            {
+                catalogTask,
+                imagesTask,
+                filtersTask,
+                categoriesTask,
+            };
+
+            await Task.WhenAll(accesses);
 
             return default;
         }

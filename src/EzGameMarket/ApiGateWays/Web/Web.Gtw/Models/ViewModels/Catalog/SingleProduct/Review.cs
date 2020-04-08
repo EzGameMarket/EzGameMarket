@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Web.Gtw.Models.ViewModels.Catalog
+namespace Web.Gtw.Models.ViewModels.Catalog.SingleProduct
 {
-    public class Product
+    public class Review
     {
     }
 }

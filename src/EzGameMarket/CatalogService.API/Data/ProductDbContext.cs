@@ -1,6 +1,5 @@
 ﻿using CatalogService.API.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.CodeAnalysis;
 
 namespace CatalogService.API.Data
 {
@@ -14,7 +13,9 @@ namespace CatalogService.API.Data
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ImgSize> ImgSizes { get; set; }
 
-        public ProductDbContext([NotNull] DbContextOptions options) : base(options)
+        public DbSet<ProductKey> Keys { get; set; }
+
+        public ProductDbContext(DbContextOptions options) : base(options)
         {
         }
     }
