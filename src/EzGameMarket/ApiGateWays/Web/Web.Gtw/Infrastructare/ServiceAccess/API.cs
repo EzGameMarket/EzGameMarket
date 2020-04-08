@@ -7,7 +7,7 @@ namespace Web.Gtw.Infrastructare.ServiceAccess
 {
     public static class API
     {
-        public const string apiVersion = "v1";
+        public const string apiVersion = "";
 
         public static class Cart
         {
@@ -35,7 +35,7 @@ namespace Web.Gtw.Infrastructare.ServiceAccess
             }
         }
 
-        private static string GetBase(string baseUrl) => $"{baseUrl}/api/{apiVersion}";
+        private static string GetBase(string baseUrl) => $"{baseUrl}/api{apiVersion}";
 
     }
 }

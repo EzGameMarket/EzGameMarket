@@ -72,7 +72,6 @@ namespace CatalogService.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseSwagger();

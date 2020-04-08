@@ -7,6 +7,6 @@ namespace WebMVC.Extensions.Settings
 {
     public class LoadBalancerUrls : ILoadBalancerUrls
     {
-        public string MainBalancer { get; set; } = "http://localhost:53577";
+        public string MainBalancer { get; set; } = "http://web-gtw:80";
     }
 }

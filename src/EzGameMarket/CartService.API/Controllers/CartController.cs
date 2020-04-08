@@ -43,7 +43,8 @@ namespace CartService.API.Controllers
                 return BadRequest();
             }
         }
-        [Route("{userID}/")]
+        [Route("{userID}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Cart>> GetCart(string userID)
         {
             if (userID != default)

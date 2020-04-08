@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EventBuses\EventBus.MockedTest\EventBus.MockedTest.csproj" />
     <ProjectReference Include="..\EventBuses\EventBus.Shared\EventBus.Shared.csproj" />
   </ItemGroup>
 

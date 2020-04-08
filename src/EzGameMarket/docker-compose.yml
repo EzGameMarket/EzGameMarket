@@ -7,55 +7,55 @@ services:
       context: .
       dockerfile: WebApps/WebMVC/Dockerfile
 
-  identityservice.api:
+  identityservice-api:
     image: ${DOCKER_REGISTRY-}identityserviceapi
     build:
       context: .
       dockerfile: IdentityService.API/Dockerfile
 
-  catalogservice.api:
+  catalogservice-api:
     image: ${DOCKER_REGISTRY-}catalogserviceapi
     build:
       context: .
       dockerfile: CatalogService.API/Dockerfile
 
 
-  cartservice.api:
+  cartservice-api:
     image: ${DOCKER_REGISTRY-}cartserviceapi
     build:
       context: .
       dockerfile: CartService.API/Dockerfile
 
 
-  paymentservice.api:
+  paymentservice-api:
     image: ${DOCKER_REGISTRY-}paymentserviceapi
     build:
       context: .
       dockerfile: PaymentService.API/Dockerfile
 
 
-  orderservice.api:
+  orderservice-api:
     image: ${DOCKER_REGISTRY-}orderserviceapi
     build:
       context: .
       dockerfile: OrderService.API/Dockerfile
 
 
-  marketingservice.api:
+  marketingservice-api:
     image: ${DOCKER_REGISTRY-}marketingserviceapi
     build:
       context: .
       dockerfile: MarketingService.API/Dockerfile
 
 
-  web.gtw:
+  web-gtw:
     image: ${DOCKER_REGISTRY-}webgtw
     build:
       context: .
       dockerfile: ApiGateWays/Web/Web.Gtw/Dockerfile
 
 
-  apigtw.loadbalancer:
+  apigtw-loadbalancer:
     image: ${DOCKER_REGISTRY-}apigtwloadbalancer
     build:
       context: .

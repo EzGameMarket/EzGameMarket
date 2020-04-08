@@ -3,8 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:58878",
-      "sslPort": 44339
+      "applicationUrl": "http://localhost:58878"
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
@@ -30,8 +29,7 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/weatherforecast",
-      "publishAllPorts": true,
-      "useSSL": true
+      "publishAllPorts": true
     }
   }
 }

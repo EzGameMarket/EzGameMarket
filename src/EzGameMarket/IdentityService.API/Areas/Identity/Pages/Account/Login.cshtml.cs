@@ -47,7 +47,7 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
         [TempData]
         public string ErrorMessage { get; set; }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync([FromRoute] string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
@@ -76,7 +76,16 @@ namespace IdentityService.API.Areas.Identity.Pages.Account
 
                     HttpContext.Response.Cookies.Append("access_token", loginResult.Token, new CookieOptions() { HttpOnly = true, Secure = true });
 
+                    if (string.IsNullOrEmpty(ReturnUrl) == false)
+                    {
+                        returnUrl = ReturnUrl;
+                    }
+
                     return LocalRedirect(returnUrl);
+                }
+                catch (UserNotRegisteredWithEmailYetException)
+                {
+                    return RedirectToPage("./Register");
                 }
                 catch (AccountRequire2FAException)
                 {

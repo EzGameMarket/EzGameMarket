@@ -23,7 +23,7 @@ namespace WebMVC.Services.Repositorys.Implementation
 
         public async Task<Cart> GetCartAsync(string userID)
         {
-            var url = GtwUrl.Cart.GetCart(_urls.MainBalancer)+userID;
+            var url = GtwUrl.Cart.GetCart(_urls.MainBalancer);
 
             var cart = await _client.GetDataWithGetAsync<Cart>(url);
 

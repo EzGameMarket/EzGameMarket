@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Shared.Extensions.HttpClientHandler;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using WebMVC.Extensions.Settings;
 using WebMVC.Services.Repositorys.Abstractions;
@@ -30,17 +32,35 @@ namespace WebMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
             services.AddRazorPages();
 
             services.AddDistributedMemoryCache();
             AddJWT(services);
 
-            services.AddHttpClient<IHttpHandlerUtil, HttpHandlerUtil>();
+            services.AddHttpClient<IHttpHandlerUtil, HttpHandlerUtil>((serviceProvider, c) => 
+            {
+                // Find the HttpContextAccessor service
+                var httpContextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
+                // Get the bearer token from the request context (header)
+                var bearerToken = httpContextAccessor.HttpContext.Request
+                                      .Headers["Authorization"]
+                                      .FirstOrDefault(h => h.StartsWith("bearer ", StringComparison.InvariantCultureIgnoreCase));
+
+                // Add authorization if found
+                if (bearerToken != null)
+                    c.DefaultRequestHeaders.Add("Authorization", bearerToken);
+
+                // Other settings
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
+                c.DefaultRequestHeaders.Add("User-Agent", "EzgameMarket-WEBMVC-UserAgent");
+
+            }).SetHandlerLifetime(TimeSpan.FromMinutes(5));
+
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<ICatalogRepository, CatalogRepository>();
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddSingleton<ILoadBalancerUrls, LoadBalancerUrls>();
-            services.AddHttpClient<IHttpHandlerUtil,HttpHandlerUtil>();
         }
 
         private void AddJWT(IServiceCollection services)

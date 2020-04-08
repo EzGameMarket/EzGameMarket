@@ -7,7 +7,8 @@ namespace WebMVC.Utils
 {
     public static class GtwUrl
     {
-        private static string _version = "/v1/";
+        private static string _version = "/";
+        //private static string _version = "/v1/";
 
         public static class Catalog
         {

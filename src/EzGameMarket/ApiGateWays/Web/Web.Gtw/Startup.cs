@@ -27,6 +27,7 @@ using Web.Gtw.Services.Repositories.Implementation;
 using Web.Gtw.Services.Services.Abstractions;
 using Web.Gtw.Services.Services.Implementation;
 using Microsoft.Extensions.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace Web.Gtw
 {
@@ -55,6 +56,8 @@ namespace Web.Gtw
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
 
+            services.AddHttpContextAccessor();
+
             var urls = JsonConvert.DeserializeObject<ServiceUrls>(System.IO.File.ReadAllText("services.json"));
 
             services.AddSingleton<IServiceUrls, ServiceUrls>(s=> {
@@ -67,7 +70,25 @@ namespace Web.Gtw
                 };
             });
 
-            services.AddHttpClient<IHttpHandlerUtil,HttpHandlerUtil>().SetHandlerLifetime(TimeSpan.FromMinutes(5));
+            services.AddHttpClient<IHttpHandlerUtil, HttpHandlerUtil>((serviceProvider, c) =>
+            {
+                // Find the HttpContextAccessor service
+                var httpContextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
+                // Get the bearer token from the request context (header)
+                var bearerToken = httpContextAccessor.HttpContext.Request
+                                      .Headers["Authorization"]
+                                      .FirstOrDefault(h => h.StartsWith("bearer ", StringComparison.InvariantCultureIgnoreCase));
+
+                // Add authorization if found
+                if (bearerToken != null)
+                    c.DefaultRequestHeaders.Add("Authorization", bearerToken);
+
+                // Other settings
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
+                c.DefaultRequestHeaders.Add("User-Agent", "EzgameMarket-Web-GTW-UserAgent");
+
+            }).SetHandlerLifetime(TimeSpan.FromMinutes(5));
+
             services.AddScoped<ICartRepository,CartRepository>();
             services.AddScoped<ICatalogRepository,CatalogRepository>();
             services.AddScoped<IIdentityService,IdentityService>();
@@ -102,8 +123,6 @@ namespace Web.Gtw
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

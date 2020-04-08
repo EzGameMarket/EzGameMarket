@@ -13,6 +13,7 @@ namespace Web.Gtw.Services.Repositories.Abstractions
 
         Task Checkout(string userID, CheckoutViewModel model);
 
+        Task<CartViewModel> GetOwnCart();
         Task<CartViewModel> GetCart(string userID);
     }
 }

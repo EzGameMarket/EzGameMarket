@@ -1,5 +1,7 @@
 using CartService.API.Data;
 using CartService.API.Services;
+using EventBus.MockedTest;
+using EventBus.Shared.Abstraction;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +41,8 @@ namespace CartService.API
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<ICartRepository, CartRepository>();
+            services.AddSingleton<IEventBusRepository, MagicBus>();
         }
 
         private void AddJWT(IServiceCollection services)
@@ -70,8 +74,6 @@ namespace CartService.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseSwagger();
 

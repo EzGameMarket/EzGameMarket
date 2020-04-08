@@ -11,16 +11,20 @@ namespace WebMVC.Controllers
 
         public IActionResult Login()
         {
-            return Redirect("https://localhost:32794/identity/account/login");
+            var baseURL = "https://localhost:7001/identity/account/login";
+
+            return Redirect(baseURL);
         }
 
         public IActionResult Register()
         {
-            return Redirect("https://localhost:32794/identity/account/register");
+            return Redirect("https://localhost:7001/identity/account/register");
         }
 
         public IActionResult SubmitLogin()
         {
+
+
             return RedirectToAction("Index","Home");
         }
 

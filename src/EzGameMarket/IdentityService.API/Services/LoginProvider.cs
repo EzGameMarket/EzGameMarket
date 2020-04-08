@@ -3,6 +3,7 @@ using IdentityService.API.Models;
 using IdentityService.API.Models.IdentityModels;
 using IdentityService.API.Models.IdentityViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
@@ -30,6 +31,11 @@ namespace IdentityService.API.Services
             // To enable password failures to trigger account lockout, set lockoutOnFailure: true
 
             var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user == default)
+            {
+                throw new UserNotRegisteredWithEmailYetException() { Email = model.Email };
+            }
 
             var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
 

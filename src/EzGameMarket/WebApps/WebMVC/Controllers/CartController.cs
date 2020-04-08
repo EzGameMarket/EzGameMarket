@@ -12,6 +12,7 @@ using WebMVC.Services.Services.Abstractions;
 namespace WebMVC.Controllers
 {
     [Route("/cart")]
+    [Authorize]
     public class CartController : Controller
     {
         ILogger<CartController> _logger;

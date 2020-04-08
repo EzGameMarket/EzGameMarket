@@ -75,8 +75,6 @@ namespace CloudGamingSupport.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseSwagger();

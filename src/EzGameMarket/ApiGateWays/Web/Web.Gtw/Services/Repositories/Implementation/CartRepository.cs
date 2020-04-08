@@ -45,5 +45,7 @@ namespace Web.Gtw.Services.Repositories.Implementation
         }
 
         public Task<CartViewModel> GetCart(string userID) => _client.GetDataWithGetAsync<CartViewModel>(API.Cart.GetCart(_urls.Cart) + $"{userID}/");
+
+        public Task<CartViewModel> GetOwnCart() => _client.GetDataWithGetAsync<CartViewModel>(API.Cart.GetCart(_urls.Cart));
     }
 }

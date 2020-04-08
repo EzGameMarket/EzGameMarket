@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Web.Gtw.Services.Repositories.Abstractions;
 using Web.Gtw.Models.ViewModels;
 using Web.Gtw.Models.ViewModels.Cart;
-
+using Web.Gtw.Services.Services.Abstractions;
 
 namespace Web.Gtw.Controllers
 {
@@ -18,20 +18,24 @@ namespace Web.Gtw.Controllers
     public class CartController : ControllerBase
     {
         private ICartRepository _cartRepository;
+        private IIdentityService _identityService;
 
-        public CartController(ICartRepository cartRepository)
+        public CartController(ICartRepository cartRepository, IIdentityService identityService)
         {
             _cartRepository = cartRepository;
+            _identityService = identityService;
         }
 
         [HttpPost]
-        [Route("update/{userID}")]
-        public async Task<ActionResult> Update([FromRoute]string userID, [FromBody]CartItemUpdateModel model)
+        [Route("update/")]
+        public async Task<ActionResult> Update([FromBody]CartItemUpdateModel model)
         {
             if (ModelState.IsValid == false)
             {
                 return BadRequest();
             }
+
+            var userID = _identityService.GetUserID(User);
 
             await _cartRepository.Update(userID,model);
 
@@ -39,10 +43,17 @@ namespace Web.Gtw.Controllers
         }
 
         [HttpGet]
-        [Route("{userID}")]
-        public async Task<ActionResult<CartViewModel>> GetCart([FromRoute]string userID)
+        [Route("")]
+        public async Task<ActionResult<CartViewModel>> GetCart()
         {
-            if (ModelState.IsValid == false)
+            return await _cartRepository.GetOwnCart();
+        }
+
+        [HttpGet]
+        [Route("{userID}")]
+        public async Task<ActionResult<CartViewModel>> GetCart(string userID)
+        {
+            if (string.IsNullOrEmpty(userID))
             {
                 return BadRequest();
             }
@@ -50,15 +61,16 @@ namespace Web.Gtw.Controllers
             return await _cartRepository.GetCart(userID);
         }
 
-
         [HttpPost]
-        [Route("checkout/{userID}")]
-        public async Task<ActionResult> Checkout([FromRoute] string userID,[FromBody] CheckoutViewModel model)
+        [Route("checkout/")]
+        public async Task<ActionResult> Checkout([FromBody] CheckoutViewModel model)
         {
             if (ModelState.IsValid == false)
             {
                 return BadRequest();
             }
+
+            var userID = _identityService.GetUserID(User);
 
             await _cartRepository.Checkout(userID, model);
 
