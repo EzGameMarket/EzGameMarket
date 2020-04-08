@@ -46,7 +46,16 @@ namespace Web.Gtw.Controllers
         [Route("")]
         public async Task<ActionResult<CartViewModel>> GetCart()
         {
-            return await _cartRepository.GetOwnCart();
+            var model = await _cartRepository.GetOwnCart();
+
+            if (model != default)
+            {
+                return model;
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet]

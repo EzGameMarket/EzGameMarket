@@ -21,7 +21,7 @@ namespace CartService.API.Migrations
 
             modelBuilder.Entity("CartService.API.Models.Cart", b =>
                 {
-                    b.Property<int>("CartID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -30,14 +30,14 @@ namespace CartService.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CartID");
+                    b.HasKey("ID");
 
                     b.ToTable("Cart");
                 });
 
             modelBuilder.Entity("CartService.API.Models.CartItem", b =>
                 {
-                    b.Property<int>("ProductID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -45,10 +45,24 @@ namespace CartService.API.Migrations
                     b.Property<int?>("CartID")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductID");
+                    b.HasKey("ID");
 
                     b.HasIndex("CartID");
 

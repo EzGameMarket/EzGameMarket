@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@{ var userName = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value; }
+
+<!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="utf-8">
@@ -10,6 +12,36 @@
 
     <title>@ViewData["Title"] - Ez Game Market</title>
 
+    <!-- =====================================
+    ====Start all js here -->
+    <!-- jquery js-->
+    <script defer src="~/js/jquery.min.js"></script>
+
+    <!-- bootstrap js-->
+    <script defer src="~/js/bootstrap.min.js"></script>
+
+    <!-- slick js-->
+    <script defer src="~/js/slick.min.js"></script>
+
+    <!-- slick animation js-->
+    <script defer src="~/js/slick-animation.min.js"></script>
+
+    <!-- spritespin js-->
+    <script defer src="~/js/jquery-ui.min.js"></script>
+
+    <!-- waypoints js-->
+    <script defer src="~/js/jquery.waypoints.js"></script>
+
+    <!-- counterup js-->
+    <script defer src="~/js/jquery.counterup.min.js"></script>
+
+    <!-- Magnific js-->
+    <script defer src="~/js/jquery.magnific-popup.min.js"></script>
+
+    <!-- custom js-->
+    <script defer src="~/js/custom.js"></script>
+    <!-- =====================================
+        ==== End all js here -->
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon.ico">
 
@@ -28,8 +60,11 @@
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="~/css/style.css">
 
+    <!-- custom CSS -->
+    <link rel="stylesheet" type="text/css" href="~/css/custom.css">
+
     <!-- google font CSS -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 </head>
 <body>
@@ -44,17 +79,14 @@
                     {
                         <div class="header-account">
                             <a asp-area="" asp-controller="Account" asp-action="Login">Bejelentkezés</a>
-                            OR
+                            VAGY
                             <a asp-area="" asp-controller="Account" asp-action="Register">Regisztráció</a>
                         </div>
                     }
                     else
                     {
                         <div class="header-account">
-                            @{ var userName = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value; } 
-
-                            <span>@userName</span>
-                            <a asp-controller="Account" asp-action="Index">Felhasználóm</a>
+                            <a asp-controller="Account" asp-action="Index">@userName</a>
                         </div>
                     }
                 </div>
@@ -124,36 +156,6 @@
     <!-- back-to-top-->
     <div id="back-to-top"></div>
     <!-- back-to-top -->
-    <!-- =====================================
-       ====Start all js here -->
-    <!-- jquery js-->
-    <script src="~/js/jquery.min.js"></script>
-
-    <!-- bootstrap js-->
-    <script src="~/js/bootstrap.min.js"></script>
-
-    <!-- slick js-->
-    <script src="~/js/slick.min.js"></script>
-
-    <!-- slick animation js-->
-    <script src="~/js/slick-animation.min.js"></script>
-
-    <!-- spritespin js-->
-    <script src="~/js/jquery-ui.min.js"></script>
-
-    <!-- waypoints js-->
-    <script src="~/js/jquery.waypoints.js"></script>
-
-    <!-- counterup js-->
-    <script src="~/js/jquery.counterup.min.js"></script>
-
-    <!-- Magnific js-->
-    <script src="~/js/jquery.magnific-popup.min.js"></script>
-
-    <!-- custom js-->
-    <script src="~/js/custom.js"></script>
-    <!-- =====================================
-        ==== End all js herej -->
 
     @RenderSection("Scripts", required: false)
 </body>

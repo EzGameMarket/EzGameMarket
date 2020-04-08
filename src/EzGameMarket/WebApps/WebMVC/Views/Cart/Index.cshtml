@@ -6,52 +6,87 @@
 <div class="page-cart">
     <!-- container -->
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-12">
-                <form class="cart-form table_responsive" action="#" method="post">
-                    <table class="shop_table table cart cart-form__contents">
-                        <thead>
-                            <tr>
-                                <th class="product-thumbnail">Termék</th>
-                                <th class="product-name">Megnevezés</th>
-                                <th class="product-price">Ár</th>
-                                <th class="product-quantity">Darabszám</th>
-                                <th class="product-subtotal">Össszesítve</th>
-                                <th class="product-remove">&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            @await Html.PartialAsync("_CartItems", Model.CartItems);
+        @if (Model.CartItems != default && Model.CartItems.Any())
+        {
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <form class="cart-form table_responsive" action="#" method="post">
+                        <table class="shop_table table cart cart-form__contents">
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail">Termék</th>
+                                    <th class="product-name">Megnevezés</th>
+                                    <th class="product-price">Ár</th>
+                                    <th class="product-quantity">Darabszám</th>
+                                    <th class="product-subtotal">Össszesítve</th>
+                                    <th class="product-remove">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                            <tr>
-                                <td colspan="6" class="actions">
-                                    <div class="clearfix">
-                                        <div class="coupon pull-left">
-                                            <input type="text" name="coupon_code" class="input-text " id="coupon_code" value="" placeholder="Kupon kód">
-                                            <input type="submit" class="btn btn-default" name="apply_coupon" value="Kód beváltása">
+                                @await Html.PartialAsync("_CartItems", Model.CartItems);
+
+                                <tr>
+                                    <td colspan="6" class="actions">
+                                        <div class="clearfix">
+                                            <div class="coupon pull-left">
+                                                <input type="text" name="coupon_code" class="input-text " id="coupon_code" value="" placeholder="Kupon kód">
+                                                <input type="submit" class="btn btn-default" name="apply_coupon" value="Kód beváltása">
+                                            </div>
+                                            <div class="pull-right">
+                                                <input type="submit" class="btn btn-primary" name="update_cart" value="Kosaram frissítése">
+                                                <input type="hidden" id="_wpnonce" name="_wpnonce" value="#"><input type="hidden" name="_wp_http_referer" value="#">
+                                            </div>
                                         </div>
-                                        <div class="pull-right">
-                                            <input type="submit" class="btn btn-primary" name="update_cart" value="Kosaram frrisítése">
-                                            <input type="hidden" id="_wpnonce" name="_wpnonce" value="#"><input type="hidden" name="_wp_http_referer" value="#">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="grand-totall">
-                    <div class="title-wrap">
-                        <h4 class="cart-bottom-title section-bg-gary-cart">Kosaram</h4>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="grand-totall">
+                        <div class="title-wrap">
+                            <h4 class="cart-bottom-title section-bg-gary-cart">Kosaram</h4>
+                        </div>
+
+                        @{
+                            var total = 0;
+
+                            if (Model != default)
+                            {
+                                total = Model.Total();
+                            }
+                        }
+
+                        <h4 class="grand-totall-title">Végösszeg:  <span>@total ,-Ft</span></h4>
+                        <a asp-area="" asp-controller="Cart" asp-action="Checkout" class="btn btn-primary checkout-button">Megrendelem</a>
                     </div>
-                    <h4 class="grand-totall-title">Végösszeg:  <span>@Model.Total() ,-Ft</span></h4>
-                    <a asp-area="" asp-controller="Cart" asp-action="Checkout" class="btn btn-primary checkout-button">Megrendelem</a>
                 </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="container">
+
+                <div class="row d-lg-flex justify-content-lg-center empty-cart-item">
+                    <h2>Még nincs semmi a kosaradban.</h2>
+                </div>
+
+                <div class="row d-lg-flex justify-content-lg-center empty-cart-item">
+                    <img src="@Url.Content("~/images/cart-empty-512.png")" alt="Üres kosár" />
+                </div>
+
+                <div class="row d-lg-flex justify-content-lg-center empty-cart-item">
+                    <span class="empty-cart-content">Válaszd ki a játékokat amit pörgetnél azt pörgesd őket a rendelés oldalra</span>
+                </div>
+
+                <div class="row d-lg-flex justify-content-lg-center empty-cart-item">
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-default back-home empty-cart-content">Megnézzem a játékokat</a>
+                </div>
+
+            </div>
+        }
     </div>
     <!-- /container -->
 </div>

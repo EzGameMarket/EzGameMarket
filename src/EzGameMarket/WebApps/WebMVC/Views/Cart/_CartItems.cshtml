@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<CartItemModel>
 
-@foreach (var item in Model)
+@if (Model != default && Model.Any())
 {
-    @await Html.PartialAsync("_CartItem", item);
+    @foreach (var item in Model)
+    {
+        @await Html.PartialAsync("_CartItem", item);
+    }
 }

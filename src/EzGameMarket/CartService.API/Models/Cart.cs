@@ -1,6 +1,7 @@
 ﻿using CartService.API.Models.ViewModels;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace CartService.API.Models
@@ -8,8 +9,9 @@ namespace CartService.API.Models
     public class Cart
     {
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int CartID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         public string OwnerID { get; set; }

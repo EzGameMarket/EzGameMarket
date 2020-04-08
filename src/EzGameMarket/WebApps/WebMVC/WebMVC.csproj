@@ -23,7 +23,6 @@
     <Folder Include="Exceptions\" />
     <Folder Include="ViewModels\Orders\" />
     <Folder Include="Views\Order\" />
-    <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

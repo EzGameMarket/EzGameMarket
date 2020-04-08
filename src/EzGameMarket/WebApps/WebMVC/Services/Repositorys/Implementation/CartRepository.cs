@@ -25,19 +25,19 @@ namespace WebMVC.Services.Repositorys.Implementation
         {
             var url = GtwUrl.Cart.GetCart(_urls.MainBalancer);
 
-            var cart = await _client.GetDataWithGetAsync<Cart>(url);
+            var model = await _client.GetDataWithGetAsync<Cart>(url);
 
-            var data = new List<CartItemModel>()
-            {
-                new CartItemModel(){ ImageUrl = "test.png", Price = 500, ProductID = "minecraft", ProductName = "Minecraft Standard Edition", Quantity = 2 },
-                new CartItemModel(){ ImageUrl = "test.png", Price = 50, ProductID = "bttflvdeled", ProductName = "Battlefield V Deluxe Edition", Quantity = 3 },
-                new CartItemModel(){ ImageUrl = "test.png", Price = 1000, ProductID = "fifa2020", ProductName = "Fifa 20", Quantity = 1 }
-            };
-            var model = new Cart()
-            {
-                BuyerID = userID,
-                CartItems = data
-            };
+            //var data = new List<CartItemModel>()
+            //{
+            //    new CartItemModel(){ ImageUrl = "test.png", Price = 500, ProductID = "minecraft", ProductName = "Minecraft Standard Edition", Quantity = 2 },
+            //    new CartItemModel(){ ImageUrl = "test.png", Price = 50, ProductID = "bttflvdeled", ProductName = "Battlefield V Deluxe Edition", Quantity = 3 },
+            //    new CartItemModel(){ ImageUrl = "test.png", Price = 1000, ProductID = "fifa2020", ProductName = "Fifa 20", Quantity = 1 }
+            //};
+            //model = new Cart()
+            //{
+            //    BuyerID = userID,
+            //    CartItems = data
+            //};
 
             return model;
         }

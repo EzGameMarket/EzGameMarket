@@ -63,7 +63,7 @@ namespace WebMVC.Controllers
                 Costumer = new Costumer() { Email = "werdnikkrisz@gmail.com", PhoneNumber = "+36309136248" },
                 BuyerCart = new Cart()
                 {
-                    BuyerID = "kriszw",
+                    OwnerID = "kriszw",
                     CartItems = new List<CartItemModel>()
                     {
                         new CartItemModel(){ ImageUrl = "test.png", Price = 500, ProductID = "minecraft", ProductName = "Minecraft Standard Edition", Quantity = 2 },

@@ -2,7 +2,7 @@
 
 namespace CartService.API.Migrations
 {
-    public partial class initCart : Migration
+    public partial class InitCartAndCartItems : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,32 +10,36 @@ namespace CartService.API.Migrations
                 name: "Cart",
                 columns: table => new
                 {
-                    CartID = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OwnerID = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cart", x => x.CartID);
+                    table.PrimaryKey("PK_Cart", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CartItems",
                 columns: table => new
                 {
-                    ProductID = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductID = table.Column<int>(nullable: false),
+                    ProductName = table.Column<string>(nullable: false),
+                    Price = table.Column<int>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     CartID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartItems", x => x.ProductID);
+                    table.PrimaryKey("PK_CartItems", x => x.ID);
                     table.ForeignKey(
                         name: "FK_CartItems_Cart_CartID",
                         column: x => x.CartID,
                         principalTable: "Cart",
-                        principalColumn: "CartID",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
