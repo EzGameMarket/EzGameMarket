@@ -15,5 +15,6 @@ namespace CouponCode.API.Data
 
         public DbSet<CouponCodeModel> CouponCodes { get; set; }
         public DbSet<DiscountModel> Discounts { get; set; }
+        public DbSet<EligibleUserModel> Users { get; set; }
     }
 }

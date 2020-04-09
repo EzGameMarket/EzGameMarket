@@ -10,6 +10,7 @@ using Web.Gtw.Infrastructare.ServiceAccess;
 using Web.Gtw.Models;
 using Web.Gtw.Models.ViewModels.Catalog;
 using Web.Gtw.Infrastructare.ServiceAccess.Abstractions;
+using Web.Gtw.Models.ViewModels.Catalog.SingleProduct;
 
 namespace Web.Gtw.Services.Repositories.Implementation
 {

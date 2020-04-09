@@ -9,6 +9,7 @@ using Shared.Extensions.Pagination;
 using Web.Gtw.Services.Repositories.Abstractions;
 using Web.Gtw.Models;
 using Web.Gtw.Models.ViewModels.Catalog;
+using Web.Gtw.Models.ViewModels.Catalog.SingleProduct;
 
 namespace Web.Gtw.Controllers
 {

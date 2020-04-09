@@ -72,9 +72,9 @@ namespace MarketingService.Tests.API.Controllers.Subscribers
 
         public static object[][] SuccessData => new object[][]
         {
-            new object[] { DateTime.Now.AddDays(-30),DateTime.Now.AddDays(1),false,2 },
-            new object[] { DateTime.Now.AddDays(-30), DateTime.Now.AddDays(1), true,3 },
-            new object[] { DateTime.Now.AddDays(-30), DateTime.Now.AddDays(6), true,4 },
+            new object[] { DateTime.Now.AddDays(-30),DateTime.Now.AddDays(1),false,3 },
+            new object[] { DateTime.Now.AddDays(-30), DateTime.Now.AddDays(1), true,2 },
+            new object[] { DateTime.Now.AddDays(-30), DateTime.Now.AddDays(6), true,3 },
             new object[] { DateTime.Now.AddDays(3), DateTime.Now.AddDays(6), false,0 },
         };
     }

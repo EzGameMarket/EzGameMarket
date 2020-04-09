@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web.Gtw.Models;
 using Web.Gtw.Models.ViewModels.Catalog;
+using Web.Gtw.Models.ViewModels.Catalog.SingleProduct;
 
 namespace Web.Gtw.Services.Repositories.Abstractions
 {

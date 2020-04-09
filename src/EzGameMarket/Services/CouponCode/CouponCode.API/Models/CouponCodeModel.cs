@@ -25,7 +25,7 @@ namespace CouponCode.API.Models
         [Required]
         public bool IsLimitedForUsers { get; set; }
 
-        public List<string> UserIDs { get; set; }
+        public List<EligibleUserModel> Users { get; set; }
 
         [Required]
         public DateTime StartDate { get; set; }

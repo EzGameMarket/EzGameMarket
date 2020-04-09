@@ -7,20 +7,13 @@ using System.Threading.Tasks;
 
 namespace CouponCode.API.Models
 {
-    public class DiscountModel
+    public class EligibleUserModel
     {
-        [NotMapped]
-        public const int MaximumPercentage = 20;
-
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int? ID { get; set; }
 
-        [Required]
-        public string Name { get; set; }
-
-        [Required]
-        public int PercentageDiscount { get; set; }
+        public string UserID { get; set; }
     }
 }
