@@ -195,11 +195,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CouponCode.API", "Services\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{A6E5C725-A2C0-4014-891A-4AF901640FB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender.Shared", "Shared\Utilities\EmailSender\EmailSender.Shared\EmailSender.Shared.csproj", "{A945A8FA-41B0-430F-BF2D-EB03AAF4FF05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender.Shared", "Shared\Utilities\EmailSender\EmailSender.Shared\EmailSender.Shared.csproj", "{A945A8FA-41B0-430F-BF2D-EB03AAF4FF05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender.Core", "Shared\Utilities\EmailSender\EmailSender.Core\EmailSender.Core.csproj", "{72C8F3D9-7181-41B3-A769-45EB5222E535}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender.Core", "Shared\Utilities\EmailSender\EmailSender.Core\EmailSender.Core.csproj", "{72C8F3D9-7181-41B3-A769-45EB5222E535}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender.SendGrid", "Shared\Utilities\EmailSender\EmailSender.SendGrid\EmailSender.SendGrid.csproj", "{DBF32CB5-0909-415A-A54F-FAB6166AAB59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender.SendGrid", "Shared\Utilities\EmailSender\EmailSender.SendGrid\EmailSender.SendGrid.csproj", "{DBF32CB5-0909-415A-A54F-FAB6166AAB59}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmailSender", "EmailSender", "{2269B004-B663-4379-B2D0-62B0B1EACE10}"
 EndProject
@@ -211,9 +211,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender.Core.Tests", "Shared\Utilities\EmailSender\Tests\UnitTests\EmailSender.Core.Tests\EmailSender.Core.Tests.csproj", "{67B0B21F-6098-4044-8812-84183D71B551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender.SendGrid.Tests", "Shared\Utilities\EmailSender\Tests\UnitTests\EmailSender.SendGrid.Tests\EmailSender.SendGrid.Tests.csproj", "{3061E0A7-9064-43B3-8867-A9B3D87914E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender.SendGrid.Tests", "Shared\Utilities\EmailSender\Tests\UnitTests\EmailSender.SendGrid.Tests\EmailSender.SendGrid.Tests.csproj", "{3061E0A7-9064-43B3-8867-A9B3D87914E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender.FunctionalTests", "Shared\Utilities\EmailSender\Tests\FunctionalTests\EmailSender.FunctionalTests\EmailSender.FunctionalTests.csproj", "{F481F0C5-D268-4874-8116-2794CA3CDEF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender.FunctionalTests", "Shared\Utilities\EmailSender\Tests\FunctionalTests\EmailSender.FunctionalTests\EmailSender.FunctionalTests.csproj", "{F481F0C5-D268-4874-8116-2794CA3CDEF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogImages.Tests", "Services\CatalogImages\Tests\CatalogImages.Tests\CatalogImages.Tests.csproj", "{B4863833-789F-4FAF-9AF7-164FFA247409}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundTasks", "BackgroundTasks", "{C023F7E5-BA7E-41D6-9062-E9BFBAE75BE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.BackgroundTasks.Updater", "Services\Catalog\BackgroundTasks\CatalogService.BackgroundTasks.Updater\CatalogService.BackgroundTasks.Updater.csproj", "{E90B159C-1138-43B7-8A9E-100FCEC3EE35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -449,6 +455,14 @@ Global
 		{F481F0C5-D268-4874-8116-2794CA3CDEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F481F0C5-D268-4874-8116-2794CA3CDEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F481F0C5-D268-4874-8116-2794CA3CDEF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4863833-789F-4FAF-9AF7-164FFA247409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4863833-789F-4FAF-9AF7-164FFA247409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4863833-789F-4FAF-9AF7-164FFA247409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4863833-789F-4FAF-9AF7-164FFA247409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E90B159C-1138-43B7-8A9E-100FCEC3EE35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E90B159C-1138-43B7-8A9E-100FCEC3EE35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E90B159C-1138-43B7-8A9E-100FCEC3EE35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E90B159C-1138-43B7-8A9E-100FCEC3EE35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -553,6 +567,9 @@ Global
 		{67B0B21F-6098-4044-8812-84183D71B551} = {9203C08C-89A7-4CA1-AD76-6498F3230783}
 		{3061E0A7-9064-43B3-8867-A9B3D87914E0} = {9203C08C-89A7-4CA1-AD76-6498F3230783}
 		{F481F0C5-D268-4874-8116-2794CA3CDEF7} = {C81A0103-252A-4DA9-B04E-D0AA169EBD95}
+		{B4863833-789F-4FAF-9AF7-164FFA247409} = {9DFA0E0D-E486-445F-8836-7AB4832B979D}
+		{C023F7E5-BA7E-41D6-9062-E9BFBAE75BE0} = {FB93E612-A09C-4E88-9DBC-BB84029660CC}
+		{E90B159C-1138-43B7-8A9E-100FCEC3EE35} = {C023F7E5-BA7E-41D6-9062-E9BFBAE75BE0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16E930B6-CA49-4BBE-BD42-6D032E69A5C5}
