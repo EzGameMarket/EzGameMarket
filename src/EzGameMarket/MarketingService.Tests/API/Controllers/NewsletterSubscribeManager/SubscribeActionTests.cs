@@ -21,7 +21,7 @@ namespace MarketingService.Tests.API.Controllers.NewsletterSubscribeManager
         public SubscribeActionTests()
         {
             dbOptions = new DbContextOptionsBuilder<MarketingDbContext>()
-                .UseInMemoryDatabase(databaseName: $"db-marketing-test-{System.Reflection.MethodBase.GetCurrentMethod().Name}")
+                .UseInMemoryDatabase(databaseName: $"db-marketing-test-{System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName}")
                 .Options;
 
             using var dbContext = new MarketingDbContext(dbOptions);
