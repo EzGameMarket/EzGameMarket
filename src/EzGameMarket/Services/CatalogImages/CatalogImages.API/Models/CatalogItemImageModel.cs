@@ -9,6 +9,9 @@ namespace CatalogImages.API.Models
 {
     public class CatalogItemImageModel
     {
+        [NotMapped]
+        public static int MaxFileLength = 2_097_152;
+
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
@@ -22,9 +25,11 @@ namespace CatalogImages.API.Models
         public string ProductID { get; set; }
 
         [Required]
+        public int TypeID { get; set; }
         public ImageTypeModel Type { get; set; }
 
         [Required]
+        public int SizeID { get; set; }
         public ImageSizeModel Size { get; set; }
     }
 }
