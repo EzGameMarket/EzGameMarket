@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shared.Utiliies.CloudStorage.Shared.IntegrationEvents.Events.Download
+namespace Shared.Utilities.CloudStorage.Shared.IntegrationEvents.Events.Download
 {
     public class ObjectDownloadRequestedIntegrationEvent : CloudStorageIntegrationEvent
     {
