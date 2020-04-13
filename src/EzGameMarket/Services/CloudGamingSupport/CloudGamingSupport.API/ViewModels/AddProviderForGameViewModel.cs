@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CloudGamingSupport.API.ViewModels
 {
-    public class AddProviderForGameViewModel
+    public class ProviderModifyForGameViewModel
     {
         public int ProviderID { get; set; }
         public string ProductID { get; set; }

@@ -25,6 +25,6 @@ namespace CloudGamingSupport.API.Exceptions
         {
         }
 
-        public AddProviderForGameViewModel Model { get; set; }
+        public ProviderModifyForGameViewModel Model { get; set; }
     }
 }

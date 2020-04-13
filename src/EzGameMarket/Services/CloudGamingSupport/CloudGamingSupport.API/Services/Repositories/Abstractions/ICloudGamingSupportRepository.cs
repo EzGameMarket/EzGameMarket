@@ -15,7 +15,11 @@ namespace CloudGamingSupport.API.Services.Repositories.Abstractions
 
         Task Add(CloudGamingSupported model);
 
+        Task<bool> AnyWithID(int id);
+        Task<bool> AnyWithProductID(string productID);
+
         Task Modify(int id, CloudGamingSupported model);
-        Task AddProviderToGame(AddProviderForGameViewModel model);
+        Task AddProviderToGame(ProviderModifyForGameViewModel model);
+        Task RemoveProviderFromGame(ProviderModifyForGameViewModel model);
     }
 }

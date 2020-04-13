@@ -16,11 +16,11 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         private ProviderModifyForGameViewModel CreateModel() => new ProviderModifyForGameViewModel()
         {
             ProductID = "csgo",
-            ProviderID = 2
+            ProviderID = 1
         };
 
         [Fact]
-        public async void AddProviderForGame_ShouldReturnSuccessAnd1ProviderForCSGO()
+        public async void AddProviderForGame_ShouldReturnSuccessAnd0ProviderForCSGO()
         {
             //Arange
             var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + "-" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
@@ -28,7 +28,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
             var model = CreateModel();
-            var expectedProviderItemsSize = 1;
+            var expectedProviderItemsSize = 0;
 
             //Act
             var controller = new CGSupportController(repo);
@@ -104,7 +104,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         }
 
         [Fact]
-        public async void AddProviderForGame_ShouldReturnConflictForR6SId2ProviderIsAddedToR6S()
+        public async void AddProviderForGame_ShouldReturnConflictCSGOAndProviderID2()
         {
             //Arange
             var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + "-" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
@@ -113,19 +113,15 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
 
             var model = CreateModel();
             model.ProductID = "csgo";
-
-            var expectedProviderCount = 1;
+            model.ProviderID = 2;
 
             //Act
             var controller = new CGSupportController(repo);
             var actionResult = await controller.RemoveProviderFromGame(model);
-            var item = await repo.GetFromProductID(model.ProductID);
 
             //Assert
             Assert.NotNull(actionResult);
             Assert.IsType<ConflictResult>(actionResult);
-            Assert.NotNull(item);
-            Assert.Equal(expectedProviderCount, item.Providers.Count);
         }
 
         [Fact]

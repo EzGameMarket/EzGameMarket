@@ -13,7 +13,7 @@ namespace CloudGamingSupport.API.Services.Repositories.Abstractions
         Task Add(CloudGamingProvider model);
         Task Modify(int id, CloudGamingProvider model);
 
-        Task<bool> AlreadyAddedToSupportedGames(AddProviderForGameViewModel model);
+        Task<bool> AlreadyAddedToSupportedGames(ProviderModifyForGameViewModel model);
 
         Task<List<string>> GetSupportedGames(int id);
 

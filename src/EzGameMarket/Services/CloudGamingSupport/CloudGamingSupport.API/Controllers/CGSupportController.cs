@@ -64,8 +64,9 @@ namespace CloudGamingSupport.API.Controllers
         }
 
         [HttpPost]
-        [Route("product/add")]
-        public async Task<ActionResult> AddProviderForProduct([FromBody]AddProviderForGameViewModel model)
+        [Route("product/providers/add")]
+
+        public async Task<ActionResult> AddProviderForProduct([FromBody]ProviderModifyForGameViewModel model)
         {
             if (ModelState.IsValid == false || model.ProviderID <= 0 || string.IsNullOrEmpty(model.ProductID))
             {
@@ -79,6 +80,31 @@ namespace CloudGamingSupport.API.Controllers
                 return Ok();
             }
             catch (ProviderAlreadyAddedForProductException)
+            {
+                return Conflict();
+            }
+            catch (Exception ex) when (ex is CgNotFoundException || ex is CgProviderNotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        [Route("product/providers/remove")]
+        public async Task<ActionResult> RemoveProviderFromGame([FromBody]ProviderModifyForGameViewModel model)
+        {
+            if (ModelState.IsValid == false || model.ProviderID <= 0 || string.IsNullOrEmpty(model.ProductID))
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                await _cloudGamingSupportRepository.RemoveProviderFromGame(model);
+
+                return Ok();
+            }
+            catch (ProviderDoesNotAddedToTheGameYetException)
             {
                 return Conflict();
             }

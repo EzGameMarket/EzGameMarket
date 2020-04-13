@@ -43,7 +43,7 @@ namespace CloudGamingSupport.API.Services.Repositories.Implementations
 
         public Task<CloudGamingProvider> GetByProviderName(string providerName) => _dbContext.Providers.FirstOrDefaultAsync(p=> p.Name == providerName);
 
-        public async Task<bool> AlreadyAddedToSupportedGames(AddProviderForGameViewModel model)
+        public async Task<bool> AlreadyAddedToSupportedGames(ProviderModifyForGameViewModel model)
         {
             var provider = await Get(model.ProviderID);
 
