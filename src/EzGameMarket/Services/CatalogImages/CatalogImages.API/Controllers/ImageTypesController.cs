@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CatalogImages.API.Data;
 using CatalogImages.API.Models;
 using CatalogImages.API.Extensions.ImageType;
+using CatalogImages.API.Services.Repositories.Abstractions;
 
 namespace CatalogImages.API.Controllers
 {
@@ -15,18 +16,18 @@ namespace CatalogImages.API.Controllers
     [ApiController]
     public class ImageTypesController : ControllerBase
     {
-        private readonly CatalogImagesDbContext _context;
+        private readonly IImageTypeRepository _imageTypeRepository;
 
-        public ImageTypesController(CatalogImagesDbContext context)
+        public ImageTypesController(IImageTypeRepository imageTypeRepository)
         {
-            _context = context;
+            _imageTypeRepository = imageTypeRepository;
         }
 
         // GET: api/ImageTypes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ImageTypeModel>>> GetImageTypes()
         {
-            return await _context.ImageTypes.ToListAsync();
+            return await _imageTypeRepository.GetAllTypes();
         }
 
         // GET: api/ImageTypes/5
@@ -38,7 +39,26 @@ namespace CatalogImages.API.Controllers
                 return BadRequest();
             }
 
-            var imageType = await _context.ImageTypes.FindAsync(id);
+            var imageType = await _imageTypeRepository.GetByID(id.GetValueOrDefault());
+
+            if (imageType == null)
+            {
+                return NotFound();
+            }
+
+            return imageType;
+        }
+
+        [HttpGet("{id}")]
+        [Route("{id}/images")]
+        public async Task<ActionResult<ImageTypeModel>> GetImageTypeWithImages(int? id)
+        {
+            if (id == default || id <= 0)
+            {
+                return BadRequest();
+            }
+
+            var imageType = await _imageTypeRepository.GetByIDWithImages(id.GetValueOrDefault());
 
             if (imageType == null)
             {
@@ -60,10 +80,8 @@ namespace CatalogImages.API.Controllers
             {
                 return validateResult;
             }
-                
-            _context.Entry(imageType).State = EntityState.Modified;
 
-            await _context.SaveChangesAsync();
+            await _imageTypeRepository.Modify(id.GetValueOrDefault(), imageType);
 
             return Ok();
         }
@@ -81,8 +99,7 @@ namespace CatalogImages.API.Controllers
                 return validateResult;
             }
 
-            _context.ImageTypes.Add(imageType);
-            await _context.SaveChangesAsync();
+            await _imageTypeRepository.Add(imageType);
 
             return Ok();
         }
@@ -96,26 +113,19 @@ namespace CatalogImages.API.Controllers
                 return BadRequest();
             }
 
-            var imageType = await _context.ImageTypes.FindAsync(id);
+            var imageType = await _imageTypeRepository.GetByID(id.GetValueOrDefault());
             if (imageType == null)
             {
                 return NotFound();
             }
 
-            _context.ImageTypes.Remove(imageType);
-            await _context.SaveChangesAsync();
+            await _imageTypeRepository.Delete(id.GetValueOrDefault());
 
             return Ok();
         }
 
-        public Task<bool> ImageTypeExists(int? id)
-        {
-            return _context.ImageTypes.AnyAsync(e => e.ID == id);
-        }
+        public Task<bool> ImageTypeExists(int? id) => _imageTypeRepository.AnyWithID(id.GetValueOrDefault());
 
-        public Task<bool> ImageTypeWithNameExists(string name)
-        {
-            return _context.ImageTypes.AnyAsync(e => e.Name == name);
-        }
+        public Task<bool> ImageTypeWithNameExists(string name) => _imageTypeRepository.AnyWithName(name);
     }
 }

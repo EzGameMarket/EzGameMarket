@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CatalogImages.API.Data;
 using CatalogImages.API.Models;
 using CatalogImages.API.Extensions.ImageSize;
+using CatalogImages.API.Services.Repositories.Abstractions;
 
 namespace CatalogImages.API.Controllers
 {
@@ -15,18 +16,18 @@ namespace CatalogImages.API.Controllers
     [ApiController]
     public class ImageSizesController : ControllerBase
     {
-        private readonly CatalogImagesDbContext _context;
+        private readonly IImageSizeRepository _imageSizeRepository;
 
-        public ImageSizesController(CatalogImagesDbContext context)
+        public ImageSizesController(IImageSizeRepository imageSizeRepository)
         {
-            _context = context;
+            _imageSizeRepository = imageSizeRepository;
         }
 
         // GET: api/ImageSizes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ImageSizeModel>>> GetImageSizes()
         {
-            return await _context.ImageSizes.ToListAsync();
+             return await _imageSizeRepository.GetAllSizes();
         }
 
         // GET: api/ImageSizes/5
@@ -38,14 +39,38 @@ namespace CatalogImages.API.Controllers
                 return BadRequest();
             }
 
-            var imageSize = await _context.ImageSizes.FindAsync(id);
+            var imageSize = await _imageSizeRepository.GetByID(id.GetValueOrDefault());
 
-            if (imageSize == null)
+            if (imageSize != null)
+            {
+                return imageSize;
+            }
+            else
             {
                 return NotFound();
             }
+        }
 
-            return imageSize;
+        // GET: api/ImageSizes/5
+        [HttpGet("{id}")]
+        [Route("{id}/images")]
+        public async Task<ActionResult<ImageSizeModel>> GetImageSizeWithImages(int? id)
+        {
+            if (id == default || id <= 0)
+            {
+                return BadRequest();
+            }
+
+            var imageSize = await _imageSizeRepository.GetByIDWithImages(id.GetValueOrDefault());
+
+            if (imageSize != null)
+            {
+                return imageSize;
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // PUT: api/ImageSizes/5
@@ -61,9 +86,7 @@ namespace CatalogImages.API.Controllers
                 return validateResult;
             }
 
-            _context.Entry(imageSize).State = EntityState.Modified;
-
-            await _context.SaveChangesAsync();
+            await _imageSizeRepository.Modify(id.GetValueOrDefault(), imageSize);
 
             return Ok();
         }
@@ -81,8 +104,7 @@ namespace CatalogImages.API.Controllers
                 return validateResult;
             }
 
-            _context.ImageSizes.Add(imageSize);
-            await _context.SaveChangesAsync();
+            await _imageSizeRepository.Add(imageSize);
 
             return Ok();
         }
@@ -96,21 +118,16 @@ namespace CatalogImages.API.Controllers
                 return BadRequest();
             }
 
-            var imageSize = await _context.ImageSizes.FindAsync(id);
-            if (imageSize == null)
+            if(await ImageSizeExists(id) == false)
             {
                 return NotFound();
             }
 
-            _context.ImageSizes.Remove(imageSize);
-            await _context.SaveChangesAsync();
+            await _imageSizeRepository.Delete(id.GetValueOrDefault());
 
             return Ok();
         }
 
-        public Task<bool> ImageSizeExists(int? id)
-        {
-            return _context.ImageSizes.AnyAsync(e => e.ID == id);
-        }
+        public Task<bool> ImageSizeExists(int? id) => _imageSizeRepository.AnyWithID(id.GetValueOrDefault());
     }
 }
