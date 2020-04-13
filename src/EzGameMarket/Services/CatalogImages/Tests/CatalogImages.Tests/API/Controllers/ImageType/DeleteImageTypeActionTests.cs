@@ -1,5 +1,6 @@
 ﻿using CatalogImages.API.Controllers;
 using CatalogImages.API.Data;
+using CatalogImages.API.Services.Repositories.Implementations;
 using CatalogImages.Tests.FakeImplementations;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,16 +17,17 @@ namespace CatalogImages.Tests.API.Controllers.ImageType
         [InlineData(-1, typeof(BadRequestResult))]
         [InlineData(null, typeof(BadRequestResult))]
         [InlineData(100, typeof(NotFoundResult))]
-        public async void DeleteImageSizes(int? id, Type expecetedType)
+        public async void DeleteImageTypes(int? id, Type expecetedType)
         {
             //Arrange 
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{id}");
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
+            var repo = new ImageTypeRepository(dbContext);
 
 
             //Act
-            var controller = new ImageTypesController(dbContext);
+            var controller = new ImageTypesController(repo);
             var actionResult = await controller.DeleteImageType(id);
 
 

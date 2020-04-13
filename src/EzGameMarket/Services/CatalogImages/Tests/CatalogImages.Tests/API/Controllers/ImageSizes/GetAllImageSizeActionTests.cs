@@ -21,11 +21,12 @@ namespace CatalogImages.Tests.API.Controllers.ImageSizes
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
+            var repo = new ImageSizeRepository(dbContext);
 
             var expectedItemsSize = 2;
 
             //Act
-            var controller = new ImageSizesController(dbContext);
+            var controller = new ImageSizesController(repo);
             var actionResult = await controller.GetImageSizes();
 
             

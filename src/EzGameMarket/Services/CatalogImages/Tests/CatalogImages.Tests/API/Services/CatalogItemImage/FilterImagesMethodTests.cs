@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace CatalogImages.Tests.API.Repository.CatalogItemImage
+namespace CatalogImages.Tests.API.Services.CatalogItemImage
 {
     public class FilterImagesMethodTests
     {
@@ -23,7 +23,7 @@ namespace CatalogImages.Tests.API.Repository.CatalogItemImage
             var dbContext = new CatalogImagesDbContext(dbOptions);
 
             //Act
-            var repo = new CatalogItemImageRepository(dbContext);
+            var repo = new CatalogItemImageService(dbContext);
             var actual = await repo.GetAllImageForProductIDByFiltering(productID, filterName, sizeName);
 
             //Assert

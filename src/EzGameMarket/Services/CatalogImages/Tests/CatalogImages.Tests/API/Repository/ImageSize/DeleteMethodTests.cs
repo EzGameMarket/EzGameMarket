@@ -1,6 +1,5 @@
 ﻿using CatalogImages.API.Data;
-using CatalogImages.API.Exceptions.CatalogItemImages.Model;
-using CatalogImages.API.Models;
+using CatalogImages.API.Exceptions.ImageSize.Model;
 using CatalogImages.API.Services.Repositories.Implementations;
 using CatalogImages.Tests.FakeImplementations;
 using System;
@@ -8,46 +7,45 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace CatalogImages.Tests.API.Repository.CatalogItemImage
+namespace CatalogImages.Tests.API.Repository.ImageSize
 {
-    public class GetImagesByProductIDMethodTests
+    public class DeleteMethodTests
     {
         [Fact]
-        public async void GetByID_ShouldReturnSuccess()
+        public async void Delete_ShouldReturnSuccess()
         {
             //Arrange 
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
 
-            var productID = "csgo";
-            var expectedItemsSize = 2;
+            var id = 1;
 
             //Act
-            var repo = new CatalogItemImageRepository(dbContext);
-            var actual = await repo.GetAllImageForProductID(productID);
+            var repo = new ImageSizeRepository(dbContext);
+            await repo.Delete(id);
+            var data = await repo.GetByID(id);
 
             //Assert
-            Assert.NotNull(actual);
-            Assert.Equal(expectedItemsSize,actual.Count);
+            Assert.Null(data);
         }
 
         [Fact]
-        public async void GetByID_ShouldReturnNotFoundForHL2()
+        public async void Delete_ShouldThrowImageSizeNotFoundException()
         {
             //Arrange 
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
 
-            var productID = "hl2";
+            var id = 100;
 
             //Act
-            var repo = new CatalogItemImageRepository(dbContext);
-            var actual = await repo.GetAllImageForProductID(productID);
+            var repo = new ImageSizeRepository(dbContext);
+            var deleteTask = repo.Delete(id);
 
             //Assert
-            Assert.Empty(actual);
+            await Assert.ThrowsAsync<ImageSizeNotFoundByIDException>(()=> deleteTask);
         }
     }
 }

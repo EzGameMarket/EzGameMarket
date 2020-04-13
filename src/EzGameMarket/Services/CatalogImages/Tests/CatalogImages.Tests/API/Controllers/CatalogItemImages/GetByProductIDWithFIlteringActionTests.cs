@@ -1,20 +1,20 @@
-﻿using System;
+﻿using CatalogImages.API.Controllers;
+using CatalogImages.API.Data;
+using CatalogImages.API.Models;
+using CatalogImages.API.Services.Repositories.Implementations;
+using CatalogImages.Tests.FakeImplementations;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
-using CatalogImages.Tests.FakeImplementations;
-using CatalogImages.API.Data;
-using CatalogImages.API.Services.Repositories.Implementations;
-using CatalogImages.API.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using CatalogImages.API.Models;
 
 namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
 {
-    public class GetByProductIDActionTests
+    public class GetByProductIDWithFIlteringActionTests
     {
         [Fact]
-        public async void GetByID_ShouldReturnSuccessForCSGO()
+        public async void GetByIDWithFiltering_ShouldReturnSuccessForCSGO()
         {
             //Arrange 
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
@@ -23,22 +23,24 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var repo = new CatalogItemImageService(dbContext);
 
             var productID = "csgo";
-            var expectedItemsSize = 2;
+            var expectedItemsSize = 1;
+            var typeName = "Catalog";
+            var sizeName = default(string);
 
             //Act
             var controller = new CatalogItemImagesController(repo);
-            var actionResult = await controller.GetImagesForProductID(productID);
+            var actionResult = await controller.GetImagesForProductIDWithFiltering(productID, typeName, sizeName);
 
             //Assert
             Assert.NotNull(actionResult);
             Assert.IsType<ActionResult<List<CatalogItemImageModel>>>(actionResult);
             var value = Assert.IsAssignableFrom<List<CatalogItemImageModel>>(actionResult.Value);
             Assert.NotNull(value);
-            Assert.Equal(expectedItemsSize,value.Count);
+            Assert.Equal(expectedItemsSize, value.Count);
         }
 
         [Fact]
-        public async void GetByID_ShouldReturnBadRequestForEmptyStringProductID()
+        public async void GetByIDWithFiltering_ShouldReturnBadRequestForEmptyStringProductID()
         {
             //Arrange 
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
@@ -47,10 +49,12 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var repo = new CatalogItemImageService(dbContext);
 
             var productID = string.Empty;
+            var typeName = "Catalog";
+            var sizeName = default(string);
 
             //Act
             var controller = new CatalogItemImagesController(repo);
-            var actionResult = await controller.GetImagesForProductID(productID);
+            var actionResult = await controller.GetImagesForProductIDWithFiltering(productID, typeName, sizeName);
 
             //Assert
             Assert.NotNull(actionResult);
@@ -58,7 +62,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
         }
 
         [Fact]
-        public async void GetByID_ShouldReturnNotFoundForHL2()
+        public async void GetByIDWithFiltering_ShouldReturnNotFoundForHL2()
         {
             //Arrange 
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
@@ -67,10 +71,12 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var repo = new CatalogItemImageService(dbContext);
 
             var productID = "hl2";
+            var typeName = "Catalog";
+            var sizeName = default(string);
 
             //Act
             var controller = new CatalogItemImagesController(repo);
-            var actionResult = await controller.GetImagesForProductID(productID);
+            var actionResult = await controller.GetImagesForProductIDWithFiltering(productID, typeName, sizeName);
 
             //Assert
             Assert.NotNull(actionResult);

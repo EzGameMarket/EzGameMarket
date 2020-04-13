@@ -1,6 +1,7 @@
 ﻿using CatalogImages.API.Controllers;
 using CatalogImages.API.Data;
 using CatalogImages.API.Models;
+using CatalogImages.API.Services.Repositories.Implementations;
 using CatalogImages.Tests.FakeImplementations;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -27,11 +28,12 @@ namespace CatalogImages.Tests.API.Controllers.ImageSizes
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
+            var repo = new ImageSizeRepository(dbContext);
 
             var model = CreateModel();
 
             //Act
-            var controller = new ImageSizesController(dbContext);
+            var controller = new ImageSizesController(repo);
             var actionResult = await controller.PostImageSize(model);
 
 
@@ -48,10 +50,11 @@ namespace CatalogImages.Tests.API.Controllers.ImageSizes
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{expectedErrorMSG}");
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
+            var repo = new ImageSizeRepository(dbContext);
 
-            
+
             //Act
-            var controller = new ImageSizesController(dbContext);
+            var controller = new ImageSizesController(repo);
             var actionResult = await controller.PostImageSize(model);
 
 
@@ -77,12 +80,13 @@ namespace CatalogImages.Tests.API.Controllers.ImageSizes
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
+            var repo = new ImageSizeRepository(dbContext);
 
             var model = CreateModel();
             model.ID = 1;
 
             //Act
-            var controller = new ImageSizesController(dbContext);
+            var controller = new ImageSizesController(repo);
             var actionResult = await controller.PostImageSize(model);
 
 

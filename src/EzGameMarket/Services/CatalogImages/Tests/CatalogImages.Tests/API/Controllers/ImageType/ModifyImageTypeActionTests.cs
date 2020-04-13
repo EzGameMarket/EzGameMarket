@@ -1,6 +1,7 @@
 ﻿using CatalogImages.API.Controllers;
 using CatalogImages.API.Data;
 using CatalogImages.API.Models;
+using CatalogImages.API.Services.Repositories.Implementations;
 using CatalogImages.Tests.FakeImplementations;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,13 +26,14 @@ namespace CatalogImages.Tests.API.Controllers.ImageType
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
+            var repo = new ImageTypeRepository(dbContext);
 
             var id = 1;
             var model = CreateModel();
             model.ID = id;
 
             //Act
-            var controller = new ImageTypesController(dbContext);
+            var controller = new ImageTypesController(repo);
             var actionResult = await controller.PutImageType(id, model);
 
 
@@ -48,9 +50,10 @@ namespace CatalogImages.Tests.API.Controllers.ImageType
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{expectedErrorMSG}");
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
+            var repo = new ImageTypeRepository(dbContext);
 
             //Act
-            var controller = new ImageTypesController(dbContext);
+            var controller = new ImageTypesController(repo);
             var actionResult = await controller.PutImageType(id, model);
 
 
@@ -74,13 +77,14 @@ namespace CatalogImages.Tests.API.Controllers.ImageType
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
+            var repo = new ImageTypeRepository(dbContext);
 
             var id = 100;
             var model = CreateModel();
             model.ID = id;
 
             //Act
-            var controller = new ImageTypesController(dbContext);
+            var controller = new ImageTypesController(repo);
             var actionResult = await controller.PutImageType(id, model);
 
 

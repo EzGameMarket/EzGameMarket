@@ -9,30 +9,30 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace CatalogImages.Tests.API.Controllers.ImageType
+namespace CatalogImages.Tests.API.Controllers.ImageSizes
 {
-    public class GetImageTypeActionTests
+    public class GetByIDWithImagesActionTests
     {
         [Theory]
-        [InlineData(1, typeof(ImageTypeModel))]
+        [InlineData(1, typeof(ImageSizeModel))]
         [InlineData(-1, typeof(BadRequestResult))]
         [InlineData(null, typeof(BadRequestResult))]
         [InlineData(4, typeof(NotFoundResult))]
-        public async void GetImageTypesByID(int? id, Type expectedType)
+        public async void GetImageSizesByID(int? id, Type expectedType)
         {
             //Arrange 
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{id}");
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
-            var repo = new ImageTypeRepository(dbContext);
+            var repo = new ImageSizeRepository(dbContext);
 
             //Act
-            var controller = new ImageTypesController(repo);
-            var actionResult = await controller.GetImageType(id);
+            var controller = new ImageSizesController(repo);
+            var actionResult = await controller.GetImageSizeWithImages(id);
 
             //Assert
             Assert.NotNull(actionResult);
-            Assert.IsType<ActionResult<ImageTypeModel>>(actionResult);
+            Assert.IsType<ActionResult<ImageSizeModel>>(actionResult);
 
             if (actionResult.Value != default)
             {

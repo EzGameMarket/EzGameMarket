@@ -11,7 +11,7 @@ using Xunit;
 
 namespace CatalogImages.Tests.API.Controllers.ImageType
 {
-    public class GetImageTypeActionTests
+    public class GetByIDWithImagesActionTests
     {
         [Theory]
         [InlineData(1, typeof(ImageTypeModel))]
@@ -28,7 +28,7 @@ namespace CatalogImages.Tests.API.Controllers.ImageType
 
             //Act
             var controller = new ImageTypesController(repo);
-            var actionResult = await controller.GetImageType(id);
+            var actionResult = await controller.GetImageTypeWithImages(id);
 
             //Assert
             Assert.NotNull(actionResult);

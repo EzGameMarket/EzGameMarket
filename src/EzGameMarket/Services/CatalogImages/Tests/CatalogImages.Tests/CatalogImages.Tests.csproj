@@ -16,11 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="API\Repository\Image\" />
-    <Folder Include="API\Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\CatalogImages.API\CatalogImages.API.csproj" />
   </ItemGroup>
 

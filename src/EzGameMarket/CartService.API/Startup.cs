@@ -42,6 +42,7 @@ namespace CartService.API
 
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<ICartRepository, CartRepository>();
+
             services.AddSingleton<IEventBusRepository, MagicBus>();
         }
 

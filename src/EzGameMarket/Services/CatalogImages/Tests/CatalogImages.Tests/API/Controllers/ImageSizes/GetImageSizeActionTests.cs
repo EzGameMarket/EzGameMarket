@@ -1,6 +1,7 @@
 ﻿using CatalogImages.API.Controllers;
 using CatalogImages.API.Data;
 using CatalogImages.API.Models;
+using CatalogImages.API.Services.Repositories.Implementations;
 using CatalogImages.Tests.FakeImplementations;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,9 +25,10 @@ namespace CatalogImages.Tests.API.Controllers.ImageSizes
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+$"{id}");
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
+            var repo = new ImageSizeRepository(dbContext);
 
             //Act
-            var controller = new ImageSizesController(dbContext);
+            var controller = new ImageSizesController(repo);
             var actionResult = await controller.GetImageSize(id);
 
             //Assert
