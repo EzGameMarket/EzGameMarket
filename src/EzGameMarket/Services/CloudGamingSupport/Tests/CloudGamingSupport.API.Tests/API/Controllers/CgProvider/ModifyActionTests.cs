@@ -12,7 +12,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
 {
     public class ModifyActionTests
     {
-        FakeCGDbContext _dbContext = new FakeCGDbContext();
+        
 
         private CloudGamingProvider CreateModel() => new CloudGamingProvider()
         {
@@ -22,8 +22,8 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
             Url = "https://www.nvidia.com/en-eu/geforce-now/",
             SupportedGames = new List<CloudGamingProvidersAndGames>()
             {
-                FakeCGDbContext.Matches[0],
-                FakeCGDbContext.Matches[1],
+                FakeCGDbContext.CreateMatches()[0],
+                FakeCGDbContext.CreateMatches()[1],
             }
         };
 
@@ -31,7 +31,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
         public async void Modify_ModifiedItemShouldReturnSuccess()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
 
             var model = CreateModel();
@@ -53,7 +53,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
         public async void Modify_ShouldReturnBadReqeustForInvalidModel()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
 
             var model = CreateModel();
@@ -73,7 +73,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
         public async void Modify_ShouldReturnBadReqeustForIDMinus1()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
 
             var id = -1;
@@ -94,7 +94,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
         public async void Modify_ShouldReturnNotFoundForID200()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
 
             var id = 200;

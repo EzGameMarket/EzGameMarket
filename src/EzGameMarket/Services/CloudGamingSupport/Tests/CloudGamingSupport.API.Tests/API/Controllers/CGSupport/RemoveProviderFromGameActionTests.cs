@@ -11,7 +11,7 @@ using Xunit;
 
 namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
 {
-    public class AddProviderForGameActionTests
+    public class RemoveProviderFromGameActionTests
     {
         private ProviderModifyForGameViewModel CreateModel() => new ProviderModifyForGameViewModel()
         {
@@ -20,19 +20,19 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         };
 
         [Fact]
-        public async void AddProviderForGame_ShouldReturnSuccessAnd2ProviderForCSGO()
+        public async void AddProviderForGame_ShouldReturnSuccessAnd1ProviderForCSGO()
         {
             //Arange
-            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + "-" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
             var model = CreateModel();
-            var expectedProviderItemsSize = 2;
+            var expectedProviderItemsSize = 1;
 
             //Act
             var controller = new CGSupportController(repo);
-            var actionResult = await controller.AddProviderForProduct(model);
+            var actionResult = await controller.RemoveProviderFromGame(model);
             var item = await repo.GetFromProductID(model.ProductID);
 
             //Assert
@@ -46,7 +46,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         public async void AddProviderForGame_ShouldReturnBadRequestForProviderIDMinus1()
         {
             //Arange
-            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + "-" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
@@ -55,7 +55,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
 
             //Act
             var controller = new CGSupportController(repo);
-            var actionResult = await controller.AddProviderForProduct(model);
+            var actionResult = await controller.RemoveProviderFromGame(model);
 
             //Assert
             Assert.NotNull(actionResult);
@@ -66,7 +66,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         public async void AddProviderForGame_ShouldReturnBadRequestForEmptyStringProductID()
         {
             //Arange
-            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + "-" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
@@ -75,7 +75,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
 
             //Act
             var controller = new CGSupportController(repo);
-            var actionResult = await controller.AddProviderForProduct(model);
+            var actionResult = await controller.RemoveProviderFromGame(model);
 
             //Assert
             Assert.NotNull(actionResult);
@@ -86,7 +86,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         public async void AddProviderForGame_ShouldReturnBadRequestForInvalidModelState()
         {
             //Arange
-            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + "-" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
@@ -95,8 +95,8 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
 
             //Act
             var controller = new CGSupportController(repo);
-            controller.ModelState.AddModelError("ProductID","A product id nem lehet üres");
-            var actionResult = await controller.AddProviderForProduct(model);
+            controller.ModelState.AddModelError("ProductID", "A product id nem lehet üres");
+            var actionResult = await controller.RemoveProviderFromGame(model);
 
             //Assert
             Assert.NotNull(actionResult);
@@ -107,32 +107,32 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         public async void AddProviderForGame_ShouldReturnConflictForR6SId2ProviderIsAddedToR6S()
         {
             //Arange
-            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + "-" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
             var model = CreateModel();
-            model.ProductID = "r6s";
+            model.ProductID = "csgo";
+
+            var expectedProviderCount = 1;
 
             //Act
             var controller = new CGSupportController(repo);
-            var actionResult = await controller.AddProviderForProduct(model);
+            var actionResult = await controller.RemoveProviderFromGame(model);
             var item = await repo.GetFromProductID(model.ProductID);
 
             //Assert
             Assert.NotNull(actionResult);
             Assert.IsType<ConflictResult>(actionResult);
             Assert.NotNull(item);
-            var expectedProviderID = FakeCGDbContext.CreateProviders()[model.ProviderID - 1].ID.GetValueOrDefault();
-            var gamesProviderIDs = item.Providers.Select(p => p.CloudGamingProviderID);
-            Assert.Contains(expectedProviderID, gamesProviderIDs);
+            Assert.Equal(expectedProviderCount, item.Providers.Count);
         }
 
         [Fact]
         public async void AddProviderForGame_ShouldReturnNotFoundForProductIDDoom()
         {
             //Arange
-            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + "-" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
@@ -141,7 +141,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
 
             //Act
             var controller = new CGSupportController(repo);
-            var actionResult = await controller.AddProviderForProduct(model);
+            var actionResult = await controller.RemoveProviderFromGame(model);
             var item = await repo.GetFromProductID(model.ProductID);
 
             //Assert
@@ -153,7 +153,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         public async void AddProviderForGame_ShouldReturnNotFoundForProviderID5()
         {
             //Arange
-            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + "-" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
@@ -162,7 +162,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
 
             //Act
             var controller = new CGSupportController(repo);
-            var actionResult = await controller.AddProviderForProduct(model);
+            var actionResult = await controller.RemoveProviderFromGame(model);
 
             //Assert
             Assert.NotNull(actionResult);

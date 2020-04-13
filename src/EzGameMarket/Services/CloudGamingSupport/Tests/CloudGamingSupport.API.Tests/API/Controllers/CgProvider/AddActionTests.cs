@@ -12,8 +12,6 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
 {
     public class AddActionTests
     {
-        FakeCGDbContext _dbContext = new FakeCGDbContext();
-
         private CloudGamingProvider CreateModel() => new CloudGamingProvider()
         {
             ID = default,
@@ -27,7 +25,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
         public async void Add_NewItemShouldReturnSuccess()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
             var model = CreateModel();
             var id = 3;
@@ -48,7 +46,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
         public async void Add_ShouldReturnBadReqeustForInvalidModel()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
 
             var model = CreateModel();
@@ -68,7 +66,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
         public async void Add_ShouldReturnConflictForID1()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
 
             var model = CreateModel();
@@ -87,11 +85,11 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
         public async void Add_ShouldReturnConflictForStadia()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
 
             var model = CreateModel();
-            model.Name = FakeCGDbContext.Providers[0].Name;
+            model.Name = FakeCGDbContext.CreateProviders()[0].Name;
 
             //Act
             var controller = new CgProviderController (repo);

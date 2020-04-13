@@ -12,13 +12,13 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
 {
     public class GetFromProductIDActionTests
     {
-        FakeCGDbContext _dbContext = new FakeCGDbContext();
+        
 
         [Fact]
         public async void GetFromProductID_ShouldReturnSuccessAnd2ProviderForR6S()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
@@ -42,10 +42,10 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         }
 
         [Fact]
-        public async void GetFromProductID_ShouuldReturnBadRequestForEmptyString()
+        public async void GetFromProductID_ShouldReturnBadRequestForEmptyString()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
@@ -61,10 +61,10 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         }
 
         [Fact]
-        public async void GetFromProductID_ShouuldReturnNotFoundForProductIDHL2()
+        public async void GetFromProductID_ShouldReturnNotFoundForProductIDHL2()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 

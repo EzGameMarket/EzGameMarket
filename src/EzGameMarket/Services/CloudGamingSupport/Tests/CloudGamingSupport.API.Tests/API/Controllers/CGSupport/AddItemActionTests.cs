@@ -18,7 +18,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
             ProductID = "cod",
             Providers = new List<CloudGamingProvidersAndGames>()
             {
-                FakeCGDbContext.Matches[0]
+                FakeCGDbContext.CreateMatches()[0]
             }
         };
 
@@ -26,7 +26,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         public async void Add_NewItemShouldReturnSuccess()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
@@ -51,7 +51,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         public async void Add_ShouldReturnBadReqeustForInvalidModel()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
@@ -72,7 +72,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         public async void Add_ShouldReturnConflictForID1()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 
@@ -92,7 +92,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CGSupport
         public async void Add_ShouldReturnConflictForCSGO()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var providerRepo = new CloudGamingProviderRepository(dbContext.DbContext);
             var repo = new CloudGamingSupportRepository(dbContext.DbContext, providerRepo);
 

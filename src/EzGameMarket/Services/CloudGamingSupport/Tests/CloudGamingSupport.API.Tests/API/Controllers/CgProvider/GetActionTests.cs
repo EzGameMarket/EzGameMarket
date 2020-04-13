@@ -12,13 +12,11 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
 {
     public class GetActionTests
     {
-        FakeCGDbContext _dbContext = new FakeCGDbContext();
-
         [Fact]
         public async void Get_ShouldReturnSuccessAnd2ProviderForR6S()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
 
             var id = 1;
@@ -41,7 +39,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
         public async void Get_ShouldReturnBadRequestForIDMinus1()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
 
             var id = -1;
@@ -59,7 +57,7 @@ namespace CloudGamingSupport.API.Tests.API.Controllers.CgProvider
         public async void Get_ShouldReturnNotFoundForProductIDHL2()
         {
             //Arange
-            var dbContext = new FakeCGDbContext();
+            var dbContext = new FakeCGDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+"-"+ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.GUID.ToString());
             var repo = new CloudGamingProviderRepository(dbContext.DbContext);
 
             var id = 5;
