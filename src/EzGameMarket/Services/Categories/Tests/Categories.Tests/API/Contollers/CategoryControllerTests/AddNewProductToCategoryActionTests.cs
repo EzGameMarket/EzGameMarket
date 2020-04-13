@@ -16,7 +16,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void AddNewProductToTag_ShouldReturnSuccessAndHL2ForFPS()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             var categoryID = 1;
             var productID = "hl2";
@@ -38,7 +38,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void AddNewProductToTag_ShouldReturnBadRequestForProductIDIsStringEmpty()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             var categoryID = -1;
             var productID = "";
@@ -57,7 +57,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void AddNewProductToTag_ShouldReturnBadRequestForTagIdIsMinus1()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             var categoryID = -1;
             var productID = "";
@@ -76,7 +76,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void AddNewProductToTag_ShouldReturnNotFoundID200()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             var categoryID = 200;
             var productID = "csgo";

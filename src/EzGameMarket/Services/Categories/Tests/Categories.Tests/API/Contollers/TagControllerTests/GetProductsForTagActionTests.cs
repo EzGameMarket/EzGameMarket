@@ -17,7 +17,7 @@ namespace Categories.Tests.API.Contollers.TagControllerTests
         public async void GetProductsForTagID_ShouldReturnSuccessForID1And3Products()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new TagRepository(dbContext.DbContext);
             var tagID = 1;
 
@@ -43,7 +43,7 @@ namespace Categories.Tests.API.Contollers.TagControllerTests
         public async void GetProductsForTagID_ShouldReturnBadRequestForIDMinus1()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new TagRepository(dbContext.DbContext);
             var tagID = -1;
 
@@ -60,7 +60,7 @@ namespace Categories.Tests.API.Contollers.TagControllerTests
         public async void GetProductsForTagID_ShouldReturnNotFoundID200()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new TagRepository(dbContext.DbContext);
             var tagID = 200;
 

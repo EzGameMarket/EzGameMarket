@@ -16,7 +16,7 @@ namespace Categories.Tests.API.Contollers.TagControllerTests
         public async void GetAllForProduct_ShouldReturnSuccessForCsgoAnd2Tags()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new TagRepository(dbContext.DbContext);
             var productID = "csgo";
 
@@ -42,7 +42,7 @@ namespace Categories.Tests.API.Contollers.TagControllerTests
         public async void GetAllForProduct_ShouldReturnBadRequestForEmptyString()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new TagRepository(dbContext.DbContext);
             var productID = string.Empty;
 
@@ -59,7 +59,7 @@ namespace Categories.Tests.API.Contollers.TagControllerTests
         public async void GetAllForProduct_ShouldReturnNotFoundForHL2()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new TagRepository(dbContext.DbContext);
             var productID = "hl2";
 

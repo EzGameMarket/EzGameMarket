@@ -27,7 +27,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void AddNewTag_ShouldReturnSuccessAndRPGTag()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             //var tagID = 4;
 
@@ -50,7 +50,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void AddNewTag_ShouldReturnBadRequestForTagNameIsEmptyString()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             var model = CreateModel();
             model.Name = string.Empty;
@@ -68,7 +68,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void AddNewTag_ShouldReturnConflictForTagIdIs1()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             var model = CreateModel();
             model.ID = 1;
@@ -86,7 +86,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void AddNewTag_ShouldReturnBadRequestForModelIsInValid()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             var model = CreateModel();
             model.Name = default;

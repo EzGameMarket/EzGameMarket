@@ -16,7 +16,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void GetForID_ShouldReturnSuccessForID1And1Tag()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             var categoryID = 1;
 
@@ -37,7 +37,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void GetForID_ShouldReturnBadRequestForIDMinus1()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             var categoryID = -1;
 
@@ -54,7 +54,7 @@ namespace Categories.Tests.API.Contollers.CategoryControllerTests
         public async void GetForID_ShouldReturnNotFoundID200()
         {
             //Arange
-            var dbContext = new FakeCategoryDbContext();
+            var dbContext = new FakeCategoryDbContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             var repo = new CategoryRepository(dbContext.DbContext);
             var categoryID = 200;
 

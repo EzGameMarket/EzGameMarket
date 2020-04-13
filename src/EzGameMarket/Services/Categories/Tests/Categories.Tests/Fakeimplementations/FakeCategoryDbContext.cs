@@ -12,7 +12,7 @@ namespace Categories.Tests.Fakeimplementations
         public CategoryDbContext DbContext { get; set; }
         public DbContextOptions<CategoryDbContext> DbOptions { get; set; }
 
-        public FakeCategoryDbContext()
+        public FakeCategoryDbContext(string dbName)
         {
             var tags = new List<Tag>()
             {
@@ -135,20 +135,13 @@ namespace Categories.Tests.Fakeimplementations
             };
 
             DbOptions = new DbContextOptionsBuilder<CategoryDbContext>()
-                .UseInMemoryDatabase(databaseName: $"in-memory-categories-test").EnableSensitiveDataLogging()
+                .UseInMemoryDatabase(databaseName: $"in-memory-categories-test-{dbName}").EnableSensitiveDataLogging()
                 .Options;
 
-            try
-            {
-                DbContext = new CategoryDbContext(DbOptions);
-                DbContext.AddRange(tags);
-                DbContext.AddRange(categories);
-                DbContext.SaveChanges();
-            }
-            catch (Exception)
-            {
-                DbContext.ChangeTracker.AcceptAllChanges();
-            }
+            DbContext = new CategoryDbContext(DbOptions);
+            DbContext.AddRange(tags);
+            DbContext.AddRange(categories);
+            DbContext.SaveChanges();
         }
     }
 }
