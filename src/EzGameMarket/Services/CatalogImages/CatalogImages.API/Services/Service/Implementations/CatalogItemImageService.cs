@@ -1,6 +1,6 @@
 ﻿using CatalogImages.API.Data;
 using CatalogImages.API.Models;
-using CatalogImages.API.Services.Repositories.Abstractions;
+using CatalogImages.API.Services.Service.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CatalogImages.API.Services.Repositories.Implementations
 {
-    public class CatalogItemImageRepository : ICatalogItemImageRepository
+    public class CatalogItemImageService : ICatalogItemImageService
     {
         private CatalogImagesDbContext _dbContext;
 
-        public CatalogItemImageRepository(CatalogImagesDbContext dbContext)
+        public CatalogItemImageService(CatalogImagesDbContext dbContext)
         {
             _dbContext = dbContext;
         }
