@@ -5,4 +5,13 @@
     <RootNamespace>Shared.Utiliies.CloudStorage.AzureBlob</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CloudStorage.Settings\CloudStorage.Settings.csproj" />
+    <ProjectReference Include="..\CloudStorage.Shared\CloudStorage.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
