@@ -7,6 +7,7 @@ using System.Text;
 using Azure.Storage.Blobs;
 using System.Threading.Tasks;
 using Azure;
+using Shared.Utilities.CloudStorage.Shared.Extensions;
 
 namespace Shared.Utilities.CloudStorage.AzureBlob
 {
@@ -61,13 +62,13 @@ namespace Shared.Utilities.CloudStorage.AzureBlob
         }
 
         public Task<bool> UploadFromByteArray(byte[] data) =>
-            UploadFromByteArrayWithID(Guid.NewGuid().ToString(), data);
+            UploadFromByteArrayWithID("".GenerateUniqueID(), data);
 
         public Task<bool> UploadFromByteArrayWithID(string id, byte[] data)
             => UploadFromStreamWithID(id, new MemoryStream(data));
 
         public Task<bool> UploadFromStream(Stream stream) =>
-            UploadFromStreamWithID(Guid.NewGuid().ToString(), stream);
+            UploadFromStreamWithID("".GenerateUniqueID(), stream);
 
         public async Task<bool> UploadFromStreamWithID(string id, Stream stream)
         {
