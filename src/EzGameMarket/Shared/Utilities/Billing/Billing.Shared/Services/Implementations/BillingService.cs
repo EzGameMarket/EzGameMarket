@@ -1,4 +1,6 @@
 ﻿using EventBus.Shared.Abstraction;
+using Shared.Utilities.Billing.Shared.IntegrationEvents.Events.Create;
+using Shared.Utilities.Billing.Shared.IntegrationEvents.Events.Storno;
 using Shared.Utilities.Billing.Shared.Services.Abstractions;
 using Shared.Utilities.Billing.Shared.ViewModels;
 using System;
@@ -13,29 +15,54 @@ namespace Shared.Utilities.Billing.Shared.Services.Implementations
         private IBillingRepository _billingRepository;
         private IEventBusRepository _eventBus;
 
-        public Task CreateInvoiceAsync(BillViewModel model)
+        public BillingService(IBillingRepository billingRepository, IEventBusRepository eventBus)
         {
-            throw new NotImplementedException();
+            _billingRepository = billingRepository;
+            _eventBus = eventBus;
         }
 
-        public Task<IEnumerable<BillViewModel>> GetAll()
+        public async Task CreateInvoiceAsync(BillViewModel model)
         {
-            throw new NotImplementedException();
+            if (model != default)
+            {
+                try
+                {
+                    await _billingRepository.Bill(model);
+
+                    _eventBus.Publish(new BillingSuccessIntegrationEvent());
+                }
+                catch (Exception ex)
+                {
+                    _eventBus.Publish(new BillingFailedIntegrationEvent(ex));
+
+                    throw;
+                }
+            }
         }
 
-        public Task<BillViewModel> GetByID(string id)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<IEnumerable<BillViewModel>> GetAll() => _billingRepository.GetAll();
 
-        public Task<IEnumerable<BillViewModel>> GetByIDs(IEnumerable<string> id)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<BillViewModel> GetByID(string id) => _billingRepository.GetByID(id);
 
-        public Task Strono(string id)
+        public Task<IEnumerable<BillViewModel>> GetByIDs(IEnumerable<string> ids) => _billingRepository.GetByIDs(ids);
+
+        public async Task Strono(string id)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(id) == default)
+            {
+                try
+                {
+                    await _billingRepository.Storno(id);
+
+                    _eventBus.Publish(new BillStornoSuccessfullIntegrationEvent());
+                }
+                catch (Exception ex)
+                {
+                    _eventBus.Publish(new BillStornoFailedIntegrationEvent(ex));
+
+                    throw;
+                }
+            }
         }
     }
 }

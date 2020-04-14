@@ -13,6 +13,6 @@ namespace Shared.Utilities.Billing.Shared.Services.Abstractions
 
         Task<IEnumerable<BillViewModel>> GetAll();
         Task<BillViewModel> GetByID(string id);
-        Task<IEnumerable<BillViewModel>> GetByIDs(IEnumerable<string> id);
+        Task<IEnumerable<BillViewModel>> GetByIDs(IEnumerable<string> ids);
     }
 }

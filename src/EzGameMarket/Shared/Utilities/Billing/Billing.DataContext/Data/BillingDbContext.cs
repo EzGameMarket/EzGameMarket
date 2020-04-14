@@ -11,8 +11,5 @@ namespace Billing.DataContext.Data
         public BillingDbContext(DbContextOptions options) : base(options)
         {
         }
-
-        public DbSet<Bill> Bills { get; set; }
-        public DbSet<BillAction> Actions { get; set; }
     }
 }
