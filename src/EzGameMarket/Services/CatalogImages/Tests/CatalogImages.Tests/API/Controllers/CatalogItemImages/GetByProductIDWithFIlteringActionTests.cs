@@ -20,7 +20,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
-            var repo = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var productID = "csgo";
             var expectedItemsSize = 1;
@@ -46,7 +46,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
-            var repo = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var productID = string.Empty;
             var typeName = "Catalog";
@@ -68,7 +68,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
-            var repo = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var productID = "hl2";
             var typeName = "Catalog";

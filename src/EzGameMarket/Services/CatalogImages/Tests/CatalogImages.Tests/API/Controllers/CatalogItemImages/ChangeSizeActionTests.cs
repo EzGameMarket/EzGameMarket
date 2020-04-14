@@ -22,7 +22,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
-            var service = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var id = 1;
             var sizeID = 2;
@@ -49,7 +49,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{id}-{sizeID}-{expectedMSG}");
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
-            var service = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var mockedImageSizeRepo = new Mock<IImageSizeRepository>();
             mockedImageSizeRepo.Setup(s => s.AnyWithID(sizeID)).ReturnsAsync(true);
@@ -80,7 +80,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{productID}-{sizeID}-{expectedMSG}");
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
-            var service = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var mockedImageSizeRepo = new Mock<IImageSizeRepository>();
             mockedImageSizeRepo.Setup(s => s.AnyWithID(sizeID)).ReturnsAsync(false);

@@ -21,7 +21,7 @@ namespace CatalogImages.Tests.API.Controllers.Images
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
             var repo = new CatalogImageRepository(dbContext, default, default);
-            var service = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var id = 1;
 
@@ -44,7 +44,7 @@ namespace CatalogImages.Tests.API.Controllers.Images
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
             var repo = new CatalogImageRepository(dbContext,default,default);
-            var service = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var id = -1;
 
@@ -65,7 +65,7 @@ namespace CatalogImages.Tests.API.Controllers.Images
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
             var repo = new CatalogImageRepository(dbContext,default,default);
-            var service = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var id = 100;
 

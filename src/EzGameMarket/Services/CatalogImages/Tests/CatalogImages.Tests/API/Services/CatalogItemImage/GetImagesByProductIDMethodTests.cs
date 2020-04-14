@@ -23,7 +23,7 @@ namespace CatalogImages.Tests.API.Services.CatalogItemImage
             var expectedItemsSize = 2;
 
             //Act
-            var repo = new CatalogItemImageService(dbContext);
+            var repo = new CatalogItemImageService(dbContext, default, default);
             var actual = await repo.GetAllImageForProductID(productID);
 
             //Assert
@@ -42,7 +42,7 @@ namespace CatalogImages.Tests.API.Services.CatalogItemImage
             var productID = "hl2";
 
             //Act
-            var repo = new CatalogItemImageService(dbContext);
+            var repo = new CatalogItemImageService(dbContext, default, default);
             var actual = await repo.GetAllImageForProductID(productID);
 
             //Assert

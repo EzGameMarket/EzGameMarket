@@ -22,7 +22,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
-            var service = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var id = 1;
             var typeID = 2;
@@ -49,7 +49,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{id}-{typeID}-{expectedMSG}");
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
-            var service = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var mockedTypeRepo = new Mock<IImageTypeRepository>();
             mockedTypeRepo.Setup(s => s.AnyWithID(typeID)).ReturnsAsync(true);
@@ -80,7 +80,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var dbOptions = FakeCatalogImagesDbContextCreator.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName+$"{productID}-{typeID}-{expectedMSG}");
             await FakeCatalogImagesDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CatalogImagesDbContext(dbOptions);
-            var service = new CatalogItemImageService(dbContext);
+            var service = new CatalogItemImageService(dbContext, default, default);
 
             var mockedTypeRepo = new Mock<IImageTypeRepository>();
             mockedTypeRepo.Setup(s => s.AnyWithID(typeID)).ReturnsAsync(false);

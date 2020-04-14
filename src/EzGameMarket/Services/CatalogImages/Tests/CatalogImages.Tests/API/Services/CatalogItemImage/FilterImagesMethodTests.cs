@@ -23,7 +23,7 @@ namespace CatalogImages.Tests.API.Services.CatalogItemImage
             var dbContext = new CatalogImagesDbContext(dbOptions);
 
             //Act
-            var repo = new CatalogItemImageService(dbContext);
+            var repo = new CatalogItemImageService(dbContext, default, default);
             var actual = await repo.GetAllImageForProductIDByFiltering(productID, filterName, sizeName);
 
             //Assert
