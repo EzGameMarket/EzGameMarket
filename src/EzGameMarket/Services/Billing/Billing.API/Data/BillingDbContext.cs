@@ -13,7 +13,7 @@ namespace Billing.API.Data
         {
         }
 
-        public DbSet<Bill> Bills { get; set; }
-        public DbSet<UserBill> UserBills { get; set; }
+        public DbSet<Invoice> Bills { get; set; }
+        public DbSet<UserInvoice> UserBills { get; set; }
     }
 }

@@ -17,5 +17,15 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Repositories\Implementations\" />
+    <Folder Include="Services\Services\Abstractions\" />
+    <Folder Include="Services\Services\Implementations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Extensions\Pagination\Pagination.csproj" />
+  </ItemGroup>
+
 
 </Project>

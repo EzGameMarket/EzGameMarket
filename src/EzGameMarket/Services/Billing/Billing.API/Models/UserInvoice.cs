@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Billing.API.Models
 {
-    public class UserBill
+    public class UserInvoice
     {
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -17,7 +17,6 @@ namespace Billing.API.Models
         [Required]
         public string UserID { get; set; }
 
-        public List<Bill> Bills { get; set; }
-
+        public List<Invoice> Bills { get; set; }
     }
 }
