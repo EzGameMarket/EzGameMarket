@@ -28,7 +28,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var sizeName = default(string);
 
             //Act
-            var controller = new CatalogItemImagesController(repo);
+            var controller = new CatalogItemImagesController(service);
             var actionResult = await controller.GetImagesForProductIDWithFiltering(productID, typeName, sizeName);
 
             //Assert
@@ -53,7 +53,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var sizeName = default(string);
 
             //Act
-            var controller = new CatalogItemImagesController(repo);
+            var controller = new CatalogItemImagesController(service);
             var actionResult = await controller.GetImagesForProductIDWithFiltering(productID, typeName, sizeName);
 
             //Assert
@@ -75,7 +75,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var sizeName = default(string);
 
             //Act
-            var controller = new CatalogItemImagesController(repo);
+            var controller = new CatalogItemImagesController(service);
             var actionResult = await controller.GetImagesForProductIDWithFiltering(productID, typeName, sizeName);
 
             //Assert

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CatalogImages.API.Models;
@@ -10,6 +11,10 @@ using CatalogImages.API.Services.Service.Abstractions;
 using CatalogImages.API.ViewModels.Image;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Azure;
+using Microsoft.OpenApi.Writers;
+using Shared.Extensions.ImageExtensions.ImageValidator.Shared;
+using Shared.Extensions.ImageScaler.Abstractions;
 using Shared.Utilities.CloudStorage.Shared.Extensions;
 using Shared.Utilities.CloudStorage.Shared.Services.Abstractions;
 
@@ -21,14 +26,17 @@ namespace CatalogImages.API.Controllers
     {
         private ICatalogItemImageService _catalogItemImageService;
         private ICatalogImageRepository _catalogImageRepository;
+        private IImageValidatorService _imageValidator;
+        private IImageResizerService _imageResizerService;
 
         public ImagesController(
             ICatalogItemImageService catalogItemImageService,
             ICatalogImageRepository catalogImageRepository,
-            IStorageService storageService)
+            IImageValidatorService imageValidator)
         {
             _catalogItemImageService = catalogItemImageService;
             _catalogImageRepository = catalogImageRepository;
+            _imageValidator = imageValidator;
         }
 
         [HttpGet]
@@ -62,14 +70,30 @@ namespace CatalogImages.API.Controllers
                 return BadRequest("Egyszerre max 10 fájlt tölthetsz fel");
             }
 
-            var tasks = model.Images.Select(image => ManageUploadedImage(image));
+            var tasks = await UploadToCloudAllUploadedImages(model);
 
-            await Task.WhenAll(tasks);
+            await UploadAllCatalogItemImageModelsToDB(tasks, model);
 
             return Ok();
         }
 
-        private Task ManageUploadedImage(IFormFile image)
+        private async Task UploadAllCatalogItemImageModelsToDB(IEnumerable<Task<string>> tasks, UploadNewImageViewModel model)
+        {
+            var uploadTasks = tasks.Select(t => _catalogItemImageService
+                .AddNewImage(new AddNewImageViewModel(model.ProductID, model.Type,model.Size,t.Result)));
+
+            await Task.WhenAll(tasks);
+        }
+
+        private async Task<IEnumerable<Task<string>>> UploadToCloudAllUploadedImages(UploadNewImageViewModel model)
+        {
+            var tasks = model.Images.Select(image => ManageUploadedImage(image, model));
+
+            await Task.WhenAll(tasks);
+            return tasks;
+        }
+
+        private async Task<string> ManageUploadedImage(IFormFile image, UploadNewImageViewModel model)
         {
             //test.png
             var extension = System.IO.Path.GetExtension(image.FileName);
@@ -77,13 +101,18 @@ namespace CatalogImages.API.Controllers
             var fileNameWithExtension = "".GenerateUniqueID() + extension;
 
             //File név létrehozás
+            await Task.WhenAll(_imageValidator.ValidateSize(image, CatalogItemImageModel.MaxFileLength),
+                               _imageValidator.ValidateExtensions(image),
+                               _imageValidator.ValidateDimensions(image, 
+                                            new SixLabors.Primitives.Size(ImageSizeModel.MinWidth, ImageSizeModel.MinWidth),
+                                            new SixLabors.Primitives.Size(ImageSizeModel.MaxWidth,ImageSizeModel.MaxHeight)));
 
-            if (image.Length >= CatalogItemImageModel.MaxFileLength)
-            {
-                throw new ApplicationException($"A {image.FileName} fájl mérete meghaladta a {Math.Round(CatalogItemImageModel.MaxFileLength / 1_048_576.0,2)} MB-ot");
-            }
+            using var stream = image.OpenReadStream();
+            await _imageResizerService.Resize(stream,model.Size.Width,model.Size.Height);
 
-            return _catalogItemImageService.UploadImage(fileNameWithExtension, image);
+            await _catalogItemImageService.UploadImage(fileNameWithExtension, image);
+
+            return fileNameWithExtension;
         }
 
         [HttpPost]

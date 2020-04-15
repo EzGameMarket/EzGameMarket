@@ -29,9 +29,18 @@ namespace CatalogImages.API.Services.Repositories.Implementations
             _storageService = storageService;
         }
 
-        public Task AddNewImage(AddNewImageViewModel model)
+        public async Task AddNewImage(AddNewImageViewModel model)
         {
-            throw new NotImplementedException();
+            var cImage = new CatalogItemImageModel()
+            {
+                ID = default,
+                ImageUri = model.ImageURI,
+                ProductID = model.ProductID,
+                SizeID = model.Size.ID.GetValueOrDefault(),
+                TypeID = model.Type.ID.GetValueOrDefault()
+            };
+
+            await _catalogImageRepository.Add(cImage);
         }
 
         public Task DeleteImage(string fileNameWithExtension) =>

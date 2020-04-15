@@ -26,7 +26,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var expectedItemsSize = 2;
 
             //Act
-            var controller = new CatalogItemImagesController(repo);
+            var controller = new CatalogItemImagesController(service);
             var actionResult = await controller.GetImagesForProductID(productID);
 
             //Assert
@@ -49,7 +49,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var productID = string.Empty;
 
             //Act
-            var controller = new CatalogItemImagesController(repo);
+            var controller = new CatalogItemImagesController(service);
             var actionResult = await controller.GetImagesForProductID(productID);
 
             //Assert
@@ -69,7 +69,7 @@ namespace CatalogImages.Tests.API.Controllers.CatalogItemImages
             var productID = "hl2";
 
             //Act
-            var controller = new CatalogItemImagesController(repo);
+            var controller = new CatalogItemImagesController(service);
             var actionResult = await controller.GetImagesForProductID(productID);
 
             //Assert

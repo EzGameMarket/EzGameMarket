@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -37,6 +37,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\EventBuses\EventBus.MockedTest\EventBus.MockedTest.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Extensions\ImageExtensions\Scaler\ImageScaler\ImageScaler.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Extensions\ImageExtensions\Validator\ImageValidator.Shared\ImageValidator.Shared.csproj" />
     <ProjectReference Include="..\..\..\Shared\Utilities\CloudStorage\CloudStorage.AzureBlob\CloudStorage.AzureBlob.csproj" />
     <ProjectReference Include="..\..\..\Shared\Utilities\CloudStorage\CloudStorage.Settings\CloudStorage.Settings.csproj" />
   </ItemGroup>

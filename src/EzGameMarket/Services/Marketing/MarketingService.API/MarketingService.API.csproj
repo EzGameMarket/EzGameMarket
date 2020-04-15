@@ -2,9 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>b1dd80f7-8d7f-411b-b102-a7bd2821dfb1</UserSecretsId>
+    <UserSecretsId>89d1c1b8-ff17-4c5d-b559-04c227a1a48e</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,13 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="IntegrationEvents\EventsHandler\" />
-    <Folder Include="Services\Repositories\Abstractions\" />
-    <Folder Include="Services\Repositories\Implementations\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="IntegrationEvents\EventHandlers\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Extensions\Pagination\Pagination.csproj" />
+    <ProjectReference Include="..\..\..\EventBuses\EventBus.Shared\EventBus.Shared.csproj" />
   </ItemGroup>
 
 

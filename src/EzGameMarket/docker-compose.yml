@@ -11,41 +11,41 @@ services:
     image: ${DOCKER_REGISTRY-}identityserviceapi
     build:
       context: .
-      dockerfile: IdentityService.API/Dockerfile
+      dockerfile: Services/Identity/IdentityService.API/Dockerfile
 
   catalogservice-api:
     image: ${DOCKER_REGISTRY-}catalogserviceapi
     build:
       context: .
-      dockerfile: CatalogService.API/Dockerfile
+      dockerfile: Services/Catalog/CatalogService.API/Dockerfile
 
 
   cartservice-api:
     image: ${DOCKER_REGISTRY-}cartserviceapi
     build:
       context: .
-      dockerfile: CartService.API/Dockerfile
+      dockerfile: Services/Cart/CartService.API/Dockerfile
 
 
   paymentservice-api:
     image: ${DOCKER_REGISTRY-}paymentserviceapi
     build:
       context: .
-      dockerfile: PaymentService.API/Dockerfile
+      dockerfile: Services/Payment/PaymentService.API/Dockerfile
 
 
   orderservice-api:
     image: ${DOCKER_REGISTRY-}orderserviceapi
     build:
       context: .
-      dockerfile: OrderService.API/Dockerfile
+      dockerfile: Services/Orders/OrderService.API/Dockerfile
 
 
   marketingservice-api:
     image: ${DOCKER_REGISTRY-}marketingserviceapi
     build:
       context: .
-      dockerfile: MarketingService.API/Dockerfile
+      dockerfile: Services/Marketing/MarketingService.API/Dockerfile
 
 
   web-gtw:
