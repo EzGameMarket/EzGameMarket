@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CloudStorage.Settings\CloudStorage.Settings.csproj" />
     <ProjectReference Include="..\CloudStorage.Shared\CloudStorage.Shared.csproj" />
   </ItemGroup>
 

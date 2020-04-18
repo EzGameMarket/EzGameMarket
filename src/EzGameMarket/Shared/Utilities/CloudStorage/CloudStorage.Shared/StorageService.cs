@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EventBus.Shared.Events;
 using System.IO;
+using Shared.Utilities.CloudStorage.Shared.Extensions;
 
 namespace Shared.Utilities.CloudStorage.Shared
 {
@@ -52,40 +53,6 @@ namespace Shared.Utilities.CloudStorage.Shared
             }
         }
 
-        public Task<bool> UploadFromByteArray(byte[] data) 
-            => UploadFromByteArrayWithID(Guid.NewGuid().ToString(), data);
-
-        public Task<bool> UploadFromStream(Stream stream) 
-            => UploadFromStreamWithID(Guid.NewGuid().ToString(), stream);
-
-        public Task<bool> UploadFromByteArrayWithID(string id, byte[] data) 
-            => UploadFromStreamWithID(id, new MemoryStream(data));
-
-        public async Task<bool> UploadFromStreamWithID(string id, Stream stream)
-        {
-            try
-            {
-                var uploadResult = await Repository.UploadFromStreamWithID(id, stream);
-
-                if (uploadResult)
-                {
-                    PublishToEventBus(new ObjectUploadedIntegrationEvent());
-                }
-                else
-                {
-                    PublishToEventBus(new ObjectUploadFailedIntegrationEvent(new ApplicationException($"A {id} fájl feltöltése nem sikerült")));
-                }
-
-                return uploadResult;
-            }
-            catch (Exception ex)
-            {
-                PublishToEventBus(new ObjectUploadFailedIntegrationEvent(ex));
-            }
-
-            return false;
-        }
-
         public async Task<byte[]> DownloadToByteArray(string id)
         {
             var stream = await DownloadToStream(id);
@@ -113,6 +80,68 @@ namespace Shared.Utilities.CloudStorage.Shared
             }
 
             return default;
+        }
+
+        public Task<bool> Upload(byte[] data)
+        {
+            using var memStream = new MemoryStream(data);
+
+            return UploadWithContainerExtension("", "".GenerateUniqueID(), memStream);
+        }
+
+        public Task<bool> Upload(Stream stream)
+            => UploadWithContainerExtension("", "".GenerateUniqueID(), stream);
+
+        public Task<bool> Upload(string id, byte[] data)
+        {
+            using var memStream = new MemoryStream(data);
+
+            return UploadWithContainerExtension("", id, memStream);
+        }
+
+        public Task<bool> Upload(string id, Stream stream)
+            => UploadWithContainerExtension("", id, stream);
+
+        public async Task<bool> UploadWithContainerExtension(string containerNameExtension, string id, Stream stream)
+        {
+            try
+            {
+                var uploadResult = await Repository.UploadWithContainerExtension(containerNameExtension,id, stream);
+
+                if (uploadResult)
+                {
+                    PublishToEventBus(new ObjectUploadedIntegrationEvent());
+                }
+                else
+                {
+                    PublishToEventBus(new ObjectUploadFailedIntegrationEvent(new ApplicationException($"A {id} fájl feltöltése nem sikerült")));
+                }
+
+                return uploadResult;
+            }
+            catch (Exception ex)
+            {
+                PublishToEventBus(new ObjectUploadFailedIntegrationEvent(ex));
+            }
+
+            return false;
+        }
+
+        public Task<bool> UploadWithContainerExtension(string containerNameExtension, Stream stream)
+            => UploadWithContainerExtension(containerNameExtension, "".GenerateUniqueID(), stream);
+
+        public Task<bool> UploadWithContainerExtension(string containerNameExtension, byte[] data)
+        {
+            using var memStream = new MemoryStream(data);
+
+            return UploadWithContainerExtension(containerNameExtension, "".GenerateUniqueID(), memStream);
+        }
+
+        public Task<bool> UploadWithContainerExtension(string containerNameExtension, string id, byte[] data)
+        {
+            using var memStream = new MemoryStream(data);
+
+            return UploadWithContainerExtension(containerNameExtension,id,memStream);
         }
     }
 }

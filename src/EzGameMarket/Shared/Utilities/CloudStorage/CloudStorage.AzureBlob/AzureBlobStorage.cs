@@ -13,15 +13,18 @@ namespace Shared.Utilities.CloudStorage.AzureBlob
 {
     public class AzureBlobStorage : IStorageRepository
     {
-        private IAzureSettings _settings;
+        private AzureSettings _settings;
 
-        public AzureBlobStorage(IAzureSettings settings)
+        public AzureBlobStorage(AzureSettings settings)
         {
             _settings = settings;   
         }
 
-        private BlobContainerClient ConnectToContainer() 
+        private BlobContainerClient ConnectToContainer()
             => new BlobContainerClient(_settings.ConnectionString, _settings.ContainerName);
+
+        private BlobContainerClient ConnectToContainer(string extension) 
+            => new BlobContainerClient(_settings.ConnectionString, _settings.ContainerName + extension);
 
         public async Task Delete(string id)
         {
@@ -88,6 +91,57 @@ namespace Shared.Utilities.CloudStorage.AzureBlob
             {
                 throw new ApplicationException(response.ReasonPhrase);
             }
+        }
+
+        public Task<bool> Upload(byte[] data)
+        {
+            using var memStream = new MemoryStream(data);
+
+            return UploadWithContainerExtension("", "".GenerateUniqueID(), memStream);
+        }
+
+        public Task<bool> Upload(Stream stream) =>
+            UploadWithContainerExtension("", "".GenerateUniqueID(), stream);
+
+        public Task<bool> Upload(string id, byte[] data)
+        {
+            using var memStream = new MemoryStream(data);
+
+            return UploadWithContainerExtension("", id, memStream);
+        }
+
+        public Task<bool> Upload(string id, Stream stream) =>
+            UploadWithContainerExtension("", id, stream);
+
+        public async Task<bool> UploadWithContainerExtension(string containerNameExtension, string id, Stream stream)
+        {
+            var container = ConnectToContainer(containerNameExtension);
+
+            await container.CreateIfNotExistsAsync(Azure.Storage.Blobs.Models.PublicAccessType.Blob);
+
+            var blobClient = container.GetBlobClient(id);
+            var uploadResponse = await blobClient.UploadAsync(stream);
+
+            ValidateResponseIsErrorFree(uploadResponse.GetRawResponse());
+
+            return true;
+        }
+
+        public Task<bool> UploadWithContainerExtension(string containerNameExtension, Stream stream)
+            => UploadWithContainerExtension(containerNameExtension,"".GenerateUniqueID(),stream);
+
+        public Task<bool> UploadWithContainerExtension(string containerNameExtension, byte[] data)
+        {
+            using var memStream = new MemoryStream(data);
+
+            return UploadWithContainerExtension(containerNameExtension, "".GenerateUniqueID(), memStream);
+        }
+
+        public Task<bool> UploadWithContainerExtension(string containerNameExtension, string id, byte[] data)
+        {
+            using var memStream = new MemoryStream(data);
+
+            return UploadWithContainerExtension(containerNameExtension,id, memStream);
         }
     }
 }
