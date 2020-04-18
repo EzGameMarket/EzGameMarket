@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1">
       <PrivateAssets>all</PrivateAssets>
@@ -18,13 +22,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Repositories\Implementations\" />
-    <Folder Include="Services\Services\Abstractions\" />
-    <Folder Include="Services\Services\Implementations\" />
+    <Folder Include="IntegrationEvents\EventHandler\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\EventBuses\EventBus.Shared\EventBus.Shared.csproj" />
     <ProjectReference Include="..\..\..\Shared\Extensions\Pagination\Pagination.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Utilities\Billing\Billing.Shared\Billing.Shared.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Utilities\CloudStorage\CloudStorage.Shared\CloudStorage.Shared.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Utilities\EmailSender\EmailSender.SendGrid\EmailSender.SendGrid.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Utilities\EmailSender\EmailSender.Shared\EmailSender.Shared.csproj" />
   </ItemGroup>
 
 

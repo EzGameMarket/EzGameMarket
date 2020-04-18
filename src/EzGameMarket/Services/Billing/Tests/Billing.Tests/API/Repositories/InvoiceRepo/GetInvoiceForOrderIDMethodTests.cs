@@ -1,5 +1,4 @@
 ﻿using Billing.API.Data;
-using Billing.API.Services.Repositories.Abstractions;
 using Billing.API.Services.Repositories.Implementations;
 using Billing.Tests.FakeImplementations;
 using System;
@@ -9,11 +8,11 @@ using Xunit;
 
 namespace Billing.Tests.API.Repositories.InvoiceRepo
 {
-    public class GetByIDMethodTests
+    public class GetInvoiceForOrderIDMethodTests
     {
         [Theory]
         [InlineData(1, false)]
-        [InlineData(5, true)]
+        [InlineData(10, true)]
         [InlineData(-1, true)]
         public async void GetInvoice_ShouldReturnSuccess(int id, bool isNull)
         {
@@ -26,7 +25,7 @@ namespace Billing.Tests.API.Repositories.InvoiceRepo
 
             //Act
             var repo = new InvoiceRepository(dbContext, userInvoicesRepo);
-            var actual = await repo.GetInvoceByID(id);
+            var actual = await repo.GetInvoiceForOrderID(id);
 
             //Assert
             if (isNull)

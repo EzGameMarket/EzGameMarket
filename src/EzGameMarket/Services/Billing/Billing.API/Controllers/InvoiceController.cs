@@ -37,6 +37,13 @@ namespace Billing.API.Controllers
         }
 
         [HttpGet]
+        [Route("{orderID}/download")]
+        public async Task<ActionResult<List<Invoice>>> GetInvoiceFile([FromRoute] string orderID)
+        {
+            return default;
+        }
+
+        [HttpGet]
         [Route("users/{userID}")]
         public async Task<ActionResult<PaginationViewModel<Invoice>>> GetByUserIDPaginated([FromRoute] string userID, [FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 30)
         {

@@ -15,11 +15,6 @@ namespace Billing.API.Models
         public int? ID { get; set; }
 
         [Required]
-        public int? BillID { get; set; }
-
-        public Invoice Bill { get; set; }
-
-        [Required]
         [Url]
         public string FileUri { get; set; }
     }

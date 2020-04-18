@@ -1,4 +1,6 @@
-﻿using Billing.API.Models;
+﻿using Billing.API.Controllers;
+using Billing.API.Models;
+using Billing.API.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +12,20 @@ namespace Billing.API.Services.Repositories.Abstractions
     {
         Task<Invoice> GetInvoceByID(int id);
 
+        Task<Invoice> GetInvoiceForOrderID(int orderID);
+
         Task<List<Invoice>> GetInvoices(int skip, int take);
 
         Task<List<Invoice>> GetInvoicesByUserID(string userID);
+        Task<List<Invoice>> GetInvoicesByUserIDWithSkipAndTake(string userID, int skip, int take);
 
-        Task Add(int id);
-        Task Modify(int id, Invoice invoice);
+        Task<bool> AnyWithID(int id);
+        Task<bool> AnyWithOrderID(int orderID);
+
+        Task Add(InvoiceCreationViewModel model);
 
         Task Storno(int id);
+
+        Task UploadBillingSystemID(string billingSystemID);
     }
 }

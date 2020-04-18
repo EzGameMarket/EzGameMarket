@@ -1,5 +1,4 @@
 ﻿using Billing.API.Data;
-using Billing.API.Services.Repositories.Abstractions;
 using Billing.API.Services.Repositories.Implementations;
 using Billing.Tests.FakeImplementations;
 using System;
@@ -9,34 +8,29 @@ using Xunit;
 
 namespace Billing.Tests.API.Repositories.InvoiceRepo
 {
-    public class GetByIDMethodTests
+    public class GetInvoicesWithSkipAndTakeMethodTests
     {
         [Theory]
-        [InlineData(1, false)]
-        [InlineData(5, true)]
-        [InlineData(-1, true)]
-        public async void GetInvoice_ShouldReturnSuccess(int id, bool isNull)
+        [InlineData(0,30,3)]
+        [InlineData(0,2,2)]
+        [InlineData(1,1,1)]
+        [InlineData(1,30,2)]
+        [InlineData(60,30,0)]
+        public async void GetInvoices_ShouldReturnSuccess(int skip, int take, int expectedCount)
         {
             //Arrange 
-            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{id}-{isNull}");
+            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{skip}-{take}-{expectedCount}");
             await FakeDbCreatorFactory.InitDbContext(dbOptions);
             var dbContext = new InvoicesDbContext(dbOptions);
-
             var userInvoicesRepo = new UserInvoiceRepository(dbContext);
 
             //Act
             var repo = new InvoiceRepository(dbContext, userInvoicesRepo);
-            var actual = await repo.GetInvoceByID(id);
+            var actual = await repo.GetInvoices(skip,take);
 
             //Assert
-            if (isNull)
-            {
-                Assert.Null(actual);
-            }
-            else
-            {
-                Assert.NotNull(actual);
-            }
+            Assert.NotNull(actual);
+            Assert.Equal(expectedCount, actual.Count);
         }
     }
 }

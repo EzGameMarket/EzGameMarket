@@ -1,5 +1,4 @@
 ﻿using Billing.API.Data;
-using Billing.API.Services.Repositories.Abstractions;
 using Billing.API.Services.Repositories.Implementations;
 using Billing.Tests.FakeImplementations;
 using System;
@@ -9,34 +8,27 @@ using Xunit;
 
 namespace Billing.Tests.API.Repositories.InvoiceRepo
 {
-    public class GetByIDMethodTests
+    public class StornoMethodTests
     {
-        [Theory]
-        [InlineData(1, false)]
-        [InlineData(5, true)]
-        [InlineData(-1, true)]
-        public async void GetInvoice_ShouldReturnSuccess(int id, bool isNull)
+        [Fact]
+        public async void Storno_ShouldReturnSuccess()
         {
             //Arrange 
-            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{id}-{isNull}");
+            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeDbCreatorFactory.InitDbContext(dbOptions);
             var dbContext = new InvoicesDbContext(dbOptions);
-
             var userInvoicesRepo = new UserInvoiceRepository(dbContext);
+
+            var id = 2;
 
             //Act
             var repo = new InvoiceRepository(dbContext, userInvoicesRepo);
+            await repo.Storno(id);
             var actual = await repo.GetInvoceByID(id);
 
             //Assert
-            if (isNull)
-            {
-                Assert.Null(actual);
-            }
-            else
-            {
-                Assert.NotNull(actual);
-            }
+            Assert.NotNull(actual);
+            Assert.True(actual.Canceled);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Billing.API.Data;
-using Billing.API.Services.Repositories.Abstractions;
 using Billing.API.Services.Repositories.Implementations;
 using Billing.Tests.FakeImplementations;
 using System;
@@ -9,34 +8,26 @@ using Xunit;
 
 namespace Billing.Tests.API.Repositories.InvoiceRepo
 {
-    public class GetByIDMethodTests
+    public class GetByUserIDMethodTests
     {
         [Theory]
-        [InlineData(1, false)]
-        [InlineData(5, true)]
-        [InlineData(-1, true)]
-        public async void GetInvoice_ShouldReturnSuccess(int id, bool isNull)
+        [InlineData("kriszw", 2)]
+        [InlineData("tst", 0)]
+        public async void GetInvoice_ShouldReturnSuccess(string userName, int expectedCount)
         {
             //Arrange 
-            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{id}-{isNull}");
+            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{userName}-{expectedCount}");
             await FakeDbCreatorFactory.InitDbContext(dbOptions);
             var dbContext = new InvoicesDbContext(dbOptions);
-
             var userInvoicesRepo = new UserInvoiceRepository(dbContext);
+
 
             //Act
             var repo = new InvoiceRepository(dbContext, userInvoicesRepo);
-            var actual = await repo.GetInvoceByID(id);
+            var actual = await repo.GetInvoicesByUserID(userName);
 
             //Assert
-            if (isNull)
-            {
-                Assert.Null(actual);
-            }
-            else
-            {
-                Assert.NotNull(actual);
-            }
+            Assert.Equal(expectedCount, actual.Count);
         }
     }
 }

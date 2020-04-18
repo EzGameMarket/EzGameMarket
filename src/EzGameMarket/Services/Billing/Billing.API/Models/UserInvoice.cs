@@ -17,6 +17,6 @@ namespace Billing.API.Models
         [Required]
         public string UserID { get; set; }
 
-        public List<Invoice> Bills { get; set; }
+        public List<Invoice> Invoices { get; set; }
     }
 }

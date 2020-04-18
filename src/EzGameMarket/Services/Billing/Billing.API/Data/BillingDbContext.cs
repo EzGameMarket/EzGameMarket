@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace Billing.API.Data
 {
-    public class BillingDbContext : DbContext
+    public class InvoicesDbContext : DbContext
     {
-        public BillingDbContext(DbContextOptions options) : base(options)
+        public InvoicesDbContext(DbContextOptions options) : base(options)
         {
         }
 
-        public DbSet<Invoice> Bills { get; set; }
-        public DbSet<UserInvoice> UserBills { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<UserInvoice> UserInvoices { get; set; }
+        public DbSet<OwnCompanyDataModel> OwnData { get; set; }
+        public DbSet<InvoiceFile> InvoiceFiles { get; set; }
+        public DbSet<InvoiceItem> InvoiceItems { get; set; }
     }
 }

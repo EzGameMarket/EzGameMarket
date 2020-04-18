@@ -15,8 +15,14 @@ namespace Billing.API.Models
         public int? ID { get; set; }
 
         [Required]
-        public int? BillFileID { get; set; }
-        public InvoiceFile BillFile { get; set; }
+        public string InvoiceID { get; set; }
+
+        [Required]
+        public int? FileID { get; set; }
+        public InvoiceFile File { get; set; }
+
+        [Required]
+        public int OrderID { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -45,5 +51,22 @@ namespace Billing.API.Models
         public DateTime FullfiledDate { get; set; }
         [Required]
         public DateTime DueDate { get; set; }
+
+        [Required]
+        public bool Canceled { get; set; }
+        [Required]
+        public DateTime? CanceledDate { get; set; }
+
+        public void SetCanceled()
+        {
+            Canceled = true;
+            CanceledDate = DateTime.Now;
+        }
+
+        public void RollbackCanceled()
+        {
+            Canceled = false;
+            CanceledDate = default;
+        }
     }
 }
