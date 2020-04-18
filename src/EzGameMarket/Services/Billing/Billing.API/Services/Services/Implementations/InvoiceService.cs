@@ -6,10 +6,10 @@ using Shared.Utilities.Billing.Shared.Services.Abstractions;
 using Shared.Utilities.Billing.Shared.ViewModels;
 using Shared.Utilities.CloudStorage.Shared.Services.Abstractions;
 using Shared.Utilities.EmailSender.Shared.Services.Abstractions;
+using Shared.Utilities.EmailSender.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Billing.API.Services.Services.Implementations
@@ -31,6 +31,26 @@ namespace Billing.API.Services.Services.Implementations
             await UploadToBillingSystem(model.Invoice);
             // a model.Invoice.InvoiceID frissült a DBben, szóval ebben a modelben is foge?
             using var file = await UploadFileToOurStorage(model);
+            var emailSendModel = CreateEmailSendModel(model, file);
+            await _emailSenderService.SendMail(emailSendModel);
+        }
+
+        private EmailSendModelWithAttachmentsViewModel CreateEmailSendModel(InvoiceCreationViewModel model, Stream file)
+        {
+            return new EmailSendModelWithAttachmentsViewModel()
+            {
+                Subject = "",
+                From = new EmailAddress("billing@kwsoft.dev", $"E-Számlázás EzG"),
+                To = new List<EmailAddress>() { new EmailAddress(model.Invoice.UserEmail, $"{model.Invoice.LastName} {model.Invoice.FirstName} ") },
+                Attachments = new List<AttachmentViewModel>() 
+                { 
+                    new AttachmentViewModel() 
+                    {
+                        FileName = $"{model.Invoice.OrderID}-szamla.pdf",
+                        FileStream = file
+                    }
+                }
+            };
         }
 
         private async Task<Stream> UploadFileToOurStorage(InvoiceCreationViewModel model)
