@@ -2,7 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Shared.Utilities.EmailSender.SendGrid</RootNamespace>
+    <RootNamespace>Shared.Utilities.EmailSender.SendGridProvider</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SendGrid" Version="9.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EmailSender.Core\EmailSender.Core.csproj" />
+  </ItemGroup>
 
 </Project>

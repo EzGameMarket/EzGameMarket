@@ -5,4 +5,8 @@
     <RootNamespace>Shared.Utilities.EmailSender.Core</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Implementations\" />
+  </ItemGroup>
+
 </Project>
