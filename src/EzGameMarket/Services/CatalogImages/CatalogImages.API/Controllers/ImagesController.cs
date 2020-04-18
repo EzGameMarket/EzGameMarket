@@ -110,7 +110,7 @@ namespace CatalogImages.API.Controllers
             using var stream = image.OpenReadStream();
             await _imageResizerService.Resize(stream,model.Size.Width,model.Size.Height);
 
-            await _catalogItemImageService.UploadImage(fileNameWithExtension, image);
+            await _catalogItemImageService.UploadImage(model.ProductID,fileNameWithExtension, image);
 
             return fileNameWithExtension;
         }

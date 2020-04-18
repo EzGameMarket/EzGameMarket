@@ -84,9 +84,12 @@ namespace CatalogImages.API.Services.Repositories.Implementations
         }
 
         public Task UploadImage(string fileNameWithExtension, IFormFile file)
+         => UploadImage("", fileNameWithExtension, file);
+
+        public Task UploadImage(string productID, string fileNameWithExtension, IFormFile file)
         {
             using var stream = file.OpenReadStream();
-            return _storageService.UploadFromStreamWithID(fileNameWithExtension, stream);
+            return _storageService.UploadWithContainerExtension(productID,fileNameWithExtension, stream);
         }
     }
 }

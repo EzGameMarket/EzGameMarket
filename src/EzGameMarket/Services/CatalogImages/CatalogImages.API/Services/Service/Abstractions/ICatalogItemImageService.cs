@@ -14,7 +14,10 @@ namespace CatalogImages.API.Services.Service.Abstractions
         Task<List<CatalogItemImageModel>> GetAllImageForProductID(string productID);
         Task<List<CatalogItemImageModel>> GetAllImageForProductIDByFiltering(string productID, string typeName = default, string sizeName = default);
 
+        Task UploadImage(string productID, string fileNameWithExtension, IFormFile file);
         Task UploadImage(string fileNameWithExtension, IFormFile file);
+
+
         Task DeleteImage(string fileNameWithExtension);
 
         Task AddNewImage(AddNewImageViewModel model);
