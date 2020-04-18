@@ -21,7 +21,7 @@ namespace Shared.Utilities.Billing.Shared.Services.Implementations
             _eventBus = eventBus;
         }
 
-        public async Task CreateInvoiceAsync(BillViewModel model)
+        public async Task<InvoiceCreationResultViewModel> CreateInvoiceAsync(BillViewModel model)
         {
             if (model != default)
             {
@@ -30,6 +30,8 @@ namespace Shared.Utilities.Billing.Shared.Services.Implementations
                     await _billingRepository.Bill(model);
 
                     _eventBus.Publish(new BillingSuccessIntegrationEvent());
+
+                    return default;
                 }
                 catch (Exception ex)
                 {
@@ -38,6 +40,8 @@ namespace Shared.Utilities.Billing.Shared.Services.Implementations
                     throw;
                 }
             }
+
+            return default;
         }
 
         public Task<IEnumerable<BillViewModel>> GetAll() => _billingRepository.GetAll();

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Extensions\HttpClientHandler\HttpClientHandler.csproj" />
     <ProjectReference Include="..\Billing.Shared\Billing.Shared.csproj" />
   </ItemGroup>
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shared.Utilities.Billing.Billingo
+namespace Shared.Utilities.Billing.Billingo.ViewModels
 {
     public class BillingoBillExtensionDataViewModel
     {

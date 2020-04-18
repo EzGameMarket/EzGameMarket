@@ -1,4 +1,5 @@
-﻿using Shared.Utilities.Billing.Shared.Services.Abstractions;
+﻿using Shared.Utilities.Billing.Billingo.Models;
+using Shared.Utilities.Billing.Shared.Services.Abstractions;
 using Shared.Utilities.Billing.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,9 @@ namespace Shared.Utilities.Billing.Billingo
 {
     public class BillingoBillingRepository : IBillingRepository
     {
-        public Task Bill(BillViewModel model)
+        private BillingoSettingsModel _settings;
+
+        public Task<InvoiceCreationResultViewModel> Bill(BillViewModel model)
         {
             throw new NotImplementedException();
         }

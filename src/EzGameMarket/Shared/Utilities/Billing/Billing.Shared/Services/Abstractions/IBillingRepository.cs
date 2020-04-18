@@ -8,7 +8,7 @@ namespace Shared.Utilities.Billing.Shared.Services.Abstractions
 {
     public interface IBillingRepository
     {
-        Task Bill(BillViewModel model);
+        Task<InvoiceCreationResultViewModel> Bill(BillViewModel model);
 
         Task<IEnumerable<BillViewModel>> GetAll();
         Task<BillViewModel> GetByID(string id);
