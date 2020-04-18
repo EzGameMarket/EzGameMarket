@@ -1,4 +1,5 @@
-﻿using Shared.Utilities.Billing.Billingo.Models;
+﻿using Shared.Extensions.HttpClientHandler;
+using Shared.Utilities.Billing.Billingo.Models;
 using Shared.Utilities.Billing.Shared.Services.Abstractions;
 using Shared.Utilities.Billing.Shared.ViewModels;
 using System;
@@ -11,6 +12,7 @@ namespace Shared.Utilities.Billing.Billingo
     public class BillingoBillingRepository : IBillingRepository
     {
         private BillingoSettingsModel _settings;
+        private IHttpHandlerUtil _httpHandler;
 
         public Task<InvoiceCreationResultViewModel> Bill(BillViewModel model)
         {
@@ -37,7 +39,7 @@ namespace Shared.Utilities.Billing.Billingo
             throw new NotImplementedException();
         }
 
-        public Task Storno(string id)
+        public Task<string> Storno(string id)
         {
             throw new NotImplementedException();
         }

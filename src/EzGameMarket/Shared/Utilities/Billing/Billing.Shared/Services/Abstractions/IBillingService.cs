@@ -9,7 +9,7 @@ namespace Shared.Utilities.Billing.Shared.Services.Abstractions
     public interface IBillingService
     {
         Task<InvoiceCreationResultViewModel> CreateInvoiceAsync(BillViewModel model);
-        Task Strono(string id);
+        Task<string> Storno(string id);
 
         Task<IEnumerable<BillViewModel>> GetAll();
         Task<BillViewModel> GetByID(string id);

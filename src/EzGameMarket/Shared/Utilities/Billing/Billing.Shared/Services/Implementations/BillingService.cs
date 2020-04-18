@@ -50,15 +50,17 @@ namespace Shared.Utilities.Billing.Shared.Services.Implementations
 
         public Task<IEnumerable<BillViewModel>> GetByIDs(IEnumerable<string> ids) => _billingRepository.GetByIDs(ids);
 
-        public async Task Strono(string id)
+        public async Task<string> Storno(string id)
         {
             if (string.IsNullOrEmpty(id) == default)
             {
                 try
                 {
-                    await _billingRepository.Storno(id);
+                    var res = await _billingRepository.Storno(id);
 
                     _eventBus.Publish(new BillStornoSuccessfullIntegrationEvent());
+
+                    return res;
                 }
                 catch (Exception ex)
                 {
@@ -67,6 +69,8 @@ namespace Shared.Utilities.Billing.Shared.Services.Implementations
                     throw;
                 }
             }
+
+            return default;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Shared.Utilities.Billing.Shared.Services.Abstractions
         Task<BillViewModel> GetByID(string id);
         Task<IEnumerable<BillViewModel>> GetByIDs(IEnumerable<string> id);
 
-        Task Storno(string id);
+        Task<string> Storno(string id);
 
         Task SendOutToEmail(string id);
     }
