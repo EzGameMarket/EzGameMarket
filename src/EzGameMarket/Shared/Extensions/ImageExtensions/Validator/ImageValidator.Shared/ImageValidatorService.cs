@@ -13,12 +13,12 @@ namespace Shared.Extensions.ImageExtensions.ImageValidator.Shared
 {
     public class ImageValidatorService : IImageValidatorService
     {
-        public ImageValidatorService(IImageValidateSettings validateSettings)
+        public ImageValidatorService(ImageValidateSettings validateSettings)
         {
             ValidateSettings = validateSettings;
         }
 
-        public IImageValidateSettings ValidateSettings { get; private set; }
+        public ImageValidateSettings ValidateSettings { get; private set; }
 
         public Task<bool> ValidateDimensions(IFormFile file, Size min, Size max)
         {

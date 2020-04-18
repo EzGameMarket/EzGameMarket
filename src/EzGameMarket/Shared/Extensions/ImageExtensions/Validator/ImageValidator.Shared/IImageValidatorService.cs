@@ -10,7 +10,7 @@ namespace Shared.Extensions.ImageExtensions.ImageValidator.Shared
 {
     public interface IImageValidatorService
     {
-        IImageValidateSettings ValidateSettings { get; }
+        ImageValidateSettings ValidateSettings { get; }
 
         //meg kell oldani, hogy a feltölött fájl méretét lehessen itt megvizsgálni
         Task<bool> ValidateSize(IFormFile file, int max);
