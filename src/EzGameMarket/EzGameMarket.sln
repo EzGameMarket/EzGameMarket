@@ -289,6 +289,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SettingsExtensions", "Setti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingsLoader", "Shared\Extensions\SettingsExtensions\SettingsLoader\SettingsLoader.csproj", "{D1EA1C21-0026-4B3F-BD75-1CB685E6DF10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Extensions", "Shared\Extensions\Shared.Extensions\Shared.Extensions.csproj", "{02D05F24-8FAA-46E7-984A-21F42CBC61B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -579,6 +581,10 @@ Global
 		{D1EA1C21-0026-4B3F-BD75-1CB685E6DF10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1EA1C21-0026-4B3F-BD75-1CB685E6DF10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1EA1C21-0026-4B3F-BD75-1CB685E6DF10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02D05F24-8FAA-46E7-984A-21F42CBC61B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02D05F24-8FAA-46E7-984A-21F42CBC61B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02D05F24-8FAA-46E7-984A-21F42CBC61B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02D05F24-8FAA-46E7-984A-21F42CBC61B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -720,6 +726,7 @@ Global
 		{0514A94D-12C2-43EF-92C4-70264E796236} = {43D13EBB-591E-4759-B8A3-398D4FC58ACB}
 		{A1B70A79-5852-4289-B5AB-646FB035076C} = {C8E6E931-E90C-4CE5-AA76-5552D5748431}
 		{D1EA1C21-0026-4B3F-BD75-1CB685E6DF10} = {A1B70A79-5852-4289-B5AB-646FB035076C}
+		{02D05F24-8FAA-46E7-984A-21F42CBC61B6} = {C8E6E931-E90C-4CE5-AA76-5552D5748431}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16E930B6-CA49-4BBE-BD42-6D032E69A5C5}

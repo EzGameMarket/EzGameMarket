@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Net.Mail;
 using System.IO;
+using Shared.Extensions;
 
 namespace Shared.Utilities.EmailSender.SendGridProvider
 {
@@ -95,12 +96,9 @@ namespace Shared.Utilities.EmailSender.SendGridProvider
         {
             var attchsTasks = model.Attachments.Select(async a =>
             {
-                using var memStream = new MemoryStream();
-                await a.FileStream.CopyToAsync(memStream);
-
                 return new SendGrid.Helpers.Mail.Attachment()
                 {
-                    Content = Convert.ToBase64String(memStream.ToArray()),
+                    Content = Convert.ToBase64String(await a.FileStream.ToByteArray()),
                     Filename = a.FileName,
                     ContentId = a.ContentID,
                     Disposition = a.Disposition,

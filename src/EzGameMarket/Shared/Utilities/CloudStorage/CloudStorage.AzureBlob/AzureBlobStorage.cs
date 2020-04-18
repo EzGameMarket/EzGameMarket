@@ -8,6 +8,7 @@ using Azure.Storage.Blobs;
 using System.Threading.Tasks;
 using Azure;
 using Shared.Utilities.CloudStorage.Shared.Extensions;
+using Shared.Extensions;
 
 namespace Shared.Utilities.CloudStorage.AzureBlob
 {
@@ -45,11 +46,7 @@ namespace Shared.Utilities.CloudStorage.AzureBlob
         {
             var stream = await DownloadToStream(id);
 
-            using var memStream = new MemoryStream();
-
-            await stream.CopyToAsync(memStream);
-
-            return memStream.ToArray();
+            return await stream.ToByteArray();
         }
 
         public async Task<Stream> DownloadToStream(string id)

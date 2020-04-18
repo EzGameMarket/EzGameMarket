@@ -7,19 +7,17 @@ namespace VaultAccess.Shared.Infrastucture
     {
         public T Deserialze(byte[] data)
         {
-            using (var memoryStream = new MemoryStream(data))
-            {
-                return (new BinaryFormatter()).Deserialize(memoryStream) as T;
-            }
+            using var memoryStream = new MemoryStream(data);
+
+            return (new BinaryFormatter()).Deserialize(memoryStream) as T;
         }
 
         public byte[] Serialize(T data)
         {
-            using (var memoryStream = new MemoryStream())
-            {
-                (new BinaryFormatter()).Serialize(memoryStream, data);
-                return memoryStream.ToArray();
-            }
+            using var memoryStream = new MemoryStream();
+
+            new BinaryFormatter().Serialize(memoryStream, data);
+            return memoryStream.ToArray();
         }
     }
 }

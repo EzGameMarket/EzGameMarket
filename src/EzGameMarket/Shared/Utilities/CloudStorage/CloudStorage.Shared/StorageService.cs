@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using EventBus.Shared.Events;
 using System.IO;
 using Shared.Utilities.CloudStorage.Shared.Extensions;
+using Shared.Extensions;
 
 namespace Shared.Utilities.CloudStorage.Shared
 {
@@ -57,11 +58,7 @@ namespace Shared.Utilities.CloudStorage.Shared
         {
             var stream = await DownloadToStream(id);
 
-            using var memstream = new MemoryStream();
-
-            await stream.CopyToAsync(memstream);
-
-            return memstream.ToArray();
+            return await stream.ToByteArray();
         }
 
         public async Task<Stream> DownloadToStream(string id)

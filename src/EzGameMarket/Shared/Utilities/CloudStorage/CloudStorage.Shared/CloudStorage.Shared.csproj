@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\EventBuses\EventBus.Shared\EventBus.Shared.csproj" />
+    <ProjectReference Include="..\..\..\Extensions\Shared.Extensions\Shared.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
