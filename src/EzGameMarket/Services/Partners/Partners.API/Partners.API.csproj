@@ -7,8 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Repositories\Implementations\" />
+    <Folder Include="Services\Services\Abstractions\" />
+    <Folder Include="Services\Services\Implementations\" />
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Extensions\Pagination\Pagination.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Services.Shared\Services.Shared.Models.csproj" />
   </ItemGroup>
 
 

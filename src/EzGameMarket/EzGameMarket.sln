@@ -283,25 +283,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SettingsExtensions", "Setti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingsLoader", "Shared\Extensions\SettingsExtensions\SettingsLoader\SettingsLoader.csproj", "{D1EA1C21-0026-4B3F-BD75-1CB685E6DF10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Extensions", "Shared\Extensions\Shared.Extensions\Shared.Extensions.csproj", "{02D05F24-8FAA-46E7-984A-21F42CBC61B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Extensions", "Shared\Extensions\Shared.Extensions\Shared.Extensions.csproj", "{02D05F24-8FAA-46E7-984A-21F42CBC61B6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{0B5586B1-D711-410F-A45C-091724FB258A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InfrastructureModels", "InfrastructureModels", "{0B5586B1-D711-410F-A45C-091724FB258A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Shared.Models", "Services\Infrastructure\Services.Shared\Services.Shared.Models.csproj", "{AC72767B-81F9-490D-B9F0-296C74A0DADD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Shared.Models", "Services\Infrastructure\Services.Shared\Services.Shared.Models.csproj", "{AC72767B-81F9-490D-B9F0-296C74A0DADD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Partners", "Partners", "{B22BD26A-A12A-4A04-B490-5EB449F16D20}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{66E64255-239D-4052-A6AB-B15C6AE0629A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Partners.API", "Services\Partners\Partners.API\Partners.API.csproj", "{15B65969-9F08-47C9-9E66-591CFF9C97E4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Partners.Tests", "Services\Partners\Tests\Partners.Tests\Partners.Tests.csproj", "{BAD4AC22-BC94-4FA7-8596-36A5E2AE697A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Partners.API", "Services\Partners\Partners.API\Partners.API.csproj", "{15B65969-9F08-47C9-9E66-591CFF9C97E4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billing.Shared", "Services\Billing\Billing.Shared\Billing.Shared.csproj", "{8A07D5F4-5ECB-4010-8D22-A6A0D9877F7C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billing.Billingo", "Services\Billing\Billing.Billingo\Billing.Billingo.csproj", "{8FD20CA6-3C77-4D28-B22F-061F80A670B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration Tests", "Integration Tests", "{D2BC7553-66A5-4CF3-982E-39A2CD886DE6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Partners.API.Tests", "Services\Partners\Tests\Partners.API.Tests\Partners.API.Tests.csproj", "{7F6A21DA-A857-4A33-AEA3-FB797D622954}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Partners.BackgroundTasks", "Services\Partners\BackgroundTasks\Partners.BackgroundTasks\Partners.BackgroundTasks.csproj", "{C1BE2597-3EC3-4205-90F1-1AC16E47B1AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundTasks", "BackgroundTasks", "{5EC270E7-97B0-4EA6-AC2B-3A3588A9AEC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -597,10 +601,6 @@ Global
 		{15B65969-9F08-47C9-9E66-591CFF9C97E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15B65969-9F08-47C9-9E66-591CFF9C97E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15B65969-9F08-47C9-9E66-591CFF9C97E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BAD4AC22-BC94-4FA7-8596-36A5E2AE697A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BAD4AC22-BC94-4FA7-8596-36A5E2AE697A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BAD4AC22-BC94-4FA7-8596-36A5E2AE697A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BAD4AC22-BC94-4FA7-8596-36A5E2AE697A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8A07D5F4-5ECB-4010-8D22-A6A0D9877F7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8A07D5F4-5ECB-4010-8D22-A6A0D9877F7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A07D5F4-5ECB-4010-8D22-A6A0D9877F7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -609,6 +609,14 @@ Global
 		{8FD20CA6-3C77-4D28-B22F-061F80A670B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FD20CA6-3C77-4D28-B22F-061F80A670B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FD20CA6-3C77-4D28-B22F-061F80A670B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F6A21DA-A857-4A33-AEA3-FB797D622954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F6A21DA-A857-4A33-AEA3-FB797D622954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F6A21DA-A857-4A33-AEA3-FB797D622954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F6A21DA-A857-4A33-AEA3-FB797D622954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1BE2597-3EC3-4205-90F1-1AC16E47B1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1BE2597-3EC3-4205-90F1-1AC16E47B1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1BE2597-3EC3-4205-90F1-1AC16E47B1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1BE2597-3EC3-4205-90F1-1AC16E47B1AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -753,10 +761,12 @@ Global
 		{B22BD26A-A12A-4A04-B490-5EB449F16D20} = {EE226F64-780E-45DD-99B4-85281869FDA5}
 		{66E64255-239D-4052-A6AB-B15C6AE0629A} = {B22BD26A-A12A-4A04-B490-5EB449F16D20}
 		{15B65969-9F08-47C9-9E66-591CFF9C97E4} = {B22BD26A-A12A-4A04-B490-5EB449F16D20}
-		{BAD4AC22-BC94-4FA7-8596-36A5E2AE697A} = {66E64255-239D-4052-A6AB-B15C6AE0629A}
 		{8A07D5F4-5ECB-4010-8D22-A6A0D9877F7C} = {35F79A90-BF2B-47ED-9E16-4D0C9108807B}
 		{8FD20CA6-3C77-4D28-B22F-061F80A670B8} = {35F79A90-BF2B-47ED-9E16-4D0C9108807B}
 		{D2BC7553-66A5-4CF3-982E-39A2CD886DE6} = {79704F6F-80F2-43DC-ADE5-A8C00CC7BDA8}
+		{7F6A21DA-A857-4A33-AEA3-FB797D622954} = {66E64255-239D-4052-A6AB-B15C6AE0629A}
+		{C1BE2597-3EC3-4205-90F1-1AC16E47B1AF} = {5EC270E7-97B0-4EA6-AC2B-3A3588A9AEC8}
+		{5EC270E7-97B0-4EA6-AC2B-3A3588A9AEC8} = {B22BD26A-A12A-4A04-B490-5EB449F16D20}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16E930B6-CA49-4BBE-BD42-6D032E69A5C5}

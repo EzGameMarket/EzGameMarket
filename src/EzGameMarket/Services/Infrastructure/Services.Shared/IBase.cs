@@ -9,4 +9,9 @@ namespace Services.Shared.Models
         Guid ID { get; }
         T Data { get; }
     }
+
+    interface IBase
+    {
+        Guid ID { get; }
+    }
 }
