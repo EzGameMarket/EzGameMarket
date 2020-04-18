@@ -2,8 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Shared.Utilities.CloudStorage.Settings.Services.Abstractions;
-using Shared.Utilities.CloudStorage.Settings.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +11,8 @@ using Shared.Utilities.CloudStorage.Shared.Services.Abstractions;
 using Shared.Utilities.CloudStorage.Shared;
 using Shared.Utilities.CloudStorage.AzureBlob;
 using Shared.Utilities.CloudStorage.AzureBlob.Settings;
+using Shared.Extensions.SettingsLoader.Services.Abstractions;
+using Shared.Extensions.SettingsLoader.Services.Implementations;
 
 namespace CatalogImages.API
 {
@@ -20,11 +20,10 @@ namespace CatalogImages.API
     {
         public static async Task AddCloudStorage(this IServiceCollection services)
         {
-            var storageSettings = new StorageSettingsService<AzureSettings>();
-            var settings = await storageSettings.Load();
+            var storageSettings = new SettingsService<AzureSettings>("cloudStorageSettings.json");
+            var settings = await storageSettings.LoadAsync();
 
-            services.AddSingleton<IStorageSettings>(settings);
-            services.AddSingleton<IAzureSettings>(settings);
+            services.AddSingleton(settings);
             services.AddSingleton<IStorageRepository, AzureBlobStorage>();
             services.AddSingleton<IStorageService,StorageService>();
         }

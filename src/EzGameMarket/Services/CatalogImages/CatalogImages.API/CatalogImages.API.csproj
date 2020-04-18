@@ -39,6 +39,7 @@
     <ProjectReference Include="..\..\..\EventBuses\EventBus.MockedTest\EventBus.MockedTest.csproj" />
     <ProjectReference Include="..\..\..\Shared\Extensions\ImageExtensions\Scaler\ImageScaler\ImageScaler.csproj" />
     <ProjectReference Include="..\..\..\Shared\Extensions\ImageExtensions\Validator\ImageValidator.Shared\ImageValidator.Shared.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Extensions\SettingsExtensions\SettingsLoader\SettingsLoader.csproj" />
     <ProjectReference Include="..\..\..\Shared\Utilities\CloudStorage\CloudStorage.AzureBlob\CloudStorage.AzureBlob.csproj" />
   </ItemGroup>
 
