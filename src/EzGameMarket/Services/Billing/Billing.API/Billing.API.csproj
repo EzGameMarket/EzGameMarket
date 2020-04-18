@@ -28,10 +28,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\EventBuses\EventBus.Shared\EventBus.Shared.csproj" />
     <ProjectReference Include="..\..\..\Shared\Extensions\Pagination\Pagination.csproj" />
-    <ProjectReference Include="..\..\..\Shared\Utilities\Billing\Billing.Shared\Billing.Shared.csproj" />
     <ProjectReference Include="..\..\..\Shared\Utilities\CloudStorage\CloudStorage.Shared\CloudStorage.Shared.csproj" />
     <ProjectReference Include="..\..\..\Shared\Utilities\EmailSender\EmailSender.SendGrid\EmailSender.SendGrid.csproj" />
     <ProjectReference Include="..\..\..\Shared\Utilities\EmailSender\EmailSender.Shared\EmailSender.Shared.csproj" />
+    <ProjectReference Include="..\Billing.Shared\Billing.Shared.csproj" />
   </ItemGroup>
 
 
