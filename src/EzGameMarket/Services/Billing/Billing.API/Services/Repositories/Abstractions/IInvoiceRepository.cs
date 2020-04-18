@@ -26,6 +26,9 @@ namespace Billing.API.Services.Repositories.Abstractions
 
         Task Storno(int id);
 
-        Task UploadBillingSystemID(string billingSystemID);
+        Task UploadBillingSystemID(string billingSystemID, int id);
+        Task UploadCanceledInvoiceBillingSystemID(string canceledID, int id);
+
+        Task UpdateFilePath(string filePath, int id);
     }
 }

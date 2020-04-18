@@ -11,5 +11,7 @@ namespace Billing.API.ViewModels
         public Invoice Invoice { get; set; }
 
         public string UserID { get; set; }
+
+        public bool IsCanceledInvoice { get; set; }
     }
 }

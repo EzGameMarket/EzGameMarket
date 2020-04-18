@@ -18,7 +18,8 @@ namespace Billing.API.Models
         public string UserEmail { get; set; }
 
         [Required]
-        public string InvoiceID { get; set; }
+        public string BillingSystemInvoiceID { get; set; }
+        public string BillingSystemCanceledInvoiceID { get; set; }
 
         [Required]
         public int? FileID { get; set; }

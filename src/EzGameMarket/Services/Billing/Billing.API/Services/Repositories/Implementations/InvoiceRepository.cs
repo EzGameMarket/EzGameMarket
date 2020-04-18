@@ -33,7 +33,7 @@ namespace Billing.API.Services.Repositories.Implementations
                 throw new InvoiceAlreadyExistsWithID() { ID = model.Invoice.ID.GetValueOrDefault() };
             }
 
-            if (await AnyWithOrderID(model.Invoice.OrderID) == true)
+            if (await AnyWithOrderID(model.Invoice.OrderID) == true && model.IsCanceledInvoice == false)
             {
                 throw new InvoiceAlreadyExistsForOrderID() { OrderID = model.Invoice.OrderID };
             }
@@ -99,9 +99,50 @@ namespace Billing.API.Services.Repositories.Implementations
             }
         }
 
-        public Task UploadBillingSystemID(string billingSystemID)
+        public async Task UpdateFilePath(string filePath, int id)
         {
-            throw new NotImplementedException();
+            var invoice = await GetInvoceByID(id);
+
+            if (invoice == default)
+            {
+                throw new InvoiceNotFoundByIDException() { ID = id };
+            }
+
+            invoice.File = new InvoiceFile()
+            {
+                ID = default,
+                FileUri = filePath
+            };
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task UploadBillingSystemID(string billingSystemID, int id)
+        {
+            var invoice = await GetInvoceByID(id);
+
+            if (invoice == default)
+            {
+                throw new InvoiceNotFoundByIDException() { ID = id };
+            }
+
+            invoice.BillingSystemInvoiceID = billingSystemID;
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task UploadCanceledInvoiceBillingSystemID(string canceledID, int id)
+        {
+            var invoice = await GetInvoceByID(id);
+
+            if (invoice == default)
+            {
+                throw new InvoiceNotFoundByIDException() { ID = id };
+            }
+
+            invoice.BillingSystemCanceledInvoiceID = canceledID;
+
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
