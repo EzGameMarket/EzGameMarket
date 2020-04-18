@@ -8,8 +8,7 @@ namespace Shared.Extensions.SettingsLoader.Services.Abstractions
 {
     public interface ISettingsService<TSettings> : 
         ISaveSettingsService<TSettings>, 
-        ILoadSettingsService<TSettings>,
-        IContainsModel<TSettings>
+        ILoadSettingsService<TSettings>
             where TSettings : class
     {
         string FilePath { get; }

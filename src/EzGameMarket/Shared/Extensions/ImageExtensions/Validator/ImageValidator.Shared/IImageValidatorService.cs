@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Shared.Extensions.ImageExtensions.ImageValidator.Settings.Abstractions;
+using Shared.Extensions.ImageExtensions.ImageValidator.Settings;
 using SixLabors.Primitives;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace Shared.Extensions.ImageExtensions.ImageValidator.Shared
 {
     public interface IImageValidatorService
     {
-        ImageValidateSettings ValidateSettings { get; }
+        ImageValidationSettings ValidateSettings { get; }
 
         //meg kell oldani, hogy a feltölött fájl méretét lehessen itt megvizsgálni
         Task<bool> ValidateSize(IFormFile file, int max);

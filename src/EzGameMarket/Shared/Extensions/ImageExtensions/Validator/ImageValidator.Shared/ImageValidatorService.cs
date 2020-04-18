@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Shared.Extensions.ImageExtensions.ImageValidator.Settings.Abstractions;
+using Shared.Extensions.ImageExtensions.ImageValidator.Settings;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.Primitives;
@@ -13,12 +13,12 @@ namespace Shared.Extensions.ImageExtensions.ImageValidator.Shared
 {
     public class ImageValidatorService : IImageValidatorService
     {
-        public ImageValidatorService(ImageValidateSettings validateSettings)
+        public ImageValidatorService(ImageValidationSettings validateSettings)
         {
             ValidateSettings = validateSettings;
         }
 
-        public ImageValidateSettings ValidateSettings { get; private set; }
+        public ImageValidationSettings ValidateSettings { get; private set; }
 
         public Task<bool> ValidateDimensions(IFormFile file, Size min, Size max)
         {

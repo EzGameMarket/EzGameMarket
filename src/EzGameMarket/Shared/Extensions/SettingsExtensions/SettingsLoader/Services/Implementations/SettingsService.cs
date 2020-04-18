@@ -11,6 +11,11 @@ namespace Shared.Extensions.SettingsLoader.Services.Implementations
     public class SettingsService<TSettings> : ISettingsService<TSettings>
         where TSettings : class
     {
+        public SettingsService(string filePath)
+        {
+            FilePath = filePath;
+        }
+
         public string FilePath { get; set; }
 
         private void ValidateFileHandling()
