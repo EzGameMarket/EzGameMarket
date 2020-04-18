@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using Azure;
 using Shared.Utilities.CloudStorage.Shared.Extensions;
 using Shared.Extensions;
+using Azure.Storage.Blobs.Models;
+using Shared.Utiliies.CloudStorage.Shared.Models.AccessResult;
+using System.Reflection.Metadata;
 
 namespace Shared.Utilities.CloudStorage.AzureBlob
 {
@@ -25,9 +28,9 @@ namespace Shared.Utilities.CloudStorage.AzureBlob
             => new BlobContainerClient(_settings.ConnectionString, _settings.ContainerName);
 
         private BlobContainerClient ConnectToContainer(string extension) 
-            => new BlobContainerClient(_settings.ConnectionString, _settings.ContainerName + extension);
+            => new BlobContainerClient(_settings.ConnectionString, Path.Combine(_settings.ContainerName, extension));
 
-        public async Task Delete(string id)
+        public async Task<CloudStorageAccessDeleteResult> Delete(string id)
         {
             var container = ConnectToContainer();
 
@@ -40,16 +43,11 @@ namespace Shared.Utilities.CloudStorage.AzureBlob
             {
                 throw new ApplicationException($"The delete of the {id} file failed");
             }
+
+            return new CloudStorageAccessDeleteResult(true);
         }
 
-        public async Task<byte[]> DownloadToByteArray(string id)
-        {
-            var stream = await DownloadToStream(id);
-
-            return await stream.ToByteArray();
-        }
-
-        public async Task<Stream> DownloadToStream(string id)
+        public async Task<CloudStorageAccessDownloadResult> Download(string id)
         {
             var container = ConnectToContainer();
 
@@ -58,19 +56,19 @@ namespace Shared.Utilities.CloudStorage.AzureBlob
 
             ValidateResponseIsErrorFree(downloadResponse.GetRawResponse());
 
-            return downloadResponse.Value.Content;
+            return new CloudStorageAccessDownloadResult(true, downloadResponse.Value.Content);
         }
 
-        public Task<bool> UploadFromByteArray(byte[] data) =>
+        public Task<CloudStorageAccessUploadResult> UploadFromByteArray(byte[] data) =>
             UploadFromByteArrayWithID("".GenerateUniqueID(), data);
 
-        public Task<bool> UploadFromByteArrayWithID(string id, byte[] data)
+        public Task<CloudStorageAccessUploadResult> UploadFromByteArrayWithID(string id, byte[] data)
             => UploadFromStreamWithID(id, new MemoryStream(data));
 
-        public Task<bool> UploadFromStream(Stream stream) =>
+        public Task<CloudStorageAccessUploadResult> UploadFromStream(Stream stream) =>
             UploadFromStreamWithID("".GenerateUniqueID(), stream);
 
-        public async Task<bool> UploadFromStreamWithID(string id, Stream stream)
+        public async Task<CloudStorageAccessUploadResult> UploadFromStreamWithID(string id, Stream stream)
         {
             var container = ConnectToContainer();
 
@@ -79,7 +77,7 @@ namespace Shared.Utilities.CloudStorage.AzureBlob
 
             ValidateResponseIsErrorFree(uploadResponse.GetRawResponse());
 
-            return true;
+            return new CloudStorageAccessUploadResult(true, blobClient.Uri.AbsoluteUri);
         }
 
         private void ValidateResponseIsErrorFree(Response response)
@@ -90,51 +88,51 @@ namespace Shared.Utilities.CloudStorage.AzureBlob
             }
         }
 
-        public Task<bool> Upload(byte[] data)
+        public Task<CloudStorageAccessUploadResult> Upload(byte[] data)
         {
             using var memStream = new MemoryStream(data);
 
             return UploadWithContainerExtension("", "".GenerateUniqueID(), memStream);
         }
 
-        public Task<bool> Upload(Stream stream) =>
+        public Task<CloudStorageAccessUploadResult> Upload(Stream stream) =>
             UploadWithContainerExtension("", "".GenerateUniqueID(), stream);
 
-        public Task<bool> Upload(string id, byte[] data)
+        public Task<CloudStorageAccessUploadResult> Upload(string id, byte[] data)
         {
             using var memStream = new MemoryStream(data);
 
             return UploadWithContainerExtension("", id, memStream);
         }
 
-        public Task<bool> Upload(string id, Stream stream) =>
+        public Task<CloudStorageAccessUploadResult> Upload(string id, Stream stream) =>
             UploadWithContainerExtension("", id, stream);
 
-        public async Task<bool> UploadWithContainerExtension(string containerNameExtension, string id, Stream stream)
+        public async Task<CloudStorageAccessUploadResult> UploadWithContainerExtension(string containerNameExtension, string id, Stream stream)
         {
             var container = ConnectToContainer(containerNameExtension);
 
-            await container.CreateIfNotExistsAsync(Azure.Storage.Blobs.Models.PublicAccessType.Blob);
+            await container.CreateIfNotExistsAsync(PublicAccessType.Blob);
 
             var blobClient = container.GetBlobClient(id);
             var uploadResponse = await blobClient.UploadAsync(stream);
 
             ValidateResponseIsErrorFree(uploadResponse.GetRawResponse());
 
-            return true;
+            return new CloudStorageAccessUploadResult(true, blobClient.Uri.AbsoluteUri);
         }
 
-        public Task<bool> UploadWithContainerExtension(string containerNameExtension, Stream stream)
+        public Task<CloudStorageAccessUploadResult> UploadWithContainerExtension(string containerNameExtension, Stream stream)
             => UploadWithContainerExtension(containerNameExtension,"".GenerateUniqueID(),stream);
 
-        public Task<bool> UploadWithContainerExtension(string containerNameExtension, byte[] data)
+        public Task<CloudStorageAccessUploadResult> UploadWithContainerExtension(string containerNameExtension, byte[] data)
         {
             using var memStream = new MemoryStream(data);
 
             return UploadWithContainerExtension(containerNameExtension, "".GenerateUniqueID(), memStream);
         }
 
-        public Task<bool> UploadWithContainerExtension(string containerNameExtension, string id, byte[] data)
+        public Task<CloudStorageAccessUploadResult> UploadWithContainerExtension(string containerNameExtension, string id, byte[] data)
         {
             using var memStream = new MemoryStream(data);
 

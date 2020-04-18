@@ -12,6 +12,8 @@ using EventBus.Shared.Events;
 using System.IO;
 using Shared.Utilities.CloudStorage.Shared.Extensions;
 using Shared.Extensions;
+using Shared.Utiliies.CloudStorage.Shared.Models;
+using Shared.Utiliies.CloudStorage.Shared.Models.BaseResult;
 
 namespace Shared.Utilities.CloudStorage.Shared
 {
@@ -30,7 +32,7 @@ namespace Shared.Utilities.CloudStorage.Shared
             _needToPublish = eventBus != default;
         }
 
-        public async Task Delete(string id)
+        public async Task<CloudStorageDeleteResult> Delete(string id)
         {
             try
             {
@@ -44,6 +46,8 @@ namespace Shared.Utilities.CloudStorage.Shared
 
                 throw;
             }
+
+            return new CloudStorageDeleteResult(true);
         }
 
         private void PublishToEventBus(IntegrationEvent @event)
@@ -54,58 +58,51 @@ namespace Shared.Utilities.CloudStorage.Shared
             }
         }
 
-        public async Task<byte[]> DownloadToByteArray(string id)
-        {
-            var stream = await DownloadToStream(id);
-
-            return await stream.ToByteArray();
-        }
-
-        public async Task<Stream> DownloadToStream(string id)
+        public async Task<CloudStorageDownloadResult> Download(string id)
         {
             try
             {
-                var stream = await Repository.DownloadToStream(id);
+                var response = await Repository.Download(id);
 
                 PublishToEventBus(new ObjectDownloadedIntegrationEvent());
 
-                return stream;
+                return new CloudStorageDownloadResult(response.Success, response.File);
             }
             catch (Exception ex)
             {
                 PublishToEventBus(new ObjectDownloadFailedIntegrationEvent(ex));
             }
 
-            return default;
+            return new CloudStorageDownloadResult(false, default);
         }
 
-        public Task<bool> Upload(byte[] data)
+        public Task<CloudStorageUploadResult> Upload(byte[] data)
         {
             using var memStream = new MemoryStream(data);
 
             return UploadWithContainerExtension("", "".GenerateUniqueID(), memStream);
         }
 
-        public Task<bool> Upload(Stream stream)
+        public Task<CloudStorageUploadResult> Upload(Stream stream)
             => UploadWithContainerExtension("", "".GenerateUniqueID(), stream);
 
-        public Task<bool> Upload(string id, byte[] data)
+        public Task<CloudStorageUploadResult> Upload(string id, byte[] data)
         {
             using var memStream = new MemoryStream(data);
 
             return UploadWithContainerExtension("", id, memStream);
         }
 
-        public Task<bool> Upload(string id, Stream stream)
+        public Task<CloudStorageUploadResult> Upload(string id, Stream stream)
             => UploadWithContainerExtension("", id, stream);
 
-        public async Task<bool> UploadWithContainerExtension(string containerNameExtension, string id, Stream stream)
+        public async Task<CloudStorageUploadResult> UploadWithContainerExtension(string containerNameExtension, string id, Stream stream)
         {
             try
             {
                 var uploadResult = await Repository.UploadWithContainerExtension(containerNameExtension,id, stream);
 
-                if (uploadResult)
+                if (uploadResult.Success)
                 {
                     PublishToEventBus(new ObjectUploadedIntegrationEvent());
                 }
@@ -114,27 +111,27 @@ namespace Shared.Utilities.CloudStorage.Shared
                     PublishToEventBus(new ObjectUploadFailedIntegrationEvent(new ApplicationException($"A {id} fájl feltöltése nem sikerült")));
                 }
 
-                return uploadResult;
+                return new CloudStorageUploadResult(uploadResult.Success, uploadResult.AbsoluteFileURL );
             }
             catch (Exception ex)
             {
                 PublishToEventBus(new ObjectUploadFailedIntegrationEvent(ex));
             }
 
-            return false;
+            return new CloudStorageUploadResult(false, default);
         }
 
-        public Task<bool> UploadWithContainerExtension(string containerNameExtension, Stream stream)
+        public Task<CloudStorageUploadResult> UploadWithContainerExtension(string containerNameExtension, Stream stream)
             => UploadWithContainerExtension(containerNameExtension, "".GenerateUniqueID(), stream);
 
-        public Task<bool> UploadWithContainerExtension(string containerNameExtension, byte[] data)
+        public Task<CloudStorageUploadResult> UploadWithContainerExtension(string containerNameExtension, byte[] data)
         {
             using var memStream = new MemoryStream(data);
 
             return UploadWithContainerExtension(containerNameExtension, "".GenerateUniqueID(), memStream);
         }
 
-        public Task<bool> UploadWithContainerExtension(string containerNameExtension, string id, byte[] data)
+        public Task<CloudStorageUploadResult> UploadWithContainerExtension(string containerNameExtension, string id, byte[] data)
         {
             using var memStream = new MemoryStream(data);
 
