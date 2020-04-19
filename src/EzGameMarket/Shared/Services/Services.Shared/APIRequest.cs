@@ -6,22 +6,22 @@ using System.Text;
 
 namespace Services.Shared.Models
 {
-    public class APIRequest<T> : IBase<T>
-        where T : class
+    public class APIRequest<TModel> : IBase<TModel>
+        where TModel : class
     {
-        public APIRequest(T data) : this(Guid.NewGuid(), DateTime.Now, data)
+        public APIRequest(TModel data) : this(Guid.NewGuid(), DateTime.Now, data)
         {
             Data = data;
         }
 
-        public APIRequest(DateTime date, T data) : this(Guid.NewGuid(), date, data)
+        public APIRequest(DateTime date, TModel data) : this(Guid.NewGuid(), date, data)
         {
             ID = Guid.NewGuid();
             CreationDate = date;
         }
 
         [JsonConstructor]
-        public APIRequest(Guid iD, DateTime creationDate, T data)
+        public APIRequest(Guid iD, DateTime creationDate, TModel data)
         {
             ID = iD;
             CreationDate = creationDate;
@@ -32,6 +32,6 @@ namespace Services.Shared.Models
 
         public DateTime CreationDate { get; set; }
 
-        public T Data { get; private set; }
+        public TModel Data { get; private set; }
     }
 }

@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Services.Shared.Models
 {
-    public class APIResponse<T> : IBase<T>
-        where T : class
+    public class APIResponse<TModel> : IBase<TModel>
+        where TModel : class
     {
         [JsonConstructor]
-        public APIResponse(Guid iD, DateTime responseCreated, DateTime requested, long executionTimeInMs, bool success, T data)
+        public APIResponse(Guid iD, DateTime responseCreated, DateTime requested, long executionTimeInMs, bool success, TModel data)
         {
             ID = iD;
             ResponseCreated = responseCreated;
@@ -19,7 +19,7 @@ namespace Services.Shared.Models
             Data = data;
         }
 
-        public APIResponse(T data, bool success, DateTime requestedDate)
+        public APIResponse(TModel data, bool success, DateTime requestedDate)
             : this(Guid.NewGuid(), DateTime.Now, requestedDate, (long)(DateTime.Now - requestedDate).TotalMilliseconds, success, data) { }
 
         public Guid ID { get; private set; }
@@ -33,6 +33,6 @@ namespace Services.Shared.Models
 
         public string Message { get; private set; }
         
-        public T Data { get; private set; }
+        public TModel Data { get; private set; }
     }
 }
