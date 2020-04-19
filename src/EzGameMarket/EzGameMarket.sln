@@ -301,33 +301,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration Tests", "Integr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Partners.API.Tests", "Services\Partners\Tests\Partners.API.Tests\Partners.API.Tests.csproj", "{7F6A21DA-A857-4A33-AEA3-FB797D622954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Partners.BackgroundTasks", "Services\Partners\BackgroundTasks\Partners.BackgroundTasks\Partners.BackgroundTasks.csproj", "{C1BE2597-3EC3-4205-90F1-1AC16E47B1AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Partners.BackgroundTasks", "Services\Partners\BackgroundTasks\Partners.BackgroundTasks\Partners.BackgroundTasks.csproj", "{C1BE2597-3EC3-4205-90F1-1AC16E47B1AF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundTasks", "BackgroundTasks", "{5EC270E7-97B0-4EA6-AC2B-3A3588A9AEC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billing.Billingo.Tests", "Services\Billing\Tests\Billing.Billingo.Tests\Billing.Billingo.Tests.csproj", "{E61E8251-8755-4AA6-BC04-6E70BADAA9AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billing.Billingo.Tests", "Services\Billing\Tests\Billing.Billingo.Tests\Billing.Billingo.Tests.csproj", "{E61E8251-8755-4AA6-BC04-6E70BADAA9AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billing.Shared.Tests", "Services\Billing\Tests\Billing.Shared.Tests\Billing.Shared.Tests.csproj", "{07CFBD0F-AA15-4506-83F6-95DF3E10C41B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billing.Shared.Tests", "Services\Billing\Tests\Billing.Shared.Tests\Billing.Shared.Tests.csproj", "{07CFBD0F-AA15-4506-83F6-95DF3E10C41B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billing.Billingo.Tests.IntegrationTests", "Services\Billing\Tests\Integration Tests\Billing.Billingo.Tests.IntegrationTests\Billing.Billingo.Tests.IntegrationTests.csproj", "{B7EAE95E-BF58-462D-9E97-2431D9ABA563}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3FB12D60-F3D0-450A-9990-CE72C718E43E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billing.Billingo.Tests.IntegrationTests", "Services\Billing\Tests\Integration Tests\Billing.Billingo.Tests.IntegrationTests\Billing.Billingo.Tests.IntegrationTests.csproj", "{B7EAE95E-BF58-462D-9E97-2431D9ABA563}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analytics", "Analytics", "{34D5606D-0B22-4EF8-8EEE-8F3D9A3B9DC0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5CF80319-72C3-4974-885C-DFC4160BED26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Addresses.API", "Services\Addresses\Addresses.API\Addresses.API.csproj", "{B041A04D-13FD-4DD0-BCCE-E496DDB3B10C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Addresses.API", "Services\Addresses\Addresses.API\Addresses.API.csproj", "{B041A04D-13FD-4DD0-BCCE-E496DDB3B10C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Addresses.API.Tests", "Services\Addresses\Tests\Addresses.API.Tests\Addresses.API.Tests.csproj", "{46128BCF-ED3B-4DC5-9077-05566EBD6743}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Addresses.API.Tests", "Services\Addresses\Tests\Addresses.API.Tests\Addresses.API.Tests.csproj", "{46128BCF-ED3B-4DC5-9077-05566EBD6743}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundTasks", "BackgroundTasks", "{65BE4FE4-E805-4104-94BE-DD0E7C6ECF12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analytics.Users.API", "Services\Analytics\Users\Analytics.Users.API\Analytics.Users.API.csproj", "{407871C8-0A0D-424E-B940-BB0A36D4F9F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analytics.Users.API", "Services\Analytics\Users\Analytics.Users.API\Analytics.Users.API.csproj", "{407871C8-0A0D-424E-B940-BB0A36D4F9F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analytics.Sales.API", "Services\Analytics\Sales\Analytics.Sales.API\Analytics.Sales.API.csproj", "{B636E9A3-63F4-468E-B4CE-A262C1E26A79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analytics.Sales.API", "Services\Analytics\Sales\Analytics.Sales.API\Analytics.Sales.API.csproj", "{B636E9A3-63F4-468E-B4CE-A262C1E26A79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analytics.Marketing.API", "Services\Analytics\Marketing\Analytics.Marketing.API\Analytics.Marketing.API.csproj", "{C507FCF8-47B9-4759-A1FF-EF84B4207D25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analytics.Marketing.API", "Services\Analytics\Marketing\Analytics.Marketing.API\Analytics.Marketing.API.csproj", "{C507FCF8-47B9-4759-A1FF-EF84B4207D25}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{BCB6BAFA-386F-4BC2-9BCF-9E78DCCDD44E}"
 EndProject
@@ -336,6 +334,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sales", "Sales", "{CDC7322A-FCD2-4C6E-A343-625997E16446}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{013BF956-FF5F-4D6D-BBB3-38AB6B7BDEE4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PaymentMethod", "PaymentMethod", "{EF9B9CF7-5EF1-492C-9752-A9F4525733D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.PaymentMethods.API", "Services\PaymentMethod\Users.PaymentMethods.API\Users.PaymentMethods.API.csproj", "{52F2BD0C-F2AB-45DF-9411-3E5B0CCAF5A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B4ED5EFB-BFE5-4445-9DDD-AB6C6259EFDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -679,6 +683,10 @@ Global
 		{C507FCF8-47B9-4759-A1FF-EF84B4207D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C507FCF8-47B9-4759-A1FF-EF84B4207D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C507FCF8-47B9-4759-A1FF-EF84B4207D25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52F2BD0C-F2AB-45DF-9411-3E5B0CCAF5A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52F2BD0C-F2AB-45DF-9411-3E5B0CCAF5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52F2BD0C-F2AB-45DF-9411-3E5B0CCAF5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52F2BD0C-F2AB-45DF-9411-3E5B0CCAF5A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -831,7 +839,6 @@ Global
 		{E61E8251-8755-4AA6-BC04-6E70BADAA9AE} = {79704F6F-80F2-43DC-ADE5-A8C00CC7BDA8}
 		{07CFBD0F-AA15-4506-83F6-95DF3E10C41B} = {79704F6F-80F2-43DC-ADE5-A8C00CC7BDA8}
 		{B7EAE95E-BF58-462D-9E97-2431D9ABA563} = {D2BC7553-66A5-4CF3-982E-39A2CD886DE6}
-		{3FB12D60-F3D0-450A-9990-CE72C718E43E} = {EE226F64-780E-45DD-99B4-85281869FDA5}
 		{34D5606D-0B22-4EF8-8EEE-8F3D9A3B9DC0} = {EE226F64-780E-45DD-99B4-85281869FDA5}
 		{5CF80319-72C3-4974-885C-DFC4160BED26} = {34D5606D-0B22-4EF8-8EEE-8F3D9A3B9DC0}
 		{B041A04D-13FD-4DD0-BCCE-E496DDB3B10C} = {AE6ADD17-8B59-486E-AC95-D83A43394FA3}
@@ -844,6 +851,9 @@ Global
 		{6B74FE3A-4F0B-4282-9B9E-B35EC4A0F5A8} = {65BE4FE4-E805-4104-94BE-DD0E7C6ECF12}
 		{CDC7322A-FCD2-4C6E-A343-625997E16446} = {65BE4FE4-E805-4104-94BE-DD0E7C6ECF12}
 		{013BF956-FF5F-4D6D-BBB3-38AB6B7BDEE4} = {65BE4FE4-E805-4104-94BE-DD0E7C6ECF12}
+		{EF9B9CF7-5EF1-492C-9752-A9F4525733D6} = {EE226F64-780E-45DD-99B4-85281869FDA5}
+		{52F2BD0C-F2AB-45DF-9411-3E5B0CCAF5A3} = {EF9B9CF7-5EF1-492C-9752-A9F4525733D6}
+		{B4ED5EFB-BFE5-4445-9DDD-AB6C6259EFDD} = {EF9B9CF7-5EF1-492C-9752-A9F4525733D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16E930B6-CA49-4BBE-BD42-6D032E69A5C5}

@@ -1,0 +1,27 @@
+[
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/site.js",
+      "wwwroot/js/custom.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/bundle.css",
+    "inputFiles": [
+      "wwwroot/css/style.css",
+      "wwwroot/css/animate.css",
+      "wwwroot/css/custom.css",
+      "wwwroot/css/font-awesome.css",
+      "wwwroot/css/magnific-popup.css",
+      "wwwroot/css/plugins.css",
+      "wwwroot/css/prettyPhoto.css",
+      "wwwroot/css/site.css",
+      "wwwroot/css/slick.css"
+    ]
+  }
+]
