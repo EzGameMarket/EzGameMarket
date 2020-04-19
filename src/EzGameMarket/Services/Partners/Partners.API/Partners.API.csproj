@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Extensions\Pagination\Pagination.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Services.Shared\Services.Shared.Models.csproj" />
   </ItemGroup>
 
 
