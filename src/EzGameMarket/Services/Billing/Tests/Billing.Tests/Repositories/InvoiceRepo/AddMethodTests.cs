@@ -2,30 +2,30 @@
 using Billing.API.Exceptions.Invoices;
 using Billing.API.Models;
 using Billing.API.Services.Repositories.Implementations;
+using Billing.API.Services.Services.Abstractions;
 using Billing.API.ViewModels;
 using Billing.Tests.FakeImplementations;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xunit;
 
-namespace Billing.Tests.API.Repositories.InvoiceRepo
+namespace Billing.API.Tests.Repositories.InvoiceRepo
 {
     public class AddMethodTests
     {
         [Fact]
         public async void Add_ShouldReturnSuccess()
         {
-            //Arrange 
+            //Arrange
             var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeDbCreatorFactory.InitDbContext(dbOptions);
             var dbContext = new InvoicesDbContext(dbOptions);
 
             var userInvoicesRepo = new UserInvoiceRepository(dbContext);
 
-            var model = new InvoiceCreationViewModel() 
+            var model = new InvoiceCreationViewModel()
             {
                 UserID = "kriszw",
                 Invoice = new Invoice()
@@ -70,8 +70,11 @@ namespace Billing.Tests.API.Repositories.InvoiceRepo
             };
             var expectedID = (await dbContext.Invoices.MaxAsync(i => i.ID)) + 1;
 
+            var mockedInvoiceService = new Mock<IInvoiceService>();
+            mockedInvoiceService.Setup(i => i.Create(default));
+
             //Act
-            var repo = new InvoiceRepository(dbContext, userInvoicesRepo);
+            var repo = new InvoiceRepository(dbContext, userInvoicesRepo, mockedInvoiceService.Object);
             await repo.Add(model);
             var invoice = await repo.GetInvoceByID(expectedID.GetValueOrDefault());
             var userInvoices = await userInvoicesRepo.GetUserInvoice(model.UserID);
@@ -87,14 +90,17 @@ namespace Billing.Tests.API.Repositories.InvoiceRepo
         [MemberData(nameof(CreateExceptionTestData))]
         public async void Add_ShouldThrowException(InvoiceCreationViewModel model, Type expectionType)
         {
-            //Arrange 
+            //Arrange
             var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeDbCreatorFactory.InitDbContext(dbOptions);
             var dbContext = new InvoicesDbContext(dbOptions);
             var userInvoicesRepo = new UserInvoiceRepository(dbContext);
 
+            var mockedInvoiceService = new Mock<IInvoiceService>();
+            mockedInvoiceService.Setup(i => i.Create(default));
+
             //Act
-            var repo = new InvoiceRepository(dbContext, userInvoicesRepo);
+            var repo = new InvoiceRepository(dbContext, userInvoicesRepo, mockedInvoiceService.Object);
             var uploadTask = repo.Add(model);
 
             //Assert
@@ -134,7 +140,7 @@ namespace Billing.Tests.API.Repositories.InvoiceRepo
         [Fact]
         public async void Add_AddNewUserInvoiceModelWithNewUserID()
         {
-            //Arrange 
+            //Arrange
             var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeDbCreatorFactory.InitDbContext(dbOptions);
             var dbContext = new InvoicesDbContext(dbOptions);
@@ -187,8 +193,11 @@ namespace Billing.Tests.API.Repositories.InvoiceRepo
             };
             var expectedID = (await dbContext.Invoices.MaxAsync(i => i.ID)) + 1;
 
+            var mockedInvoiceService = new Mock<IInvoiceService>();
+            mockedInvoiceService.Setup(i => i.Create(default));
+
             //Act
-            var repo = new InvoiceRepository(dbContext, userInvoicesRepo);
+            var repo = new InvoiceRepository(dbContext, userInvoicesRepo, mockedInvoiceService.Object);
             await repo.Add(model);
             var invoice = await repo.GetInvoceByID(expectedID.GetValueOrDefault());
             var userInvoices = await userInvoicesRepo.GetUserInvoice(newUserID);

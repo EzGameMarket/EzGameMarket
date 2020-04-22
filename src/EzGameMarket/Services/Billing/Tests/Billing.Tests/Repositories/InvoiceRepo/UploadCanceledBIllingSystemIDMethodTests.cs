@@ -9,14 +9,14 @@ using Xunit;
 
 namespace Billing.API.Tests.Repositories.InvoiceRepo
 {
-    public class UploadBillingSystemIDMethodTests
+    public class UploadCanceledBIllingSystemIDMethodTests
     {
         [Theory]
-        [InlineData("2020-0001", 1)]
-        public async void Update_ShouldBeOkay(string billingSystemID, int invoiceID)
+        [InlineData("2020-0002", 1)]
+        public async void Update_ShouldBeOkay(string canceledBillingSystemID, int invoiceID)
         {
             //Arrange
-            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{billingSystemID}-{invoiceID}");
+            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{canceledBillingSystemID}-{invoiceID}");
             await FakeDbCreatorFactory.InitDbContext(dbOptions);
             var dbContext = new InvoicesDbContext(dbOptions);
 
@@ -24,12 +24,12 @@ namespace Billing.API.Tests.Repositories.InvoiceRepo
 
             //Act
             var repo = new InvoiceRepository(dbContext, userInvoicesRepo, default);
-            await repo.UploadBillingSystemID(billingSystemID, invoiceID);
+            await repo.UploadCanceledInvoiceBillingSystemID(canceledBillingSystemID, invoiceID);
             var actual = await repo.GetInvoceByID(invoiceID);
 
             //Assert
             Assert.NotNull(actual);
-            Assert.Equal(billingSystemID, actual.BillingSystemInvoiceID);
+            Assert.Equal(canceledBillingSystemID, actual.BillingSystemCanceledInvoiceID);
         }
 
         [Fact]
@@ -44,8 +44,8 @@ namespace Billing.API.Tests.Repositories.InvoiceRepo
 
             //Act
             var repo = new InvoiceRepository(dbContext, userInvoicesRepo, default);
-            var updateTask = repo.UploadBillingSystemID("test", 100);
-            
+            var updateTask = repo.UploadCanceledInvoiceBillingSystemID("test", 100);
+
             //Assert
             await Assert.ThrowsAsync<InvoiceNotFoundByIDException>(() => updateTask);
         }

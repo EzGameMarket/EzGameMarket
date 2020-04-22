@@ -19,10 +19,13 @@ namespace Billing.API.Services.Repositories.Implementations
         private IUserInvoiceRepository _userInvoiceRepository;
         private IInvoiceService _invoiceService;
 
-        public InvoiceRepository(InvoicesDbContext dbContext, IUserInvoiceRepository userInvoiceRepository)
+        public InvoiceRepository(InvoicesDbContext dbContext,
+            IUserInvoiceRepository userInvoiceRepository,
+            IInvoiceService invoiceService)
         {
             _dbContext = dbContext;
             _userInvoiceRepository = userInvoiceRepository;
+            _invoiceService = invoiceService;
         }
 
         public async Task Add(InvoiceCreationViewModel model)
@@ -99,7 +102,7 @@ namespace Billing.API.Services.Repositories.Implementations
             }
         }
 
-        public async Task UpdateFilePath(string filePath, int id)
+        public async Task UpdateFileURL(string fileURL, int id)
         {
             var invoice = await GetInvoceByID(id);
 
@@ -108,11 +111,7 @@ namespace Billing.API.Services.Repositories.Implementations
                 throw new InvoiceNotFoundByIDException() { ID = id };
             }
 
-            invoice.File = new InvoiceFile()
-            {
-                ID = default,
-                FileUri = filePath
-            };
+            invoice.File.FileUri = fileURL;
 
             await _dbContext.SaveChangesAsync();
         }

@@ -4,19 +4,21 @@ using Billing.API.Services.Repositories.Implementations;
 using Billing.Tests.FakeImplementations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using System.Text;
 using Xunit;
 
 namespace Billing.API.Tests.Repositories.InvoiceRepo
 {
-    public class UploadBillingSystemIDMethodTests
+    public class UpdateFilePathMethodTests
     {
         [Theory]
-        [InlineData("2020-0001", 1)]
-        public async void Update_ShouldBeOkay(string billingSystemID, int invoiceID)
+        [InlineData("catalog/sms3/acvasDFSAasd.png", 1)]
+        public async void Update_ShouldBeOkay(string fileURL, int invoiceID)
         {
             //Arrange
-            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{billingSystemID}-{invoiceID}");
+            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + $"{fileURL}-{invoiceID}");
             await FakeDbCreatorFactory.InitDbContext(dbOptions);
             var dbContext = new InvoicesDbContext(dbOptions);
 
@@ -24,12 +26,12 @@ namespace Billing.API.Tests.Repositories.InvoiceRepo
 
             //Act
             var repo = new InvoiceRepository(dbContext, userInvoicesRepo, default);
-            await repo.UploadBillingSystemID(billingSystemID, invoiceID);
+            await repo.UpdateFileURL(fileURL, invoiceID);
             var actual = await repo.GetInvoceByID(invoiceID);
 
             //Assert
             Assert.NotNull(actual);
-            Assert.Equal(billingSystemID, actual.BillingSystemInvoiceID);
+            Assert.Equal(fileURL, actual.File.FileUri);
         }
 
         [Fact]
@@ -44,8 +46,8 @@ namespace Billing.API.Tests.Repositories.InvoiceRepo
 
             //Act
             var repo = new InvoiceRepository(dbContext, userInvoicesRepo, default);
-            var updateTask = repo.UploadBillingSystemID("test", 100);
-            
+            var updateTask = repo.UpdateFileURL("test.png", 100);
+
             //Assert
             await Assert.ThrowsAsync<InvoiceNotFoundByIDException>(() => updateTask);
         }

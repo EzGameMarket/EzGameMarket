@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace Billing.Tests.API.Repositories.UserInvoiceRepo
+namespace Billing.API.Tests.Repositories.UserInvoiceRepo
 {
     public class AddInvoiceMethodTests
     {
