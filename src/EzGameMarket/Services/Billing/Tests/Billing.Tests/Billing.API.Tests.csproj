@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\InvoiceController\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Billing.API\Billing.API.csproj" />
     <ProjectReference Include="..\..\Billing.Shared\Billing.Shared.csproj" />
   </ItemGroup>

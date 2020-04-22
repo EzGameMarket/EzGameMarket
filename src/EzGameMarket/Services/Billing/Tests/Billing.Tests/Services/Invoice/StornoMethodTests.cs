@@ -1,6 +1,5 @@
 ﻿using Billing.API.Data;
 using Billing.API.Exceptions.Invoices;
-using Billing.API.Models;
 using Billing.API.Services.Repositories.Implementations;
 using Billing.API.Services.Services.Implementations;
 using Billing.API.ViewModels;
@@ -11,63 +10,64 @@ using Shared.Utiliies.CloudStorage.Shared.Models.BaseResult;
 using Services.Billing.Shared.Services.Abstractions;
 using Services.Billing.Shared.ViewModels;
 using Shared.Utilities.CloudStorage.Shared.Services.Abstractions;
-using Shared.Utilities.EmailSender.Core.Services.Abstractions;
 using Shared.Utilities.EmailSender.Shared.Services.Abstractions;
 using Shared.Utilities.EmailSender.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Billing.API.Services.Services.Abstractions;
 
-namespace Billing.Tests.API.Services.InvoiceServiceTests
+namespace Billing.API.Tests.Services.InvoiceServiceTests
 {
-    public class CreateMethodTests
+    public class StornoMethodTests
     {
-
-
         [Fact]
-        public async void Create_ShouldBeOkay()
+        public async void Storno_ShouldBeOkay()
         {
             //Arrange
             var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeDbCreatorFactory.InitDbContext(dbOptions);
             var dbContext = new InvoicesDbContext(dbOptions);
+            var mockedInvoiceService = new Mock<IInvoiceService>();
+            mockedInvoiceService.Setup(i => i.Storno(default));
 
-            var expectedSystemID = "test";
+            var expectedSystemID = "cancel";
             var expectedUserID = "kriszw";
 
             var userInvoiceRepo = new UserInvoiceRepository(dbContext);
-            var repo = new InvoiceRepository(dbContext, userInvoiceRepo);
+            var repo = new InvoiceRepository(dbContext, userInvoiceRepo, mockedInvoiceService.Object);
 
             var model = await CreateModel(dbContext, expectedUserID);
             var service = CreateInvoiceService(repo, model, expectedSystemID);
 
             //Act
-            await service.Create(model);
+            await service.Storno(model.Invoice);
             var actual = await repo.GetInvoceByID(model.Invoice.ID.GetValueOrDefault());
 
             //Assert
-            Assert.Equal(expectedSystemID, actual.BillingSystemInvoiceID);
-            Assert.False(actual.Canceled);
-            Assert.NotNull(actual.FileID);
+            Assert.NotNull(actual.BillingSystemCanceledInvoiceID);
+            Assert.Equal(expectedSystemID,actual.BillingSystemCanceledInvoiceID);
         }
 
         [Fact]
-        public async void Create_ShouldThrowInvoiceNotFoundException()
+        public async void Storno_ShouldThrowInvoiceNotFoundException()
         {
             //Arrange
             var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
             await FakeDbCreatorFactory.InitDbContext(dbOptions);
             var dbContext = new InvoicesDbContext(dbOptions);
 
-            var expectedSystemID = "test";
+            var mockedInvoiceService = new Mock<IInvoiceService>();
+            mockedInvoiceService.Setup(i => i.Storno(default));
+
+            var expectedSystemID = "cancel";
             var expectedUserID = "kriszw";
 
             var userInvoiceRepo = new UserInvoiceRepository(dbContext);
-            var repo = new InvoiceRepository(dbContext, userInvoiceRepo);
+            var repo = new InvoiceRepository(dbContext, userInvoiceRepo, mockedInvoiceService.Object);
 
             var model = await CreateModel(dbContext, expectedUserID);
             var service = CreateInvoiceService(repo, model, expectedSystemID);
@@ -75,17 +75,46 @@ namespace Billing.Tests.API.Services.InvoiceServiceTests
             model.Invoice.ID = 100;
 
             //Act
-            var createTask = service.Create(model);
+            var createTask = service.Storno(model.Invoice);
 
             //Assert
             await Assert.ThrowsAsync<InvoiceNotFoundByIDException>(() => createTask);
         }
 
 
+        [Fact]
+        public async void Storno_ShouldThrowInvoiceAlreadyCanceledException()
+        {
+            //Arrange
+            var dbOptions = FakeDbCreatorFactory.CreateDbOptions(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
+            await FakeDbCreatorFactory.InitDbContext(dbOptions);
+            var dbContext = new InvoicesDbContext(dbOptions);
+            var mockedInvoiceService = new Mock<IInvoiceService>();
+            mockedInvoiceService.Setup(i => i.Storno(default));
+
+            var expectedSystemID = "cancel";
+            var expectedUserID = "kriszw";
+
+            var userInvoiceRepo = new UserInvoiceRepository(dbContext);
+            var repo = new InvoiceRepository(dbContext, userInvoiceRepo, mockedInvoiceService.Object);
+
+            var model = await CreateModel(dbContext, expectedUserID);
+            var service = CreateInvoiceService(repo, model, expectedSystemID);
+
+            model.Invoice.Canceled = true;
+
+            //Act
+            var createTask = service.Storno(model.Invoice);
+
+            //Assert
+            await Assert.ThrowsAsync<InvoiceAlreadyCanceledException>(() => createTask);
+        }
+
 
         private static async Task<InvoiceCreationViewModel> CreateModel(InvoicesDbContext dbContext, string userID)
         {
-            var invoice = await dbContext.Invoices.AsNoTracking().Include(i=> i.File).Include(i=> i.Items).FirstOrDefaultAsync();
+            var invoice = await dbContext.Invoices.AsNoTracking().Include(i => i.File).Include(i => i.Items).FirstOrDefaultAsync();
+            invoice.BillingSystemInvoiceID = "test";
             return new InvoiceCreationViewModel() { UserID = userID, IsCanceledInvoice = false, Invoice = invoice };
         }
 
@@ -96,18 +125,19 @@ namespace Billing.Tests.API.Services.InvoiceServiceTests
 
             var mockedBillingService = new Mock<IBillingService>();
             mockedBillingService
-                .Setup(bService => bService.CreateInvoiceAsync(default))
-                .ReturnsAsync(new InvoiceCreationResultViewModel() { BillingSystemID = expectedSystemID });
+                .Setup(bService => bService.Storno("test"))
+                .ReturnsAsync(expectedSystemID);
 
             var mockedStorageService = new Mock<IStorageService>();
             mockedStorageService
-                .Setup(sService => sService.UploadWithContainerExtension(model.UserID, model.Invoice.OrderID.ToString(), default(Stream)))
-                .ReturnsAsync(new CloudStorageUploadResult(true, $"{model.Invoice.OrderID}-szamla.pdf"));
+                .Setup(sService => sService.UploadWithContainerExtension("canceled", model.Invoice.OrderID.ToString(), default(Stream)))
+                .ReturnsAsync(new CloudStorageUploadResult(true, $"{model.Invoice.OrderID}-canceled-szamla.pdf"));
 
             var mockedEmailSender = new Mock<IEmailSenderService>();
             mockedEmailSender
                 .Setup(service => service.SendMail(CreateEmailViewModel(model)))
-                .ReturnsAsync(new EmailSendResult());
+                .ReturnsAsync(new EmailSendResult()).Verifiable();
+
 
             return new InvoiceService(repo, mockedApiFileManager.Object, mockedBillingService.Object,
                 mockedStorageService.Object, mockedEmailSender.Object);
@@ -117,7 +147,7 @@ namespace Billing.Tests.API.Services.InvoiceServiceTests
         {
             return new EmailSendModelWithAttachmentsViewModel()
             {
-                Subject = $"#{model.Invoice.OrderID} rendelés e-számlája",
+                Subject = $"#{model.Invoice.OrderID} rendelés törlésének az e-számlája amit sosem küldünk ki",
                 From = new EmailAddress("billing@kwsoft.dev", $"E-Számlázás EzG"),
                 To = new List<EmailAddress>() { new EmailAddress(model.Invoice.UserEmail, $"{model.Invoice.LastName} {model.Invoice.FirstName} ") },
                 Attachments = new List<AttachmentViewModel>()

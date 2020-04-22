@@ -81,7 +81,7 @@ namespace Billing.API.Services.Services.Implementations
                 throw new ApplicationException($"A {model.Invoice.BillingSystemInvoiceID} fájl feltöltése közben hiba lépett fel");
             }
 
-            await _invoiceRepository.UpdateFilePath(uploadResult.FileAbsoluteUrl, model.Invoice.ID.GetValueOrDefault());
+            await _invoiceRepository.UpdateFileURL(uploadResult.FileAbsoluteUrl, model.Invoice.ID.GetValueOrDefault());
 
             return fileStream;
         }
