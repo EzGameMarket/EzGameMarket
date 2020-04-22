@@ -1,31 +1,25 @@
 ﻿using Newtonsoft.Json;
+using Shared.Services.API.Communication.Models.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Services.Shared.Models
+namespace Shared.Services.API.Communication.Models
 {
-    public class APIResponseBase : IBase
+    public class APIResponseBase : IBase, IResponse
     {
         [JsonConstructor]
-        public APIResponseBase(Guid iD, DateTime responseCreated, DateTime requested, long executionTimeInMs, bool success)
+        public APIResponseBase(Guid iD, bool success, string message)
         {
             ID = iD;
-            ResponseCreated = responseCreated;
-            Requested = requested;
-            ExecutionTimeInMs = executionTimeInMs;
             Success = success;
+            Message = message;
         }
 
-        public APIResponseBase(bool success, DateTime requestedDate)
-            : this(Guid.NewGuid(), DateTime.Now, requestedDate, (long)(DateTime.Now - requestedDate).TotalMilliseconds, success) { }
+        public APIResponseBase(bool success, string message)
+            : this(Guid.NewGuid(), success, message) { }
 
         public Guid ID { get; private set; }
-
-        public DateTime ResponseCreated { get; private set; }
-        public DateTime Requested { get; private set; }
-        public long ExecutionTimeInMs { get; private set; }
-        public long ExecutionTimeInSec => ExecutionTimeInMs / 1000;
 
         public bool Success { get; private set; }
 

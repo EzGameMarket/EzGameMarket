@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Services.Shared.Models
+namespace Shared.Services.API.Communication.Models.Abstractions
 {
-    interface IBase<T> where T : class
+    interface IBase<T> : IBase where T : class
     {
-        Guid ID { get; }
         T Data { get; }
     }
 
