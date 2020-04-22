@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Shared\Services\IdentityConverter\IdentityConverter.csproj" />
     <ProjectReference Include="..\..\CouponCode.API\CouponCode.API.csproj" />
   </ItemGroup>
 

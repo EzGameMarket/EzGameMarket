@@ -1,5 +1,6 @@
 using CartService.API.Data;
-using CartService.API.Services;
+using CartService.API.Services.Repositories.Abstractions;
+using CartService.API.Services.Repositories.Implementations;
 using EventBus.MockedTest;
 using EventBus.Shared.Abstraction;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Shared.Services.IdentityConverter;
+using Shared.Services.IdentityConverter.Abstractions;
 using System.Text;
 
 namespace CartService.API
@@ -40,7 +43,7 @@ namespace CartService.API
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IIdentityConverterService, IdentityConverterService>();
             services.AddTransient<ICartRepository, CartRepository>();
 
             services.AddSingleton<IEventBusRepository, MagicBus>();

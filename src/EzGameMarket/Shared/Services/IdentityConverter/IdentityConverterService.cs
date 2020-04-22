@@ -1,13 +1,13 @@
-﻿using CouponCode.API.Services.Service.Abstractions;
+﻿using Shared.Services.IdentityConverter.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace CouponCode.API.Services.Service.Implementations
+namespace Shared.Services.IdentityConverter
 {
-    public class IdentityService : IIdentityService
+    public class IdentityConverterService : IIdentityConverterService
     {
         public string GetUserID(ClaimsPrincipal user)
         {

@@ -1,10 +1,11 @@
 ﻿using CartService.API.Data;
 using CartService.API.Models;
 using CartService.API.Models.ViewModels;
-using CartService.API.Services;
+using CartService.API.Services.Repositories.Abstractions;
 using EventBus.Shared.Abstraction;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Services.IdentityConverter.Abstractions;
 using System.Threading.Tasks;
 
 namespace CartService.API.Controllers
@@ -14,11 +15,11 @@ namespace CartService.API.Controllers
     [Authorize]
     public class CartController : ControllerBase
     {
-        private IIdentityService _identityService;
+        private IIdentityConverterService _identityService;
         private IEventBusRepository _eventBus;
         private ICartRepository _cartRepository;
 
-        public CartController(IIdentityService identityService,
+        public CartController(IIdentityConverterService identityService,
                               IEventBusRepository eventBus,
                               ICartRepository cartRepo)
         {

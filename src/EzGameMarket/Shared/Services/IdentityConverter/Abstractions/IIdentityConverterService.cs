@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace CouponCode.API.Services.Service.Abstractions
+namespace Shared.Services.IdentityConverter.Abstractions
 {
-    public interface IIdentityService
+    public interface IIdentityConverterService
     {
         public string GetUserID(ClaimsPrincipal user);
 

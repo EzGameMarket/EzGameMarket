@@ -2,11 +2,11 @@
 using CouponCode.API.Data;
 using CouponCode.API.Models;
 using CouponCode.API.Services.Repositories.Implementations;
-using CouponCode.API.Services.Service.Abstractions;
 using CouponCode.API.ViewModels;
 using CouponCode.Tests.FakeImplementation;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Shared.Services.IdentityConverter.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -50,7 +50,7 @@ namespace CouponCode.Tests.API.Controllers.CouponCodeControllerTests
             await FakeDbContextCreator.InitDbContext(dbOptions);
             var dbContext = new CouponCodeDbContext(dbOptions);
             var repo = new CouponCodeRepository(dbContext);
-            var identityServiceMocked = new Mock<IIdentityService>();
+            var identityServiceMocked = new Mock<IIdentityConverterService>();
             identityServiceMocked.Setup(x => x.GetUserID(default)).Returns("kriszw");
 
             var model = CreateModel();

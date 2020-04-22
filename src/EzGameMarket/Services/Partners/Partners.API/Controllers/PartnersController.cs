@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Shared.Extensions.Pagination;
 using Microsoft.AspNetCore.Http;
-using Services.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Partners.API.Services.Repositories.Abstractions;
 using Partners.API.Model;
+using Shared.Services.API.Communication.Models;
 
 namespace Partners.API.Controllers
 {

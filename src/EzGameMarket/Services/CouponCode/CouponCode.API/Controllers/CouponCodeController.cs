@@ -7,10 +7,10 @@ using CouponCode.API.Exceptions.CouponCode;
 using CouponCode.API.Exceptions.CouponCode.CouponCodeValidation;
 using CouponCode.API.Models;
 using CouponCode.API.Services.Repositories.Abstractions;
-using CouponCode.API.Services.Service.Abstractions;
 using CouponCode.API.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Services.IdentityConverter.Abstractions;
 
 namespace CouponCode.API.Controllers
 {
@@ -19,9 +19,9 @@ namespace CouponCode.API.Controllers
     public class CouponCodeController : ControllerBase
     {
         private ICouponCodeRepository _couponCodeRepository;
-        private IIdentityService _identityService;
+        private IIdentityConverterService _identityService;
 
-        public CouponCodeController(ICouponCodeRepository couponCodeRepository, IIdentityService identityService)
+        public CouponCodeController(ICouponCodeRepository couponCodeRepository, IIdentityConverterService identityService)
         {
             _couponCodeRepository = couponCodeRepository;
             _identityService = identityService;

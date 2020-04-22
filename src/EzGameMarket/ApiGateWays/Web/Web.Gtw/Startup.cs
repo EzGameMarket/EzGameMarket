@@ -24,10 +24,10 @@ using Newtonsoft.Json;
 using Shared.Extensions.HttpClientHandler;
 using Web.Gtw.Services.Repositories.Abstractions;
 using Web.Gtw.Services.Repositories.Implementation;
-using Web.Gtw.Services.Services.Abstractions;
-using Web.Gtw.Services.Services.Implementation;
 using Microsoft.Extensions.Http;
 using Microsoft.AspNetCore.Http;
+using Shared.Services.IdentityConverter.Abstractions;
+using Shared.Services.IdentityConverter;
 
 namespace Web.Gtw
 {
@@ -91,7 +91,7 @@ namespace Web.Gtw
 
             services.AddScoped<ICartRepository,CartRepository>();
             services.AddScoped<ICatalogRepository,CatalogRepository>();
-            services.AddScoped<IIdentityService,IdentityService>();
+            services.AddScoped<IIdentityConverterService, IdentityConverterService>();
         }
 
         private void AddJWT(IServiceCollection services)

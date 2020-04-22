@@ -25,7 +25,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\Service\Abstractions\" />
+    <Folder Include="Services\Service\Implementations\" />
     <Folder Include="Settings\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Services\IdentityConverter\IdentityConverter.csproj" />
   </ItemGroup>
 
 

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Web.Gtw.Services.Repositories.Abstractions;
 using Web.Gtw.Models.ViewModels;
 using Web.Gtw.Models.ViewModels.Cart;
-using Web.Gtw.Services.Services.Abstractions;
+using Shared.Services.IdentityConverter.Abstractions;
 
 namespace Web.Gtw.Controllers
 {
@@ -18,9 +18,9 @@ namespace Web.Gtw.Controllers
     public class CartController : ControllerBase
     {
         private ICartRepository _cartRepository;
-        private IIdentityService _identityService;
+        private IIdentityConverterService _identityService;
 
-        public CartController(ICartRepository cartRepository, IIdentityService identityService)
+        public CartController(ICartRepository cartRepository, IIdentityConverterService identityService)
         {
             _cartRepository = cartRepository;
             _identityService = identityService;

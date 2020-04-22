@@ -2,11 +2,12 @@
 using CartService.API.Events;
 using CartService.API.Models;
 using CartService.API.Models.ViewModels;
+using CartService.API.Services.Repositories.Abstractions;
 using EventBus.Shared.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
-namespace CartService.API.Services
+namespace CartService.API.Services.Repositories.Implementations
 {
     public class CartRepository : ICartRepository
     {

@@ -2,7 +2,7 @@
 using CartService.API.Models.ViewModels;
 using System.Threading.Tasks;
 
-namespace CartService.API.Services
+namespace CartService.API.Services.Repositories.Abstractions
 {
     public interface ICartRepository
     {

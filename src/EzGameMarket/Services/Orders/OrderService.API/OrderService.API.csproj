@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="IntegrationEvents\Handlers\" />
     <Folder Include="Models\ViewModels\" />
+    <Folder Include="Services\Repositories\Implementations\" />
   </ItemGroup>
 
 

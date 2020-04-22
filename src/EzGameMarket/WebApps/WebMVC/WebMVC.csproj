@@ -21,6 +21,8 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Services\Services\Abstractions\" />
+    <Folder Include="Services\Services\Implementations\" />
     <Folder Include="ViewModels\Orders\" />
     <Folder Include="Views\Order\" />
     <Folder Include="wwwroot\images\" />
@@ -36,6 +38,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Extensions\HttpClientHandler\HttpClientHandler.csproj" />
     <ProjectReference Include="..\..\Shared\Extensions\Pagination\Pagination.csproj" />
+    <ProjectReference Include="..\..\Shared\Services\IdentityConverter\IdentityConverter.csproj" />
   </ItemGroup>
 
 

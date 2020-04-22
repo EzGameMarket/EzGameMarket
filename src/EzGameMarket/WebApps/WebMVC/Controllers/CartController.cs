@@ -3,11 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebMVC.ViewModels;
 using WebMVC.ViewModels.Carts;
-using WebMVC.Services;
 using WebMVC.Services.Repositorys.Abstractions;
-using WebMVC.Services.Services.Abstractions;
+using Shared.Services.IdentityConverter.Abstractions;
 
 namespace WebMVC.Controllers
 {
@@ -17,11 +15,11 @@ namespace WebMVC.Controllers
     {
         ILogger<CartController> _logger;
         ICartRepository _cartRepository;
-        IIdentityService _identityService;
+        IIdentityConverterService _identityService;
 
         public CartController(ILogger<CartController> logger,
                               ICartRepository cartRepository,
-                              IIdentityService identityService)
+                              IIdentityConverterService identityService)
         {
             _logger = logger;
             _cartRepository = cartRepository;

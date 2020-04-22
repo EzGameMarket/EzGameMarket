@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Extensions.HttpClientHandler;
+using Shared.Services.IdentityConverter;
+using Shared.Services.IdentityConverter.Abstractions;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -14,8 +16,6 @@ using System.Text;
 using WebMVC.Extensions.Settings;
 using WebMVC.Services.Repositorys.Abstractions;
 using WebMVC.Services.Repositorys.Implementation;
-using WebMVC.Services.Services.Abstractions;
-using WebMVC.Services.Services.Implementation;
 
 namespace WebMVC
 {
@@ -59,7 +59,7 @@ namespace WebMVC
 
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<ICatalogRepository, CatalogRepository>();
-            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IIdentityConverterService, IdentityConverterService>();
             services.AddSingleton<ILoadBalancerUrls, LoadBalancerUrls>();
         }
 
