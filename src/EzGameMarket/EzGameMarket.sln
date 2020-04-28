@@ -341,7 +341,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{27
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Communication.Models", "Shared\Services\Services.Shared\API.Communication.Models.csproj", "{CCAF0526-2C48-42F9-9F14-897C1123CFD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityConverter", "Shared\Services\IdentityConverter\IdentityConverter.csproj", "{F886EC54-986C-4AA9-990C-00F007308CA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityConverter", "Shared\Services\IdentityConverter\IdentityConverter.csproj", "{F886EC54-986C-4AA9-990C-00F007308CA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

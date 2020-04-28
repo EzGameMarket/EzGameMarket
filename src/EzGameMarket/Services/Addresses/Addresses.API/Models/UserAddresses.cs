@@ -20,9 +20,10 @@ namespace Addresses.API.Models
         public string UserID { get; set; }
 
         [Required]
-        public IEnumerable<AddressModel> Addresses { get; set; }
+        public List<AddressModel> Addresses { get; set; }
 
         [Required]
+        public int? DefaultAddressID { get; set; }
         public AddressModel DefaultAddress { get; set; }
     }
 }

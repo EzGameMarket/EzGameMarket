@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Addresses.API.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,9 @@ namespace Addresses.API.Data
         public AddressesDbContext(DbContextOptions options) : base(options)
         {
         }
+
+        public DbSet<AddressModel> Addresses { get; set; }
+
+        public DbSet<UserAddresses> UserAddresses { get; set; }
     }
 }
