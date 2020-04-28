@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Shared.Services.API.Communication.Models.Abstractions
 {
-    interface IBase<T> : IBase where T : class
+    interface IBase<T> : IBase 
+        where T : class
     {
         T Data { get; }
     }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shared.Services.API.Communication.Models.Abstractions
 {
-    interface IResponse
+    interface IResponse : IBase
     {
         bool Success { get; }
         string Message { get; }
