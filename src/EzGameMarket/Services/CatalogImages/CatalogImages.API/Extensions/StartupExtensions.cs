@@ -14,7 +14,7 @@ using Shared.Utilities.CloudStorage.AzureBlob.Settings;
 using Shared.Extensions.SettingsLoader.Services.Abstractions;
 using Shared.Extensions.SettingsLoader.Services.Implementations;
 
-namespace CatalogImages.API
+namespace CatalogImages.API.Extensions
 {
     public static class StartupExtensions
     {
@@ -25,7 +25,7 @@ namespace CatalogImages.API
 
             services.AddSingleton(settings);
             services.AddSingleton<IStorageRepository, AzureBlobStorage>();
-            services.AddSingleton<IStorageService,StorageService>();
+            services.AddSingleton<IStorageService, StorageService>();
         }
 
         public static void AddJWT(this IServiceCollection services, IConfiguration configuration)

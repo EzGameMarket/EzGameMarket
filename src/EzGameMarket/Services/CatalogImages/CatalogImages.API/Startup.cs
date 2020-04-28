@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CatalogImages.API.Data;
+using CatalogImages.API.Extensions;
 using EventBus.MockedTest;
 using EventBus.Shared.Abstraction;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
