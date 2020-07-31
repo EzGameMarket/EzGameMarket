@@ -16,6 +16,8 @@ namespace IdentityService.API.Services
 {
     public class IdentityProvider : IIdentityService
     {
+        private const int ValidForNumberOfDays = 1;
+
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
         private readonly ILogger<IdentityProvider> _logger;
@@ -58,7 +60,7 @@ namespace IdentityService.API.Services
                 new Claim(ClaimTypes.NameIdentifier,user.Id),
                 new Claim(ClaimTypes.Email,user.Email),
                 new Claim(JwtRegisteredClaimNames.Nbf,new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
-                new Claim(JwtRegisteredClaimNames.Exp,new DateTimeOffset(DateTime.Now).AddDays(1).ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Exp,new DateTimeOffset(DateTime.Now).AddDays(ValidForNumberOfDays).ToUnixTimeSeconds().ToString()),
             };
 
             if (_context.Roles != default && _context.UserRoles != default)
